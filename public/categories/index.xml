@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Categories on ququ&#39;s blog</title>
+        <link>http://localhost:1313/categories/</link>
+        <description>Recent content in Categories on ququ&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Tue, 21 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>网络</title>
+        <link>http://localhost:1313/categories/net/</link>
+        <pubDate>Tue, 21 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/net/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/net/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 网络" /&gt;</description>
+        </item>
+        <item>
+        <title>编程语言</title>
+        <link>http://localhost:1313/categories/language/</link>
+        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/language/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/language/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 编程语言" /&gt;</description>
+        </item>
+        <item>
+        <title>大数据</title>
+        <link>http://localhost:1313/categories/bigdata/</link>
+        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/bigdata/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/bigdata/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 大数据" /&gt;</description>
+        </item>
+        <item>
+        <title>面试</title>
+        <link>http://localhost:1313/categories/%E9%9D%A2%E8%AF%95/</link>
+        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/%E9%9D%A2%E8%AF%95/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/%E9%9D%A2%E8%AF%95/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 面试" /&gt;</description>
+        </item>
+        <item>
+        <title>数据库</title>
+        <link>http://localhost:1313/categories/database/</link>
+        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/database/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/database/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 数据库" /&gt;</description>
+        </item>
+        <item>
+        <title>中间件</title>
+        <link>http://localhost:1313/categories/middleware/</link>
+        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/middleware/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/middleware/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 中间件" /&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

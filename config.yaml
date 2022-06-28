@@ -1,18 +1,8 @@
-baseurl: http://localhost:9999/
+baseurl: http://localhost:1313/
 languageCode: en-us
 theme: hugo-theme-stack
-paginate: 5
-title: soli
-
-languages:
-    en:
-        languageName: English
-        title: soli
-        weight: 1
-    zh-cn:
-        languageName: 中文
-        title: soli
-        weight: 2
+paginate: 10
+title: ququ's blog
 
 # Change it to your Disqus shortname before using
 disqusShortname: hugo-theme-stack
@@ -21,15 +11,15 @@ disqusShortname: hugo-theme-stack
 googleAnalytics:
 
 # Theme i18n support
-# Available values: ar, bn, ca, de, el, en, es, fr, hu, id, it, ja, ko, nl, pt-br, th, uk, zh-cn, zh-hk, zh-tw
-DefaultContentLanguage: en
+# Available values: en, fr, id, ja, ko, pt-br, zh-cn, zh-tw, es, de, nl, it, th, el, uk
+DefaultContentLanguage: zh-cn
 
 # Set hasCJKLanguage to true if DefaultContentLanguage is in [zh-cn ja ko]
 # This will make .Summary and .WordCount behave correctly for CJK languages.
-hasCJKLanguage: false
+hasCJKLanguage: true
 
 permalinks:
-    post: /p/:slug/
+    post: /:year/:month/:slug/
     page: /:slug/
 
 params:
@@ -37,19 +27,19 @@ params:
         - post
     featuredImageField: image
     rssFullContent: true
-    favicon:
+    favicon: img/avatar.png
 
     footer:
         since: 2020
         customText:
 
     dateFormat:
-        published: Jan 02, 2006
-        lastUpdated: Jan 02, 2006 15:04 MST
+        published: 2006年01月02日
+        lastUpdated: 2006年01月02日 15点04分05秒
 
     sidebar:
-        emoji:
-        subtitle: 贵在坚持
+        emoji: 🍥
+        subtitle: No code, no talk.
         avatar:
             enabled: true
             local: true
@@ -60,12 +50,11 @@ params:
         toc: true
         readingTime: true
         license:
-            enabled: true
-            default: Licensed under CC BY-NC-SA 4.0
+            enabled: false
 
     comments:
         enabled: true
-        provider: disqus
+        provider: waline
 
         disqusjs:
             shortname:
@@ -92,20 +81,22 @@ params:
             clientSecret:
             autoCreateIssue: false
 
-        # Waline client configuration see: https://waline.js.org/en/reference/component.html
+        # Waline client configuration see: https://waline.js.org/en/reference/client.html
         waline:
-            serverURL:
-            lang:
-            pageview:
+            serverURL: https://comment.ququ123.xyz
+            lang: zh-CN
+            visitor: true
+            avatar: identicon
             emoji:
-                - https://unpkg.com/@waline/emojis@1.0.1/weibo
+                - https://unpkg.com/@waline/emojis@1.0.1/qq
+                - https://unpkg.com/@waline/emojis@1.0.1/bilibili
+                - https://unpkg.com/@waline/emojis@1.0.1/tieba
             requiredMeta:
                 - name
                 - email
-                - url
+            placeholder: 允许匿名评论
             locale:
                 admin: Admin
-                placeholder:
 
         twikoo:
             envId:
@@ -153,7 +144,17 @@ params:
               params:
                   limit: 10
         page:
+            - type: search
             - type: toc
+            - type: archives
+              params:
+                  limit: 5
+            - type: categories
+              params:
+                  limit: 10
+            - type: tag-cloud
+              params:
+                  limit: 10
 
     opengraph:
         twitter:
@@ -186,20 +187,23 @@ params:
 ### See https://docs.stack.jimmycai.com/configuration/custom-menu.html
 ### To remove about, archive and search page menu item, remove `menu` field from their FrontMatter
 menu:
-    main: []
+    main:
+        - identifier: home
+          name: Home
+          url: /
+          weight: -100
+          params:
+              ### For demonstration purpose, the home link will be open in a new tab
+              newTab: flase
+              icon: home
 
     social:
         - identifier: github
           name: GitHub
-          url: https://github.com/blessli
+          url: https://github.com/zhulingbiezhi
           params:
               icon: brand-github
 
-        - identifier: twitter
-          name: Twitter
-          url: https://twitter.com
-          params:
-              icon: brand-twitter
 
 related:
     includeNewer: true
@@ -216,14 +220,14 @@ markup:
     goldmark:
         renderer:
             ## Set to true if you have HTML content inside Markdown
-            unsafe: false
+            unsafe: true
     tableOfContents:
         endLevel: 4
         ordered: true
         startLevel: 2
     highlight:
         noClasses: false
-        codeFences: true
+        codeFences: false
         guessSyntax: true
         lineNoStart: 1
         lineNos: true
