@@ -15,6 +15,7 @@ image = "golang-logo.png"
 +++
 <!--more-->
 ## Golang概述
+test
 ## Channel
 ![](channel-overview.png)
 ## GMP调度模型
