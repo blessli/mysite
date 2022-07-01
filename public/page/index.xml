@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Pages on ququ&#39;s blog</title>
+        <title>Pages on soli&#39;s blog</title>
         <link>http://localhost:1313/page/</link>
-        <description>Recent content in Pages on ququ&#39;s blog</description>
+        <description>Recent content in Pages on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/page/index.xml" rel="self" type="application/rss+xml" /><item>
@@ -13,6 +13,15 @@
         
         <guid>http://localhost:1313/archives/</guid>
         <description></description>
+        </item>
+        <item>
+        <title>About</title>
+        <link>http://localhost:1313/about/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/about/</guid>
+        <description>&lt;p&gt;This is a test page for i18n support.&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>Links</title>
@@ -42,15 +51,6 @@
         
         <guid>http://localhost:1313/search/</guid>
         <description></description>
-        </item>
-        <item>
-        <title>关于</title>
-        <link>http://localhost:1313/%E5%85%B3%E4%BA%8E/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/%E5%85%B3%E4%BA%8E/</guid>
-        <description>&lt;p&gt;This is a test page for i18n support.&lt;/p&gt;
-</description>
         </item>
         
     </channel>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Posts on ququ&#39;s blog</title>
+        <title>Posts on soli&#39;s blog</title>
         <link>http://localhost:1313/post/</link>
-        <description>Recent content in Posts on ququ&#39;s blog</description>
+        <description>Recent content in Posts on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Tue, 21 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" /><item>
@@ -70,7 +70,6 @@
         
         <guid>http://localhost:1313/2022/06/golang-notes/</guid>
         <description>&lt;img src="http://localhost:1313/2022/06/golang-notes/golang-logo.png" alt="Featured image of post golang-notes" /&gt;&lt;h2 id=&#34;golang概述&#34;&gt;Golang概述&lt;/h2&gt;
-&lt;p&gt;test&lt;/p&gt;
 &lt;h2 id=&#34;channel&#34;&gt;Channel&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/2022/06/golang-notes/channel-overview.png&#34;
 	width=&#34;1500&#34;
