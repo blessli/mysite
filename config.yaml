@@ -2,7 +2,7 @@ baseurl: http://localhost:1313/
 languageCode: en-us
 theme: hugo-theme-stack
 paginate: 10
-title: ququ's blog
+title: soli's blog
 
 # Change it to your Disqus shortname before using
 disqusShortname: hugo-theme-stack
