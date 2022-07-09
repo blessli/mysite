@@ -1,8 +1,8 @@
 ---
 title: "大数据"
-description: "大数据相关技术"
+description: "主要指SparkScala相关技术栈"
 slug: "bigdata"
-image: "hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg"
+image: "img.png"
 style:
     background: "#2a9d8f"
     color: "#fff"

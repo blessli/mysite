@@ -12,7 +12,7 @@
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/2022/06/java-notes/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/06/java-notes/java-logo.png" alt="Featured image of post java-notes" /&gt;&lt;h2 id=&#34;并发编程&#34;&gt;并发编程&lt;/h2&gt;
+        <description>&lt;img src="http://localhost:1313/2022/06/java-notes/img.png" alt="Featured image of post java-notes" /&gt;&lt;h2 id=&#34;并发编程&#34;&gt;并发编程&lt;/h2&gt;
 &lt;p&gt;并发工具类：&lt;/p&gt;
 &lt;h2 id=&#34;jvm&#34;&gt;JVM&lt;/h2&gt;
 &lt;h3 id=&#34;jvm内存区域&#34;&gt;JVM内存区域&lt;/h3&gt;

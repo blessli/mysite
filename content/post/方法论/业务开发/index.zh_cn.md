@@ -4,14 +4,14 @@ title = "业务开发"
 date = "2022-06-18"
 description = "总结+提炼"
 categories = [
-"方法论"
+"methodology"
 ]
 tags = [
 "业务"
 ]
 series = ["Themes Guide"]
 aliases = ["migrate-from-jekyl"]
-image = "busi-dev.png"
+image = "img.png"
 +++
 <!--more-->
 ## 做事方法论

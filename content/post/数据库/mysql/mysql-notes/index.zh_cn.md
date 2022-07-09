@@ -11,7 +11,7 @@ tags = [
 ]
 series = ["Themes Guide"]
 aliases = ["migrate-from-jekyl"]
-image = "mysql-logo.png"
+image = "img.png"
 +++
 <!--more-->
 ## 索引

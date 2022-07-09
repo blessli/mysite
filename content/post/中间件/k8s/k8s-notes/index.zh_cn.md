@@ -11,7 +11,7 @@ tags = [
 ]
 series = ["Themes Guide"]
 aliases = ["migrate-from-jekyl"]
-image = "k8s.png"
+image = "img.png"
 +++
 <!--more-->
 ## k8s概述

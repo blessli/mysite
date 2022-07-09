@@ -11,7 +11,7 @@ tags = [
 ]
 series = ["Themes Guide"]
 aliases = ["migrate-from-jekyl"]
-image = "gorm.png"
+image = "img.png"
 +++
 <!--more-->
 ## 安全性问题

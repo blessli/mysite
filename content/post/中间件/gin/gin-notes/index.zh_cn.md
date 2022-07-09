@@ -1,8 +1,8 @@
 +++
 author = "soli"
-title = "gin-notes"
+title = "go-gin简介"
 date = "2022-07-06"
-description = "Gin学习笔记"
+description = "go-gin"
 categories = [
 "middleware"
 ]
@@ -11,7 +11,7 @@ tags = [
 ]
 series = ["Themes Guide"]
 aliases = ["migrate-from-jekyl"]
-image = "gin.png"
+image = "img.png"
 +++
 <!--more-->
 ## Gin是什么

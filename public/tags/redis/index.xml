@@ -12,7 +12,7 @@
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/2022/06/redis-notes/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/06/redis-notes/redis-logo.png" alt="Featured image of post redis-notes" /&gt;&lt;h2 id=&#34;redis概述&#34;&gt;Redis概述&lt;/h2&gt;
+        <description>&lt;img src="http://localhost:1313/2022/06/redis-notes/img.png" alt="Featured image of post redis-notes" /&gt;&lt;h2 id=&#34;redis概述&#34;&gt;Redis概述&lt;/h2&gt;
 &lt;h2 id=&#34;核心数据结构&#34;&gt;核心数据结构&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/2022/06/redis-notes/redis-data-structure-overview.png&#34;
 	width=&#34;1648&#34;

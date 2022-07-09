@@ -4,14 +4,14 @@ title = "技术分享"
 date = "2022-07-06"
 description = "如何做好技术分享"
 categories = [
-"方法论"
+"methodology"
 ]
 tags = [
 "技术分享"
 ]
 series = ["Themes Guide"]
 aliases = ["migrate-from-jekyl"]
-image = "interview-logo.png"
+image = "img.png"
 +++
 
 <!--more-->

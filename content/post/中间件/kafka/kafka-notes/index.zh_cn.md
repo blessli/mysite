@@ -1,6 +1,6 @@
 +++
 author = "soli"
-title = "kafka-notes"
+title = "kafka简介"
 date = "2022-06-18"
 description = "消息中间件Kafka学习笔记"
 categories = [
@@ -11,7 +11,7 @@ tags = [
 ]
 series = ["Themes Guide"]
 aliases = ["migrate-from-jekyl"]
-image = "kafka-logo.png"
+image = "img.png"
 +++
 <!--more-->
 ## Kafka概述

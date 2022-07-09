@@ -4,7 +4,7 @@ title = "method-notes"
 date = "2022-06-18"
 description = "一场面试下来的反思与感悟"
 categories = [
-"方法论"
+"methodology"
 ]
 tags = [
 "心得体会"

@@ -7,12 +7,12 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Wed, 06 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/gin/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>gin-notes</title>
-        <link>http://localhost:1313/2022/07/gin-notes/</link>
+        <title>go-gin简介</title>
+        <link>http://localhost:1313/2022/07/go-gin%E7%AE%80%E4%BB%8B/</link>
         <pubDate>Wed, 06 Jul 2022 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/2022/07/gin-notes/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/07/gin-notes/gin.png" alt="Featured image of post gin-notes" /&gt;&lt;h2 id=&#34;gin是什么&#34;&gt;Gin是什么&lt;/h2&gt;
+        <guid>http://localhost:1313/2022/07/go-gin%E7%AE%80%E4%BB%8B/</guid>
+        <description>&lt;img src="http://localhost:1313/2022/07/go-gin%E7%AE%80%E4%BB%8B/img.png" alt="Featured image of post go-gin简介" /&gt;&lt;h2 id=&#34;gin是什么&#34;&gt;Gin是什么&lt;/h2&gt;
 &lt;h2 id=&#34;为什么使用gin&#34;&gt;为什么使用Gin&lt;/h2&gt;
 &lt;h2 id=&#34;如何使用gin&#34;&gt;如何使用Gin&lt;/h2&gt;
 &lt;h2 id=&#34;使用注意细节&#34;&gt;使用注意细节&lt;/h2&gt;

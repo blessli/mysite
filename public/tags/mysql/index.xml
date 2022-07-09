@@ -12,7 +12,7 @@
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/2022/06/mysql-notes/</guid>
-        <description>&lt;img src="http://localhost:1313/mysql-logo.png" alt="Featured image of post mysql-notes" /&gt;&lt;h2 id=&#34;索引&#34;&gt;索引&lt;/h2&gt;
+        <description>&lt;img src="http://localhost:1313/2022/06/mysql-notes/img.png" alt="Featured image of post mysql-notes" /&gt;&lt;h2 id=&#34;索引&#34;&gt;索引&lt;/h2&gt;
 &lt;h3 id=&#34;索引底层数据结构选型&#34;&gt;索引底层数据结构选型&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;哈希表、二叉查找树、平衡二叉树、B树、B+树、跳表。&lt;/p&gt;

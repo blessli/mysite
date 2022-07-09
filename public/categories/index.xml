@@ -8,11 +8,11 @@
         <language>en-us</language>
         <lastBuildDate>Sat, 09 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>网络</title>
-        <link>http://localhost:1313/categories/net/</link>
+        <link>http://localhost:1313/categories/internet/</link>
         <pubDate>Sat, 09 Jul 2022 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/categories/net/</guid>
-        <description>&lt;img src="http://localhost:1313/categories/net/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 网络" /&gt;</description>
+        <guid>http://localhost:1313/categories/internet/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/internet/img.png" alt="Featured image of post 网络" /&gt;</description>
         </item>
         <item>
         <title>中间件</title>
@@ -20,7 +20,7 @@
         <pubDate>Sat, 09 Jul 2022 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/categories/middleware/</guid>
-        <description>&lt;img src="http://localhost:1313/categories/middleware/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 中间件" /&gt;</description>
+        <description>&lt;img src="http://localhost:1313/categories/middleware/img.png" alt="Featured image of post 中间件" /&gt;</description>
         </item>
         <item>
         <title>编程语言</title>
@@ -28,15 +28,15 @@
         <pubDate>Wed, 06 Jul 2022 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/categories/language/</guid>
-        <description>&lt;img src="http://localhost:1313/categories/language/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 编程语言" /&gt;</description>
+        <description>&lt;img src="http://localhost:1313/categories/language/img.png" alt="Featured image of post 编程语言" /&gt;</description>
         </item>
         <item>
         <title>方法论</title>
-        <link>http://localhost:1313/categories/%E6%96%B9%E6%B3%95%E8%AE%BA/</link>
+        <link>http://localhost:1313/categories/methodology/</link>
         <pubDate>Wed, 06 Jul 2022 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/categories/%E6%96%B9%E6%B3%95%E8%AE%BA/</guid>
-        <description></description>
+        <guid>http://localhost:1313/categories/methodology/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/methodology/img.png" alt="Featured image of post 方法论" /&gt;</description>
         </item>
         <item>
         <title>大数据</title>
@@ -44,7 +44,7 @@
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/categories/bigdata/</guid>
-        <description>&lt;img src="http://localhost:1313/categories/bigdata/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 大数据" /&gt;</description>
+        <description>&lt;img src="http://localhost:1313/categories/bigdata/img.png" alt="Featured image of post 大数据" /&gt;</description>
         </item>
         <item>
         <title>面试</title>
@@ -60,7 +60,7 @@
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/categories/database/</guid>
-        <description>&lt;img src="http://localhost:1313/categories/database/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 数据库" /&gt;</description>
+        <description>&lt;img src="http://localhost:1313/categories/database/img.png" alt="Featured image of post 数据库" /&gt;</description>
         </item>
         
     </channel>
