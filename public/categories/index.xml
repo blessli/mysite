@@ -6,21 +6,37 @@
         <description>Recent content in Categories on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 21 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 09 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>网络</title>
         <link>http://localhost:1313/categories/net/</link>
-        <pubDate>Tue, 21 Jun 2022 00:00:00 +0000</pubDate>
+        <pubDate>Sat, 09 Jul 2022 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/categories/net/</guid>
         <description>&lt;img src="http://localhost:1313/categories/net/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 网络" /&gt;</description>
         </item>
         <item>
+        <title>中间件</title>
+        <link>http://localhost:1313/categories/middleware/</link>
+        <pubDate>Sat, 09 Jul 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/middleware/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/middleware/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 中间件" /&gt;</description>
+        </item>
+        <item>
         <title>编程语言</title>
         <link>http://localhost:1313/categories/language/</link>
-        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+        <pubDate>Wed, 06 Jul 2022 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/categories/language/</guid>
         <description>&lt;img src="http://localhost:1313/categories/language/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 编程语言" /&gt;</description>
+        </item>
+        <item>
+        <title>方法论</title>
+        <link>http://localhost:1313/categories/%E6%96%B9%E6%B3%95%E8%AE%BA/</link>
+        <pubDate>Wed, 06 Jul 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/%E6%96%B9%E6%B3%95%E8%AE%BA/</guid>
+        <description></description>
         </item>
         <item>
         <title>大数据</title>
@@ -45,14 +61,6 @@
         
         <guid>http://localhost:1313/categories/database/</guid>
         <description>&lt;img src="http://localhost:1313/categories/database/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 数据库" /&gt;</description>
-        </item>
-        <item>
-        <title>中间件</title>
-        <link>http://localhost:1313/categories/middleware/</link>
-        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/categories/middleware/</guid>
-        <description>&lt;img src="http://localhost:1313/categories/middleware/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 中间件" /&gt;</description>
         </item>
         
     </channel>

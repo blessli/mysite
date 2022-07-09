@@ -1,7 +1,7 @@
 baseurl: http://localhost:1313/
 languageCode: en-us
 theme: hugo-theme-stack
-paginate: 10
+paginate: 5
 title: soli's blog
 
 # Change it to your Disqus shortname before using
@@ -38,8 +38,8 @@ params:
         lastUpdated: 2006年01月02日 15点04分05秒
 
     sidebar:
-        emoji: 🍥
-        subtitle: No code, no talk.
+        emoji:
+        subtitle: ability++
         avatar:
             enabled: true
             local: true

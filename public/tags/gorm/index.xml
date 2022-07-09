@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>gorm on soli&#39;s blog</title>
+        <link>http://localhost:1313/tags/gorm/</link>
+        <description>Recent content in gorm on soli&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Wed, 06 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/gorm/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>gorm-notes</title>
+        <link>http://localhost:1313/2022/07/gorm-notes/</link>
+        <pubDate>Wed, 06 Jul 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/2022/07/gorm-notes/</guid>
+        <description>&lt;img src="http://localhost:1313/2022/07/gorm-notes/gorm.png" alt="Featured image of post gorm-notes" /&gt;&lt;h2 id=&#34;安全性问题&#34;&gt;安全性问题&lt;/h2&gt;
+&lt;p&gt;gorm自带有sql防注入，但是只限于其中的几个。&lt;/p&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

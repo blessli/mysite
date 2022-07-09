@@ -6,7 +6,46 @@
         <description>Recent content in golang on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sat, 18 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/golang/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 06 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/golang/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>golang踩坑记录</title>
+        <link>http://localhost:1313/2022/07/golang%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</link>
+        <pubDate>Wed, 06 Jul 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/2022/07/golang%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</guid>
+        <description>&lt;img src="http://localhost:1313/2022/07/golang%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/cover.png" alt="Featured image of post golang踩坑记录" /&gt;&lt;h2 id=&#34;踩坑一函数编写&#34;&gt;【踩坑一】函数编写&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import &amp;quot;fmt&amp;quot;
+
+func func1() error {
+	return nil
+}
+// 推荐这样写，考虑因素：函数入参、返回值、函数局部变量初始化
+func correctShow(ids ...int64) (err error) {
+	keys := make([]string, 0, len(ids))
+	for _, id := range ids {
+		keys = append(keys, fmt.Sprintf(&amp;quot;data_%d&amp;quot;, id))
+	}
+	if err = func1(); err != nil {
+		return
+	}
+	return
+}
+// 不推荐这样写
+func errorShow(ids []int64) error {
+	var keys []string
+	for _, id := range ids {
+		keys = append(keys, fmt.Sprintf(&amp;quot;data_%d&amp;quot;, id))
+	}
+	if err := func1(); err != nil {
+		return err
+	}
+	return nil
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;vendor踩坑二&#34;&gt;【vendor】踩坑二&lt;/h2&gt;</description>
+        </item>
+        <item>
         <title>golang-notes</title>
         <link>http://localhost:1313/2022/06/golang-notes/</link>
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>

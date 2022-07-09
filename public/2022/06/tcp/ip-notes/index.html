@@ -64,15 +64,13 @@
                 
                 </a>
                 
-                    <span class="emoji">🍥</span>
-                
             </figure>
             
         
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">soli&#39;s blog</a></h1>
-            <h2 class="site-description">No code, no talk.</h2>
+            <h2 class="site-description">ability&#43;&#43;</h2>
         </div>
     </header><ol class="social-menu">
             
@@ -308,7 +306,7 @@
     <section class="article-content">
     
     
-    <h2 id="tcp">TCP</h2>
+    <h2 id="传输层">传输层</h2>
 <h3 id="三次握手">三次握手</h3>
 <p><img src="/2022/06/tcp/ip-notes/tcp-connect.png"
 	width="887"
@@ -343,7 +341,7 @@
 <ol>
 <li>time_wait和close_wait产生过多的原因和解决方法</li>
 </ol>
-<h2 id="https">HTTPS</h2>
+<h2 id="应用层-https">应用层-HTTPS</h2>
 <p><img src="/2022/06/tcp/ip-notes/https-overview.png"
 	width="1304"
 	height="1199"
@@ -358,6 +356,9 @@
 		data-flex-basis="261px"
 	
 ></p>
+<h2 id="网络层">网络层</h2>
+<h3 id="ip">IP</h3>
+<h3 id="arp">ARP</h3>
 </section>
 
 
@@ -379,6 +380,39 @@
     
 
     
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/2022/07/http%E5%90%84%E7%89%88%E6%9C%AC%E5%8C%BA%E5%88%AB/">
+        
+        
+            <div class="article-image">
+                <img src="/2022/07/http%E5%90%84%E7%89%88%E6%9C%AC%E5%8C%BA%E5%88%AB/http.a9fbe3937bd2bfa2a0643f3a4af0541d_hu8fa13fd208461564eff25263603122a9_4482_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post HTTP各版本区别"
+                        
+                        data-hash="md5-qfvjk3vSv6KgZD86SvBUHQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">HTTP各版本区别</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
 
      
     
@@ -541,14 +575,20 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#tcp">TCP</a>
+    <li><a href="#传输层">传输层</a>
       <ol>
         <li><a href="#三次握手">三次握手</a></li>
         <li><a href="#四次挥手">四次挥手</a></li>
         <li><a href="#tcp常见问题讨论">TCP常见问题讨论</a></li>
       </ol>
     </li>
-    <li><a href="#https">HTTPS</a></li>
+    <li><a href="#应用层-https">应用层-HTTPS</a></li>
+    <li><a href="#网络层">网络层</a>
+      <ol>
+        <li><a href="#ip">IP</a></li>
+        <li><a href="#arp">ARP</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -579,7 +619,7 @@
                     <a href="/archives/#2022">
                         
                             <span class="year">2022</span>
-                            <span class="count">10</span>
+                            <span class="count">18</span>
                         
                     </a> 
                 </div>
@@ -606,24 +646,28 @@
 
     <div class="tagCloud-tags">
         
-            <a href="/categories/language/" class="font_size_3">
+            <a href="/categories/middleware/" class="font_size_5">
+                中间件
+            </a>
+        
+            <a href="/categories/language/" class="font_size_4">
                 编程语言
+            </a>
+        
+            <a href="/categories/%E6%96%B9%E6%B3%95%E8%AE%BA/" class="font_size_3">
+                方法论
             </a>
         
             <a href="/categories/database/" class="font_size_2">
                 数据库
             </a>
         
-            <a href="/categories/middleware/" class="font_size_2">
-                中间件
+            <a href="/categories/net/" class="font_size_2">
+                网络
             </a>
         
             <a href="/categories/bigdata/" class="font_size_1">
                 大数据
-            </a>
-        
-            <a href="/categories/net/" class="font_size_1">
-                网络
             </a>
         
             <a href="/categories/%E9%9D%A2%E8%AF%95/" class="font_size_1">
@@ -651,8 +695,28 @@
 
     <div class="tagCloud-tags">
         
-            <a href="/tags/golang/" class="font_size_1">
+            <a href="/tags/golang/" class="font_size_2">
                 golang
+            </a>
+        
+            <a href="/tags/%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A/" class="font_size_2">
+                心得体会
+            </a>
+        
+            <a href="/tags/etcd/" class="font_size_1">
+                etcd
+            </a>
+        
+            <a href="/tags/gin/" class="font_size_1">
+                gin
+            </a>
+        
+            <a href="/tags/gorm/" class="font_size_1">
+                gorm
+            </a>
+        
+            <a href="/tags/http/" class="font_size_1">
+                http
             </a>
         
             <a href="/tags/java/" class="font_size_1">
@@ -669,26 +733,6 @@
         
             <a href="/tags/mysql/" class="font_size_1">
                 mysql
-            </a>
-        
-            <a href="/tags/redis/" class="font_size_1">
-                redis
-            </a>
-        
-            <a href="/tags/scala/" class="font_size_1">
-                scala
-            </a>
-        
-            <a href="/tags/spark/" class="font_size_1">
-                spark
-            </a>
-        
-            <a href="/tags/tcp/ip/" class="font_size_1">
-                tcp/ip
-            </a>
-        
-            <a href="/tags/%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A/" class="font_size_1">
-                心得体会
             </a>
         
     </div>
