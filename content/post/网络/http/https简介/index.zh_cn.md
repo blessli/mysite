@@ -15,3 +15,5 @@ image = "static/img.png"
 +++
 <!--more-->
 ![HTTPS交互过程](static/https.png)
+
+server.crt和server.key就是你的nginx需要的证书文件

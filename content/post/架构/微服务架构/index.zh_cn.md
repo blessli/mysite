@@ -1,17 +1,17 @@
 +++
 author = "soli"
-title = "interview-notes"
+title = "微服务架构介绍"
 date = "2022-06-18"
-description = "一场面试下来的反思与感悟"
+description = "暂无"
 categories = [
-"面试"
+"架构"
 ]
 tags = [
-"心得体会"
+"微服务"
 ]
 series = ["Themes Guide"]
 aliases = ["migrate-from-jekyl"]
-image = "interview-logo.png"
+image = "img.png"
 +++
 <!--more-->
 ## 什么是微服务

@@ -27,3 +27,5 @@ image = "img.png"
 
 ## 参考引用
 [技术文章的选题，有没有什么方法论？](https://cloud.tencent.com/developer/article/1657277)
+
+[技术分享PPT](https://github.com/rfyiamcool/share_ppt)

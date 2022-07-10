@@ -25,7 +25,8 @@
 		data-flex-grow=&#34;108&#34;
 		data-flex-basis=&#34;261px&#34;
 	
-&gt;&lt;/p&gt;</description>
+&gt;&lt;/p&gt;
+&lt;p&gt;server.crt和server.key就是你的nginx需要的证书文件&lt;/p&gt;</description>
         </item>
         <item>
         <title>HTTP各版本区别</title>
