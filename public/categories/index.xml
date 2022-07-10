@@ -55,6 +55,14 @@
         <description>&lt;img src="http://localhost:1313/categories/bigdata/img.png" alt="Featured image of post 大数据" /&gt;</description>
         </item>
         <item>
+        <title>基础能力</title>
+        <link>http://localhost:1313/categories/%E5%9F%BA%E7%A1%80%E8%83%BD%E5%8A%9B/</link>
+        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/%E5%9F%BA%E7%A1%80%E8%83%BD%E5%8A%9B/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>架构</title>
         <link>http://localhost:1313/categories/%E6%9E%B6%E6%9E%84/</link>
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>

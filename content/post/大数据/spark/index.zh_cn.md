@@ -1,6 +1,6 @@
 +++
 author = "soli"
-title = "spark-notes"
+title = "spark原理浅析"
 date = "2022-06-18"
 description = "大数据Spark学习笔记"
 categories = [
@@ -11,7 +11,7 @@ tags = [
 ]
 series = ["Themes Guide"]
 aliases = ["migrate-from-jekyl"]
-image = "spark-logo.png"
+image = "img.png"
 +++
 <!--more-->
 ## Spark概述

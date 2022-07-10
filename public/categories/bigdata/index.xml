@@ -15,12 +15,12 @@
         <description>&lt;img src="http://localhost:1313/2022/06/scala-notes/img.png" alt="Featured image of post scala-notes" /&gt;&lt;h2 id=&#34;柯里化&#34;&gt;柯里化&lt;/h2&gt;</description>
         </item>
         <item>
-        <title>spark-notes</title>
-        <link>http://localhost:1313/2022/06/spark-notes/</link>
+        <title>spark原理浅析</title>
+        <link>http://localhost:1313/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/</link>
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/2022/06/spark-notes/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/06/spark-notes/spark-logo.png" alt="Featured image of post spark-notes" /&gt;&lt;h2 id=&#34;spark概述&#34;&gt;Spark概述&lt;/h2&gt;
+        <guid>http://localhost:1313/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/</guid>
+        <description>&lt;img src="http://localhost:1313/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/img.png" alt="Featured image of post spark原理浅析" /&gt;&lt;h2 id=&#34;spark概述&#34;&gt;Spark概述&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;一个高效通用的内存型分布式计算框架。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -32,10 +32,10 @@
 &lt;li&gt;运行模式多样&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;spark作业基本运行原理&#34;&gt;Spark作业基本运行原理&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/2022/06/spark-notes/spark-job-overview.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-job-overview.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;1165&#34;
-	srcset=&#34;http://localhost:1313/2022/06/spark-notes/spark-job-overview_hu78bea729486ce89e2fe0a398a1ecaf9b_600608_480x0_resize_box_3.png 480w, http://localhost:1313/2022/06/spark-notes/spark-job-overview_hu78bea729486ce89e2fe0a398a1ecaf9b_600608_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-job-overview_hu78bea729486ce89e2fe0a398a1ecaf9b_600608_480x0_resize_box_3.png 480w, http://localhost:1313/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-job-overview_hu78bea729486ce89e2fe0a398a1ecaf9b_600608_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -45,10 +45,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;运行流程&#34;&gt;运行流程&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/2022/06/spark-notes/spark-run-process.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-run-process.png&#34;
 	width=&#34;866&#34;
 	height=&#34;625&#34;
-	srcset=&#34;http://localhost:1313/2022/06/spark-notes/spark-run-process_huc9f081e82636bb0a42975df969154a76_141101_480x0_resize_box_3.png 480w, http://localhost:1313/2022/06/spark-notes/spark-run-process_huc9f081e82636bb0a42975df969154a76_141101_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-run-process_huc9f081e82636bb0a42975df969154a76_141101_480x0_resize_box_3.png 480w, http://localhost:1313/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-run-process_huc9f081e82636bb0a42975df969154a76_141101_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	

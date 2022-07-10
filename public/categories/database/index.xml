@@ -52,6 +52,22 @@
 版本已提交，且是在快照创建前提交的，可以读到&lt;/p&gt;</description>
         </item>
         <item>
+        <title>mysql踩坑记录</title>
+        <link>http://localhost:1313/2022/06/mysql%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</link>
+        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/2022/06/mysql%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</guid>
+        <description>&lt;img src="http://localhost:1313/2022/06/mysql%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/img.png" alt="Featured image of post mysql踩坑记录" /&gt;&lt;h2 id=&#34;防sql注入&#34;&gt;防SQL注入&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;禁止使用拼接SQL方式&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;PreparedStatement&lt;/li&gt;
+&lt;li&gt;正则表达式&lt;/li&gt;
+&lt;li&gt;字符串过滤&lt;/li&gt;
+&lt;/ul&gt;</description>
+        </item>
+        <item>
         <title>redis-notes</title>
         <link>http://localhost:1313/2022/06/redis-notes/</link>
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>

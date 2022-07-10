@@ -26,7 +26,10 @@
 		data-flex-basis=&#34;261px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;server.crt和server.key就是你的nginx需要的证书文件&lt;/p&gt;</description>
+&lt;h2 id=&#34;实战&#34;&gt;实战&lt;/h2&gt;
+&lt;p&gt;server.crt证书文件和server.key私钥文件&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://cloud.tencent.com/document/product/400/35244&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Nginx 服务器 SSL 证书安装部署&lt;/a&gt;&lt;/p&gt;</description>
         </item>
         <item>
         <title>HTTP各版本区别</title>
