@@ -27,7 +27,7 @@ params:
         - post
     featuredImageField: image
     rssFullContent: true
-    favicon: img/avatar.png
+    favicon: img/avatar.jpeg
 
     footer:
         since: 2020
@@ -43,7 +43,7 @@ params:
         avatar:
             enabled: true
             local: true
-            src: img/avatar.png
+            src: img/avatar.jpeg
 
     article:
         math: false
@@ -203,6 +203,11 @@ menu:
           url: https://github.com/zhulingbiezhi
           params:
               icon: brand-github
+        - identifier: codeforces
+          name: Codeforces
+          url: https://codeforces.com/problemset
+          params:
+              icon: brand-codeforces
 
 
 related:
