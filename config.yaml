@@ -203,12 +203,6 @@ menu:
           url: https://github.com/zhulingbiezhi
           params:
               icon: brand-github
-        - identifier: codeforces
-          name: Codeforces
-          url: https://codeforces.com/problemset
-          params:
-              icon: brand-codeforces
-
 
 related:
     includeNewer: true
