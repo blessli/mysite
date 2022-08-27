@@ -46,7 +46,7 @@ params:
             src: img/avatar.jpeg
 
     article:
-        math: false
+        math: true
         toc: true
         readingTime: true
         license:
@@ -83,7 +83,7 @@ params:
 
         # Waline client configuration see: https://waline.js.org/en/reference/client.html
         waline:
-            serverURL: https://comment.ququ123.xyz
+            serverURL: waline-comment-l3hyhxfrh-blessli.vercel.app
             lang: zh-CN
             visitor: true
             avatar: identicon
@@ -196,13 +196,6 @@ menu:
               ### For demonstration purpose, the home link will be open in a new tab
               newTab: flase
               icon: home
-
-    social:
-        - identifier: github
-          name: GitHub
-          url: https://github.com/zhulingbiezhi
-          params:
-              icon: brand-github
 
 related:
     includeNewer: true
