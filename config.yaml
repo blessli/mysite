@@ -83,7 +83,7 @@ params:
 
         # Waline client configuration see: https://waline.js.org/en/reference/client.html
         waline:
-            serverURL: waline-comment-l3hyhxfrh-blessli.vercel.app
+            serverURL: waline-comment-eosin.vercel.app
             lang: zh-CN
             visitor: true
             avatar: identicon
@@ -95,6 +95,7 @@ params:
                 - name
                 - email
             placeholder: 允许匿名评论
+            comment_count: true
             locale:
                 admin: Admin
 
