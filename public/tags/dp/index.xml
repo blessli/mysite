@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>dp on soli&#39;s blog</title>
+        <link>http://localhost:1313/tags/dp/</link>
+        <description>Recent content in dp on soli&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Sat, 08 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/dp/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>dp大法</title>
+        <link>http://localhost:1313/2022/10/dp%E5%A4%A7%E6%B3%95/</link>
+        <pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/2022/10/dp%E5%A4%A7%E6%B3%95/</guid>
+        <description>&lt;img src="http://localhost:1313/2022/10/dp%E5%A4%A7%E6%B3%95/img.png" alt="Featured image of post dp大法" /&gt;</description>
+        </item>
+        <item>
+        <title>网络是怎样连接的</title>
+        <link>http://localhost:1313/2022/10/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/</link>
+        <pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/2022/10/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/</guid>
+        <description>&lt;img src="http://localhost:1313/2022/10/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/img.png" alt="Featured image of post 网络是怎样连接的" /&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

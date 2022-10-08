@@ -6,50 +6,7 @@
         <description>Recent content in 中间件 on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sat, 09 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/middleware/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>etcd-notes</title>
-        <link>http://localhost:1313/2022/07/etcd-notes/</link>
-        <pubDate>Sat, 09 Jul 2022 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/2022/07/etcd-notes/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/07/etcd-notes/img.png" alt="Featured image of post etcd-notes" /&gt;</description>
-        </item>
-        <item>
-        <title>grpc简介</title>
-        <link>http://localhost:1313/2022/07/grpc%E7%AE%80%E4%BB%8B/</link>
-        <pubDate>Sat, 09 Jul 2022 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/2022/07/grpc%E7%AE%80%E4%BB%8B/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/07/grpc%E7%AE%80%E4%BB%8B/img.png" alt="Featured image of post grpc简介" /&gt;&lt;h2 id=&#34;grpc概述&#34;&gt;gRPC概述&lt;/h2&gt;
-&lt;p&gt;gRPC 是一个高性能、开源和通用的 RPC 框架，面向移动和 HTTP/2 设计。&lt;/p&gt;
-&lt;h2 id=&#34;grpc使用场景&#34;&gt;gRPC使用场景&lt;/h2&gt;
-&lt;p&gt;需要对接口进行严格约束。 &lt;br&gt;
-对于性能有更高的要求&lt;/p&gt;</description>
-        </item>
-        <item>
-        <title>go-gin简介</title>
-        <link>http://localhost:1313/2022/07/go-gin%E7%AE%80%E4%BB%8B/</link>
-        <pubDate>Wed, 06 Jul 2022 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/2022/07/go-gin%E7%AE%80%E4%BB%8B/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/07/go-gin%E7%AE%80%E4%BB%8B/img.png" alt="Featured image of post go-gin简介" /&gt;&lt;h2 id=&#34;gin是什么&#34;&gt;Gin是什么&lt;/h2&gt;
-&lt;h2 id=&#34;为什么使用gin&#34;&gt;为什么使用Gin&lt;/h2&gt;
-&lt;h2 id=&#34;如何使用gin&#34;&gt;如何使用Gin&lt;/h2&gt;
-&lt;h2 id=&#34;使用注意细节&#34;&gt;使用注意细节&lt;/h2&gt;
-&lt;h2 id=&#34;参考引用&#34;&gt;参考引用&lt;/h2&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://gin-gonic.com/zh-cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Gin官网&lt;/a&gt;&lt;/p&gt;</description>
-        </item>
-        <item>
-        <title>gorm-notes</title>
-        <link>http://localhost:1313/2022/07/gorm-notes/</link>
-        <pubDate>Wed, 06 Jul 2022 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/2022/07/gorm-notes/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/07/gorm-notes/img.png" alt="Featured image of post gorm-notes" /&gt;&lt;h2 id=&#34;安全性问题&#34;&gt;安全性问题&lt;/h2&gt;
-&lt;p&gt;gorm自带有sql防注入，但是只限于其中的几个。&lt;/p&gt;</description>
-        </item>
-        <item>
+        <lastBuildDate>Sat, 18 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/middleware/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>k8s-notes</title>
         <link>http://localhost:1313/2022/06/k8s-notes/</link>
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>

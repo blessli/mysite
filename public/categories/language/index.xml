@@ -93,14 +93,6 @@ func errorShow(ids []int64) error {
 	
 &gt;&lt;/p&gt;</description>
         </item>
-        <item>
-        <title>scala-notes</title>
-        <link>http://localhost:1313/2022/06/scala-notes/</link>
-        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/2022/06/scala-notes/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/06/scala-notes/img.png" alt="Featured image of post scala-notes" /&gt;&lt;h2 id=&#34;柯里化&#34;&gt;柯里化&lt;/h2&gt;</description>
-        </item>
         
     </channel>
 </rss>
