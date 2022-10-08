@@ -39,7 +39,7 @@ params:
 
     sidebar:
         emoji:
-        subtitle: ability++
+        subtitle: 生活可以忙忙碌碌随大流，思想必须偷偷摸摸求上进
         avatar:
             enabled: true
             local: true

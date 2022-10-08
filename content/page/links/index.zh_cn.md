@@ -1,37 +1,18 @@
 ---
 title: Links
 links:
-  - title: GitHub
-    description: GitHub is the world's largest software development platform.
-    website: https://github.com
+  - title: My-GitHub
+    description: 跳转至我的Github仓库
+    website: https://github.com/blessli?tab=repositories
     image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-  - title: TypeScript
-    description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
-    website: https://www.typescriptlang.org
-    image: ts-logo-128.jpg
+  - title: 免费正版高清图片素材库
+    description: Pixabay拥有超过2.6百万张优质图片和视频素材，让你轻松应对各种设计场景
+    website: https://pixabay.com/zh/
 menu:
     main: 
         weight: -50
         params:
             icon: link
 
-comments: false
+comments: true
 ---
-
-To use this feature, add `links` section to frontmatter.
-
-This page's frontmatter:
-
-```yaml
-links:
-  - title: GitHub
-    description: GitHub is the world's largest software development platform.
-    website: https://github.com
-    image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-  - title: TypeScript
-    description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
-    website: https://www.typescriptlang.org
-    image: ts-logo-128.jpg
-```
-
-`image` field accepts both local and external images.
