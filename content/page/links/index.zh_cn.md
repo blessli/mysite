@@ -13,6 +13,9 @@ links:
   - title: YouTube
     description: Siberia 4K - Scenic Relaxation Film With Calming Music
     website: https://www.youtube.com/watch?v=y13JsbpHaT4&ab_channel=ScenicRelaxation
+  - title: LeetCode
+    description: 刷题平台
+    website: https://leetcode.cn/problem-list/2cktkvj/
 menu:
     main: 
         weight: -50

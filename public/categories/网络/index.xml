@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>网络 on soli&#39;s blog</title>
+        <link>http://localhost:1313/categories/%E7%BD%91%E7%BB%9C/</link>
+        <description>Recent content in 网络 on soli&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Sun, 09 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E7%BD%91%E7%BB%9C/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>网络是怎样连接的</title>
+        <link>http://localhost:1313/2022/10/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/</link>
+        <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/2022/10/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/</guid>
+        <description>&lt;img src="http://localhost:1313/2022/10/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/img.png" alt="Featured image of post 网络是怎样连接的" /&gt;&lt;blockquote&gt;
+&lt;p&gt;从在浏览器中输入网址，到屏幕上显示出网页的内容，在这个只有几秒钟的过程中，很多硬件和软件都在各自的岗位上相互配合完成了一系列的工作。&lt;br&gt;
+&lt;img src=&#34;http://localhost:1313/2022/10/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/static/%E6%8E%A2%E7%B4%A2%E4%B9%8B%E6%97%85%E8%B7%AF%E7%BA%BF%E5%9B%BE.png&#34;
+	width=&#34;1019&#34;
+	height=&#34;607&#34;
+	srcset=&#34;http://localhost:1313/2022/10/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/static/%E6%8E%A2%E7%B4%A2%E4%B9%8B%E6%97%85%E8%B7%AF%E7%BA%BF%E5%9B%BE_hu717f72756ee5a734cc42c73c4166c78f_292840_480x0_resize_box_3.png 480w, http://localhost:1313/2022/10/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/static/%E6%8E%A2%E7%B4%A2%E4%B9%8B%E6%97%85%E8%B7%AF%E7%BA%BF%E5%9B%BE_hu717f72756ee5a734cc42c73c4166c78f_292840_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;探索之旅路线图&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;167&#34;
+		data-flex-basis=&#34;402px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;浏览器生成消息&#34;&gt;浏览器生成消息&lt;/h2&gt;
+&lt;h2 id=&#34;用电信号传输tcpip&#34;&gt;用电信号传输TCP/IP&lt;/h2&gt;
+&lt;h2 id=&#34;从网络到网络设备&#34;&gt;从网络到网络设备&lt;/h2&gt;
+&lt;h2 id=&#34;通过接入网进入互联网内部&#34;&gt;通过接入网进入互联网内部&lt;/h2&gt;
+&lt;h2 id=&#34;请求到达web服务器响应返回浏览器&#34;&gt;请求到达web服务器，响应返回浏览器&lt;/h2&gt;</description>
+        </item>
+        
+    </channel>
+</rss>
