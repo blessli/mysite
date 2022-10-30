@@ -5,8 +5,7 @@
         <link>http://localhost:1313/categories/bigdata/</link>
         <description>Recent content in 大数据 on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language>
-        <lastBuildDate>Sat, 18 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/bigdata/index.xml" rel="self" type="application/rss+xml" /><item>
+        <language>en-us</language><atom:link href="http://localhost:1313/categories/bigdata/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>spark原理浅析</title>
         <link>http://localhost:1313/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/</link>
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>

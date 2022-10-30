@@ -21,6 +21,12 @@ hasCJKLanguage: true
 # https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#smileys--emotion
 enableEmoji: true
 
+enableGitInfo: true
+frontmatter:
+  date:
+  - date
+  - publishDate
+  - lastmod
 permalinks:
     post: /:year/:month/:slug/
     page: /:slug/
@@ -33,7 +39,7 @@ params:
     favicon: img/avatar.jpeg
 
     footer:
-        since: 2020
+        since: 2022
         customText:
 
     dateFormat:

@@ -23,14 +23,6 @@
         <description></description>
         </item>
         <item>
-        <title>网络</title>
-        <link>http://localhost:1313/categories/internet/</link>
-        <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/categories/internet/</guid>
-        <description>&lt;img src="http://localhost:1313/categories/internet/img.png" alt="Featured image of post 网络" /&gt;</description>
-        </item>
-        <item>
         <title>操作系统</title>
         <link>http://localhost:1313/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
         <pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate>
@@ -57,42 +49,10 @@
         <item>
         <title>编程语言</title>
         <link>http://localhost:1313/categories/language/</link>
-        <pubDate>Wed, 06 Jul 2022 00:00:00 +0000</pubDate>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/categories/language/</guid>
         <description>&lt;img src="http://localhost:1313/categories/language/img.png" alt="Featured image of post 编程语言" /&gt;</description>
-        </item>
-        <item>
-        <title>方法论</title>
-        <link>http://localhost:1313/categories/methodology/</link>
-        <pubDate>Wed, 06 Jul 2022 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/categories/methodology/</guid>
-        <description>&lt;img src="http://localhost:1313/categories/methodology/img.png" alt="Featured image of post 方法论" /&gt;</description>
-        </item>
-        <item>
-        <title>大数据</title>
-        <link>http://localhost:1313/categories/bigdata/</link>
-        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/categories/bigdata/</guid>
-        <description>&lt;img src="http://localhost:1313/categories/bigdata/img.png" alt="Featured image of post 大数据" /&gt;</description>
-        </item>
-        <item>
-        <title>数据库</title>
-        <link>http://localhost:1313/categories/database/</link>
-        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/categories/database/</guid>
-        <description>&lt;img src="http://localhost:1313/categories/database/img.png" alt="Featured image of post 数据库" /&gt;</description>
-        </item>
-        <item>
-        <title>中间件</title>
-        <link>http://localhost:1313/categories/middleware/</link>
-        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/categories/middleware/</guid>
-        <description>&lt;img src="http://localhost:1313/categories/middleware/img.png" alt="Featured image of post 中间件" /&gt;</description>
         </item>
         <item>
         <title>操作系统</title>
@@ -101,6 +61,46 @@
         
         <guid>http://localhost:1313/categories/os/</guid>
         <description>&lt;img src="http://localhost:1313/categories/os/img.png" alt="Featured image of post 操作系统" /&gt;</description>
+        </item>
+        <item>
+        <title>大数据</title>
+        <link>http://localhost:1313/categories/bigdata/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/bigdata/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/bigdata/img.png" alt="Featured image of post 大数据" /&gt;</description>
+        </item>
+        <item>
+        <title>方法论</title>
+        <link>http://localhost:1313/categories/methodology/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/methodology/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/methodology/img.png" alt="Featured image of post 方法论" /&gt;</description>
+        </item>
+        <item>
+        <title>数据库</title>
+        <link>http://localhost:1313/categories/database/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/database/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/database/img.png" alt="Featured image of post 数据库" /&gt;</description>
+        </item>
+        <item>
+        <title>网络</title>
+        <link>http://localhost:1313/categories/internet/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/internet/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/internet/img.png" alt="Featured image of post 网络" /&gt;</description>
+        </item>
+        <item>
+        <title>中间件</title>
+        <link>http://localhost:1313/categories/middleware/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/middleware/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/middleware/img.png" alt="Featured image of post 中间件" /&gt;</description>
         </item>
         
     </channel>
