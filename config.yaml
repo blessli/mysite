@@ -1,4 +1,4 @@
-baseurl: https://soli.seekincs.com/
+baseurl: http://localhost:1313/
 languageCode: en-us
 theme: hugo-theme-stack
 paginate: 5

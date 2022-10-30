@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>读书 on soli&#39;s blog</title>
-        <link>https://soli.seekincs.com/tags/%E8%AF%BB%E4%B9%A6/</link>
+        <link>http://localhost:1313/tags/%E8%AF%BB%E4%B9%A6/</link>
         <description>Recent content in 读书 on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sat, 08 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/%E8%AF%BB%E4%B9%A6/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 08 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E8%AF%BB%E4%B9%A6/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>2022书单</title>
-        <link>https://soli.seekincs.com/2022/10/2022%E4%B9%A6%E5%8D%95/</link>
+        <link>http://localhost:1313/2022/10/2022%E4%B9%A6%E5%8D%95/</link>
         <pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/10/2022%E4%B9%A6%E5%8D%95/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/2022/10/2022%E4%B9%A6%E5%8D%95/img.png" alt="Featured image of post 2022书单" /&gt;&lt;h2 id=&#34;文学&#34;&gt;📖文学&lt;/h2&gt;
+        <guid>http://localhost:1313/2022/10/2022%E4%B9%A6%E5%8D%95/</guid>
+        <description>&lt;img src="http://localhost:1313/2022/10/2022%E4%B9%A6%E5%8D%95/img.png" alt="Featured image of post 2022书单" /&gt;&lt;h2 id=&#34;文学&#34;&gt;📖文学&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 平凡的世界&lt;/li&gt;
 &lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 法治的细节&lt;/li&gt;
