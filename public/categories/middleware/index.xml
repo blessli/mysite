@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>中间件 on soli&#39;s blog</title>
-        <link>http://localhost:1313/categories/middleware/</link>
+        <link>https://soli.seekincs.com/categories/middleware/</link>
         <description>Recent content in 中间件 on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language><atom:link href="http://localhost:1313/categories/middleware/index.xml" rel="self" type="application/rss+xml" /><item>
+        <language>en-us</language><atom:link href="https://soli.seekincs.com/categories/middleware/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>k8s-notes</title>
-        <link>http://localhost:1313/2022/06/k8s-notes/</link>
+        <link>https://soli.seekincs.com/2022/06/k8s-notes/</link>
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/2022/06/k8s-notes/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/06/k8s-notes/img.png" alt="Featured image of post k8s-notes" /&gt;&lt;h2 id=&#34;k8s概述&#34;&gt;k8s概述&lt;/h2&gt;
+        <guid>https://soli.seekincs.com/2022/06/k8s-notes/</guid>
+        <description>&lt;img src="https://soli.seekincs.com/2022/06/k8s-notes/img.png" alt="Featured image of post k8s-notes" /&gt;&lt;h2 id=&#34;k8s概述&#34;&gt;k8s概述&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;自动化运维管理Docker(容器化)程序。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;核心特性&#34;&gt;核心特性&lt;/h2&gt;
 &lt;h2 id=&#34;pod状态流转&#34;&gt;pod状态流转&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/2022/06/k8s-notes/pod-status-transfer.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/k8s-notes/pod-status-transfer.png&#34;
 	width=&#34;1808&#34;
 	height=&#34;732&#34;
-	srcset=&#34;http://localhost:1313/2022/06/k8s-notes/pod-status-transfer_hu8b8ca875de7b11f9902f0c65dd172bb1_93987_480x0_resize_box_3.png 480w, http://localhost:1313/2022/06/k8s-notes/pod-status-transfer_hu8b8ca875de7b11f9902f0c65dd172bb1_93987_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/06/k8s-notes/pod-status-transfer_hu8b8ca875de7b11f9902f0c65dd172bb1_93987_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/k8s-notes/pod-status-transfer_hu8b8ca875de7b11f9902f0c65dd172bb1_93987_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -32,18 +32,18 @@
         </item>
         <item>
         <title>kafka简介</title>
-        <link>http://localhost:1313/2022/06/kafka%E7%AE%80%E4%BB%8B/</link>
+        <link>https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/</link>
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/2022/06/kafka%E7%AE%80%E4%BB%8B/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/06/kafka%E7%AE%80%E4%BB%8B/img.png" alt="Featured image of post kafka简介" /&gt;&lt;h2 id=&#34;kafka概述&#34;&gt;Kafka概述&lt;/h2&gt;
+        <guid>https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/</guid>
+        <description>&lt;img src="https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/img.png" alt="Featured image of post kafka简介" /&gt;&lt;h2 id=&#34;kafka概述&#34;&gt;Kafka概述&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;体系架构、多副本机制、分区机制。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/2022/06/kafka%E7%AE%80%E4%BB%8B/kafka-overview.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/kafka-overview.jpg&#34;
 	width=&#34;1500&#34;
 	height=&#34;711&#34;
-	srcset=&#34;http://localhost:1313/2022/06/kafka%E7%AE%80%E4%BB%8B/kafka-overview_hu1d5a1f7ef32392ffc1bb1be28d3dd3b9_385772_480x0_resize_q75_box.jpg 480w, http://localhost:1313/2022/06/kafka%E7%AE%80%E4%BB%8B/kafka-overview_hu1d5a1f7ef32392ffc1bb1be28d3dd3b9_385772_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/kafka-overview_hu1d5a1f7ef32392ffc1bb1be28d3dd3b9_385772_480x0_resize_q75_box.jpg 480w, https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/kafka-overview_hu1d5a1f7ef32392ffc1bb1be28d3dd3b9_385772_1024x0_resize_q75_box.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	

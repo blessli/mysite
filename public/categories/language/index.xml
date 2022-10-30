@@ -2,60 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>编程语言 on soli&#39;s blog</title>
-        <link>http://localhost:1313/categories/language/</link>
+        <link>https://soli.seekincs.com/categories/language/</link>
         <description>Recent content in 编程语言 on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language><atom:link href="http://localhost:1313/categories/language/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>golang踩坑记录</title>
-        <link>http://localhost:1313/2022/07/golang%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</link>
-        <pubDate>Wed, 06 Jul 2022 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/2022/07/golang%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/07/golang%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/img.png" alt="Featured image of post golang踩坑记录" /&gt;&lt;h2 id=&#34;踩坑一函数编写&#34;&gt;【踩坑一】函数编写&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
-
-import &amp;quot;fmt&amp;quot;
-
-func func1() error {
-	return nil
-}
-// 推荐这样写，考虑因素：函数入参、返回值、函数局部变量初始化
-func correctShow(ids ...int64) (err error) {
-	keys := make([]string, 0, len(ids))
-	for _, id := range ids {
-		keys = append(keys, fmt.Sprintf(&amp;quot;data_%d&amp;quot;, id))
-	}
-	if err = func1(); err != nil {
-		return
-	}
-	return
-}
-// 不推荐这样写
-func errorShow(ids []int64) error {
-	var keys []string
-	for _, id := range ids {
-		keys = append(keys, fmt.Sprintf(&amp;quot;data_%d&amp;quot;, id))
-	}
-	if err := func1(); err != nil {
-		return err
-	}
-	return nil
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;vendor踩坑二&#34;&gt;【vendor】踩坑二&lt;/h2&gt;</description>
-        </item>
-        <item>
+        <language>en-us</language><atom:link href="https://soli.seekincs.com/categories/language/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>golang简介</title>
-        <link>http://localhost:1313/2022/06/golang%E7%AE%80%E4%BB%8B/</link>
+        <link>https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/</link>
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/2022/06/golang%E7%AE%80%E4%BB%8B/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/06/golang%E7%AE%80%E4%BB%8B/static/img.png" alt="Featured image of post golang简介" /&gt;&lt;h2 id=&#34;golang概述&#34;&gt;Golang概述&lt;/h2&gt;
+        <guid>https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/</guid>
+        <description>&lt;img src="https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/img.png" alt="Featured image of post golang简介" /&gt;&lt;h2 id=&#34;golang概述&#34;&gt;Golang概述&lt;/h2&gt;
 &lt;h2 id=&#34;channel&#34;&gt;Channel&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/2022/06/golang%E7%AE%80%E4%BB%8B/static/channel-overview.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/channel-overview.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;923&#34;
-	srcset=&#34;http://localhost:1313/2022/06/golang%E7%AE%80%E4%BB%8B/static/channel-overview_hu0eb3b9f1ee24e4d337caae59151f5270_238819_480x0_resize_box_3.png 480w, http://localhost:1313/2022/06/golang%E7%AE%80%E4%BB%8B/static/channel-overview_hu0eb3b9f1ee24e4d337caae59151f5270_238819_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/channel-overview_hu0eb3b9f1ee24e4d337caae59151f5270_238819_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/channel-overview_hu0eb3b9f1ee24e4d337caae59151f5270_238819_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -65,10 +26,10 @@ func errorShow(ids []int64) error {
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;gmp调度模型&#34;&gt;GMP调度模型&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/2022/06/golang%E7%AE%80%E4%BB%8B/static/gmp-overview.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/gmp-overview.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;698&#34;
-	srcset=&#34;http://localhost:1313/2022/06/golang%E7%AE%80%E4%BB%8B/static/gmp-overview_hua11c6aaea3a84c49cd2aa3cbacab8952_289581_480x0_resize_box_3.png 480w, http://localhost:1313/2022/06/golang%E7%AE%80%E4%BB%8B/static/gmp-overview_hua11c6aaea3a84c49cd2aa3cbacab8952_289581_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/gmp-overview_hua11c6aaea3a84c49cd2aa3cbacab8952_289581_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/gmp-overview_hua11c6aaea3a84c49cd2aa3cbacab8952_289581_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -79,10 +40,10 @@ func errorShow(ids []int64) error {
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;mutex&#34;&gt;Mutex&lt;/h2&gt;
 &lt;h2 id=&#34;waitgroup&#34;&gt;WaitGroup&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/2022/06/golang%E7%AE%80%E4%BB%8B/static/waitgroup.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/waitgroup.png&#34;
 	width=&#34;3033&#34;
 	height=&#34;1572&#34;
-	srcset=&#34;http://localhost:1313/2022/06/golang%E7%AE%80%E4%BB%8B/static/waitgroup_hucb853939e1f51b2eb1dfcfd394cd0e16_275659_480x0_resize_box_3.png 480w, http://localhost:1313/2022/06/golang%E7%AE%80%E4%BB%8B/static/waitgroup_hucb853939e1f51b2eb1dfcfd394cd0e16_275659_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/waitgroup_hucb853939e1f51b2eb1dfcfd394cd0e16_275659_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/waitgroup_hucb853939e1f51b2eb1dfcfd394cd0e16_275659_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
