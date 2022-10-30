@@ -11,7 +11,7 @@ tags = [
 ]
 series = ["Themes Guide"]
 aliases = ["migrate-from-jekyl"]
-image = "img.png"
+image = "https://lidongming.oss-cn-shenzhen.aliyuncs.com/mysite/img.png"
 +++
 <!--more-->
 <a name="NcnDm"></a>

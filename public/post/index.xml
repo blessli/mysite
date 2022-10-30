@@ -12,7 +12,7 @@
         <pubDate>Sun, 30 Oct 2022 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/img.png" alt="Featured image of post 如何快速部署开源服务器并应用于业务场景(以EMQX为例)" /&gt;&lt;p&gt;&lt;a name=&#34;NcnDm&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+        <description>&lt;img src="https://lidongming.oss-cn-shenzhen.aliyuncs.com/mysite/img.png" alt="Featured image of post 如何快速部署开源服务器并应用于业务场景(以EMQX为例)" /&gt;&lt;p&gt;&lt;a name=&#34;NcnDm&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
 &lt;p&gt;当需要提供一种新能力，考虑到成本问题，我们往往不会从0到1开发一个服务器，而是先在开源产品中选型对比，看是否已有能满足自身需求的开源产品(不重复造轮子的原则)。因为对开源服务器的不熟悉，部署过程中会踩这样那样的坑，效率比较低，如何快速部署并应用于实际业务场景呢？&lt;br /&gt;随便提一下，私有化部署的原因主要是考虑到数据安全，&lt;strong&gt;安全无小事，安全大于一切&lt;/strong&gt;
 &lt;a name=&#34;cGHID&#34;&gt;&lt;/a&gt;&lt;/p&gt;
