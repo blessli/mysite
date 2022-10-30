@@ -18,6 +18,9 @@ DefaultContentLanguage: zh-cn
 # This will make .Summary and .WordCount behave correctly for CJK languages.
 hasCJKLanguage: true
 
+# https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#smileys--emotion
+enableEmoji: true
+
 permalinks:
     post: /:year/:month/:slug/
     page: /:slug/

@@ -6,18 +6,10 @@
         <description>Recent content in Posts on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 09 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>HTTP/2 in Action</title>
-        <link>http://localhost:1313/2022/10/http/2-in-action/</link>
-        <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/2022/10/http/2-in-action/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/10/http/2-in-action/img.png" alt="Featured image of post HTTP/2 in Action" /&gt;&lt;h2 id=&#34;为什么需要http2&#34;&gt;为什么需要HTTP/2&lt;/h2&gt;</description>
-        </item>
-        <item>
+        <lastBuildDate>Sun, 30 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>如何快速部署开源服务器并应用于业务场景(以EMQX为例)</title>
         <link>http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/</link>
-        <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+        <pubDate>Sun, 30 Oct 2022 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/</guid>
         <description>&lt;img src="http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/img.png" alt="Featured image of post 如何快速部署开源服务器并应用于业务场景(以EMQX为例)" /&gt;&lt;p&gt;&lt;a name=&#34;NcnDm&#34;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -335,10 +327,10 @@ backend emqx_ws_back
 		data-flex-grow=&#34;350&#34;
 		data-flex-basis=&#34;840px&#34;
 	
-&gt;&lt;br /&gt;&lt;img src=&#34;http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/1w%E8%AE%A2%E9%98%85%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png&#34;
-	width=&#34;902&#34;
-	height=&#34;422&#34;
-	srcset=&#34;http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/1w%E8%AE%A2%E9%98%85%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu3d61c023e28a1537fb67203f6fdbad46_302892_480x0_resize_box_3.png 480w, http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/1w%E8%AE%A2%E9%98%85%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu3d61c023e28a1537fb67203f6fdbad46_302892_1024x0_resize_box_3.png 1024w&#34;
+&gt;&lt;br /&gt;&lt;img src=&#34;http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png&#34;
+	width=&#34;451&#34;
+	height=&#34;211&#34;
+	srcset=&#34;http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu05177a01e7c6baaaeded93db73876caf_20409_480x0_resize_box_3.png 480w, http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu05177a01e7c6baaaeded93db73876caf_20409_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -350,6 +342,16 @@ backend emqx_ws_back
 &lt;a name=&#34;b4Tai&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
 &lt;p&gt;搭建开源服务器，需要实现协议接入、集群部署、接入安全等核心功能来满足业务需求，最终目的是为业务带来一定的价值。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>HTTP/2 in Action</title>
+        <link>http://localhost:1313/2022/10/http/2-in-action/</link>
+        <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/2022/10/http/2-in-action/</guid>
+        <description>&lt;img src="http://localhost:1313/2022/10/http/2-in-action/img.png" alt="Featured image of post HTTP/2 in Action" /&gt;&lt;h2 id=&#34;为什么需要http2&#34;&gt;为什么需要HTTP/2&lt;/h2&gt;
+&lt;p&gt;去露营了！ ⛺ 很快回来。&lt;/p&gt;
+&lt;p&gt;真好笑！😀&lt;/p&gt;</description>
         </item>
         <item>
         <title>网络是怎样连接的</title>
@@ -386,25 +388,41 @@ backend emqx_ws_back
         <pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/2022/10/2022%E4%B9%A6%E5%8D%95/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/10/2022%E4%B9%A6%E5%8D%95/img.png" alt="Featured image of post 2022书单" /&gt;&lt;h2 id=&#34;文学&#34;&gt;文学&lt;/h2&gt;
+        <description>&lt;img src="http://localhost:1313/2022/10/2022%E4%B9%A6%E5%8D%95/img.png" alt="Featured image of post 2022书单" /&gt;&lt;h2 id=&#34;文学&#34;&gt;📖文学&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;平凡的世界&lt;/li&gt;
-&lt;li&gt;法治的细节&lt;/li&gt;
-&lt;li&gt;朗读者&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 平凡的世界&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 法治的细节&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 活着&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 三体&lt;img src=&#34;https://geps.dev/progress/23&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;技术&#34;&gt;技术&lt;/h2&gt;
+&lt;h2 id=&#34;技术&#34;&gt;🧑‍💻技术&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;操作系统导论&lt;/li&gt;
-&lt;li&gt;网络是怎样连接的&lt;/li&gt;
-&lt;li&gt;深入剖析k8s&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 操作系统导论&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 网络是怎样连接的&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 深入剖析k8s&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 计算机网络第6版&lt;img src=&#34;https://geps.dev/progress/33&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;生活&#34;&gt;生活&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;控糖生活&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 控糖生活&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;我的人生样样稀松照样赢&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 我的人生样样稀松照样赢&lt;/li&gt;
 &lt;/ul&gt;</description>
         </item>
         <item>

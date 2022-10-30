@@ -1,7 +1,7 @@
 +++
 author = "soli"
 title = "如何快速部署开源服务器并应用于业务场景(以EMQX为例)"
-date = "2022-10-09"
+date = "2022-10-30"
 description = "快速部署MQTT消息服务器"
 categories = [
 "中间件"
@@ -259,7 +259,7 @@ backend emqx_ws_back
 ```
 <a name="MWSkb"></a>
 #### 压测注意事项
-压测客户端被限制：ulimit命令修改进程最大连接数限制，否则会压测不准，最大并发连接数卡在1007上不去。<br />发布端发送消息速率过快：  max_mqueue_len参数默认为1000，队列满会消息发送失败 <br />负载均衡器maxconn设置过小：haproxy的maxconn默认值是1000，需要调大为50000<br />![image.png](static/压测效果图.png)<br />![](static/1w订阅压测效果图.png)
+压测客户端被限制：ulimit命令修改进程最大连接数限制，否则会压测不准，最大并发连接数卡在1007上不去。<br />发布端发送消息速率过快：  max_mqueue_len参数默认为1000，队列满会消息发送失败 <br />负载均衡器maxconn设置过小：haproxy的maxconn默认值是1000，需要调大为50000<br />![image.png](static/压测效果图.png)<br />![](static/高并发压测效果图.png)
 <a name="b4Tai"></a>
 ## 总结
 搭建开源服务器，需要实现协议接入、集群部署、接入安全等核心功能来满足业务需求，最终目的是为业务带来一定的价值。
