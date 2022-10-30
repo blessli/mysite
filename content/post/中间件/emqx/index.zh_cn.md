@@ -40,8 +40,8 @@ image = "img.png"
 启动命令： docker-compose -f docker-compose-emqx-cluster.yaml up &  
 <a name="iQFUX"></a>
 ## 接入安全
-修改emqx_auth_mysql.conf配置文件：修改数据库实例，创建认证表和授权表。<br />在loaded_plugins配置文件中启用emqx_auth_mysql插件。<br />emqx默认是不设置权限，需要修改acl.conf启用鉴权。
-```
+在loaded_plugins配置文件中启用emqx_auth_mysql插件。
+{{< highlight sh "linenos=table" >}}
 {emqx_management,true}.
 {emqx_dashboard,true}.
 {emqx_modules,false}.
@@ -51,15 +51,16 @@ image = "img.png"
 {emqx_rule_engine,true}.
 {emqx_bridge_mqtt,false}.
 {emqx_auth_mysql,true}.
-```
-```
+{{< / highlight >}}
+emqx默认是不设置权限，需要修改acl.conf启用鉴权。
+{{< highlight sh "linenos=table" >}}
 {allow, {user, "dashboard"}, subscribe, ["$SYS/#"]}.
 {allow, {ipaddr, "127.0.0.1"}, pubsub, ["$SYS/#", "#"]}.
 {deny, all, subscribe, ["$SYS/#", {eq, "#"}]}.
-```
+{{< / highlight >}}
+修改emqx_auth_mysql.conf配置文件：修改数据库实例，创建认证表和授权表。<br />
 用户名/密码认证防止非法客户端连接。
-
-```sql
+{{< highlight sql "linenos=table" >}}
 CREATE TABLE `mqtt_user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(100) DEFAULT NULL,
@@ -70,10 +71,11 @@ CREATE TABLE `mqtt_user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `mqtt_username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4
-```
+{{< / highlight >}}
+
 对 MQTT 客户端的发布和订阅操作进行权限控制。控制哪些客户端可以发布或者订阅哪些MQTT主题。
 
-```sql 
+{{< highlight sql "linenos=table" >}}
 CREATE TABLE `mqtt_acl` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `allow` int(1) DEFAULT '1' COMMENT '0: deny, 1: allow',
@@ -87,11 +89,11 @@ CREATE TABLE `mqtt_acl` (
   KEY `username` (`username`),
   KEY `clientid` (`clientid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4
-```
+{{< / highlight >}}
 <a name="ucIIH"></a>
 ## 集群部署
 实际业务场景可能对高性能、高可用有着一定要求。<br />![image.png](static/LB整体架构图.jpeg)
-```yaml
+{{< highlight yaml "linenos=table" >}}
 version: '3.9'
 
 x-default-emqx: &default-emqx
@@ -183,13 +185,12 @@ name: emqx_bridge
 #   config:
 #     - subnet: 172.100.239.0/24
 #       gateway: 172.100.239.1
-
-```
+{{< / highlight >}}
 ![image.png](static/集群部署效果图.jpeg)
 <a name="IKIao"></a>
 ## 协议接入
 应用层协议包括mqtt、websocket、http。负载均衡器方面的配置非常关键，下面以haproxy为例(核心配置)：<br />粘性会话是在haproxy中配置的。
-```
+{{< highlight cfg "linenos=table" >}}
 defaults
     log global
     mode http
@@ -233,7 +234,7 @@ backend emqx_ws_back
     acl hdr_websocket_version  hdr_cnt(Sec-WebSocket-Version)  eq 1
     server emqx-1 node1.emqx.io:8083
     server emqx-2 node2.emqx.io:8083
-```
+{{< / highlight >}}
 <a name="H4GbN"></a>
 ## 测试
 <a name="xqJQO"></a>
@@ -254,9 +255,9 @@ backend emqx_ws_back
 <a name="ImiGE"></a>
 #### 测试方法
 一般官方都会提供配套的压测工具脚本，比如[emqtt-bench开源项目](https://github.com/emqx/emqtt-bench)，将其运行在云主机，压测效果最好，减少网络传输时延。
-```
+{{< highlight bash "linenos=table" >}}
  ./emqtt_bench sub -t bench -h ${ip} -p 1883 -c 1000 -i 10 -q 1 -u ${username}-P ${password}  
-```
+{{< / highlight >}}
 <a name="MWSkb"></a>
 #### 压测注意事项
 压测客户端被限制：ulimit命令修改进程最大连接数限制，否则会压测不准，最大并发连接数卡在1007上不去。<br />发布端发送消息速率过快：  max_mqueue_len参数默认为1000，队列满会消息发送失败 <br />负载均衡器maxconn设置过小：haproxy的maxconn默认值是1000，需要调大为50000<br />![image.png](static/压测效果图.png)<br />![](static/高并发压测效果图.png)

@@ -9,7 +9,7 @@
 <meta property='og:description' content='快速部署MQTT消息服务器'>
 <meta property='og:url' content='http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/'>
 <meta property='og:site_name' content='soli&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='emqx' /><meta property='article:published_time' content='2022-10-30T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-10-30T10:35:15&#43;08:00'/><meta property='og:image' content='http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/img.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='emqx' /><meta property='article:published_time' content='2022-10-30T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-10-30T11:22:03&#43;08:00'/><meta property='og:image' content='http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/img.png' />
 <meta name="twitter:title" content="如何快速部署开源服务器并应用于业务场景(以EMQX为例)">
 <meta name="twitter:description" content="快速部署MQTT消息服务器"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/img.png' />
@@ -315,49 +315,106 @@
 <p>启动命令： docker-compose -f docker-compose-emqx-cluster.yaml up &amp;<br>
 <a name="iQFUX"></a></p>
 <h2 id="接入安全">接入安全</h2>
-<p>修改emqx_auth_mysql.conf配置文件：修改数据库实例，创建认证表和授权表。<br />在loaded_plugins配置文件中启用emqx_auth_mysql插件。<br />emqx默认是不设置权限，需要修改acl.conf启用鉴权。</p>
-<pre><code>{emqx_management,true}.
-{emqx_dashboard,true}.
-{emqx_modules,false}.
-{emqx_recon,true}.
-{emqx_retainer,true}.
-{emqx_telemetry,true}.
-{emqx_rule_engine,true}.
-{emqx_bridge_mqtt,false}.
-{emqx_auth_mysql,true}.
-</code></pre>
-<pre><code>{allow, {user, &quot;dashboard&quot;}, subscribe, [&quot;$SYS/#&quot;]}.
-{allow, {ipaddr, &quot;127.0.0.1&quot;}, pubsub, [&quot;$SYS/#&quot;, &quot;#&quot;]}.
-{deny, all, subscribe, [&quot;$SYS/#&quot;, {eq, &quot;#&quot;}]}.
-</code></pre>
-<p>用户名/密码认证防止非法客户端连接。</p>
-<pre><code class="language-sql">CREATE TABLE `mqtt_user` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) DEFAULT NULL,
-  `password` varchar(100) DEFAULT NULL,
-  `salt` varchar(35) DEFAULT NULL,
-  `is_superuser` tinyint(1) DEFAULT '0',
-  `created` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mqtt_username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4
-</code></pre>
+<p>在loaded_plugins配置文件中启用emqx_auth_mysql插件。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">{</span>emqx_management,true<span class="o">}</span>.
+</span></span><span class="line"><span class="cl"><span class="o">{</span>emqx_dashboard,true<span class="o">}</span>.
+</span></span><span class="line"><span class="cl"><span class="o">{</span>emqx_modules,false<span class="o">}</span>.
+</span></span><span class="line"><span class="cl"><span class="o">{</span>emqx_recon,true<span class="o">}</span>.
+</span></span><span class="line"><span class="cl"><span class="o">{</span>emqx_retainer,true<span class="o">}</span>.
+</span></span><span class="line"><span class="cl"><span class="o">{</span>emqx_telemetry,true<span class="o">}</span>.
+</span></span><span class="line"><span class="cl"><span class="o">{</span>emqx_rule_engine,true<span class="o">}</span>.
+</span></span><span class="line"><span class="cl"><span class="o">{</span>emqx_bridge_mqtt,false<span class="o">}</span>.
+</span></span><span class="line"><span class="cl"><span class="o">{</span>emqx_auth_mysql,true<span class="o">}</span>.</span></span></code></pre></td></tr></table>
+</div>
+</div>
+emqx默认是不设置权限，需要修改acl.conf启用鉴权。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">{</span>allow, <span class="o">{</span>user, <span class="s2">&#34;dashboard&#34;</span><span class="o">}</span>, subscribe, <span class="o">[</span><span class="s2">&#34;</span><span class="nv">$SYS</span><span class="s2">/#&#34;</span><span class="o">]}</span>.
+</span></span><span class="line"><span class="cl"><span class="o">{</span>allow, <span class="o">{</span>ipaddr, <span class="s2">&#34;127.0.0.1&#34;</span><span class="o">}</span>, pubsub, <span class="o">[</span><span class="s2">&#34;</span><span class="nv">$SYS</span><span class="s2">/#&#34;</span>, <span class="s2">&#34;#&#34;</span><span class="o">]}</span>.
+</span></span><span class="line"><span class="cl"><span class="o">{</span>deny, all, subscribe, <span class="o">[</span><span class="s2">&#34;</span><span class="nv">$SYS</span><span class="s2">/#&#34;</span>, <span class="o">{</span>eq, <span class="s2">&#34;#&#34;</span><span class="o">}]}</span>.</span></span></code></pre></td></tr></table>
+</div>
+</div>
+修改emqx_auth_mysql.conf配置文件：修改数据库实例，创建认证表和授权表。<br />
+用户名/密码认证防止非法客户端连接。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">mqtt_user</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="n">unsigned</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">username</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">password</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">salt</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">is_superuser</span><span class="o">`</span><span class="w"> </span><span class="n">tinyint</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">created</span><span class="o">`</span><span class="w"> </span><span class="n">datetime</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">mqtt_username</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">username</span><span class="o">`</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">9</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span></span></span></code></pre></td></tr></table>
+</div>
+</div></p>
 <p>对 MQTT 客户端的发布和订阅操作进行权限控制。控制哪些客户端可以发布或者订阅哪些MQTT主题。</p>
-<pre><code class="language-sql">CREATE TABLE `mqtt_acl` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `allow` int(1) DEFAULT '1' COMMENT '0: deny, 1: allow',
-  `ipaddr` varchar(60) DEFAULT NULL COMMENT 'IpAddress',
-  `username` varchar(100) DEFAULT NULL COMMENT 'Username',
-  `clientid` varchar(100) DEFAULT NULL COMMENT 'ClientId',
-  `access` int(2) NOT NULL COMMENT '1: subscribe, 2: publish, 3: pubsub',
-  `topic` varchar(100) NOT NULL DEFAULT '' COMMENT 'Topic Filter',
-  PRIMARY KEY (`id`),
-  KEY `ipaddr` (`ipaddr`),
-  KEY `username` (`username`),
-  KEY `clientid` (`clientid`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4
-</code></pre>
-<p><a name="ucIIH"></a></p>
+<p><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">mqtt_acl</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="n">unsigned</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">allow</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;0: deny, 1: allow&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">ipaddr</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;IpAddress&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">username</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;Username&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">clientid</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;ClientId&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="k">access</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;1: subscribe, 2: publish, 3: pubsub&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">topic</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;Topic Filter&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">ipaddr</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">ipaddr</span><span class="o">`</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">username</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">username</span><span class="o">`</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">clientid</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">clientid</span><span class="o">`</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">13</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<a name="ucIIH"></a></p>
 <h2 id="集群部署">集群部署</h2>
 <p>实际业务场景可能对高性能、高可用有着一定要求。<br /><img src="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE.jpeg"
 	width="1520"
@@ -372,101 +429,196 @@
 		data-flex-grow="201"
 		data-flex-basis="482px"
 	
-></p>
-<pre><code class="language-yaml">version: '3.9'
-
-x-default-emqx: &amp;default-emqx
-image: emqx/emqx:4.4.4
-env_file:
-- conf.cluster.env
-healthcheck:
-test: [&quot;CMD&quot;, &quot;/opt/emqx/bin/emqx_ctl&quot;, &quot;status&quot;]
-interval: 5s
-timeout: 25s
-retries: 5
-
-services:
-haproxy:
-container_name: haproxy
-image: haproxy:2.4
-privileged: true
-depends_on:
-- emqx1
-- emqx2
-volumes:
-- ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
-- ./certs_ha/certs:/usr/local/etc/haproxy/certs
-ports:
-- &quot;18083:18083&quot;
-- &quot;1883:1883&quot;
-#     - &quot;8883:8883&quot;
-- &quot;8083:8083&quot;
-#     - &quot;8084:8084&quot;
-- &quot;9999:9999&quot;
-- &quot;9090:9090&quot;
-networks:
-- emqx_bridge
-working_dir: /usr/local/etc/haproxy
-command:
-- bash
-- -c
-- |
-set -x
-cat /usr/local/etc/haproxy/certs/cert.pem /usr/local/etc/haproxy/certs/key.pem &gt; /tmp/emqx.pem
-haproxy -f /usr/local/etc/haproxy/haproxy.cfg
-
-emqx1:
-&lt;&lt;: *default-emqx
-container_name: node1.emqx.io
-environment:
-- &quot;EMQX_HOST=node1.emqx.io&quot;
-ports:
-- &quot;18081:18083&quot;
-- &quot;8881:8083&quot;
-- &quot;1882:1883&quot;
-networks:
-emqx_bridge:
-aliases:
-- node1.emqx.io
-volumes:
-- ./dockeremqx/emqx.conf:/opt/emqx/etc/emqx.conf
-- ./dockeremqx/acl.conf:/opt/emqx/etc/acl.conf
-- ./dockeremqx/emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf
-- ./dockeremqx/loaded_plugins:/opt/emqx/data/loaded_plugins
-- ./dockeremqx/emqx1_log/log:/opt/emqx/log
-
-emqx2:
-&lt;&lt;: *default-emqx
-container_name: node2.emqx.io
-environment:
-- &quot;EMQX_HOST=node2.emqx.io&quot;
-ports:
-- &quot;18082:18083&quot;
-- &quot;8882:8083&quot;
-- &quot;1881:1883&quot;
-networks:
-emqx_bridge:
-aliases:
-- node2.emqx.io
-volumes:
-- ./dockeremqx/emqx.conf:/opt/emqx/etc/emqx.conf
-- ./dockeremqx/acl.conf:/opt/emqx/etc/acl.conf
-- ./dockeremqx/emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf
-- ./dockeremqx/loaded_plugins:/opt/emqx/data/loaded_plugins
-- ./dockeremqx/emqx2_log/log:/opt/emqx/log
-
-networks:
-emqx_bridge:
-driver: bridge
-name: emqx_bridge
-# ipam:
-#   driver: default
-#   config:
-#     - subnet: 172.100.239.0/24
-#       gateway: 172.100.239.1
-
-</code></pre>
-<p><img src="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg"
+>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3.9&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">x-default-emqx</span><span class="p">:</span><span class="w"> </span><span class="cp">&amp;default-emqx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">emqx/emqx:4.4.4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">env_file</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">conf.cluster.env</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">healthcheck</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;CMD&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;/opt/emqx/bin/emqx_ctl&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;status&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l">5s</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l">25s</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">haproxy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">haproxy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">haproxy:2.4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">privileged</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">emqx1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">emqx2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">./certs_ha/certs:/usr/local/etc/haproxy/certs</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="s2">&#34;18083:18083&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="s2">&#34;1883:1883&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#     - &#34;8883:8883&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="s2">&#34;8083:8083&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#     - &#34;8084:8084&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="s2">&#34;9999:9999&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="s2">&#34;9090:9090&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">emqx_bridge</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">working_dir</span><span class="p">:</span><span class="w"> </span><span class="l">/usr/local/etc/haproxy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">command</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">bash</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- -<span class="l">c</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">set -x</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">cat /usr/local/etc/haproxy/certs/cert.pem /usr/local/etc/haproxy/certs/key.pem &gt; /tmp/emqx.pem</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">haproxy -f /usr/local/etc/haproxy/haproxy.cfg</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">emqx1</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">&lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="cp">*default-emqx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">node1.emqx.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="s2">&#34;EMQX_HOST=node1.emqx.io&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="s2">&#34;18081:18083&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="s2">&#34;8881:8083&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="s2">&#34;1882:1883&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">emqx_bridge</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">aliases</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">node1.emqx.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">./dockeremqx/emqx.conf:/opt/emqx/etc/emqx.conf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">./dockeremqx/acl.conf:/opt/emqx/etc/acl.conf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">./dockeremqx/emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">./dockeremqx/loaded_plugins:/opt/emqx/data/loaded_plugins</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">./dockeremqx/emqx1_log/log:/opt/emqx/log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">emqx2</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">&lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="cp">*default-emqx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">node2.emqx.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="s2">&#34;EMQX_HOST=node2.emqx.io&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="s2">&#34;18082:18083&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="s2">&#34;8882:8083&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="s2">&#34;1881:1883&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">emqx_bridge</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">aliases</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">node2.emqx.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">./dockeremqx/emqx.conf:/opt/emqx/etc/emqx.conf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">./dockeremqx/acl.conf:/opt/emqx/etc/acl.conf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">./dockeremqx/emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">./dockeremqx/loaded_plugins:/opt/emqx/data/loaded_plugins</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">./dockeremqx/emqx2_log/log:/opt/emqx/log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">emqx_bridge</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">bridge</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">emqx_bridge</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># ipam:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#   driver: default</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#   config:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#     - subnet: 172.100.239.0/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#       gateway: 172.100.239.1</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<img src="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg"
 	width="1562"
 	height="392"
 	srcset="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_480x0_resize_q75_box.jpeg 480w, /2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_1024x0_resize_q75_box.jpeg 1024w"
@@ -482,52 +634,100 @@ name: emqx_bridge
 >
 <a name="IKIao"></a></p>
 <h2 id="协议接入">协议接入</h2>
-<p>应用层协议包括mqtt、websocket、http。负载均衡器方面的配置非常关键，下面以haproxy为例(核心配置)：<br />粘性会话是在haproxy中配置的。</p>
-<pre><code>defaults
-    log global
-    mode http
-    option httplog
-    # Replace 1024000 with deployment connections
-    maxconn 50000
-    timeout connect 30000
-    timeout client 600s
-    timeout server 600s
-    timeout tunnel 1h
-    timeout client-fin 30s
-    timeout http-keep-alive  5s
-    timeout http-request    5s
-frontend emqx_tcp
-   mode tcp
-   option tcplog
-   bind *:1883
-   # Reject connections that have an invalid MQTT packet
-   # tcp-request content reject unless { req.payload(0,0), mqtt_is_valid }
-   default_backend emqx_tcp_back
-frontend emqx_ws
-   mode tcp
-   option httplog
-   bind *:8083
-   acl host_ws hdr_beg(Host) -i ws.
-   acl hdr_connection_upgrade hdr(Connection)  -i upgrade
-   acl hdr_upgrade_websocket  hdr(Upgrade)     -i websocket
-   use_backend emqx_ws_back if hdr_connection_upgrade hdr_upgrade_websocket
-   default_backend emqx_ws_back
-backend emqx_tcp_back
-    mode tcp
-    stick on req.payload(0,0),mqtt_field_value(connect,client_identifier)
-    server emqx-1 node1.emqx.io:1883 check-send-proxy send-proxy-v2
-    server emqx-2 node2.emqx.io:1883 check-send-proxy send-proxy-v2
-backend emqx_ws_back
-    mode http
-    balance roundrobin
-    acl hdr_connection_upgrade hdr(Connection)                 -i upgrade
-    acl hdr_upgrade_websocket  hdr(Upgrade)                    -i websocket
-    acl hdr_websocket_key      hdr_cnt(Sec-WebSocket-Key)      eq 1
-    acl hdr_websocket_version  hdr_cnt(Sec-WebSocket-Version)  eq 1
-    server emqx-1 node1.emqx.io:8083
-    server emqx-2 node2.emqx.io:8083
-</code></pre>
-<p><a name="H4GbN"></a></p>
+<p>应用层协议包括mqtt、websocket、http。负载均衡器方面的配置非常关键，下面以haproxy为例(核心配置)：<br />粘性会话是在haproxy中配置的。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cfg" data-lang="cfg"><span class="line"><span class="cl"><span class="na">defaults</span>
+</span></span><span class="line"><span class="cl">    <span class="na">log global</span>
+</span></span><span class="line"><span class="cl">    <span class="na">mode http</span>
+</span></span><span class="line"><span class="cl">    <span class="na">option httplog</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Replace 1024000 with deployment connections</span>
+</span></span><span class="line"><span class="cl">    <span class="na">maxconn 50000</span>
+</span></span><span class="line"><span class="cl">    <span class="na">timeout connect 30000</span>
+</span></span><span class="line"><span class="cl">    <span class="na">timeout client 600s</span>
+</span></span><span class="line"><span class="cl">    <span class="na">timeout server 600s</span>
+</span></span><span class="line"><span class="cl">    <span class="na">timeout tunnel 1h</span>
+</span></span><span class="line"><span class="cl">    <span class="na">timeout client-fin 30s</span>
+</span></span><span class="line"><span class="cl">    <span class="na">timeout http-keep-alive  5s</span>
+</span></span><span class="line"><span class="cl">    <span class="na">timeout http-request    5s</span>
+</span></span><span class="line"><span class="cl"><span class="na">frontend emqx_tcp</span>
+</span></span><span class="line"><span class="cl">   <span class="na">mode tcp</span>
+</span></span><span class="line"><span class="cl">   <span class="na">option tcplog</span>
+</span></span><span class="line"><span class="cl">   <span class="na">bind *:1883</span>
+</span></span><span class="line"><span class="cl">   <span class="c1"># Reject connections that have an invalid MQTT packet</span>
+</span></span><span class="line"><span class="cl">   <span class="c1"># tcp-request content reject unless { req.payload(0,0), mqtt_is_valid }</span>
+</span></span><span class="line"><span class="cl">   <span class="na">default_backend emqx_tcp_back</span>
+</span></span><span class="line"><span class="cl"><span class="na">frontend emqx_ws</span>
+</span></span><span class="line"><span class="cl">   <span class="na">mode tcp</span>
+</span></span><span class="line"><span class="cl">   <span class="na">option httplog</span>
+</span></span><span class="line"><span class="cl">   <span class="na">bind *:8083</span>
+</span></span><span class="line"><span class="cl">   <span class="na">acl host_ws hdr_beg(Host) -i ws.</span>
+</span></span><span class="line"><span class="cl">   <span class="na">acl hdr_connection_upgrade hdr(Connection)  -i upgrade</span>
+</span></span><span class="line"><span class="cl">   <span class="na">acl hdr_upgrade_websocket  hdr(Upgrade)     -i websocket</span>
+</span></span><span class="line"><span class="cl">   <span class="na">use_backend emqx_ws_back if hdr_connection_upgrade hdr_upgrade_websocket</span>
+</span></span><span class="line"><span class="cl">   <span class="na">default_backend emqx_ws_back</span>
+</span></span><span class="line"><span class="cl"><span class="na">backend emqx_tcp_back</span>
+</span></span><span class="line"><span class="cl">    <span class="na">mode tcp</span>
+</span></span><span class="line"><span class="cl">    <span class="na">stick on req.payload(0,0),mqtt_field_value(connect,client_identifier)</span>
+</span></span><span class="line"><span class="cl">    <span class="na">server emqx-1 node1.emqx.io:1883 check-send-proxy send-proxy-v2</span>
+</span></span><span class="line"><span class="cl">    <span class="na">server emqx-2 node2.emqx.io:1883 check-send-proxy send-proxy-v2</span>
+</span></span><span class="line"><span class="cl"><span class="na">backend emqx_ws_back</span>
+</span></span><span class="line"><span class="cl">    <span class="na">mode http</span>
+</span></span><span class="line"><span class="cl">    <span class="na">balance roundrobin</span>
+</span></span><span class="line"><span class="cl">    <span class="na">acl hdr_connection_upgrade hdr(Connection)                 -i upgrade</span>
+</span></span><span class="line"><span class="cl">    <span class="na">acl hdr_upgrade_websocket  hdr(Upgrade)                    -i websocket</span>
+</span></span><span class="line"><span class="cl">    <span class="na">acl hdr_websocket_key      hdr_cnt(Sec-WebSocket-Key)      eq 1</span>
+</span></span><span class="line"><span class="cl">    <span class="na">acl hdr_websocket_version  hdr_cnt(Sec-WebSocket-Version)  eq 1</span>
+</span></span><span class="line"><span class="cl">    <span class="na">server emqx-1 node1.emqx.io:8083</span>
+</span></span><span class="line"><span class="cl">    <span class="na">server emqx-2 node2.emqx.io:8083</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<a name="H4GbN"></a></p>
 <h2 id="测试">测试</h2>
 <p><a name="xqJQO"></a></p>
 <h3 id="功能测试">功能测试</h3>
@@ -582,10 +782,16 @@ backend emqx_ws_back
 <a name="ImiGE"></a></p>
 <h4 id="测试方法-1">测试方法</h4>
 <p>一般官方都会提供配套的压测工具脚本，比如<a class="link" href="https://github.com/emqx/emqtt-bench"  target="_blank" rel="noopener"
-    >emqtt-bench开源项目</a>，将其运行在云主机，压测效果最好，减少网络传输时延。</p>
-<pre><code> ./emqtt_bench sub -t bench -h ${ip} -p 1883 -c 1000 -i 10 -q 1 -u ${username}-P ${password}  
-</code></pre>
-<p><a name="MWSkb"></a></p>
+    >emqtt-bench开源项目</a>，将其运行在云主机，压测效果最好，减少网络传输时延。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> ./emqtt_bench sub -t bench -h <span class="si">${</span><span class="nv">ip</span><span class="si">}</span> -p <span class="m">1883</span> -c <span class="m">1000</span> -i <span class="m">10</span> -q <span class="m">1</span> -u <span class="si">${</span><span class="nv">username</span><span class="si">}</span>-P <span class="si">${</span><span class="nv">password</span><span class="si">}</span>  </span></span></code></pre></td></tr></table>
+</div>
+</div>
+<a name="MWSkb"></a></p>
 <h4 id="压测注意事项">压测注意事项</h4>
 <p>压测客户端被限制：ulimit命令修改进程最大连接数限制，否则会压测不准，最大并发连接数卡在1007上不去。<br />发布端发送消息速率过快：  max_mqueue_len参数默认为1000，队列满会消息发送失败 <br />负载均衡器maxconn设置过小：haproxy的maxconn默认值是1000，需要调大为50000<br /><img src="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png"
 	width="1724"
@@ -637,7 +843,7 @@ backend emqx_ws_back
 
 
         <span>
-            最后更新于 2022年10月30日 10点35分15秒
+            最后更新于 2022年10月30日 11点22分03秒
         </span>
     </section></footer>
 
@@ -889,7 +1095,7 @@ backend emqx_ws_back
                     <a href="/archives/#2022">
                         
                             <span class="year">2022</span>
-                            <span class="count">20</span>
+                            <span class="count">19</span>
                         
                     </a> 
                 </div>
@@ -916,12 +1122,12 @@ backend emqx_ws_back
 
     <div class="tagCloud-tags">
         
-            <a href="/categories/internet/" class="font_size_4">
-                网络
-            </a>
-        
             <a href="/categories/database/" class="font_size_3">
                 数据库
+            </a>
+        
+            <a href="/categories/internet/" class="font_size_3">
+                网络
             </a>
         
             <a href="/categories/methodology/" class="font_size_3">
@@ -981,12 +1187,12 @@ backend emqx_ws_back
 
     <div class="tagCloud-tags">
         
-            <a href="/tags/http/" class="font_size_3">
-                http
-            </a>
-        
             <a href="/tags/golang/" class="font_size_2">
                 golang
+            </a>
+        
+            <a href="/tags/http/" class="font_size_2">
+                http
             </a>
         
             <a href="/tags/mysql/" class="font_size_2">
