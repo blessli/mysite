@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='快速部署MQTT消息服务器'><title>如何快速部署开源服务器并应用于业务场景(以EMQX为例)</title>
+
+<link rel='canonical' href='http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/'>
+
+<link rel="stylesheet" href="/scss/style.min.ac77dcf8b111b51da39a92990f431923f210f3876d85798a2125667f96dc33a4.css"><meta property='og:title' content='如何快速部署开源服务器并应用于业务场景(以EMQX为例)'>
+<meta property='og:description' content='快速部署MQTT消息服务器'>
+<meta property='og:url' content='http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/'>
+<meta property='og:site_name' content='soli&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='emqx' /><meta property='article:published_time' content='2022-10-09T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-10-09T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/img.png' />
+<meta name="twitter:title" content="如何快速部署开源服务器并应用于业务场景(以EMQX为例)">
+<meta name="twitter:description" content="快速部署MQTT消息服务器"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/img.png' />
+    <link rel="shortcut icon" href="img/avatar.jpeg" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu2dae3d955b2ad1999f53c2d1f5f072a1_95417_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">soli&#39;s blog</a></h1>
+            <h2 class="site-description">生活可以忙忙碌碌随大流，思想必须偷偷摸摸求上进</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/">
+                <img src="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/img_hub6a36240a99ccd64bef3d86e2b387273_65470_800x0_resize_box_3.png"
+                        srcset="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/img_hub6a36240a99ccd64bef3d86e2b387273_65470_800x0_resize_box_3.png 800w, /2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/img_hub6a36240a99ccd64bef3d86e2b387273_65470_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="534" 
+                        loading="lazy"
+                        alt="Featured image of post 如何快速部署开源服务器并应用于业务场景(以EMQX为例)" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" >
+                中间件
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/">如何快速部署开源服务器并应用于业务场景(以EMQX为例)</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            快速部署MQTT消息服务器
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2022年10月09日</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 4 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><a name="NcnDm"></a></p>
+<h2 id="背景">背景</h2>
+<p>当需要提供一种新能力，考虑到成本问题，我们往往不会从0到1开发一个服务器，而是先在开源产品中选型对比，看是否已有能满足自身需求的开源产品(不重复造轮子的原则)。因为对开源服务器的不熟悉，部署过程中会踩这样那样的坑，效率比较低，如何快速部署并应用于实际业务场景呢？<br />随便提一下，私有化部署的原因主要是考虑到数据安全，<strong>安全无小事，安全大于一切</strong>
+<a name="cGHID"></a></p>
+<h2 id="准备工作">准备工作</h2>
+<ol>
+<li>云主机(内部安装了docker、docker-compose、防火墙开放指定端口)</li>
+<li>个人电脑(内部安装了docker-desktop、xshell、vscode、golang)</li>
+<li>仔细看<a class="link" href="https://www.emqx.io/docs/zh/v5.0/"  target="_blank" rel="noopener"
+    >官方文档</a>以及官方开源社区</li>
+</ol>
+<blockquote>
+<p>注意：emqx是4.4.4版本</p>
+</blockquote>
+<p><a name="YsF8U"></a></p>
+<h2 id="部署">部署</h2>
+<p><a name="AGBAC"></a></p>
+<h3 id="预期效果">预期效果</h3>
+<p>(配置文件、日志)文件/目录挂载到本地磁盘<br />监控、告警、可视化等功能<br />协议接入、集群部署、接入安全
+<a name="Am7f9"></a></p>
+<h3 id="具体流程">具体流程</h3>
+<p>个人电脑 -&gt; 云主机<br />单机版 -&gt; 集群版(负载均衡)
+<a name="Q7H7h"></a></p>
+<h2 id="启动">启动</h2>
+<blockquote>
+<p>仔细检查docker-compose-emqx-cluster.yaml 配置文件，否则会启动失败</p>
+</blockquote>
+<p>启动命令： docker-compose -f docker-compose-emqx-cluster.yaml up &amp;<br>
+<a name="iQFUX"></a></p>
+<h2 id="接入安全">接入安全</h2>
+<p>修改emqx_auth_mysql.conf配置文件：修改数据库实例，创建认证表和授权表。<br />在loaded_plugins配置文件中启用emqx_auth_mysql插件。<br />emqx默认是不设置权限，需要修改acl.conf启用鉴权。</p>
+<pre><code>{emqx_management,true}.
+{emqx_dashboard,true}.
+{emqx_modules,false}.
+{emqx_recon,true}.
+{emqx_retainer,true}.
+{emqx_telemetry,true}.
+{emqx_rule_engine,true}.
+{emqx_bridge_mqtt,false}.
+{emqx_auth_mysql,true}.
+</code></pre>
+<pre><code>{allow, {user, &quot;dashboard&quot;}, subscribe, [&quot;$SYS/#&quot;]}.
+{allow, {ipaddr, &quot;127.0.0.1&quot;}, pubsub, [&quot;$SYS/#&quot;, &quot;#&quot;]}.
+{deny, all, subscribe, [&quot;$SYS/#&quot;, {eq, &quot;#&quot;}]}.
+</code></pre>
+<p>用户名/密码认证防止非法客户端连接。</p>
+<pre><code class="language-sql">CREATE TABLE `mqtt_user` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `salt` varchar(35) DEFAULT NULL,
+  `is_superuser` tinyint(1) DEFAULT '0',
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mqtt_username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4
+</code></pre>
+<p>对 MQTT 客户端的发布和订阅操作进行权限控制。控制哪些客户端可以发布或者订阅哪些MQTT主题。</p>
+<pre><code class="language-sql">CREATE TABLE `mqtt_acl` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `allow` int(1) DEFAULT '1' COMMENT '0: deny, 1: allow',
+  `ipaddr` varchar(60) DEFAULT NULL COMMENT 'IpAddress',
+  `username` varchar(100) DEFAULT NULL COMMENT 'Username',
+  `clientid` varchar(100) DEFAULT NULL COMMENT 'ClientId',
+  `access` int(2) NOT NULL COMMENT '1: subscribe, 2: publish, 3: pubsub',
+  `topic` varchar(100) NOT NULL DEFAULT '' COMMENT 'Topic Filter',
+  PRIMARY KEY (`id`),
+  KEY `ipaddr` (`ipaddr`),
+  KEY `username` (`username`),
+  KEY `clientid` (`clientid`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4
+</code></pre>
+<p><a name="ucIIH"></a></p>
+<h2 id="集群部署">集群部署</h2>
+<p>实际业务场景可能对高性能、高可用有着一定要求。<br /><img src="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE.jpeg"
+	width="1520"
+	height="756"
+	srcset="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_480x0_resize_q75_box.jpeg 480w, /2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_1024x0_resize_q75_box.jpeg 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="201"
+		data-flex-basis="482px"
+	
+></p>
+<pre><code class="language-yaml">version: '3.9'
+
+x-default-emqx: &amp;default-emqx
+image: emqx/emqx:4.4.4
+env_file:
+- conf.cluster.env
+healthcheck:
+test: [&quot;CMD&quot;, &quot;/opt/emqx/bin/emqx_ctl&quot;, &quot;status&quot;]
+interval: 5s
+timeout: 25s
+retries: 5
+
+services:
+haproxy:
+container_name: haproxy
+image: haproxy:2.4
+privileged: true
+depends_on:
+- emqx1
+- emqx2
+volumes:
+- ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+- ./certs_ha/certs:/usr/local/etc/haproxy/certs
+ports:
+- &quot;18083:18083&quot;
+- &quot;1883:1883&quot;
+#     - &quot;8883:8883&quot;
+- &quot;8083:8083&quot;
+#     - &quot;8084:8084&quot;
+- &quot;9999:9999&quot;
+- &quot;9090:9090&quot;
+networks:
+- emqx_bridge
+working_dir: /usr/local/etc/haproxy
+command:
+- bash
+- -c
+- |
+set -x
+cat /usr/local/etc/haproxy/certs/cert.pem /usr/local/etc/haproxy/certs/key.pem &gt; /tmp/emqx.pem
+haproxy -f /usr/local/etc/haproxy/haproxy.cfg
+
+emqx1:
+&lt;&lt;: *default-emqx
+container_name: node1.emqx.io
+environment:
+- &quot;EMQX_HOST=node1.emqx.io&quot;
+ports:
+- &quot;18081:18083&quot;
+- &quot;8881:8083&quot;
+- &quot;1882:1883&quot;
+networks:
+emqx_bridge:
+aliases:
+- node1.emqx.io
+volumes:
+- ./dockeremqx/emqx.conf:/opt/emqx/etc/emqx.conf
+- ./dockeremqx/acl.conf:/opt/emqx/etc/acl.conf
+- ./dockeremqx/emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf
+- ./dockeremqx/loaded_plugins:/opt/emqx/data/loaded_plugins
+- ./dockeremqx/emqx1_log/log:/opt/emqx/log
+
+emqx2:
+&lt;&lt;: *default-emqx
+container_name: node2.emqx.io
+environment:
+- &quot;EMQX_HOST=node2.emqx.io&quot;
+ports:
+- &quot;18082:18083&quot;
+- &quot;8882:8083&quot;
+- &quot;1881:1883&quot;
+networks:
+emqx_bridge:
+aliases:
+- node2.emqx.io
+volumes:
+- ./dockeremqx/emqx.conf:/opt/emqx/etc/emqx.conf
+- ./dockeremqx/acl.conf:/opt/emqx/etc/acl.conf
+- ./dockeremqx/emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf
+- ./dockeremqx/loaded_plugins:/opt/emqx/data/loaded_plugins
+- ./dockeremqx/emqx2_log/log:/opt/emqx/log
+
+networks:
+emqx_bridge:
+driver: bridge
+name: emqx_bridge
+# ipam:
+#   driver: default
+#   config:
+#     - subnet: 172.100.239.0/24
+#       gateway: 172.100.239.1
+
+</code></pre>
+<p><img src="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg"
+	width="1562"
+	height="392"
+	srcset="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_480x0_resize_q75_box.jpeg 480w, /2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_1024x0_resize_q75_box.jpeg 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="398"
+		data-flex-basis="956px"
+	
+>
+<a name="IKIao"></a></p>
+<h2 id="协议接入">协议接入</h2>
+<p>应用层协议包括mqtt、websocket、http。负载均衡器方面的配置非常关键，下面以haproxy为例(核心配置)：<br />粘性会话是在haproxy中配置的。</p>
+<pre><code>defaults
+    log global
+    mode http
+    option httplog
+    # Replace 1024000 with deployment connections
+    maxconn 50000
+    timeout connect 30000
+    timeout client 600s
+    timeout server 600s
+    timeout tunnel 1h
+    timeout client-fin 30s
+    timeout http-keep-alive  5s
+    timeout http-request    5s
+frontend emqx_tcp
+   mode tcp
+   option tcplog
+   bind *:1883
+   # Reject connections that have an invalid MQTT packet
+   # tcp-request content reject unless { req.payload(0,0), mqtt_is_valid }
+   default_backend emqx_tcp_back
+frontend emqx_ws
+   mode tcp
+   option httplog
+   bind *:8083
+   acl host_ws hdr_beg(Host) -i ws.
+   acl hdr_connection_upgrade hdr(Connection)  -i upgrade
+   acl hdr_upgrade_websocket  hdr(Upgrade)     -i websocket
+   use_backend emqx_ws_back if hdr_connection_upgrade hdr_upgrade_websocket
+   default_backend emqx_ws_back
+backend emqx_tcp_back
+    mode tcp
+    stick on req.payload(0,0),mqtt_field_value(connect,client_identifier)
+    server emqx-1 node1.emqx.io:1883 check-send-proxy send-proxy-v2
+    server emqx-2 node2.emqx.io:1883 check-send-proxy send-proxy-v2
+backend emqx_ws_back
+    mode http
+    balance roundrobin
+    acl hdr_connection_upgrade hdr(Connection)                 -i upgrade
+    acl hdr_upgrade_websocket  hdr(Upgrade)                    -i websocket
+    acl hdr_websocket_key      hdr_cnt(Sec-WebSocket-Key)      eq 1
+    acl hdr_websocket_version  hdr_cnt(Sec-WebSocket-Version)  eq 1
+    server emqx-1 node1.emqx.io:8083
+    server emqx-2 node2.emqx.io:8083
+</code></pre>
+<p><a name="H4GbN"></a></p>
+<h2 id="测试">测试</h2>
+<p><a name="xqJQO"></a></p>
+<h3 id="功能测试">功能测试</h3>
+<p>目标：连接、发布、订阅等功能符合预期。<br />EMQX是否正在运行的判断方法：正常进入管理后台界面、正常监听某些指定端口。<br />运行指定语言的客户端SDK来进行关键功能测试，比如golang版本的SDK <a class="link" href="https://github.com/eclipse/paho.golang"  target="_blank" rel="noopener"
+    >paho.golang  </a>，JS版本的SDK <a class="link" href="https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-WebSocket/ws-mqtt.html"  target="_blank" rel="noopener"
+    >mqtt-client-WebSocket  </a>。当然也可以通过官方推荐的可视化工具来测试。
+<a name="JYNpS"></a></p>
+<h4 id="测试方法">测试方法</h4>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>测试点</th>
+<th>期望结果</th>
+<th>具体说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>客户端断线重连</td>
+<td>emqx重启后，客户端自动重连</td>
+<td>取决于客户端SDK是否实现了心跳重连</td>
+</tr>
+<tr>
+<td>消息下发成功率</td>
+<td>正常情况下，QoS 1报文不会丢失消息</td>
+<td>Broker提供3种QoS，通常选择QoS 1报文(至少送达一次)来兼顾吞吐量和发布质量。</td>
+</tr>
+<tr>
+<td>消息状态码</td>
+<td>每次操作都能拿到实时且正确的状态码</td>
+<td>状态码是MQTT 5.0新特性，客户端SDK需要支持5.0协议</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg"
+	width="1001"
+	height="379"
+	srcset="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_142730_480x0_resize_q75_box.jpeg 480w, /2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_142730_1024x0_resize_q75_box.jpeg 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="264"
+		data-flex-basis="633px"
+	
+>
+<a name="DyJ8O"></a></p>
+<h3 id="性能测试">性能测试</h3>
+<p>目标：确认是否与官方宣称的性能接近(机器硬件条件相同情况下)，提前暴露可能存在的BUG
+<a name="ImiGE"></a></p>
+<h4 id="测试方法-1">测试方法</h4>
+<p>一般官方都会提供配套的压测工具脚本，比如<a class="link" href="https://github.com/emqx/emqtt-bench"  target="_blank" rel="noopener"
+    >emqtt-bench开源项目</a>，将其运行在云主机，压测效果最好，减少网络传输时延。</p>
+<pre><code> ./emqtt_bench sub -t bench -h ${ip} -p 1883 -c 1000 -i 10 -q 1 -u ${username}-P ${password}  
+</code></pre>
+<p><a name="MWSkb"></a></p>
+<h4 id="压测注意事项">压测注意事项</h4>
+<p>压测客户端被限制：ulimit命令修改进程最大连接数限制，否则会压测不准，最大并发连接数卡在1007上不去。<br />发布端发送消息速率过快：  max_mqueue_len参数默认为1000，队列满会消息发送失败 <br />负载均衡器maxconn设置过小：haproxy的maxconn默认值是1000，需要调大为50000<br /><img src="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png"
+	width="1724"
+	height="492"
+	srcset="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_huefad2e85d3792de91e62b1dc6b6f85d7_360856_480x0_resize_box_3.png 480w, /2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_huefad2e85d3792de91e62b1dc6b6f85d7_360856_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="350"
+		data-flex-basis="840px"
+	
+><br /><img src="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/1w%E8%AE%A2%E9%98%85%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png"
+	width="902"
+	height="422"
+	srcset="/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/1w%E8%AE%A2%E9%98%85%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu3d61c023e28a1537fb67203f6fdbad46_302892_480x0_resize_box_3.png 480w, /2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/1w%E8%AE%A2%E9%98%85%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu3d61c023e28a1537fb67203f6fdbad46_302892_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="213"
+		data-flex-basis="512px"
+	
+>
+<a name="b4Tai"></a></p>
+<h2 id="总结">总结</h2>
+<p>搭建开源服务器，需要实现协议接入、集群部署、接入安全等核心功能来满足业务需求，最终目的是为业务带来一定的价值。</p>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/emqx/">emqx</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"avatar":"identicon","comment_count":true,"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/tieba"],"lang":"zh-CN","locale":{"admin":"Admin"},"placeholder":"允许匿名评论","requiredMeta":["name","email"],"serverURL":"waline-comment-eosin.vercel.app","visitor":true});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 soli&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.12.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                <form action="/search/" class="search-form widget" >
+        <p>
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
+        
+            <button title="搜索">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#背景">背景</a></li>
+    <li><a href="#准备工作">准备工作</a></li>
+    <li><a href="#部署">部署</a>
+      <ol>
+        <li><a href="#预期效果">预期效果</a></li>
+        <li><a href="#具体流程">具体流程</a></li>
+      </ol>
+    </li>
+    <li><a href="#启动">启动</a></li>
+    <li><a href="#接入安全">接入安全</a></li>
+    <li><a href="#集群部署">集群部署</a></li>
+    <li><a href="#协议接入">协议接入</a></li>
+    <li><a href="#测试">测试</a>
+      <ol>
+        <li><a href="#功能测试">功能测试</a>
+          <ol>
+            <li><a href="#测试方法">测试方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#性能测试">性能测试</a>
+          <ol>
+            <li><a href="#测试方法-1">测试方法</a></li>
+            <li><a href="#压测注意事项">压测注意事项</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+            
+                <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M9.828 9.172a4 4 0 1 0 0 5.656 a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828 a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">归档</h2>
+
+        
+        
+        
+        
+        
+        <div class="widget-archive--list">
+            <div class="archives-year">
+                    <a href="/archives/#2022">
+                        
+                            <span class="year">2022</span>
+                            <span class="count">20</span>
+                        
+                    </a> 
+                </div>
+            
+        </div>
+    </section>
+            
+        
+            
+                <section class="widget tagCloud">
+    <div class="widget-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+    </div>
+    <h2 class="widget-title section-title">分类</h2>
+
+    <div class="tagCloud-tags">
+        
+            <a href="/categories/internet/" class="font_size_4">
+                网络
+            </a>
+        
+            <a href="/categories/database/" class="font_size_3">
+                数据库
+            </a>
+        
+            <a href="/categories/methodology/" class="font_size_3">
+                方法论
+            </a>
+        
+            <a href="/categories/language/" class="font_size_2">
+                编程语言
+            </a>
+        
+            <a href="/categories/middleware/" class="font_size_2">
+                中间件
+            </a>
+        
+            <a href="/categories/bigdata/" class="font_size_1">
+                大数据
+            </a>
+        
+            <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="font_size_1">
+                中间件
+            </a>
+        
+            <a href="/categories/%E5%88%B7%E9%A2%98/" class="font_size_1">
+                刷题
+            </a>
+        
+            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="font_size_1">
+                操作系统
+            </a>
+        
+            <a href="/categories/%E7%94%9F%E6%B4%BB/" class="font_size_1">
+                生活
+            </a>
+        
+            <a href="/categories/%E7%BD%91%E7%BB%9C/" class="font_size_1">
+                网络
+            </a>
+        
+    </div>
+</section>
+
+            
+        
+            
+                <section class="widget tagCloud">
+    <div class="widget-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+    </div>
+    <h2 class="widget-title section-title">标签云</h2>
+
+    <div class="tagCloud-tags">
+        
+            <a href="/tags/http/" class="font_size_3">
+                http
+            </a>
+        
+            <a href="/tags/golang/" class="font_size_2">
+                golang
+            </a>
+        
+            <a href="/tags/mysql/" class="font_size_2">
+                mysql
+            </a>
+        
+            <a href="/tags/dp/" class="font_size_1">
+                dp
+            </a>
+        
+            <a href="/tags/emqx/" class="font_size_1">
+                emqx
+            </a>
+        
+            <a href="/tags/k8s/" class="font_size_1">
+                k8s
+            </a>
+        
+            <a href="/tags/kafka/" class="font_size_1">
+                kafka
+            </a>
+        
+            <a href="/tags/os/" class="font_size_1">
+                OS
+            </a>
+        
+            <a href="/tags/redis/" class="font_size_1">
+                redis
+            </a>
+        
+            <a href="/tags/spark/" class="font_size_1">
+                spark
+            </a>
+        
+            <a href="/tags/tcp/" class="font_size_1">
+                tcp
+            </a>
+        
+            <a href="/tags/%E4%B8%9A%E5%8A%A1/" class="font_size_1">
+                业务
+            </a>
+        
+            <a href="/tags/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" class="font_size_1">
+                技术分享
+            </a>
+        
+            <a href="/tags/%E7%BD%91%E7%BB%9C/" class="font_size_1">
+                网络
+            </a>
+        
+            <a href="/tags/%E8%AF%BB%E4%B9%A6/" class="font_size_1">
+                读书
+            </a>
+        
+            <a href="/tags/%E9%9D%A2%E8%AF%95/" class="font_size_1">
+                面试
+            </a>
+        
+    </div>
+</section>
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

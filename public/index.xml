@@ -15,6 +15,343 @@
         <description>&lt;img src="http://localhost:1313/2022/10/http/2-in-action/img.png" alt="Featured image of post HTTP/2 in Action" /&gt;&lt;h2 id=&#34;为什么需要http2&#34;&gt;为什么需要HTTP/2&lt;/h2&gt;</description>
         </item>
         <item>
+        <title>如何快速部署开源服务器并应用于业务场景(以EMQX为例)</title>
+        <link>http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/</link>
+        <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/</guid>
+        <description>&lt;img src="http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/img.png" alt="Featured image of post 如何快速部署开源服务器并应用于业务场景(以EMQX为例)" /&gt;&lt;p&gt;&lt;a name=&#34;NcnDm&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+&lt;p&gt;当需要提供一种新能力，考虑到成本问题，我们往往不会从0到1开发一个服务器，而是先在开源产品中选型对比，看是否已有能满足自身需求的开源产品(不重复造轮子的原则)。因为对开源服务器的不熟悉，部署过程中会踩这样那样的坑，效率比较低，如何快速部署并应用于实际业务场景呢？&lt;br /&gt;随便提一下，私有化部署的原因主要是考虑到数据安全，&lt;strong&gt;安全无小事，安全大于一切&lt;/strong&gt;
+&lt;a name=&#34;cGHID&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;准备工作&#34;&gt;准备工作&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;云主机(内部安装了docker、docker-compose、防火墙开放指定端口)&lt;/li&gt;
+&lt;li&gt;个人电脑(内部安装了docker-desktop、xshell、vscode、golang)&lt;/li&gt;
+&lt;li&gt;仔细看&lt;a class=&#34;link&#34; href=&#34;https://www.emqx.io/docs/zh/v5.0/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官方文档&lt;/a&gt;以及官方开源社区&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：emqx是4.4.4版本&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a name=&#34;YsF8U&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;部署&#34;&gt;部署&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&#34;AGBAC&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;预期效果&#34;&gt;预期效果&lt;/h3&gt;
+&lt;p&gt;(配置文件、日志)文件/目录挂载到本地磁盘&lt;br /&gt;监控、告警、可视化等功能&lt;br /&gt;协议接入、集群部署、接入安全
+&lt;a name=&#34;Am7f9&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;具体流程&#34;&gt;具体流程&lt;/h3&gt;
+&lt;p&gt;个人电脑 -&amp;gt; 云主机&lt;br /&gt;单机版 -&amp;gt; 集群版(负载均衡)
+&lt;a name=&#34;Q7H7h&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;启动&#34;&gt;启动&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;仔细检查docker-compose-emqx-cluster.yaml 配置文件，否则会启动失败&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;启动命令： docker-compose -f docker-compose-emqx-cluster.yaml up &amp;amp;&lt;br&gt;
+&lt;a name=&#34;iQFUX&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;接入安全&#34;&gt;接入安全&lt;/h2&gt;
+&lt;p&gt;修改emqx_auth_mysql.conf配置文件：修改数据库实例，创建认证表和授权表。&lt;br /&gt;在loaded_plugins配置文件中启用emqx_auth_mysql插件。&lt;br /&gt;emqx默认是不设置权限，需要修改acl.conf启用鉴权。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{emqx_management,true}.
+{emqx_dashboard,true}.
+{emqx_modules,false}.
+{emqx_recon,true}.
+{emqx_retainer,true}.
+{emqx_telemetry,true}.
+{emqx_rule_engine,true}.
+{emqx_bridge_mqtt,false}.
+{emqx_auth_mysql,true}.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;{allow, {user, &amp;quot;dashboard&amp;quot;}, subscribe, [&amp;quot;$SYS/#&amp;quot;]}.
+{allow, {ipaddr, &amp;quot;127.0.0.1&amp;quot;}, pubsub, [&amp;quot;$SYS/#&amp;quot;, &amp;quot;#&amp;quot;]}.
+{deny, all, subscribe, [&amp;quot;$SYS/#&amp;quot;, {eq, &amp;quot;#&amp;quot;}]}.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;用户名/密码认证防止非法客户端连接。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;CREATE TABLE `mqtt_user` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `salt` varchar(35) DEFAULT NULL,
+  `is_superuser` tinyint(1) DEFAULT &#39;0&#39;,
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mqtt_username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;对 MQTT 客户端的发布和订阅操作进行权限控制。控制哪些客户端可以发布或者订阅哪些MQTT主题。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;CREATE TABLE `mqtt_acl` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `allow` int(1) DEFAULT &#39;1&#39; COMMENT &#39;0: deny, 1: allow&#39;,
+  `ipaddr` varchar(60) DEFAULT NULL COMMENT &#39;IpAddress&#39;,
+  `username` varchar(100) DEFAULT NULL COMMENT &#39;Username&#39;,
+  `clientid` varchar(100) DEFAULT NULL COMMENT &#39;ClientId&#39;,
+  `access` int(2) NOT NULL COMMENT &#39;1: subscribe, 2: publish, 3: pubsub&#39;,
+  `topic` varchar(100) NOT NULL DEFAULT &#39;&#39; COMMENT &#39;Topic Filter&#39;,
+  PRIMARY KEY (`id`),
+  KEY `ipaddr` (`ipaddr`),
+  KEY `username` (`username`),
+  KEY `clientid` (`clientid`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a name=&#34;ucIIH&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;集群部署&#34;&gt;集群部署&lt;/h2&gt;
+&lt;p&gt;实际业务场景可能对高性能、高可用有着一定要求。&lt;br /&gt;&lt;img src=&#34;http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE.jpeg&#34;
+	width=&#34;1520&#34;
+	height=&#34;756&#34;
+	srcset=&#34;http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_480x0_resize_q75_box.jpeg 480w, http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;201&#34;
+		data-flex-basis=&#34;482px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;version: &#39;3.9&#39;
+
+x-default-emqx: &amp;amp;default-emqx
+image: emqx/emqx:4.4.4
+env_file:
+- conf.cluster.env
+healthcheck:
+test: [&amp;quot;CMD&amp;quot;, &amp;quot;/opt/emqx/bin/emqx_ctl&amp;quot;, &amp;quot;status&amp;quot;]
+interval: 5s
+timeout: 25s
+retries: 5
+
+services:
+haproxy:
+container_name: haproxy
+image: haproxy:2.4
+privileged: true
+depends_on:
+- emqx1
+- emqx2
+volumes:
+- ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+- ./certs_ha/certs:/usr/local/etc/haproxy/certs
+ports:
+- &amp;quot;18083:18083&amp;quot;
+- &amp;quot;1883:1883&amp;quot;
+#     - &amp;quot;8883:8883&amp;quot;
+- &amp;quot;8083:8083&amp;quot;
+#     - &amp;quot;8084:8084&amp;quot;
+- &amp;quot;9999:9999&amp;quot;
+- &amp;quot;9090:9090&amp;quot;
+networks:
+- emqx_bridge
+working_dir: /usr/local/etc/haproxy
+command:
+- bash
+- -c
+- |
+set -x
+cat /usr/local/etc/haproxy/certs/cert.pem /usr/local/etc/haproxy/certs/key.pem &amp;gt; /tmp/emqx.pem
+haproxy -f /usr/local/etc/haproxy/haproxy.cfg
+
+emqx1:
+&amp;lt;&amp;lt;: *default-emqx
+container_name: node1.emqx.io
+environment:
+- &amp;quot;EMQX_HOST=node1.emqx.io&amp;quot;
+ports:
+- &amp;quot;18081:18083&amp;quot;
+- &amp;quot;8881:8083&amp;quot;
+- &amp;quot;1882:1883&amp;quot;
+networks:
+emqx_bridge:
+aliases:
+- node1.emqx.io
+volumes:
+- ./dockeremqx/emqx.conf:/opt/emqx/etc/emqx.conf
+- ./dockeremqx/acl.conf:/opt/emqx/etc/acl.conf
+- ./dockeremqx/emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf
+- ./dockeremqx/loaded_plugins:/opt/emqx/data/loaded_plugins
+- ./dockeremqx/emqx1_log/log:/opt/emqx/log
+
+emqx2:
+&amp;lt;&amp;lt;: *default-emqx
+container_name: node2.emqx.io
+environment:
+- &amp;quot;EMQX_HOST=node2.emqx.io&amp;quot;
+ports:
+- &amp;quot;18082:18083&amp;quot;
+- &amp;quot;8882:8083&amp;quot;
+- &amp;quot;1881:1883&amp;quot;
+networks:
+emqx_bridge:
+aliases:
+- node2.emqx.io
+volumes:
+- ./dockeremqx/emqx.conf:/opt/emqx/etc/emqx.conf
+- ./dockeremqx/acl.conf:/opt/emqx/etc/acl.conf
+- ./dockeremqx/emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf
+- ./dockeremqx/loaded_plugins:/opt/emqx/data/loaded_plugins
+- ./dockeremqx/emqx2_log/log:/opt/emqx/log
+
+networks:
+emqx_bridge:
+driver: bridge
+name: emqx_bridge
+# ipam:
+#   driver: default
+#   config:
+#     - subnet: 172.100.239.0/24
+#       gateway: 172.100.239.1
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg&#34;
+	width=&#34;1562&#34;
+	height=&#34;392&#34;
+	srcset=&#34;http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_480x0_resize_q75_box.jpeg 480w, http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;398&#34;
+		data-flex-basis=&#34;956px&#34;
+	
+&gt;
+&lt;a name=&#34;IKIao&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;协议接入&#34;&gt;协议接入&lt;/h2&gt;
+&lt;p&gt;应用层协议包括mqtt、websocket、http。负载均衡器方面的配置非常关键，下面以haproxy为例(核心配置)：&lt;br /&gt;粘性会话是在haproxy中配置的。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;defaults
+    log global
+    mode http
+    option httplog
+    # Replace 1024000 with deployment connections
+    maxconn 50000
+    timeout connect 30000
+    timeout client 600s
+    timeout server 600s
+    timeout tunnel 1h
+    timeout client-fin 30s
+    timeout http-keep-alive  5s
+    timeout http-request    5s
+frontend emqx_tcp
+   mode tcp
+   option tcplog
+   bind *:1883
+   # Reject connections that have an invalid MQTT packet
+   # tcp-request content reject unless { req.payload(0,0), mqtt_is_valid }
+   default_backend emqx_tcp_back
+frontend emqx_ws
+   mode tcp
+   option httplog
+   bind *:8083
+   acl host_ws hdr_beg(Host) -i ws.
+   acl hdr_connection_upgrade hdr(Connection)  -i upgrade
+   acl hdr_upgrade_websocket  hdr(Upgrade)     -i websocket
+   use_backend emqx_ws_back if hdr_connection_upgrade hdr_upgrade_websocket
+   default_backend emqx_ws_back
+backend emqx_tcp_back
+    mode tcp
+    stick on req.payload(0,0),mqtt_field_value(connect,client_identifier)
+    server emqx-1 node1.emqx.io:1883 check-send-proxy send-proxy-v2
+    server emqx-2 node2.emqx.io:1883 check-send-proxy send-proxy-v2
+backend emqx_ws_back
+    mode http
+    balance roundrobin
+    acl hdr_connection_upgrade hdr(Connection)                 -i upgrade
+    acl hdr_upgrade_websocket  hdr(Upgrade)                    -i websocket
+    acl hdr_websocket_key      hdr_cnt(Sec-WebSocket-Key)      eq 1
+    acl hdr_websocket_version  hdr_cnt(Sec-WebSocket-Version)  eq 1
+    server emqx-1 node1.emqx.io:8083
+    server emqx-2 node2.emqx.io:8083
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a name=&#34;H4GbN&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;测试&#34;&gt;测试&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&#34;xqJQO&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;功能测试&#34;&gt;功能测试&lt;/h3&gt;
+&lt;p&gt;目标：连接、发布、订阅等功能符合预期。&lt;br /&gt;EMQX是否正在运行的判断方法：正常进入管理后台界面、正常监听某些指定端口。&lt;br /&gt;运行指定语言的客户端SDK来进行关键功能测试，比如golang版本的SDK &lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.golang&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;paho.golang  &lt;/a&gt;，JS版本的SDK &lt;a class=&#34;link&#34; href=&#34;https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-WebSocket/ws-mqtt.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;mqtt-client-WebSocket  &lt;/a&gt;。当然也可以通过官方推荐的可视化工具来测试。
+&lt;a name=&#34;JYNpS&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;测试方法&#34;&gt;测试方法&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;测试点&lt;/th&gt;
+&lt;th&gt;期望结果&lt;/th&gt;
+&lt;th&gt;具体说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;客户端断线重连&lt;/td&gt;
+&lt;td&gt;emqx重启后，客户端自动重连&lt;/td&gt;
+&lt;td&gt;取决于客户端SDK是否实现了心跳重连&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;消息下发成功率&lt;/td&gt;
+&lt;td&gt;正常情况下，QoS 1报文不会丢失消息&lt;/td&gt;
+&lt;td&gt;Broker提供3种QoS，通常选择QoS 1报文(至少送达一次)来兼顾吞吐量和发布质量。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;消息状态码&lt;/td&gt;
+&lt;td&gt;每次操作都能拿到实时且正确的状态码&lt;/td&gt;
+&lt;td&gt;状态码是MQTT 5.0新特性，客户端SDK需要支持5.0协议&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg&#34;
+	width=&#34;1001&#34;
+	height=&#34;379&#34;
+	srcset=&#34;http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_142730_480x0_resize_q75_box.jpeg 480w, http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_142730_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;264&#34;
+		data-flex-basis=&#34;633px&#34;
+	
+&gt;
+&lt;a name=&#34;DyJ8O&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;性能测试&#34;&gt;性能测试&lt;/h3&gt;
+&lt;p&gt;目标：确认是否与官方宣称的性能接近(机器硬件条件相同情况下)，提前暴露可能存在的BUG
+&lt;a name=&#34;ImiGE&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;测试方法-1&#34;&gt;测试方法&lt;/h4&gt;
+&lt;p&gt;一般官方都会提供配套的压测工具脚本，比如&lt;a class=&#34;link&#34; href=&#34;https://github.com/emqx/emqtt-bench&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;emqtt-bench开源项目&lt;/a&gt;，将其运行在云主机，压测效果最好，减少网络传输时延。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; ./emqtt_bench sub -t bench -h ${ip} -p 1883 -c 1000 -i 10 -q 1 -u ${username}-P ${password}  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a name=&#34;MWSkb&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;压测注意事项&#34;&gt;压测注意事项&lt;/h4&gt;
+&lt;p&gt;压测客户端被限制：ulimit命令修改进程最大连接数限制，否则会压测不准，最大并发连接数卡在1007上不去。&lt;br /&gt;发布端发送消息速率过快：  max_mqueue_len参数默认为1000，队列满会消息发送失败 &lt;br /&gt;负载均衡器maxconn设置过小：haproxy的maxconn默认值是1000，需要调大为50000&lt;br /&gt;&lt;img src=&#34;http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png&#34;
+	width=&#34;1724&#34;
+	height=&#34;492&#34;
+	srcset=&#34;http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_huefad2e85d3792de91e62b1dc6b6f85d7_360856_480x0_resize_box_3.png 480w, http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_huefad2e85d3792de91e62b1dc6b6f85d7_360856_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;350&#34;
+		data-flex-basis=&#34;840px&#34;
+	
+&gt;&lt;br /&gt;&lt;img src=&#34;http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/1w%E8%AE%A2%E9%98%85%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png&#34;
+	width=&#34;902&#34;
+	height=&#34;422&#34;
+	srcset=&#34;http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/1w%E8%AE%A2%E9%98%85%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu3d61c023e28a1537fb67203f6fdbad46_302892_480x0_resize_box_3.png 480w, http://localhost:1313/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E4%BB%A5emqx%E4%B8%BA%E4%BE%8B/static/1w%E8%AE%A2%E9%98%85%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu3d61c023e28a1537fb67203f6fdbad46_302892_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;213&#34;
+		data-flex-basis=&#34;512px&#34;
+	
+&gt;
+&lt;a name=&#34;b4Tai&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;搭建开源服务器，需要实现协议接入、集群部署、接入安全等核心功能来满足业务需求，最终目的是为业务带来一定的价值。&lt;/p&gt;</description>
+        </item>
+        <item>
         <title>网络是怎样连接的</title>
         <link>http://localhost:1313/2022/10/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/</link>
         <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
@@ -49,11 +386,25 @@
         <pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/2022/10/2022%E4%B9%A6%E5%8D%95/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/10/2022%E4%B9%A6%E5%8D%95/img.png" alt="Featured image of post 2022书单" /&gt;&lt;ul&gt;
+        <description>&lt;img src="http://localhost:1313/2022/10/2022%E4%B9%A6%E5%8D%95/img.png" alt="Featured image of post 2022书单" /&gt;&lt;h2 id=&#34;文学&#34;&gt;文学&lt;/h2&gt;
+&lt;ul&gt;
 &lt;li&gt;平凡的世界&lt;/li&gt;
 &lt;li&gt;法治的细节&lt;/li&gt;
-&lt;li&gt;操作系统导论&lt;/li&gt;
 &lt;li&gt;朗读者&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;技术&#34;&gt;技术&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;操作系统导论&lt;/li&gt;
+&lt;li&gt;网络是怎样连接的&lt;/li&gt;
+&lt;li&gt;深入剖析k8s&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;生活&#34;&gt;生活&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;控糖生活&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;我的人生样样稀松照样赢&lt;/li&gt;
 &lt;/ul&gt;</description>
         </item>
         <item>
@@ -93,14 +444,6 @@
         <description>&lt;img src="http://localhost:1313/2022/10/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/img.png" alt="Featured image of post 动态规划" /&gt;&lt;p&gt;如果题目是求一个问题的最优解（通常是求最大值或最小值），或者求问题的解的数目（或判断问题是否存在解），那么这个题目有可能适合运用动态规划。&lt;br&gt;
 在采用动态规划时总是用递归的思路分析问题，即把大问题分解成小问题，再把小问题的解合起来形成大问题的解。找出描述大问题的解和小问题的解之间递归关系的&lt;em&gt;&lt;strong&gt;状态转移方程&lt;/strong&gt;&lt;/em&gt;是采用动态规划解决问题的关键所在。&lt;br&gt;
 单序列问题、双序列问题、矩阵路径问题和背包问题。&lt;/p&gt;</description>
-        </item>
-        <item>
-        <title>分布式ID生成器</title>
-        <link>http://localhost:1313/2022/07/%E5%88%86%E5%B8%83%E5%BC%8Fid%E7%94%9F%E6%88%90%E5%99%A8/</link>
-        <pubDate>Sun, 10 Jul 2022 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/2022/07/%E5%88%86%E5%B8%83%E5%BC%8Fid%E7%94%9F%E6%88%90%E5%99%A8/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/07/%E5%88%86%E5%B8%83%E5%BC%8Fid%E7%94%9F%E6%88%90%E5%99%A8/img.png" alt="Featured image of post 分布式ID生成器" /&gt;</description>
         </item>
         <item>
         <title>HTTPS简介</title>
@@ -568,20 +911,6 @@ func errorShow(ids []int64) error {
 		data-flex-basis=&#34;332px&#34;
 	
 &gt;&lt;/p&gt;</description>
-        </item>
-        <item>
-        <title>短网址</title>
-        <link>http://localhost:1313/2022/06/%E7%9F%AD%E7%BD%91%E5%9D%80/</link>
-        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/2022/06/%E7%9F%AD%E7%BD%91%E5%9D%80/</guid>
-        <description>&lt;img src="http://localhost:1313/2022/06/%E7%9F%AD%E7%BD%91%E5%9D%80/img.png" alt="Featured image of post 短网址" /&gt;&lt;h2 id=&#34;做事方法论&#34;&gt;做事方法论&lt;/h2&gt;
-&lt;p&gt;另外我们做一件事的时候，需要时刻提醒自己，要想清楚三个问题：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;弄清楚，为什么做这件事？做这件事的价值是什么&lt;/li&gt;
-&lt;li&gt;去思考，如何做这件事？&lt;/li&gt;
-&lt;li&gt;完成后的产出是什么，明确衡量标准&lt;/li&gt;
-&lt;/ol&gt;</description>
         </item>
         <item>
         <title>几场面试下来的反思与感悟</title>
