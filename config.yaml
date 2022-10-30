@@ -23,10 +23,10 @@ enableEmoji: true
 
 enableGitInfo: true
 frontmatter:
-  date:
-  - date
-  - publishDate
+  lastmod:
+  - :fileModTime
   - lastmod
+  - :git
 permalinks:
     post: /:year/:month/:slug/
     page: /:slug/
