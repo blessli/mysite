@@ -12,7 +12,7 @@
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/06/mysql-notes/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/2022/06/mysql-notes/img.png" alt="Featured image of post mysql-notes" /&gt;&lt;h2 id=&#34;索引&#34;&gt;索引&lt;/h2&gt;
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img6.png" alt="Featured image of post mysql-notes" /&gt;&lt;h2 id=&#34;索引&#34;&gt;索引&lt;/h2&gt;
 &lt;h3 id=&#34;索引底层数据结构选型&#34;&gt;索引底层数据结构选型&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;哈希表、二叉查找树、平衡二叉树、B树、B+树、跳表。&lt;/p&gt;
@@ -52,54 +52,24 @@
 版本已提交，且是在快照创建前提交的，可以读到&lt;/p&gt;</description>
         </item>
         <item>
-        <title>mysql踩坑记录</title>
-        <link>https://soli.seekincs.com/2022/06/mysql%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</link>
+        <title>mysql慢查询</title>
+        <link>https://soli.seekincs.com/2022/06/mysql%E6%85%A2%E6%9F%A5%E8%AF%A2/</link>
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/06/mysql%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/2022/06/mysql%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/img.png" alt="Featured image of post mysql踩坑记录" /&gt;&lt;h2 id=&#34;防sql注入&#34;&gt;防SQL注入&lt;/h2&gt;
+        <guid>https://soli.seekincs.com/2022/06/mysql%E6%85%A2%E6%9F%A5%E8%AF%A2/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post mysql慢查询" /&gt;&lt;h2 id=&#34;字段类型与查询类型不一致导致不走索引&#34;&gt;字段类型与查询类型不一致导致不走索引&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;禁止使用拼接SQL方式&lt;/p&gt;
+&lt;p&gt;third_id字段类型是varchar，参数传的却是数字，这种情况下不会走索引，导致慢查&lt;br/&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;PreparedStatement&lt;/li&gt;
-&lt;li&gt;正则表达式&lt;/li&gt;
-&lt;li&gt;字符串过滤&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;字段类型与查询类型不一致导致不走索引&#34;&gt;字段类型与查询类型不一致导致不走索引&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;third_id字段类型是varchar，参数传的却是数字，从而导致了慢SQL&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;错误的SQL&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT * FROM `meta` WHERE `audit_pass`=1 and `state`=1 and third_id in(1,2,3)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/mysql%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/sql%E4%BC%98%E5%8C%96%E5%89%8D.png&#34;
-	width=&#34;1582&#34;
-	height=&#34;190&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/06/mysql%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/sql%E4%BC%98%E5%8C%96%E5%89%8D_hu4a3d5cdfa7fac8093f17e1a1bf9218e5_98504_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/mysql%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/sql%E4%BC%98%E5%8C%96%E5%89%8D_hu4a3d5cdfa7fac8093f17e1a1bf9218e5_98504_1024x0_resize_box_3.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;832&#34;
-		data-flex-basis=&#34;1998px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;正确的SQL&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT * FROM `meta` WHERE `audit_pass`=1 and `state`=1 and third_id in(&#39;1&#39;,&#39;2&#39;,&#39;3&#39;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/mysql%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/sql%E4%BC%98%E5%8C%96%E5%90%8E.png&#34;
-	width=&#34;1724&#34;
-	height=&#34;176&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/06/mysql%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/sql%E4%BC%98%E5%8C%96%E5%90%8E_hu6a0bd2e6949b290de96b87ba104e9f3e_104697_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/mysql%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/sql%E4%BC%98%E5%8C%96%E5%90%8E_hu6a0bd2e6949b290de96b87ba104e9f3e_104697_1024x0_resize_box_3.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;979&#34;
-		data-flex-basis=&#34;2350px&#34;
-	
-&gt;&lt;/p&gt;</description>
+&lt;p&gt;SQL示例
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;meta&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;audit_pass&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;state&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;third_id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;</description>
         </item>
         
     </channel>

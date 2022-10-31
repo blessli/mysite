@@ -6,7 +6,23 @@
         <description>Recent content in Tags on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 30 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 31 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>打卡</title>
+        <link>https://soli.seekincs.com/tags/%E6%89%93%E5%8D%A1/</link>
+        <pubDate>Mon, 31 Oct 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/tags/%E6%89%93%E5%8D%A1/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>刷题</title>
+        <link>https://soli.seekincs.com/tags/%E5%88%B7%E9%A2%98/</link>
+        <pubDate>Mon, 31 Oct 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/tags/%E5%88%B7%E9%A2%98/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>消息中间件</title>
         <link>https://soli.seekincs.com/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/</link>
         <pubDate>Sun, 30 Oct 2022 00:00:00 +0000</pubDate>
@@ -44,14 +60,6 @@
         <pubDate>Sat, 09 Jul 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/tags/http/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>tcp</title>
-        <link>https://soli.seekincs.com/tags/tcp/</link>
-        <pubDate>Sat, 09 Jul 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/tags/tcp/</guid>
         <description></description>
         </item>
         <item>
@@ -100,22 +108,6 @@
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/tags/spark/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>面试</title>
-        <link>https://soli.seekincs.com/tags/%E9%9D%A2%E8%AF%95/</link>
-        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/tags/%E9%9D%A2%E8%AF%95/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>业务</title>
-        <link>https://soli.seekincs.com/tags/%E4%B8%9A%E5%8A%A1/</link>
-        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/tags/%E4%B8%9A%E5%8A%A1/</guid>
         <description></description>
         </item>
         

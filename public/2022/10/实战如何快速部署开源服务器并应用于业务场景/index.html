@@ -9,10 +9,10 @@
 <meta property='og:description' content='快速部署MQTT消息服务器'>
 <meta property='og:url' content='https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/'>
 <meta property='og:site_name' content='soli&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='消息中间件' /><meta property='article:published_time' content='2022-10-30T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-10-30T22:41:05&#43;08:00'/><meta property='og:image' content='https://lidongming.oss-cn-shenzhen.aliyuncs.com/mysite/img1.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='消息中间件' /><meta property='article:published_time' content='2022-10-30T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-11-01T01:13:55&#43;08:00'/><meta property='og:image' content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png' />
 <meta name="twitter:title" content="【实战】如何快速部署开源服务器并应用于业务场景">
 <meta name="twitter:description" content="快速部署MQTT消息服务器"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://lidongming.oss-cn-shenzhen.aliyuncs.com/mysite/img1.png' />
+    <meta name="twitter:image" content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png' />
     <link rel="shortcut icon" href="img/avatar.jpeg" />
 
     </head>
@@ -210,7 +210,7 @@
         <div class="article-image">
             <a href="/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/">
                 
-                    <img src="https://lidongming.oss-cn-shenzhen.aliyuncs.com/mysite/img1.png" loading="lazy" alt="Featured image of post 【实战】如何快速部署开源服务器并应用于业务场景" />
+                    <img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" loading="lazy" alt="Featured image of post 【实战】如何快速部署开源服务器并应用于业务场景" />
                 
             </a>
         </div>
@@ -271,7 +271,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 4 分钟
+                    阅读时长: 5 分钟
                 </time>
             </div>
         
@@ -312,9 +312,11 @@
 <blockquote>
 <p>仔细检查docker-compose-emqx-cluster.yaml 配置文件，否则会启动失败</p>
 </blockquote>
-<p>启动命令： docker-compose -f docker-compose-emqx-cluster.yaml up &amp;<br>
+<p>启动命令： docker-compose -f docker-compose-emqx-cluster.yaml up &amp; <br />
+退出命令： docker-compose -f docker-compose-emqx-cluster.yaml down
 <a name="iQFUX"></a></p>
 <h2 id="接入安全">接入安全</h2>
+<h3 id="服务端访问控制">服务端访问控制</h3>
 <p>在loaded_plugins配置文件中启用emqx_auth_mysql插件。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -415,8 +417,11 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 </div>
 </div>
 <a name="ucIIH"></a></p>
+<h3 id="客户端sdk安全">客户端SDK安全</h3>
+<p>SDK引入了第三方库， 要走中台统一的三方库报备、审查，看看有没有漏洞或其他风险 。
+<a name="ucIIH"></a></p>
 <h2 id="集群部署">集群部署</h2>
-<p>实际业务场景可能对高性能、高可用有着一定要求。<br /><img src="/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE.jpeg"
+<p>实际业务场景可能对高性能、高可用有着一定要求。这里以伪分布式集群为例：<br /><img src="/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE.jpeg"
 	width="1520"
 	height="756"
 	srcset="/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_480x0_resize_q75_box.jpeg 480w, /2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_1024x0_resize_q75_box.jpeg 1024w"
@@ -847,7 +852,7 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 
 
         <span>
-            最后更新于 2022年10月30日 22点41分05秒
+            最后更新于 2022年11月01日 01点13分55秒
         </span>
     </section></footer>
 
@@ -1050,7 +1055,12 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
       </ol>
     </li>
     <li><a href="#启动">启动</a></li>
-    <li><a href="#接入安全">接入安全</a></li>
+    <li><a href="#接入安全">接入安全</a>
+      <ol>
+        <li><a href="#服务端访问控制">服务端访问控制</a></li>
+        <li><a href="#客户端sdk安全">客户端SDK安全</a></li>
+      </ol>
+    </li>
     <li><a href="#集群部署">集群部署</a></li>
     <li><a href="#协议接入">协议接入</a></li>
     <li><a href="#测试">测试</a>
@@ -1099,7 +1109,7 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
                     <a href="/archives/#2022">
                         
                             <span class="year">2022</span>
-                            <span class="count">16</span>
+                            <span class="count">14</span>
                         
                     </a> 
                 </div>
@@ -1130,12 +1140,8 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
                 数据库
             </a>
         
-            <a href="/categories/internet/" class="font_size_3">
+            <a href="/categories/internet/" class="font_size_2">
                 网络
-            </a>
-        
-            <a href="/categories/methodology/" class="font_size_2">
-                方法论
             </a>
         
             <a href="/categories/middleware/" class="font_size_2">
@@ -1164,6 +1170,10 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
         
             <a href="/categories/%E7%94%9F%E6%B4%BB/" class="font_size_1">
                 生活
+            </a>
+        
+            <a href="/categories/%E7%AE%97%E6%B3%95/" class="font_size_1">
+                算法
             </a>
         
             <a href="/categories/%E7%BD%91%E7%BB%9C/" class="font_size_1">
@@ -1227,12 +1237,12 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
                 spark
             </a>
         
-            <a href="/tags/tcp/" class="font_size_1">
-                tcp
+            <a href="/tags/%E5%88%B7%E9%A2%98/" class="font_size_1">
+                刷题
             </a>
         
-            <a href="/tags/%E4%B8%9A%E5%8A%A1/" class="font_size_1">
-                业务
+            <a href="/tags/%E6%89%93%E5%8D%A1/" class="font_size_1">
+                打卡
             </a>
         
             <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="font_size_1">
@@ -1245,10 +1255,6 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
         
             <a href="/tags/%E8%AF%BB%E4%B9%A6/" class="font_size_1">
                 读书
-            </a>
-        
-            <a href="/tags/%E9%9D%A2%E8%AF%95/" class="font_size_1">
-                面试
             </a>
         
     </div>

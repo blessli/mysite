@@ -11,7 +11,7 @@ tags = [
 ]
 series = ["Themes Guide"]
 aliases = ["migrate-from-jekyl"]
-image = "https://lidongming.oss-cn-shenzhen.aliyuncs.com/mysite/img0.png"
+image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img0.png"
 +++
 <!--more-->
 > 从在浏览器中输入网址，到屏幕上显示出网页的内容，在这个只有几秒钟的过程中，很多硬件和软件都在各自的岗位上相互配合完成了一系列的工作。<br>

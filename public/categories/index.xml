@@ -6,7 +6,15 @@
         <description>Recent content in Categories on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 30 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 31 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>算法</title>
+        <link>https://soli.seekincs.com/categories/%E7%AE%97%E6%B3%95/</link>
+        <pubDate>Mon, 31 Oct 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/categories/%E7%AE%97%E6%B3%95/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>实战</title>
         <link>https://soli.seekincs.com/categories/%E5%AE%9E%E6%88%98/</link>
         <pubDate>Sun, 30 Oct 2022 00:00:00 +0000</pubDate>

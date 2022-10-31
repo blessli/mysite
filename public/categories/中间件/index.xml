@@ -12,7 +12,7 @@
         <pubDate>Sun, 30 Oct 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/</guid>
-        <description>&lt;img src="https://lidongming.oss-cn-shenzhen.aliyuncs.com/mysite/img1.png" alt="Featured image of post 【实战】如何快速部署开源服务器并应用于业务场景" /&gt;&lt;p&gt;&lt;a name=&#34;NcnDm&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 【实战】如何快速部署开源服务器并应用于业务场景" /&gt;&lt;p&gt;&lt;a name=&#34;NcnDm&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
 &lt;p&gt;当需要提供一种新能力，考虑到成本问题，我们往往不会从0到1开发一个服务器，而是先在开源产品中选型对比，看是否已有能满足自身需求的开源产品(不重复造轮子的原则)。因为对开源服务器的不熟悉，部署过程中会踩这样那样的坑，效率比较低，如何快速部署并应用于实际业务场景呢？&lt;br /&gt;随便提一下，私有化部署的原因主要是考虑到数据安全，&lt;strong&gt;安全无小事，安全大于一切&lt;/strong&gt;
 &lt;a name=&#34;cGHID&#34;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -39,9 +39,11 @@
 &lt;blockquote&gt;
 &lt;p&gt;仔细检查docker-compose-emqx-cluster.yaml 配置文件，否则会启动失败&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;启动命令： docker-compose -f docker-compose-emqx-cluster.yaml up &amp;amp;&lt;br&gt;
+&lt;p&gt;启动命令： docker-compose -f docker-compose-emqx-cluster.yaml up &amp;amp; &lt;br /&gt;
+退出命令： docker-compose -f docker-compose-emqx-cluster.yaml down
 &lt;a name=&#34;iQFUX&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;接入安全&#34;&gt;接入安全&lt;/h2&gt;
+&lt;h3 id=&#34;服务端访问控制&#34;&gt;服务端访问控制&lt;/h3&gt;
 &lt;p&gt;在loaded_plugins配置文件中启用emqx_auth_mysql插件。
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -142,8 +144,11 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;a name=&#34;ucIIH&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;客户端sdk安全&#34;&gt;客户端SDK安全&lt;/h3&gt;
+&lt;p&gt;SDK引入了第三方库， 要走中台统一的三方库报备、审查，看看有没有漏洞或其他风险 。
+&lt;a name=&#34;ucIIH&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;集群部署&#34;&gt;集群部署&lt;/h2&gt;
-&lt;p&gt;实际业务场景可能对高性能、高可用有着一定要求。&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE.jpeg&#34;
+&lt;p&gt;实际业务场景可能对高性能、高可用有着一定要求。这里以伪分布式集群为例：&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE.jpeg&#34;
 	width=&#34;1520&#34;
 	height=&#34;756&#34;
 	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_1024x0_resize_q75_box.jpeg 1024w&#34;

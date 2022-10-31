@@ -11,7 +11,7 @@ tags = [
 ]
 series = ["Themes Guide"]
 aliases = ["migrate-from-jekyl"]
-image = "img.png"
+image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img6.png"
 +++
 <!--more-->
 ## 索引

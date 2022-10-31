@@ -11,7 +11,7 @@ tags = [
 ]
 series = ["Themes Guide"]
 aliases = ["migrate-from-jekyl"]
-image = "https://lidongming.oss-cn-shenzhen.aliyuncs.com/mysite/img2.png"
+image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png"
 +++
 <!--more-->
 ## 操作系统是什么？

@@ -11,7 +11,7 @@ tags = [
 ]
 series = ["Themes Guide"]
 aliases = ["migrate-from-jekyl"]
-image = "https://lidongming.oss-cn-shenzhen.aliyuncs.com/mysite/img1.png"
+image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"
 +++
 <!--more-->
 <a name="NcnDm"></a>
@@ -37,9 +37,11 @@ image = "https://lidongming.oss-cn-shenzhen.aliyuncs.com/mysite/img1.png"
 ## 启动
 > 仔细检查docker-compose-emqx-cluster.yaml 配置文件，否则会启动失败
 
-启动命令： docker-compose -f docker-compose-emqx-cluster.yaml up &  
+启动命令： docker-compose -f docker-compose-emqx-cluster.yaml up & <br />
+退出命令： docker-compose -f docker-compose-emqx-cluster.yaml down
 <a name="iQFUX"></a>
 ## 接入安全
+### 服务端访问控制
 在loaded_plugins配置文件中启用emqx_auth_mysql插件。
 {{< highlight sh "linenos=table" >}}
 {emqx_management,true}.
@@ -91,8 +93,11 @@ CREATE TABLE `mqtt_acl` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4
 {{< / highlight >}}
 <a name="ucIIH"></a>
+### 客户端SDK安全
+SDK引入了第三方库， 要走中台统一的三方库报备、审查，看看有没有漏洞或其他风险 。
+<a name="ucIIH"></a>
 ## 集群部署
-实际业务场景可能对高性能、高可用有着一定要求。<br />![image.png](static/LB整体架构图.jpeg)
+实际业务场景可能对高性能、高可用有着一定要求。这里以伪分布式集群为例：<br />![image.png](static/LB整体架构图.jpeg)
 {{< highlight yaml "linenos=table" >}}
 version: '3.9'
 
