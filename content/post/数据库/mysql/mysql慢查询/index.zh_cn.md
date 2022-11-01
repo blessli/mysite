@@ -4,7 +4,7 @@ title = "mysql慢查询"
 date = "2022-06-18"
 description = "记录慢查询的几个例子"
 categories = [
-"database"
+"数据库"
 ]
 tags = [
 "mysql"

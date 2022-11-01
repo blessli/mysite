@@ -4,14 +4,14 @@ title = "spark原理浅析"
 date = "2022-06-18"
 description = "大数据Spark学习笔记"
 categories = [
-"bigdata"
+"大数据"
 ]
 tags = [
 "spark"
 ]
 series = ["Themes Guide"]
 aliases = ["migrate-from-jekyl"]
-image = "img.png"
+image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png"
 +++
 <!--more-->
 ## Spark概述

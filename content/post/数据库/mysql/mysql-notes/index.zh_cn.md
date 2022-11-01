@@ -4,7 +4,7 @@ title = "mysql-notes"
 date = "2022-06-18"
 description = "关系型数据库MySQL学习笔记"
 categories = [
-"database"
+"数据库"
 ]
 tags = [
 "mysql"

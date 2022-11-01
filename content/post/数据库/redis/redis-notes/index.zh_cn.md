@@ -4,7 +4,7 @@ title = "redis-notes"
 date = "2022-06-18"
 description = "内存型数据库Redis学习笔记"
 categories = [
-"database"
+"数据库"
 ]
 tags = [
 "redis"

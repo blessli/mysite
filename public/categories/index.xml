@@ -7,116 +7,60 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Mon, 31 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/categories/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>算法</title>
-        <link>https://soli.seekincs.com/categories/%E7%AE%97%E6%B3%95/</link>
-        <pubDate>Mon, 31 Oct 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/categories/%E7%AE%97%E6%B3%95/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>实战</title>
-        <link>https://soli.seekincs.com/categories/%E5%AE%9E%E6%88%98/</link>
-        <pubDate>Sun, 30 Oct 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/categories/%E5%AE%9E%E6%88%98/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>中间件</title>
-        <link>https://soli.seekincs.com/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/</link>
-        <pubDate>Sun, 30 Oct 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>读书笔记</title>
-        <link>https://soli.seekincs.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
-        <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
-        <description></description>
-        </item>
-        <item>
         <title>网络</title>
         <link>https://soli.seekincs.com/categories/%E7%BD%91%E7%BB%9C/</link>
-        <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/categories/%E7%BD%91%E7%BB%9C/</guid>
-        <description></description>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/categories/animal1.jpeg" alt="Featured image of post 网络" /&gt;</description>
         </item>
         <item>
         <title>操作系统</title>
         <link>https://soli.seekincs.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
-        <pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>生活</title>
-        <link>https://soli.seekincs.com/categories/%E7%94%9F%E6%B4%BB/</link>
-        <pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/categories/%E7%94%9F%E6%B4%BB/</guid>
-        <description></description>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/categories/animal3.jpeg" alt="Featured image of post 操作系统" /&gt;</description>
         </item>
         <item>
         <title>编程语言</title>
-        <link>https://soli.seekincs.com/categories/language/</link>
+        <link>https://soli.seekincs.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/categories/language/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/categories/language/img.png" alt="Featured image of post 编程语言" /&gt;</description>
-        </item>
-        <item>
-        <title>操作系统</title>
-        <link>https://soli.seekincs.com/categories/os/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/categories/os/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/categories/os/img.png" alt="Featured image of post 操作系统" /&gt;</description>
-        </item>
-        <item>
-        <title>大数据</title>
-        <link>https://soli.seekincs.com/categories/bigdata/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/categories/bigdata/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/categories/bigdata/img.png" alt="Featured image of post 大数据" /&gt;</description>
-        </item>
-        <item>
-        <title>方法论</title>
-        <link>https://soli.seekincs.com/categories/methodology/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/categories/methodology/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/categories/methodology/img.png" alt="Featured image of post 方法论" /&gt;</description>
+        <guid>https://soli.seekincs.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/categories/animal5.jpeg" alt="Featured image of post 编程语言" /&gt;</description>
         </item>
         <item>
         <title>数据库</title>
-        <link>https://soli.seekincs.com/categories/database/</link>
+        <link>https://soli.seekincs.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/categories/database/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/categories/database/img.png" alt="Featured image of post 数据库" /&gt;</description>
-        </item>
-        <item>
-        <title>网络</title>
-        <link>https://soli.seekincs.com/categories/internet/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/categories/internet/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/categories/internet/img.png" alt="Featured image of post 网络" /&gt;</description>
+        <guid>https://soli.seekincs.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/categories/animal4.jpeg" alt="Featured image of post 数据库" /&gt;</description>
         </item>
         <item>
         <title>中间件</title>
-        <link>https://soli.seekincs.com/categories/middleware/</link>
+        <link>https://soli.seekincs.com/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/categories/middleware/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/categories/middleware/img.png" alt="Featured image of post 中间件" /&gt;</description>
+        <guid>https://soli.seekincs.com/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/categories/animal2.jpeg" alt="Featured image of post 中间件" /&gt;</description>
+        </item>
+        <item>
+        <title>大数据</title>
+        <link>https://soli.seekincs.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/categories/animal6.jpeg" alt="Featured image of post 大数据" /&gt;</description>
+        </item>
+        <item>
+        <title>其他</title>
+        <link>https://soli.seekincs.com/categories/%E5%85%B6%E4%BB%96/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/categories/%E5%85%B6%E4%BB%96/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/categories/animal5.jpeg" alt="Featured image of post 其他" /&gt;</description>
         </item>
         
     </channel>

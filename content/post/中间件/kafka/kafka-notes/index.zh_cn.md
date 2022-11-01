@@ -4,7 +4,7 @@ title = "kafka简介"
 date = "2022-06-18"
 description = "消息中间件Kafka学习笔记"
 categories = [
-"middleware"
+"中间件"
 ]
 tags = [
 "kafka"

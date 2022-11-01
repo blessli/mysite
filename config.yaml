@@ -59,6 +59,7 @@ params:
         math: true
         toc: true
         readingTime: true
+        order_by: published
         license:
             enabled: false
 

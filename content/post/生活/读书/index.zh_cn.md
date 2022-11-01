@@ -2,9 +2,9 @@
 author = "soli"
 title = "2022书单"
 date = "2022-10-08"
-description = "因为无知，所以读书"
+description = ""
 categories = [
-"生活"
+"其他"
 ]
 tags = [
 "读书"

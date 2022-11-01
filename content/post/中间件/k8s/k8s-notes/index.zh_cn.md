@@ -4,7 +4,7 @@ title = "k8s-notes"
 date = "2022-06-18"
 description = "运维K8s学习笔记"
 categories = [
-"middleware"
+"中间件"
 ]
 tags = [
 "k8s"

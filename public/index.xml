@@ -7,12 +7,12 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Mon, 31 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>LeetCode刷题记录</title>
-        <link>https://soli.seekincs.com/2022/10/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</link>
+        <title>【打卡】LeetCode刷题记录</title>
+        <link>https://soli.seekincs.com/2022/10/%E6%89%93%E5%8D%A1leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</link>
         <pubDate>Mon, 31 Oct 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/10/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post LeetCode刷题记录" /&gt;&lt;ol&gt;
+        <guid>https://soli.seekincs.com/2022/10/%E6%89%93%E5%8D%A1leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 【打卡】LeetCode刷题记录" /&gt;&lt;ol&gt;
 &lt;li&gt;2022-10-29 &lt;a class=&#34;link&#34; href=&#34;https://leetcode.cn/problems/longest-consecutive-sequence/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;最长连续序列&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;2022-10-31 &lt;a class=&#34;link&#34; href=&#34;https://leetcode.cn/problems/validate-binary-search-tree/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -605,6 +605,34 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 &lt;h2 id=&#34;请求到达web服务器响应返回浏览器&#34;&gt;请求到达web服务器，响应返回浏览器&lt;/h2&gt;</description>
         </item>
         <item>
+        <title>【读书笔记】操作系统导论</title>
+        <link>https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/</link>
+        <pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 【读书笔记】操作系统导论" /&gt;&lt;h2 id=&#34;操作系统是什么&#34;&gt;操作系统是什么？&lt;/h2&gt;
+&lt;p&gt;实际上，有一类软件负责让程序运行变得容易（甚至允许你同时运行多个程序），允许程序共享内存，让程序能够与设备交互，以及其他类似的有趣的工作。这些软件称为操作系统，因为它们负责&lt;em&gt;&lt;strong&gt;确保系统既易于使用又正确高效地运行&lt;/strong&gt;&lt;/em&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;关键问题操作系统如何将资源虚拟化&#34;&gt;关键问题：操作系统如何将资源虚拟化&lt;/h2&gt;
+&lt;p&gt;为什么操作系统这样做？这不是主要问题，因为答案应该很明显：它让系统更易于使用。因此，我们关注如何虚拟化：操作系统通过哪些机制和策略来实现虚拟化？操作系统如何有效地实现虚拟化？需要哪些硬件支持？&lt;br&gt;
+操作系统将物理资源（如处理器、内存或磁盘）转换为更通用、更强大且更易于使用的虚拟形式。因此，我们有时将操作系统称为虚拟机。
+因为虚拟化让许多程序运行（从而共享CPU），让许多程序可以同时访问自己的指令和数据（从而共享内存），让许多程序访问设备（从而共享磁盘等），所以操作系统有时被称为资源管理器。每个CPU、内存和磁盘都是系统的资源，因此操作系统扮演的主要角色就是管理这些资源，以做到高效或公平。&lt;/p&gt;
+&lt;h3 id=&#34;虚拟化cpu&#34;&gt;虚拟化CPU&lt;/h3&gt;
+&lt;p&gt;在硬件的一些帮助下，操作系统负责提供这种假象，即系统拥有非常多的虚拟CPU的假象。将单个CPU（或其中一小部分）转换为看似无限数量的CPU，从而让许多程序看似同时运行，这就是所谓的虚拟化CPU。&lt;/p&gt;
+&lt;h3 id=&#34;虚拟化内存&#34;&gt;虚拟化内存&lt;/h3&gt;
+&lt;p&gt;每个进程访问自己的私有虚拟地址空间（有时称为地址空间），操作系统以某种方式映射到机器的物理内存上。一个正在运行的程序中的内存引用不会影响其他进程（或操作系统本身）的地址空间。对于正在运行的程序，它完全拥有自己的物理内存。&lt;/p&gt;
+&lt;h2 id=&#34;关键问题如何构建正确的并发程序&#34;&gt;关键问题：如何构建正确的并发程序&lt;/h2&gt;
+&lt;p&gt;如果同一个内存空间中有很多并发执行的线程，如何构建一个正确工作的程序？操作系统需要什么原语？硬件应该提供哪些机制？我们如何利用它们来解决并发问题？&lt;/p&gt;
+&lt;h2 id=&#34;关键问题如何持久地存储数据&#34;&gt;关键问题：如何持久地存储数据&lt;/h2&gt;
+&lt;p&gt;文件系统是操作系统的一部分，负责管理持久的数据。持久性需要哪些技术才能正确地实现？需要哪些机制和策略才能高性能地实现？面对硬件和软件故障，可靠性如何实现？&lt;/p&gt;
+&lt;h2 id=&#34;操作系统做了什么&#34;&gt;操作系统做了什么？&lt;/h2&gt;
+&lt;p&gt;它取得CPU、内存或磁盘等物理资源，并对它们进行虚拟化。它处理与并发有关的麻烦且棘手的问题。它持久地存储文件，从而使它们长期安全。&lt;/p&gt;
+&lt;h2 id=&#34;操作系统的设计目标&#34;&gt;操作系统的设计目标&lt;/h2&gt;
+&lt;p&gt;一个最基本的目标，是建立一些&lt;em&gt;&lt;strong&gt;抽象&lt;/strong&gt;&lt;/em&gt;，让系统方便和易于使用。&lt;br&gt;
+设计和实现操作系统的一个目标，是提供高性能。换言之，我们的目标是最小化操作系统的开销。&lt;br&gt;
+另一个目标是在应用程序之间以及在OS和应用程序之间提供保护。&lt;br&gt;
+根据系统的使用方式，操作系统将有不同的目标，因此可能至少以稍微不同的方式实现。&lt;/p&gt;</description>
+        </item>
+        <item>
         <title>2022书单</title>
         <link>https://soli.seekincs.com/2022/10/2022%E4%B9%A6%E5%8D%95/</link>
         <pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate>
@@ -648,78 +676,17 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 &lt;/ul&gt;</description>
         </item>
         <item>
-        <title>操作系统介绍</title>
-        <link>https://soli.seekincs.com/2022/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/</link>
-        <pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png" alt="Featured image of post 操作系统介绍" /&gt;&lt;h2 id=&#34;操作系统是什么&#34;&gt;操作系统是什么？&lt;/h2&gt;
-&lt;p&gt;实际上，有一类软件负责让程序运行变得容易（甚至允许你同时运行多个程序），允许程序共享内存，让程序能够与设备交互，以及其他类似的有趣的工作。这些软件称为操作系统，因为它们负责&lt;em&gt;&lt;strong&gt;确保系统既易于使用又正确高效地运行&lt;/strong&gt;&lt;/em&gt;。&lt;/p&gt;
-&lt;h2 id=&#34;关键问题操作系统如何将资源虚拟化&#34;&gt;关键问题：操作系统如何将资源虚拟化&lt;/h2&gt;
-&lt;p&gt;为什么操作系统这样做？这不是主要问题，因为答案应该很明显：它让系统更易于使用。因此，我们关注如何虚拟化：操作系统通过哪些机制和策略来实现虚拟化？操作系统如何有效地实现虚拟化？需要哪些硬件支持？&lt;br&gt;
-操作系统将物理资源（如处理器、内存或磁盘）转换为更通用、更强大且更易于使用的虚拟形式。因此，我们有时将操作系统称为虚拟机。
-因为虚拟化让许多程序运行（从而共享CPU），让许多程序可以同时访问自己的指令和数据（从而共享内存），让许多程序访问设备（从而共享磁盘等），所以操作系统有时被称为资源管理器。每个CPU、内存和磁盘都是系统的资源，因此操作系统扮演的主要角色就是管理这些资源，以做到高效或公平。&lt;/p&gt;
-&lt;h3 id=&#34;虚拟化cpu&#34;&gt;虚拟化CPU&lt;/h3&gt;
-&lt;p&gt;在硬件的一些帮助下，操作系统负责提供这种假象，即系统拥有非常多的虚拟CPU的假象。将单个CPU（或其中一小部分）转换为看似无限数量的CPU，从而让许多程序看似同时运行，这就是所谓的虚拟化CPU。&lt;/p&gt;
-&lt;h3 id=&#34;虚拟化内存&#34;&gt;虚拟化内存&lt;/h3&gt;
-&lt;p&gt;每个进程访问自己的私有虚拟地址空间（有时称为地址空间），操作系统以某种方式映射到机器的物理内存上。一个正在运行的程序中的内存引用不会影响其他进程（或操作系统本身）的地址空间。对于正在运行的程序，它完全拥有自己的物理内存。&lt;/p&gt;
-&lt;h2 id=&#34;关键问题如何构建正确的并发程序&#34;&gt;关键问题：如何构建正确的并发程序&lt;/h2&gt;
-&lt;p&gt;如果同一个内存空间中有很多并发执行的线程，如何构建一个正确工作的程序？操作系统需要什么原语？硬件应该提供哪些机制？我们如何利用它们来解决并发问题？&lt;/p&gt;
-&lt;h2 id=&#34;关键问题如何持久地存储数据&#34;&gt;关键问题：如何持久地存储数据&lt;/h2&gt;
-&lt;p&gt;文件系统是操作系统的一部分，负责管理持久的数据。持久性需要哪些技术才能正确地实现？需要哪些机制和策略才能高性能地实现？面对硬件和软件故障，可靠性如何实现？&lt;/p&gt;
-&lt;h2 id=&#34;操作系统做了什么&#34;&gt;操作系统做了什么？&lt;/h2&gt;
-&lt;p&gt;它取得CPU、内存或磁盘等物理资源，并对它们进行虚拟化。它处理与并发有关的麻烦且棘手的问题。它持久地存储文件，从而使它们长期安全。&lt;/p&gt;
-&lt;h2 id=&#34;操作系统的设计目标&#34;&gt;操作系统的设计目标&lt;/h2&gt;
-&lt;p&gt;一个最基本的目标，是建立一些&lt;em&gt;&lt;strong&gt;抽象&lt;/strong&gt;&lt;/em&gt;，让系统方便和易于使用。&lt;br&gt;
-设计和实现操作系统的一个目标，是提供高性能。换言之，我们的目标是最小化操作系统的开销。&lt;br&gt;
-另一个目标是在应用程序之间以及在OS和应用程序之间提供保护。&lt;br&gt;
-根据系统的使用方式，操作系统将有不同的目标，因此可能至少以稍微不同的方式实现。&lt;/p&gt;</description>
-        </item>
-        <item>
-        <title>HTTPS简介</title>
-        <link>https://soli.seekincs.com/2022/07/https%E7%AE%80%E4%BB%8B/</link>
-        <pubDate>Sat, 09 Jul 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/07/https%E7%AE%80%E4%BB%8B/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/2022/07/https%E7%AE%80%E4%BB%8B/static/img.png" alt="Featured image of post HTTPS简介" /&gt;&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/07/https%E7%AE%80%E4%BB%8B/static/https.png&#34;
-	width=&#34;1304&#34;
-	height=&#34;1199&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/07/https%E7%AE%80%E4%BB%8B/static/https_hu462b14a001effeff40f7708429d7b11f_518697_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/07/https%E7%AE%80%E4%BB%8B/static/https_hu462b14a001effeff40f7708429d7b11f_518697_1024x0_resize_box_3.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;HTTPS交互过程&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;108&#34;
-		data-flex-basis=&#34;261px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;实战&#34;&gt;实战&lt;/h2&gt;
-&lt;p&gt;server.crt证书文件和server.key私钥文件&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://cloud.tencent.com/document/product/400/35244&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Nginx 服务器 SSL 证书安装部署&lt;/a&gt;&lt;/p&gt;</description>
-        </item>
-        <item>
-        <title>HTTP各版本区别</title>
-        <link>https://soli.seekincs.com/2022/07/http%E5%90%84%E7%89%88%E6%9C%AC%E5%8C%BA%E5%88%AB/</link>
-        <pubDate>Sat, 09 Jul 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/07/http%E5%90%84%E7%89%88%E6%9C%AC%E5%8C%BA%E5%88%AB/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/2022/07/http%E5%90%84%E7%89%88%E6%9C%AC%E5%8C%BA%E5%88%AB/img.png" alt="Featured image of post HTTP各版本区别" /&gt;</description>
-        </item>
-        <item>
-        <title>golang简介</title>
-        <link>https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/</link>
+        <title>【TODO】golang相关2333</title>
+        <link>https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/</link>
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/img.png" alt="Featured image of post golang简介" /&gt;&lt;h2 id=&#34;golang概述&#34;&gt;Golang概述&lt;/h2&gt;
+        <guid>https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img8.png" alt="Featured image of post 【TODO】golang相关2333" /&gt;&lt;h2 id=&#34;golang概述&#34;&gt;Golang概述&lt;/h2&gt;
 &lt;h2 id=&#34;channel&#34;&gt;Channel&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/channel-overview.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/channel-overview.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;923&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/channel-overview_hu0eb3b9f1ee24e4d337caae59151f5270_238819_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/channel-overview_hu0eb3b9f1ee24e4d337caae59151f5270_238819_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/channel-overview_hu0eb3b9f1ee24e4d337caae59151f5270_238819_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/channel-overview_hu0eb3b9f1ee24e4d337caae59151f5270_238819_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -729,10 +696,10 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;gmp调度模型&#34;&gt;GMP调度模型&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/gmp-overview.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/gmp-overview.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;698&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/gmp-overview_hua11c6aaea3a84c49cd2aa3cbacab8952_289581_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/gmp-overview_hua11c6aaea3a84c49cd2aa3cbacab8952_289581_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/gmp-overview_hua11c6aaea3a84c49cd2aa3cbacab8952_289581_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/gmp-overview_hua11c6aaea3a84c49cd2aa3cbacab8952_289581_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -743,10 +710,10 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;mutex&#34;&gt;Mutex&lt;/h2&gt;
 &lt;h2 id=&#34;waitgroup&#34;&gt;WaitGroup&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/waitgroup.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/waitgroup.png&#34;
 	width=&#34;3033&#34;
 	height=&#34;1572&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/waitgroup_hucb853939e1f51b2eb1dfcfd394cd0e16_275659_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/golang%E7%AE%80%E4%BB%8B/static/waitgroup_hucb853939e1f51b2eb1dfcfd394cd0e16_275659_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/waitgroup_hucb853939e1f51b2eb1dfcfd394cd0e16_275659_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/waitgroup_hucb853939e1f51b2eb1dfcfd394cd0e16_275659_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -958,7 +925,7 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
         <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/img.png" alt="Featured image of post spark原理浅析" /&gt;&lt;h2 id=&#34;spark概述&#34;&gt;Spark概述&lt;/h2&gt;
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post spark原理浅析" /&gt;&lt;h2 id=&#34;spark概述&#34;&gt;Spark概述&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;一个高效通用的内存型分布式计算框架。&lt;/p&gt;
 &lt;/blockquote&gt;
