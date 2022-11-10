@@ -33,7 +33,22 @@
                 </time>
             </div>
         {{ end }}
-
+                <!-- Created Date -->
+                {{- $pubdate := .PublishDate.Format "Jan 02, 2006" }}
+                <!-- Last Updated Date -->
+                {{- if .Lastmod }}
+                    {{- $lastmod := .Lastmod.Format "Jan 02, 2006" }}
+                        {{- if ne $lastmod $pubdate }}
+                            <!-- Last modified: -->
+                        <div>
+                            {{ partial "helper/icon" "date" }}
+                            <time class="article-time--updated" datetime="{{ .Lastmod }}" title="{{ .Lastmod }}">
+                                <!-- {{ $lastmod }} -->
+                                {{- .Lastmod.Format (or .Site.Params.dateFormat.published "Jan 02, 2006") -}}
+                            </time>
+                        </div>
+                    {{- end }}
+                {{- end }}
         {{ if .Site.Params.article.readingTime }}
             <div>
                 {{ partial "helper/icon" "clock" }}
