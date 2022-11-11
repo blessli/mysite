@@ -1,4 +1,4 @@
-name: auto deploy # 名字自取
+name: Auto publish to public site
 
 on:
   push:
@@ -6,10 +6,12 @@ on:
       - master  # 这里的意思是当 main分支发生push的时候，运行下面的jobs，这里先改为github-actions
 
 jobs:
-  deploy: # 任务名自取
-    runs-on: centos-latest	# 在什么环境运行任务
+  hugo-publish: # 任务名自取
+    name: publish content to public site
+    runs-on: ubuntu-latest	# 在什么环境运行任务
     steps:
-      - uses: actions/checkout@v2	# 引用actions/checkout这个action，与所在的github仓库同名
+      - name: checkout private repo
+        uses: actions/checkout@v2	# 引用actions/checkout这个action，与所在的github仓库同名
         with:
           submodules: false  # Fetch Hugo themes (true OR recursive) 获取submodule主题
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
