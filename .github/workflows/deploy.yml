@@ -17,5 +17,5 @@ jobs:
           extended: true
 
       - name: Build
-        working-directory: ./
+        working-directory: ../../
         run: hugo --minify --gc --cleanDestinationDir
