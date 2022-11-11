@@ -3,7 +3,7 @@ baseurl: https://soli.seekincs.com/
 languageCode: en-us
 theme: hugo-theme-stack
 paginate: 5
-title: soli's blog
+title: cockyman's blog
 
 # Change it to your Disqus shortname before using
 disqusShortname: hugo-theme-stack
@@ -49,7 +49,7 @@ params:
 
     sidebar:
         emoji:
-        subtitle: 生活可以忙忙碌碌随大流，思想必须偷偷摸摸求上进
+        subtitle: ability++
         avatar:
             enabled: true
             local: true
