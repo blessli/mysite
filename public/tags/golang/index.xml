@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>golang on cockyman's blog</title><link>https://soli.seekincs.com/tags/golang/</link><description>Recent content in golang on cockyman's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 18 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/golang/index.xml" rel="self" type="application/rss+xml"/><item><title>【TODO】golang相关2333</title><link>https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/</guid><description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img8.png" alt="Featured image of post 【TODO】golang相关2333" />&lt;h2 id="golang概述">Golang概述&lt;/h2>
+&lt;h2 id="channel">Channel&lt;/h2>
+&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/channel-overview.png"
+width="1500"
+height="923"
+srcset="https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/channel-overview_hu0eb3b9f1ee24e4d337caae59151f5270_238819_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/channel-overview_hu0eb3b9f1ee24e4d337caae59151f5270_238819_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="162"
+data-flex-basis="390px"
+>&lt;/p>
+&lt;h2 id="gmp调度模型">GMP调度模型&lt;/h2>
+&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/gmp-overview.png"
+width="1240"
+height="698"
+srcset="https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/gmp-overview_hua11c6aaea3a84c49cd2aa3cbacab8952_289581_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/gmp-overview_hua11c6aaea3a84c49cd2aa3cbacab8952_289581_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;h2 id="mutex">Mutex&lt;/h2>
+&lt;h2 id="waitgroup">WaitGroup&lt;/h2>
+&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/waitgroup.png"
+width="3033"
+height="1572"
+srcset="https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/waitgroup_hucb853939e1f51b2eb1dfcfd394cd0e16_275659_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/waitgroup_hucb853939e1f51b2eb1dfcfd394cd0e16_275659_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="192"
+data-flex-basis="463px"
+>&lt;/p></description></item></channel></rss>

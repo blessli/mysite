@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>redis on cockyman's blog</title><link>https://soli.seekincs.com/tags/redis/</link><description>Recent content in redis on cockyman's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 18 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/redis/index.xml" rel="self" type="application/rss+xml"/><item><title>redis-notes</title><link>https://soli.seekincs.com/2022/06/redis-notes/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/06/redis-notes/</guid><description>&lt;img src="https://soli.seekincs.com/2022/06/redis-notes/img.png" alt="Featured image of post redis-notes" />&lt;h2 id="redis概述">Redis概述&lt;/h2>
+&lt;h2 id="核心数据结构">核心数据结构&lt;/h2>
+&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/redis-notes/redis-data-structure-overview.png"
+width="1648"
+height="376"
+srcset="https://soli.seekincs.com/2022/06/redis-notes/redis-data-structure-overview_hub2a6c8a9305badb65c15c58ab4b5e27d_80745_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/redis-notes/redis-data-structure-overview_hub2a6c8a9305badb65c15c58ab4b5e27d_80745_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="438"
+data-flex-basis="1051px"
+>&lt;/p>
+&lt;h2 id="持久化">持久化&lt;/h2>
+&lt;blockquote>
+&lt;p>RDB+AOF混用&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="io多路复用">I/O多路复用&lt;/h2>
+&lt;h2 id="redis常见问题讨论">Redis常见问题讨论&lt;/h2>
+&lt;ol>
+&lt;li>击穿问题：底层数据库有数据而缓存内没有数据&lt;/li>
+&lt;li>穿透问题：底层数据库没有数据且缓存内也没有数据。解决方法：布隆过滤器&lt;/li>
+&lt;li>雪崩问题：缓存击穿的&amp;quot;大面积&amp;quot;版&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/redis-notes/bloom-filter.png"
+width="815"
+height="728"
+srcset="https://soli.seekincs.com/2022/06/redis-notes/bloom-filter_hucde5a3dd1599056439a13f9692d0cc4f_103516_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/redis-notes/bloom-filter_hucde5a3dd1599056439a13f9692d0cc4f_103516_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="缓存穿透解决办法"
+class="gallery-image"
+data-flex-grow="111"
+data-flex-basis="268px"
+>&lt;/p></description></item></channel></rss>

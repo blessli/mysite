@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>数据库 on cockyman's blog</title><link>https://soli.seekincs.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link><description>Recent content in 数据库 on cockyman's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://soli.seekincs.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml"/><item><title>mysql-notes</title><link>https://soli.seekincs.com/2022/06/mysql-notes/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/06/mysql-notes/</guid><description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img6.png" alt="Featured image of post mysql-notes" />&lt;h2 id="索引">索引&lt;/h2>
+&lt;h3 id="索引底层数据结构选型">索引底层数据结构选型&lt;/h3>
+&lt;blockquote>
+&lt;p>哈希表、二叉查找树、平衡二叉树、B树、B+树、跳表。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="事务">事务&lt;/h2>
+&lt;h3 id="并发事务问题">并发事务问题&lt;/h3>
+&lt;blockquote>
+&lt;p>脏读、不可重复读、幻读。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="日志">日志&lt;/h2>
+&lt;blockquote>
+&lt;p>redo、undo、bin。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="锁">锁&lt;/h2>
+&lt;blockquote>
+&lt;p>行锁和表锁。&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="乐观锁mvcc">乐观锁MVCC&lt;/h3>
+&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/mysql-notes/mvcc-demo.png"
+width="1440"
+height="649"
+srcset="https://soli.seekincs.com/2022/06/mysql-notes/mvcc-demo_hu8903680d18553c68f658c5ac0bc1328e_326372_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/mysql-notes/mvcc-demo_hu8903680d18553c68f658c5ac0bc1328e_326372_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="221"
+data-flex-basis="532px"
+>
+可重复读：事务开始的时候生成一个当前事务全局性的快照&lt;br>
+读提交：每次执行语句的时候都重新生成一次快照&lt;br>
+对于一个快照来说，它能够读到那些版本数据，要遵循以下规则：&lt;br>
+当前事务内的更新，可以读到；&lt;br>
+版本未提交，不能读到&lt;br>
+版本已提交，但是却在快照创建后提交的，不能读到 &lt;br>
+版本已提交，且是在快照创建前提交的，可以读到&lt;/p></description></item><item><title>mysql慢查询</title><link>https://soli.seekincs.com/2022/06/mysql%E6%85%A2%E6%9F%A5%E8%AF%A2/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/06/mysql%E6%85%A2%E6%9F%A5%E8%AF%A2/</guid><description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post mysql慢查询" />&lt;h2 id="字段类型与查询类型不一致导致不走索引">字段类型与查询类型不一致导致不走索引&lt;/h2>
+&lt;blockquote>
+&lt;p>third_id字段类型是varchar，参数传的却是数字，这种情况下不会走索引，导致慢查&lt;br/>&lt;/p>
+&lt;/blockquote>
+&lt;p>SQL示例
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">SELECT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">FROM&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">meta&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">WHERE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">audit_pass&lt;/span>&lt;span class="o">`=&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="k">state&lt;/span>&lt;span class="o">`=&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">third_id&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">in&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/p></description></item><item><title>redis-notes</title><link>https://soli.seekincs.com/2022/06/redis-notes/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/06/redis-notes/</guid><description>&lt;img src="https://soli.seekincs.com/2022/06/redis-notes/img.png" alt="Featured image of post redis-notes" />&lt;h2 id="redis概述">Redis概述&lt;/h2>
+&lt;h2 id="核心数据结构">核心数据结构&lt;/h2>
+&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/redis-notes/redis-data-structure-overview.png"
+width="1648"
+height="376"
+srcset="https://soli.seekincs.com/2022/06/redis-notes/redis-data-structure-overview_hub2a6c8a9305badb65c15c58ab4b5e27d_80745_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/redis-notes/redis-data-structure-overview_hub2a6c8a9305badb65c15c58ab4b5e27d_80745_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="438"
+data-flex-basis="1051px"
+>&lt;/p>
+&lt;h2 id="持久化">持久化&lt;/h2>
+&lt;blockquote>
+&lt;p>RDB+AOF混用&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="io多路复用">I/O多路复用&lt;/h2>
+&lt;h2 id="redis常见问题讨论">Redis常见问题讨论&lt;/h2>
+&lt;ol>
+&lt;li>击穿问题：底层数据库有数据而缓存内没有数据&lt;/li>
+&lt;li>穿透问题：底层数据库没有数据且缓存内也没有数据。解决方法：布隆过滤器&lt;/li>
+&lt;li>雪崩问题：缓存击穿的&amp;quot;大面积&amp;quot;版&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/redis-notes/bloom-filter.png"
+width="815"
+height="728"
+srcset="https://soli.seekincs.com/2022/06/redis-notes/bloom-filter_hucde5a3dd1599056439a13f9692d0cc4f_103516_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/redis-notes/bloom-filter_hucde5a3dd1599056439a13f9692d0cc4f_103516_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="缓存穿透解决办法"
+class="gallery-image"
+data-flex-grow="111"
+data-flex-basis="268px"
+>&lt;/p></description></item></channel></rss>
