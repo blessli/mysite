@@ -8,7 +8,7 @@ on:
 jobs:
   hugo-publish: # 任务名自取
     name: publish content to public site
-    runs-on: centos-7.9	# 在什么环境运行任务
+    runs-on: centos-7.9.2009	# 在什么环境运行任务
     steps:
       - name: Setup Hugo	# 步骤名自取
         uses: peaceiris/actions-hugo@v2	# hugo官方提供的action，用于在任务环境中获取hugo
