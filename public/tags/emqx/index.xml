@@ -7,12 +7,12 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Sun, 13 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/emqx/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>MQTT Broker in Action</title>
-        <link>https://soli.seekincs.com/2022/11/mqtt-broker-in-action/</link>
+        <title>MQTT Broker in Action cockymang</title>
+        <link>https://soli.seekincs.com/2022/11/mqtt-broker-in-action-cockymang/</link>
         <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/11/mqtt-broker-in-action/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post MQTT Broker in Action" /&gt;&lt;h2 id=&#34;mqtt协议&#34;&gt;MQTT协议&lt;/h2&gt;
+        <guid>https://soli.seekincs.com/2022/11/mqtt-broker-in-action-cockymang/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post MQTT Broker in Action cockymang" /&gt;&lt;h2 id=&#34;mqtt协议&#34;&gt;MQTT协议&lt;/h2&gt;
 &lt;p&gt;使用wireshark工具捕获mqtt协议包，主要包括3.0和5.0版本。&lt;/p&gt;
 &lt;h2 id=&#34;部署emqx&#34;&gt;部署EMQX&lt;/h2&gt;
 &lt;blockquote&gt;
