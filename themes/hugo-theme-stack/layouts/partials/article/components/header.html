@@ -1,6 +1,5 @@
 <header class="article-header">
-    <meta content="{{ delimit .Keywords ", " }}" name="keywords">
-    <meta content="{{ $isHomePage := eq .Title .Site.Title }}{{ .Site.Params.description }}{{ if eq $isHomePage false }} - {{ .Description }}{{ end }}" property="og:description">
+    
     {{- $image := partialCached "helper/image" (dict "Context" . "Type" "article") .RelPermalink "article" -}}
     {{ if $image.exists }}
         <div class="article-image">
