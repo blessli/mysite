@@ -23,11 +23,27 @@ hasCJKLanguage: true
 enableEmoji: true
 
 enableGitInfo: true
+
 frontmatter:
+  date:
+  - date
+  - publishDate
+  - lastmod
+  expiryDate:
+  - expiryDate
   lastmod:
-  - :fileModTime
   - lastmod
   - :git
+  - date
+  - publishDate
+  publishDate:
+  - publishDate
+  - date
+#   lastmod:
+#   - :git
+#   - lastmod
+#   - :fileModTime
+#   - :default
 permalinks:
     post: /:year/:month/:slug/
     page: /:slug/

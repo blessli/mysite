@@ -3,7 +3,7 @@ author = "soli"
 keywords = ["cockymang","mqtt broker","in action","mqttaction"]
 title = "MQTT Broker in Action cockymang"
 date = "2022-11-13"
-description = "MQTT消息服务器实战"
+description = "MQTT消息服务器实战lua"
 categories = [
 "中间件"
 ]
