@@ -1,1 +1,75 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tags on cockyman's blog</title><link>https://soli.seekincs.com/tags/</link><description>Recent content in Tags on cockyman's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 31 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/index.xml" rel="self" type="application/rss+xml"/><item><title>打卡</title><link>https://soli.seekincs.com/tags/%E6%89%93%E5%8D%A1/</link><pubDate>Mon, 31 Oct 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/tags/%E6%89%93%E5%8D%A1/</guid><description/></item><item><title>实战</title><link>https://soli.seekincs.com/tags/%E5%AE%9E%E6%88%98/</link><pubDate>Sun, 30 Oct 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/tags/%E5%AE%9E%E6%88%98/</guid><description/></item><item><title>读书笔记</title><link>https://soli.seekincs.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link><pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid><description/></item><item><title>读书</title><link>https://soli.seekincs.com/tags/%E8%AF%BB%E4%B9%A6/</link><pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/tags/%E8%AF%BB%E4%B9%A6/</guid><description/></item><item><title>golang</title><link>https://soli.seekincs.com/tags/golang/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/tags/golang/</guid><description/></item><item><title>k8s</title><link>https://soli.seekincs.com/tags/k8s/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/tags/k8s/</guid><description/></item><item><title>kafka</title><link>https://soli.seekincs.com/tags/kafka/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/tags/kafka/</guid><description/></item><item><title>mysql</title><link>https://soli.seekincs.com/tags/mysql/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/tags/mysql/</guid><description/></item><item><title>redis</title><link>https://soli.seekincs.com/tags/redis/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/tags/redis/</guid><description/></item><item><title>spark</title><link>https://soli.seekincs.com/tags/spark/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/tags/spark/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Tags on soli&#39;s blog</title>
+        <link>https://soli.seekincs.com/tags/</link>
+        <description>Recent content in Tags on soli&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Sun, 13 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>emqx</title>
+        <link>https://soli.seekincs.com/tags/emqx/</link>
+        <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/tags/emqx/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>mqtt</title>
+        <link>https://soli.seekincs.com/tags/mqtt/</link>
+        <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/tags/mqtt/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>实战</title>
+        <link>https://soli.seekincs.com/tags/%E5%AE%9E%E6%88%98/</link>
+        <pubDate>Sun, 30 Oct 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/tags/%E5%AE%9E%E6%88%98/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>读书笔记</title>
+        <link>https://soli.seekincs.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>golang</title>
+        <link>https://soli.seekincs.com/tags/golang/</link>
+        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/tags/golang/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>kafka</title>
+        <link>https://soli.seekincs.com/tags/kafka/</link>
+        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/tags/kafka/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>mysql</title>
+        <link>https://soli.seekincs.com/tags/mysql/</link>
+        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/tags/mysql/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>spark</title>
+        <link>https://soli.seekincs.com/tags/spark/</link>
+        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/tags/spark/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>

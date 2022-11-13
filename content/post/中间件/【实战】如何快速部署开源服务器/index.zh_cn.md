@@ -1,6 +1,6 @@
 +++
 author = "soli"
-title = "【实战】如何快速部署开源服务器并应用于业务场景"
+title = "【实战】如何快速部署开源服务器"
 date = "2022-10-30"
 description = "快速部署MQTT消息服务器"
 categories = [

@@ -2,7 +2,7 @@
 author = "soli"
 title = "【TODO】golang相关2333"
 date = "2022-06-18"
-description = "一定要写的"
+description = ""
 categories = [
 "编程语言"
 ]

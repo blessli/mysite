@@ -1,798 +1,843 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cockyman's blog</title><link>https://soli.seekincs.com/</link><description>Recent content on cockyman's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 31 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/index.xml" rel="self" type="application/rss+xml"/><item><title>【打卡】LeetCode刷题记录</title><link>https://soli.seekincs.com/2022/10/%E6%89%93%E5%8D%A1leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</link><pubDate>Mon, 31 Oct 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/10/%E6%89%93%E5%8D%A1leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</guid><description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 【打卡】LeetCode刷题记录" />&lt;ol>
-&lt;li>2022-10-29 &lt;a class="link" href="https://leetcode.cn/problems/longest-consecutive-sequence/" target="_blank" rel="noopener"
->最长连续序列&lt;/a>&lt;/li>
-&lt;li>2022-10-31 &lt;a class="link" href="https://leetcode.cn/problems/validate-binary-search-tree/" target="_blank" rel="noopener"
->验证二叉搜索树&lt;/a>&lt;/li>
-&lt;li>2022-10-31 &lt;a class="link" href="https://leetcode.cn/problems/symmetric-tree/" target="_blank" rel="noopener"
->对称二叉树&lt;/a>&lt;/li>
-&lt;li>2022-10-31 &lt;a class="link" href="https://leetcode.cn/problems/maximum-depth-of-binary-tree/" target="_blank" rel="noopener"
->二叉树的最大深度&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>【实战】如何快速部署开源服务器并应用于业务场景</title><link>https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/</link><pubDate>Sun, 30 Oct 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/</guid><description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 【实战】如何快速部署开源服务器并应用于业务场景" />&lt;p>&lt;a name="NcnDm">&lt;/a>&lt;/p>
-&lt;h2 id="背景">背景&lt;/h2>
-&lt;p>当需要提供一种新能力，考虑到成本问题，我们往往不会从0到1开发一个服务器，而是先在开源产品中选型对比，看是否已有能满足自身需求的开源产品(不重复造轮子的原则)。因为对开源服务器的不熟悉，部署过程中会踩这样那样的坑，效率比较低，如何快速部署并应用于实际业务场景呢？&lt;br />随便提一下，私有化部署的原因主要是考虑到数据安全，&lt;strong>安全无小事，安全大于一切&lt;/strong>
-&lt;a name="cGHID">&lt;/a>&lt;/p>
-&lt;h2 id="准备工作">准备工作&lt;/h2>
-&lt;ol>
-&lt;li>云主机(内部安装了docker、docker-compose、防火墙开放指定端口)&lt;/li>
-&lt;li>个人电脑(内部安装了docker-desktop、xshell、vscode、golang)&lt;/li>
-&lt;li>仔细看&lt;a class="link" href="https://www.emqx.io/docs/zh/v5.0/" target="_blank" rel="noopener"
->官方文档&lt;/a>以及官方开源社区&lt;/li>
-&lt;/ol>
-&lt;blockquote>
-&lt;p>注意：emqx是4.4.4版本&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;a name="YsF8U">&lt;/a>&lt;/p>
-&lt;h2 id="部署">部署&lt;/h2>
-&lt;p>&lt;a name="AGBAC">&lt;/a>&lt;/p>
-&lt;h3 id="预期效果">预期效果&lt;/h3>
-&lt;p>(配置文件、日志)文件/目录挂载到本地磁盘&lt;br />监控、告警、可视化等功能&lt;br />协议接入、集群部署、接入安全
-&lt;a name="Am7f9">&lt;/a>&lt;/p>
-&lt;h3 id="具体流程">具体流程&lt;/h3>
-&lt;p>个人电脑 -&amp;gt; 云主机&lt;br />单机版 -&amp;gt; 集群版(负载均衡)
-&lt;a name="Q7H7h">&lt;/a>&lt;/p>
-&lt;h2 id="启动">启动&lt;/h2>
-&lt;blockquote>
-&lt;p>仔细检查docker-compose-emqx-cluster.yaml 配置文件，否则会启动失败&lt;/p>
-&lt;/blockquote>
-&lt;p>启动命令： docker-compose -f docker-compose-emqx-cluster.yaml up &amp;amp; &lt;br />
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>soli&#39;s blog</title>
+        <link>https://soli.seekincs.com/</link>
+        <description>Recent content on soli&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Sun, 13 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>MQTT Broker in Action</title>
+        <link>https://soli.seekincs.com/2022/11/mqtt-broker-in-action/</link>
+        <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/mqtt-broker-in-action/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post MQTT Broker in Action" /&gt;&lt;h2 id=&#34;mqtt协议&#34;&gt;MQTT协议&lt;/h2&gt;
+&lt;p&gt;使用wireshark工具捕获mqtt协议包，主要包括3.0和5.0版本。&lt;/p&gt;
+&lt;h2 id=&#34;部署emqx&#34;&gt;部署EMQX&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;EMQX 是一款大规模可弹性伸缩的云原生分布式物联网 MQTT 消息服务器😂。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;单机版&#34;&gt;单机版&lt;/h3&gt;
+&lt;h3 id=&#34;集群版&#34;&gt;集群版&lt;/h3&gt;
+&lt;h4 id=&#34;伪分布式集群&#34;&gt;伪分布式集群&lt;/h4&gt;
+&lt;h4 id=&#34;分布式集群&#34;&gt;分布式集群&lt;/h4&gt;
+&lt;h2 id=&#34;安全&#34;&gt;安全&lt;/h2&gt;</description>
+        </item>
+        <item>
+        <title>【实战】如何快速部署开源服务器</title>
+        <link>https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+        <pubDate>Sun, 30 Oct 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 【实战】如何快速部署开源服务器" /&gt;&lt;p&gt;&lt;a name=&#34;NcnDm&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+&lt;p&gt;当需要提供一种新能力，考虑到成本问题，我们往往不会从0到1开发一个服务器，而是先在开源产品中选型对比，看是否已有能满足自身需求的开源产品(不重复造轮子的原则)。因为对开源服务器的不熟悉，部署过程中会踩这样那样的坑，效率比较低，如何快速部署并应用于实际业务场景呢？&lt;br /&gt;随便提一下，私有化部署的原因主要是考虑到数据安全，&lt;strong&gt;安全无小事，安全大于一切&lt;/strong&gt;
+&lt;a name=&#34;cGHID&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;准备工作&#34;&gt;准备工作&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;云主机(内部安装了docker、docker-compose、防火墙开放指定端口)&lt;/li&gt;
+&lt;li&gt;个人电脑(内部安装了docker-desktop、xshell、vscode、golang)&lt;/li&gt;
+&lt;li&gt;仔细看&lt;a class=&#34;link&#34; href=&#34;https://www.emqx.io/docs/zh/v5.0/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官方文档&lt;/a&gt;以及官方开源社区&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：emqx是4.4.4版本&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a name=&#34;YsF8U&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;部署&#34;&gt;部署&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&#34;AGBAC&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;预期效果&#34;&gt;预期效果&lt;/h3&gt;
+&lt;p&gt;(配置文件、日志)文件/目录挂载到本地磁盘&lt;br /&gt;监控、告警、可视化等功能&lt;br /&gt;协议接入、集群部署、接入安全
+&lt;a name=&#34;Am7f9&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;具体流程&#34;&gt;具体流程&lt;/h3&gt;
+&lt;p&gt;个人电脑 -&amp;gt; 云主机&lt;br /&gt;单机版 -&amp;gt; 集群版(负载均衡)
+&lt;a name=&#34;Q7H7h&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;启动&#34;&gt;启动&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;仔细检查docker-compose-emqx-cluster.yaml 配置文件，否则会启动失败&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;启动命令： docker-compose -f docker-compose-emqx-cluster.yaml up &amp;amp; &lt;br /&gt;
 退出命令： docker-compose -f docker-compose-emqx-cluster.yaml down
-&lt;a name="iQFUX">&lt;/a>&lt;/p>
-&lt;h2 id="接入安全">接入安全&lt;/h2>
-&lt;h3 id="服务端访问控制">服务端访问控制&lt;/h3>
-&lt;p>在loaded_plugins配置文件中启用emqx_auth_mysql插件。
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;span class="lnt">7
-&lt;/span>&lt;span class="lnt">8
-&lt;/span>&lt;span class="lnt">9
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="o">{&lt;/span>emqx_management,true&lt;span class="o">}&lt;/span>.
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">{&lt;/span>emqx_dashboard,true&lt;span class="o">}&lt;/span>.
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">{&lt;/span>emqx_modules,false&lt;span class="o">}&lt;/span>.
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">{&lt;/span>emqx_recon,true&lt;span class="o">}&lt;/span>.
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">{&lt;/span>emqx_retainer,true&lt;span class="o">}&lt;/span>.
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">{&lt;/span>emqx_telemetry,true&lt;span class="o">}&lt;/span>.
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">{&lt;/span>emqx_rule_engine,true&lt;span class="o">}&lt;/span>.
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">{&lt;/span>emqx_bridge_mqtt,false&lt;span class="o">}&lt;/span>.
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">{&lt;/span>emqx_auth_mysql,true&lt;span class="o">}&lt;/span>.&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>
+&lt;a name=&#34;iQFUX&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;接入安全&#34;&gt;接入安全&lt;/h2&gt;
+&lt;h3 id=&#34;服务端访问控制&#34;&gt;服务端访问控制&lt;/h3&gt;
+&lt;p&gt;在loaded_plugins配置文件中启用emqx_auth_mysql插件。
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;emqx_management,true&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;emqx_dashboard,true&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;emqx_modules,false&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;emqx_recon,true&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;emqx_retainer,true&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;emqx_telemetry,true&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;emqx_rule_engine,true&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;emqx_bridge_mqtt,false&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;emqx_auth_mysql,true&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 emqx默认是不设置权限，需要修改acl.conf启用鉴权。
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="o">{&lt;/span>allow, &lt;span class="o">{&lt;/span>user, &lt;span class="s2">&amp;#34;dashboard&amp;#34;&lt;/span>&lt;span class="o">}&lt;/span>, subscribe, &lt;span class="o">[&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$SYS&lt;/span>&lt;span class="s2">/#&amp;#34;&lt;/span>&lt;span class="o">]}&lt;/span>.
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">{&lt;/span>allow, &lt;span class="o">{&lt;/span>ipaddr, &lt;span class="s2">&amp;#34;127.0.0.1&amp;#34;&lt;/span>&lt;span class="o">}&lt;/span>, pubsub, &lt;span class="o">[&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$SYS&lt;/span>&lt;span class="s2">/#&amp;#34;&lt;/span>, &lt;span class="s2">&amp;#34;#&amp;#34;&lt;/span>&lt;span class="o">]}&lt;/span>.
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">{&lt;/span>deny, all, subscribe, &lt;span class="o">[&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$SYS&lt;/span>&lt;span class="s2">/#&amp;#34;&lt;/span>, &lt;span class="o">{&lt;/span>eq, &lt;span class="s2">&amp;#34;#&amp;#34;&lt;/span>&lt;span class="o">}]}&lt;/span>.&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>
-修改emqx_auth_mysql.conf配置文件：修改数据库实例，创建认证表和授权表。&lt;br />
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;allow, &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;user, &lt;span class=&#34;s2&#34;&gt;&amp;#34;dashboard&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, subscribe, &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$SYS&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/#&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]}&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;allow, &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;ipaddr, &lt;span class=&#34;s2&#34;&gt;&amp;#34;127.0.0.1&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, pubsub, &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$SYS&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/#&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;#&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]}&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;deny, all, subscribe, &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$SYS&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/#&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;eq, &lt;span class=&#34;s2&#34;&gt;&amp;#34;#&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}]}&lt;/span&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+修改emqx_auth_mysql.conf配置文件：修改数据库实例，创建认证表和授权表。&lt;br /&gt;
 用户名/密码认证防止非法客户端连接。
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">CREATE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">TABLE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">mqtt_user&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">unsigned&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">NOT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">NULL&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">AUTO_INCREMENT&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">username&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">100&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DEFAULT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">password&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">100&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DEFAULT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">salt&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">35&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DEFAULT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">is_superuser&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">tinyint&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DEFAULT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;0&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">created&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">datetime&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DEFAULT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">PRIMARY&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">KEY&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">UNIQUE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">KEY&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">mqtt_username&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">username&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ENGINE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">InnoDB&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">AUTO_INCREMENT&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">9&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DEFAULT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">CHARSET&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">utf8mb4&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;/p>
-&lt;p>对 MQTT 客户端的发布和订阅操作进行权限控制。控制哪些客户端可以发布或者订阅哪些MQTT主题。&lt;/p>
-&lt;p>&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">CREATE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">TABLE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">mqtt_acl&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">unsigned&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">NOT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">NULL&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">AUTO_INCREMENT&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">allow&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DEFAULT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;1&amp;#39;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">COMMENT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;0: deny, 1: allow&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">ipaddr&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">60&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DEFAULT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">NULL&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">COMMENT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;IpAddress&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">username&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">100&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DEFAULT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">NULL&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">COMMENT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;Username&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">clientid&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">100&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DEFAULT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">NULL&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">COMMENT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;ClientId&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="k">access&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">NOT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">NULL&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">COMMENT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;1: subscribe, 2: publish, 3: pubsub&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">topic&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">100&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">NOT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">NULL&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DEFAULT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">COMMENT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;Topic Filter&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">PRIMARY&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">KEY&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">KEY&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">ipaddr&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">ipaddr&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">KEY&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">username&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">username&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">KEY&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">clientid&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">clientid&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ENGINE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">InnoDB&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">AUTO_INCREMENT&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">13&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DEFAULT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">CHARSET&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">utf8mb4&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>
-&lt;a name="ucIIH">&lt;/a>&lt;/p>
-&lt;h3 id="客户端sdk安全">客户端SDK安全&lt;/h3>
-&lt;p>SDK引入了第三方库， 要走中台统一的三方库报备、审查，看看有没有漏洞或其他风险 。
-&lt;a name="ucIIH">&lt;/a>&lt;/p>
-&lt;h2 id="集群部署">集群部署&lt;/h2>
-&lt;p>实际业务场景可能对高性能、高可用有着一定要求。这里以伪分布式集群为例：&lt;br />&lt;img src="https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE.jpeg"
-width="1520"
-height="756"
-srcset="https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_1024x0_resize_q75_box.jpeg 1024w"
-loading="lazy"
-alt="image.png"
-class="gallery-image"
-data-flex-grow="201"
-data-flex-basis="482px"
->
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;span class="lnt">25
-&lt;/span>&lt;span class="lnt">26
-&lt;/span>&lt;span class="lnt">27
-&lt;/span>&lt;span class="lnt">28
-&lt;/span>&lt;span class="lnt">29
-&lt;/span>&lt;span class="lnt">30
-&lt;/span>&lt;span class="lnt">31
-&lt;/span>&lt;span class="lnt">32
-&lt;/span>&lt;span class="lnt">33
-&lt;/span>&lt;span class="lnt">34
-&lt;/span>&lt;span class="lnt">35
-&lt;/span>&lt;span class="lnt">36
-&lt;/span>&lt;span class="lnt">37
-&lt;/span>&lt;span class="lnt">38
-&lt;/span>&lt;span class="lnt">39
-&lt;/span>&lt;span class="lnt">40
-&lt;/span>&lt;span class="lnt">41
-&lt;/span>&lt;span class="lnt">42
-&lt;/span>&lt;span class="lnt">43
-&lt;/span>&lt;span class="lnt">44
-&lt;/span>&lt;span class="lnt">45
-&lt;/span>&lt;span class="lnt">46
-&lt;/span>&lt;span class="lnt">47
-&lt;/span>&lt;span class="lnt">48
-&lt;/span>&lt;span class="lnt">49
-&lt;/span>&lt;span class="lnt">50
-&lt;/span>&lt;span class="lnt">51
-&lt;/span>&lt;span class="lnt">52
-&lt;/span>&lt;span class="lnt">53
-&lt;/span>&lt;span class="lnt">54
-&lt;/span>&lt;span class="lnt">55
-&lt;/span>&lt;span class="lnt">56
-&lt;/span>&lt;span class="lnt">57
-&lt;/span>&lt;span class="lnt">58
-&lt;/span>&lt;span class="lnt">59
-&lt;/span>&lt;span class="lnt">60
-&lt;/span>&lt;span class="lnt">61
-&lt;/span>&lt;span class="lnt">62
-&lt;/span>&lt;span class="lnt">63
-&lt;/span>&lt;span class="lnt">64
-&lt;/span>&lt;span class="lnt">65
-&lt;/span>&lt;span class="lnt">66
-&lt;/span>&lt;span class="lnt">67
-&lt;/span>&lt;span class="lnt">68
-&lt;/span>&lt;span class="lnt">69
-&lt;/span>&lt;span class="lnt">70
-&lt;/span>&lt;span class="lnt">71
-&lt;/span>&lt;span class="lnt">72
-&lt;/span>&lt;span class="lnt">73
-&lt;/span>&lt;span class="lnt">74
-&lt;/span>&lt;span class="lnt">75
-&lt;/span>&lt;span class="lnt">76
-&lt;/span>&lt;span class="lnt">77
-&lt;/span>&lt;span class="lnt">78
-&lt;/span>&lt;span class="lnt">79
-&lt;/span>&lt;span class="lnt">80
-&lt;/span>&lt;span class="lnt">81
-&lt;/span>&lt;span class="lnt">82
-&lt;/span>&lt;span class="lnt">83
-&lt;/span>&lt;span class="lnt">84
-&lt;/span>&lt;span class="lnt">85
-&lt;/span>&lt;span class="lnt">86
-&lt;/span>&lt;span class="lnt">87
-&lt;/span>&lt;span class="lnt">88
-&lt;/span>&lt;span class="lnt">89
-&lt;/span>&lt;span class="lnt">90
-&lt;/span>&lt;span class="lnt">91
-&lt;/span>&lt;span class="lnt">92
-&lt;/span>&lt;span class="lnt">93
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;3.9&amp;#39;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">x-default-emqx&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="cp">&amp;amp;default-emqx&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">emqx/emqx:4.4.4&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">env_file&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">conf.cluster.env&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">healthcheck&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">test&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;CMD&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;/opt/emqx/bin/emqx_ctl&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;status&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">interval&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">5s&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">timeout&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">25s&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">retries&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">5&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">services&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">haproxy&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">container_name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">haproxy&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">haproxy:2.4&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">privileged&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">depends_on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">emqx1&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">emqx2&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">volumes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">./certs_ha/certs:/usr/local/etc/haproxy/certs&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">ports&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;18083:18083&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;1883:1883&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># - &amp;#34;8883:8883&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;8083:8083&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># - &amp;#34;8084:8084&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;9090:9090&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;8081:8081&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">networks&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">emqx_bridge&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">working_dir&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">/usr/local/etc/haproxy&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">command&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">bash&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- -&lt;span class="l">c&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="p">|&lt;/span>&lt;span class="sd">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="sd"> set -x
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="sd"> cat /usr/local/etc/haproxy/certs/cert.pem /usr/local/etc/haproxy/certs/key.pem &amp;gt; /tmp/emqx.pem
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="sd"> haproxy -f /usr/local/etc/haproxy/haproxy.cfg&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">emqx1&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">&amp;lt;&amp;lt;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="cp">*default-emqx&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">container_name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">node1.emqx.io&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">environment&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;EMQX_HOST=node1.emqx.io&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">ports&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;18081:18083&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;8881:8083&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;1882:1883&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;18087:8081&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">networks&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">emqx_bridge&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">aliases&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">node1.emqx.io&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">volumes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">./dockeremqx/emqx.conf:/opt/emqx/etc/emqx.conf&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">./dockeremqx/acl.conf:/opt/emqx/etc/acl.conf&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">./dockeremqx/emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">./dockeremqx/loaded_plugins:/opt/emqx/data/loaded_plugins&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">./dockeremqx/emqx1_log/log:/opt/emqx/log&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">emqx2&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">&amp;lt;&amp;lt;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="cp">*default-emqx&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">container_name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">node2.emqx.io&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">environment&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;EMQX_HOST=node2.emqx.io&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">ports&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;18082:18083&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;8882:8083&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;1881:1883&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;18088:8081&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">networks&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">emqx_bridge&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">aliases&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">node2.emqx.io&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">volumes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">./dockeremqx/emqx.conf:/opt/emqx/etc/emqx.conf&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">./dockeremqx/acl.conf:/opt/emqx/etc/acl.conf&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">./dockeremqx/emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">./dockeremqx/loaded_plugins:/opt/emqx/data/loaded_plugins&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">./dockeremqx/emqx2_log/log:/opt/emqx/log&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">networks&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">emqx_bridge&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">driver&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">bridge&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">emqx_bridge&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c"># ipam:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c"># driver: default&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c"># config:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c"># - subnet: 172.100.239.0/24&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c"># gateway: 172.100.239.1&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>
-&lt;img src="https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg"
-width="1562"
-height="392"
-srcset="https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_1024x0_resize_q75_box.jpeg 1024w"
-loading="lazy"
-alt="image.png"
-class="gallery-image"
-data-flex-grow="398"
-data-flex-basis="956px"
->
-&lt;a name="IKIao">&lt;/a>&lt;/p>
-&lt;h2 id="协议接入">协议接入&lt;/h2>
-&lt;p>应用层协议包括mqtt、websocket、http。负载均衡器方面的配置非常关键，下面以haproxy为例(核心配置)：&lt;br />粘性会话是在haproxy中配置的。
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;span class="lnt">25
-&lt;/span>&lt;span class="lnt">26
-&lt;/span>&lt;span class="lnt">27
-&lt;/span>&lt;span class="lnt">28
-&lt;/span>&lt;span class="lnt">29
-&lt;/span>&lt;span class="lnt">30
-&lt;/span>&lt;span class="lnt">31
-&lt;/span>&lt;span class="lnt">32
-&lt;/span>&lt;span class="lnt">33
-&lt;/span>&lt;span class="lnt">34
-&lt;/span>&lt;span class="lnt">35
-&lt;/span>&lt;span class="lnt">36
-&lt;/span>&lt;span class="lnt">37
-&lt;/span>&lt;span class="lnt">38
-&lt;/span>&lt;span class="lnt">39
-&lt;/span>&lt;span class="lnt">40
-&lt;/span>&lt;span class="lnt">41
-&lt;/span>&lt;span class="lnt">42
-&lt;/span>&lt;span class="lnt">43
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-cfg" data-lang="cfg">&lt;span class="line">&lt;span class="cl">&lt;span class="na">defaults&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">log global&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">mode http&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">option httplog&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Replace 1024000 with deployment connections&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">maxconn 50000&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">timeout connect 30000&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">timeout client 600s&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">timeout server 600s&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">timeout tunnel 1h&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">timeout client-fin 30s&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">timeout http-keep-alive 5s&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">timeout http-request 5s&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">frontend emqx_tcp&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">mode tcp&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">option tcplog&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">bind *:1883&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Reject connections that have an invalid MQTT packet&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># tcp-request content reject unless { req.payload(0,0), mqtt_is_valid }&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">default_backend emqx_tcp_back&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">frontend emqx_ws&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">mode tcp&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">option httplog&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">bind *:8083&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">acl host_ws hdr_beg(Host) -i ws.&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">acl hdr_connection_upgrade hdr(Connection) -i upgrade&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">acl hdr_upgrade_websocket hdr(Upgrade) -i websocket&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">use_backend emqx_ws_back if hdr_connection_upgrade hdr_upgrade_websocket&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">default_backend emqx_ws_back&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">backend emqx_tcp_back&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">mode tcp&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">stick on req.payload(0,0),mqtt_field_value(connect,client_identifier)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">server emqx-1 node1.emqx.io:1883 check-send-proxy send-proxy-v2&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">server emqx-2 node2.emqx.io:1883 check-send-proxy send-proxy-v2&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">backend emqx_ws_back&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">mode http&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">balance roundrobin&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">acl hdr_connection_upgrade hdr(Connection) -i upgrade&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">acl hdr_upgrade_websocket hdr(Upgrade) -i websocket&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">acl hdr_websocket_key hdr_cnt(Sec-WebSocket-Key) eq 1&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">acl hdr_websocket_version hdr_cnt(Sec-WebSocket-Version) eq 1&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">server emqx-1 node1.emqx.io:8083&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">server emqx-2 node2.emqx.io:8083&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>
-&lt;a name="H4GbN">&lt;/a>&lt;/p>
-&lt;h2 id="测试">测试&lt;/h2>
-&lt;p>&lt;a name="xqJQO">&lt;/a>&lt;/p>
-&lt;h3 id="功能测试">功能测试&lt;/h3>
-&lt;p>目标：连接、发布、订阅等功能符合预期。&lt;br />EMQX是否正在运行的判断方法：正常进入管理后台界面、正常监听某些指定端口。&lt;br />运行指定语言的客户端SDK来进行关键功能测试，比如golang版本的SDK &lt;a class="link" href="https://github.com/eclipse/paho.golang" target="_blank" rel="noopener"
->paho.golang &lt;/a>，JS版本的SDK &lt;a class="link" href="https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-WebSocket/ws-mqtt.html" target="_blank" rel="noopener"
->mqtt-client-WebSocket &lt;/a>。当然也可以通过官方推荐的可视化工具来测试。
-&lt;a name="JYNpS">&lt;/a>&lt;/p>
-&lt;h4 id="测试方法">测试方法&lt;/h4>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>测试点&lt;/th>
-&lt;th>期望结果&lt;/th>
-&lt;th>具体说明&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>客户端断线重连&lt;/td>
-&lt;td>emqx重启后，客户端自动重连&lt;/td>
-&lt;td>取决于客户端SDK是否实现了心跳重连&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>消息下发成功率&lt;/td>
-&lt;td>正常情况下，QoS 1报文不会丢失消息&lt;/td>
-&lt;td>Broker提供3种QoS，通常选择QoS 1报文(至少送达一次)来兼顾吞吐量和发布质量。&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>消息状态码&lt;/td>
-&lt;td>每次操作都能拿到实时且正确的状态码&lt;/td>
-&lt;td>状态码是MQTT 5.0新特性，客户端SDK需要支持5.0协议&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;p>&lt;img src="https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg"
-width="1001"
-height="379"
-srcset="https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_142730_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_142730_1024x0_resize_q75_box.jpeg 1024w"
-loading="lazy"
-alt="image.png"
-class="gallery-image"
-data-flex-grow="264"
-data-flex-basis="633px"
->
-&lt;a name="DyJ8O">&lt;/a>&lt;/p>
-&lt;h3 id="性能测试">性能测试&lt;/h3>
-&lt;p>目标：确认是否与官方宣称的性能接近(机器硬件条件相同情况下)，提前暴露可能存在的BUG
-&lt;a name="ImiGE">&lt;/a>&lt;/p>
-&lt;h4 id="测试方法-1">测试方法&lt;/h4>
-&lt;p>一般官方都会提供配套的压测工具脚本，比如&lt;a class="link" href="https://github.com/emqx/emqtt-bench" target="_blank" rel="noopener"
->emqtt-bench开源项目&lt;/a>，将其运行在云主机，压测效果最好，减少网络传输时延。
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl"> ./emqtt_bench sub -t bench -h &lt;span class="si">${&lt;/span>&lt;span class="nv">ip&lt;/span>&lt;span class="si">}&lt;/span> -p &lt;span class="m">1883&lt;/span> -c &lt;span class="m">1000&lt;/span> -i &lt;span class="m">10&lt;/span> -q &lt;span class="m">1&lt;/span> -u &lt;span class="si">${&lt;/span>&lt;span class="nv">username&lt;/span>&lt;span class="si">}&lt;/span>-P &lt;span class="si">${&lt;/span>&lt;span class="nv">password&lt;/span>&lt;span class="si">}&lt;/span> &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>
-&lt;a name="MWSkb">&lt;/a>&lt;/p>
-&lt;h4 id="压测注意事项">压测注意事项&lt;/h4>
-&lt;p>压测客户端被限制：ulimit命令修改进程最大连接数限制，否则会压测不准，最大并发连接数卡在1007上不去。&lt;br />发布端发送消息速率过快： max_mqueue_len参数默认为1000，队列满会消息发送失败 &lt;br />负载均衡器maxconn设置过小：haproxy的maxconn默认值是1000，需要调大为50000&lt;br />&lt;img src="https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png"
-width="1724"
-height="492"
-srcset="https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_huefad2e85d3792de91e62b1dc6b6f85d7_360856_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_huefad2e85d3792de91e62b1dc6b6f85d7_360856_1024x0_resize_box_3.png 1024w"
-loading="lazy"
-alt="image.png"
-class="gallery-image"
-data-flex-grow="350"
-data-flex-basis="840px"
->&lt;br />&lt;img src="https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png"
-width="451"
-height="211"
-srcset="https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu05177a01e7c6baaaeded93db73876caf_20409_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu05177a01e7c6baaaeded93db73876caf_20409_1024x0_resize_box_3.png 1024w"
-loading="lazy"
-class="gallery-image"
-data-flex-grow="213"
-data-flex-basis="512px"
->
-&lt;a name="b4Tai">&lt;/a>&lt;/p>
-&lt;h2 id="总结">总结&lt;/h2>
-&lt;p>搭建开源服务器，需要实现协议接入、集群部署、接入安全等核心功能来满足业务需求，最终目的是为业务带来一定的价值。&lt;/p></description></item><item><title>【读书笔记】网络是怎样连接的</title><link>https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/</link><pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/</guid><description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img0.png" alt="Featured image of post 【读书笔记】网络是怎样连接的" />&lt;blockquote>
-&lt;p>从在浏览器中输入网址，到屏幕上显示出网页的内容，在这个只有几秒钟的过程中，很多硬件和软件都在各自的岗位上相互配合完成了一系列的工作。&lt;br>
-&lt;img src="https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/static/%E6%8E%A2%E7%B4%A2%E4%B9%8B%E6%97%85%E8%B7%AF%E7%BA%BF%E5%9B%BE.png"
-width="1019"
-height="607"
-srcset="https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/static/%E6%8E%A2%E7%B4%A2%E4%B9%8B%E6%97%85%E8%B7%AF%E7%BA%BF%E5%9B%BE_hu717f72756ee5a734cc42c73c4166c78f_292840_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/static/%E6%8E%A2%E7%B4%A2%E4%B9%8B%E6%97%85%E8%B7%AF%E7%BA%BF%E5%9B%BE_hu717f72756ee5a734cc42c73c4166c78f_292840_1024x0_resize_box_3.png 1024w"
-loading="lazy"
-alt="探索之旅路线图"
-class="gallery-image"
-data-flex-grow="167"
-data-flex-basis="402px"
->&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="浏览器生成消息">浏览器生成消息&lt;/h2>
-&lt;h2 id="用电信号传输tcpip">用电信号传输TCP/IP&lt;/h2>
-&lt;h2 id="从网络到网络设备">从网络到网络设备&lt;/h2>
-&lt;h2 id="通过接入网进入互联网内部">通过接入网进入互联网内部&lt;/h2>
-&lt;h2 id="请求到达web服务器响应返回浏览器">请求到达web服务器，响应返回浏览器&lt;/h2></description></item><item><title>【读书笔记】操作系统导论</title><link>https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/</link><pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/</guid><description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 【读书笔记】操作系统导论" />&lt;h2 id="操作系统是什么">操作系统是什么？&lt;/h2>
-&lt;p>实际上，有一类软件负责让程序运行变得容易（甚至允许你同时运行多个程序），允许程序共享内存，让程序能够与设备交互，以及其他类似的有趣的工作。这些软件称为操作系统，因为它们负责&lt;em>&lt;strong>确保系统既易于使用又正确高效地运行&lt;/strong>&lt;/em>。&lt;/p>
-&lt;h2 id="关键问题操作系统如何将资源虚拟化">关键问题：操作系统如何将资源虚拟化&lt;/h2>
-&lt;p>为什么操作系统这样做？这不是主要问题，因为答案应该很明显：它让系统更易于使用。因此，我们关注如何虚拟化：操作系统通过哪些机制和策略来实现虚拟化？操作系统如何有效地实现虚拟化？需要哪些硬件支持？&lt;br>
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mqtt_user&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;11&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;unsigned&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NOT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;AUTO_INCREMENT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;varchar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DEFAULT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;varchar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DEFAULT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;salt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;varchar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;35&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DEFAULT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;is_superuser&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tinyint&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DEFAULT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;0&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;created&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;datetime&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DEFAULT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;PRIMARY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;KEY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;UNIQUE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;KEY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mqtt_username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ENGINE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;InnoDB&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;AUTO_INCREMENT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DEFAULT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;CHARSET&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;utf8mb4&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;对 MQTT 客户端的发布和订阅操作进行权限控制。控制哪些客户端可以发布或者订阅哪些MQTT主题。&lt;/p&gt;
+&lt;p&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mqtt_acl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;11&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;unsigned&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NOT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;AUTO_INCREMENT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;allow&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DEFAULT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;1&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;COMMENT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;0: deny, 1: allow&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ipaddr&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;varchar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;60&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DEFAULT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;COMMENT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;IpAddress&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;varchar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DEFAULT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;COMMENT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Username&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clientid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;varchar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DEFAULT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;COMMENT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;ClientId&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;access&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NOT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;COMMENT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;1: subscribe, 2: publish, 3: pubsub&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;topic&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;varchar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NOT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DEFAULT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;COMMENT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Topic Filter&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;PRIMARY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;KEY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;KEY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ipaddr&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ipaddr&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;KEY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;KEY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clientid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clientid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ENGINE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;InnoDB&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;AUTO_INCREMENT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;13&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DEFAULT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;CHARSET&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;utf8mb4&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;a name=&#34;ucIIH&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;客户端sdk安全&#34;&gt;客户端SDK安全&lt;/h3&gt;
+&lt;p&gt;SDK引入了第三方库， 要走中台统一的三方库报备、审查，看看有没有漏洞或其他风险 。
+&lt;a name=&#34;ucIIH&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;集群部署&#34;&gt;集群部署&lt;/h2&gt;
+&lt;p&gt;实际业务场景可能对高性能、高可用有着一定要求。这里以伪分布式集群为例：&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE.jpeg&#34;
+	width=&#34;1520&#34;
+	height=&#34;756&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;201&#34;
+		data-flex-basis=&#34;482px&#34;
+	
+&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;59
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;60
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;61
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;62
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;63
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;64
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;65
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;66
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;67
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;68
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;69
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;70
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;71
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;72
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;73
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;74
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;75
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;76
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;77
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;78
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;79
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;80
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;81
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;82
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;83
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;84
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;85
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;86
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;87
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;88
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;89
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;90
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;91
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;92
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;93
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;version&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;3.9&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;x-default-emqx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&amp;amp;default-emqx&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;emqx/emqx:4.4.4&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;env_file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;conf.cluster.env&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;healthcheck&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;CMD&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/opt/emqx/bin/emqx_ctl&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;status&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;interval&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;5s&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;timeout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;25s&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;retries&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;services&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;haproxy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;container_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;haproxy&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;haproxy:2.4&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;privileged&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;depends_on&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;emqx1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;emqx2&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;volumes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;./certs_ha/certs:/usr/local/etc/haproxy/certs&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;ports&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;18083:18083&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;1883:1883&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;#     - &amp;#34;8883:8883&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;8083:8083&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;#     - &amp;#34;8084:8084&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;9090:9090&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;8081:8081&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;networks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;emqx_bridge&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;working_dir&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;/usr/local/etc/haproxy&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;command&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;bash&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- -&lt;span class=&#34;l&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;sd&#34;&gt;        set -x
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;sd&#34;&gt;        cat /usr/local/etc/haproxy/certs/cert.pem /usr/local/etc/haproxy/certs/key.pem &amp;gt; /tmp/emqx.pem
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;sd&#34;&gt;        haproxy -f /usr/local/etc/haproxy/haproxy.cfg&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;emqx1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;*default-emqx&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;container_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;node1.emqx.io&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;environment&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;EMQX_HOST=node1.emqx.io&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;ports&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;18081:18083&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;8881:8083&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;1882:1883&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;18087:8081&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;networks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;emqx_bridge&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;aliases&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;node1.emqx.io&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;volumes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;./dockeremqx/emqx.conf:/opt/emqx/etc/emqx.conf&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;./dockeremqx/acl.conf:/opt/emqx/etc/acl.conf&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;./dockeremqx/emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;./dockeremqx/loaded_plugins:/opt/emqx/data/loaded_plugins&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;./dockeremqx/emqx1_log/log:/opt/emqx/log&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;emqx2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;*default-emqx&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;container_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;node2.emqx.io&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;environment&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;EMQX_HOST=node2.emqx.io&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;ports&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;18082:18083&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;8882:8083&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;1881:1883&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;18088:8081&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;networks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;emqx_bridge&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;aliases&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;node2.emqx.io&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;volumes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;./dockeremqx/emqx.conf:/opt/emqx/etc/emqx.conf&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;./dockeremqx/acl.conf:/opt/emqx/etc/acl.conf&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;./dockeremqx/emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;./dockeremqx/loaded_plugins:/opt/emqx/data/loaded_plugins&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;./dockeremqx/emqx2_log/log:/opt/emqx/log&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;networks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;emqx_bridge&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;driver&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;bridge&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;emqx_bridge&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# ipam:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;#   driver: default&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;#   config:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;#     - subnet: 172.100.239.0/24&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;#       gateway: 172.100.239.1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg&#34;
+	width=&#34;1562&#34;
+	height=&#34;392&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;398&#34;
+		data-flex-basis=&#34;956px&#34;
+	
+&gt;
+&lt;a name=&#34;IKIao&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;协议接入&#34;&gt;协议接入&lt;/h2&gt;
+&lt;p&gt;应用层协议包括mqtt、websocket、http。负载均衡器方面的配置非常关键，下面以haproxy为例(核心配置)：&lt;br /&gt;粘性会话是在haproxy中配置的。
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cfg&#34; data-lang=&#34;cfg&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;defaults&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;log global&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;mode http&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;option httplog&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# Replace 1024000 with deployment connections&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;maxconn 50000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;timeout connect 30000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;timeout client 600s&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;timeout server 600s&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;timeout tunnel 1h&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;timeout client-fin 30s&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;timeout http-keep-alive  5s&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;timeout http-request    5s&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;frontend emqx_tcp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;na&#34;&gt;mode tcp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;na&#34;&gt;option tcplog&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;na&#34;&gt;bind *:1883&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;c1&#34;&gt;# Reject connections that have an invalid MQTT packet&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;c1&#34;&gt;# tcp-request content reject unless { req.payload(0,0), mqtt_is_valid }&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;na&#34;&gt;default_backend emqx_tcp_back&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;frontend emqx_ws&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;na&#34;&gt;mode tcp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;na&#34;&gt;option httplog&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;na&#34;&gt;bind *:8083&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;na&#34;&gt;acl host_ws hdr_beg(Host) -i ws.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;na&#34;&gt;acl hdr_connection_upgrade hdr(Connection)  -i upgrade&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;na&#34;&gt;acl hdr_upgrade_websocket  hdr(Upgrade)     -i websocket&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;na&#34;&gt;use_backend emqx_ws_back if hdr_connection_upgrade hdr_upgrade_websocket&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;na&#34;&gt;default_backend emqx_ws_back&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;backend emqx_tcp_back&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;mode tcp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;stick on req.payload(0,0),mqtt_field_value(connect,client_identifier)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;server emqx-1 node1.emqx.io:1883 check-send-proxy send-proxy-v2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;server emqx-2 node2.emqx.io:1883 check-send-proxy send-proxy-v2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;backend emqx_ws_back&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;mode http&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;balance roundrobin&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;acl hdr_connection_upgrade hdr(Connection)                 -i upgrade&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;acl hdr_upgrade_websocket  hdr(Upgrade)                    -i websocket&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;acl hdr_websocket_key      hdr_cnt(Sec-WebSocket-Key)      eq 1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;acl hdr_websocket_version  hdr_cnt(Sec-WebSocket-Version)  eq 1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;server emqx-1 node1.emqx.io:8083&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;server emqx-2 node2.emqx.io:8083&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;a name=&#34;H4GbN&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;测试&#34;&gt;测试&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&#34;xqJQO&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;功能测试&#34;&gt;功能测试&lt;/h3&gt;
+&lt;p&gt;目标：连接、发布、订阅等功能符合预期。&lt;br /&gt;EMQX是否正在运行的判断方法：正常进入管理后台界面、正常监听某些指定端口。&lt;br /&gt;运行指定语言的客户端SDK来进行关键功能测试，比如golang版本的SDK &lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.golang&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;paho.golang  &lt;/a&gt;，JS版本的SDK &lt;a class=&#34;link&#34; href=&#34;https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-WebSocket/ws-mqtt.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;mqtt-client-WebSocket  &lt;/a&gt;。当然也可以通过官方推荐的可视化工具来测试。
+&lt;a name=&#34;JYNpS&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;测试方法&#34;&gt;测试方法&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;测试点&lt;/th&gt;
+&lt;th&gt;期望结果&lt;/th&gt;
+&lt;th&gt;具体说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;客户端断线重连&lt;/td&gt;
+&lt;td&gt;emqx重启后，客户端自动重连&lt;/td&gt;
+&lt;td&gt;取决于客户端SDK是否实现了心跳重连&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;消息下发成功率&lt;/td&gt;
+&lt;td&gt;正常情况下，QoS 1报文不会丢失消息&lt;/td&gt;
+&lt;td&gt;Broker提供3种QoS，通常选择QoS 1报文(至少送达一次)来兼顾吞吐量和发布质量。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;消息状态码&lt;/td&gt;
+&lt;td&gt;每次操作都能拿到实时且正确的状态码&lt;/td&gt;
+&lt;td&gt;状态码是MQTT 5.0新特性，客户端SDK需要支持5.0协议&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg&#34;
+	width=&#34;1001&#34;
+	height=&#34;379&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_142730_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_142730_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;264&#34;
+		data-flex-basis=&#34;633px&#34;
+	
+&gt;
+&lt;a name=&#34;DyJ8O&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;性能测试&#34;&gt;性能测试&lt;/h3&gt;
+&lt;p&gt;目标：确认是否与官方宣称的性能接近(机器硬件条件相同情况下)，提前暴露可能存在的BUG
+&lt;a name=&#34;ImiGE&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;测试方法-1&#34;&gt;测试方法&lt;/h4&gt;
+&lt;p&gt;一般官方都会提供配套的压测工具脚本，比如&lt;a class=&#34;link&#34; href=&#34;https://github.com/emqx/emqtt-bench&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;emqtt-bench开源项目&lt;/a&gt;，将其运行在云主机，压测效果最好，减少网络传输时延。
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; ./emqtt_bench sub -t bench -h &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;ip&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt; -p &lt;span class=&#34;m&#34;&gt;1883&lt;/span&gt; -c &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt; -i &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt; -q &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; -u &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;-P &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;  &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;a name=&#34;MWSkb&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;压测注意事项&#34;&gt;压测注意事项&lt;/h4&gt;
+&lt;p&gt;压测客户端被限制：ulimit命令修改进程最大连接数限制，否则会压测不准，最大并发连接数卡在1007上不去。&lt;br /&gt;发布端发送消息速率过快：  max_mqueue_len参数默认为1000，队列满会消息发送失败 &lt;br /&gt;负载均衡器maxconn设置过小：haproxy的maxconn默认值是1000，需要调大为50000&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png&#34;
+	width=&#34;1724&#34;
+	height=&#34;492&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_huefad2e85d3792de91e62b1dc6b6f85d7_360856_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_huefad2e85d3792de91e62b1dc6b6f85d7_360856_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;350&#34;
+		data-flex-basis=&#34;840px&#34;
+	
+&gt;&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png&#34;
+	width=&#34;451&#34;
+	height=&#34;211&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu05177a01e7c6baaaeded93db73876caf_20409_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu05177a01e7c6baaaeded93db73876caf_20409_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;213&#34;
+		data-flex-basis=&#34;512px&#34;
+	
+&gt;
+&lt;a name=&#34;b4Tai&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;搭建开源服务器，需要实现协议接入、集群部署、接入安全等核心功能来满足业务需求，最终目的是为业务带来一定的价值。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>【读书笔记】网络是怎样连接的</title>
+        <link>https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/</link>
+        <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img0.png" alt="Featured image of post 【读书笔记】网络是怎样连接的" /&gt;&lt;blockquote&gt;
+&lt;p&gt;从在浏览器中输入网址，到屏幕上显示出网页的内容，在这个只有几秒钟的过程中，很多硬件和软件都在各自的岗位上相互配合完成了一系列的工作。&lt;br&gt;
+&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/static/%E6%8E%A2%E7%B4%A2%E4%B9%8B%E6%97%85%E8%B7%AF%E7%BA%BF%E5%9B%BE.png&#34;
+	width=&#34;1019&#34;
+	height=&#34;607&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/static/%E6%8E%A2%E7%B4%A2%E4%B9%8B%E6%97%85%E8%B7%AF%E7%BA%BF%E5%9B%BE_hu717f72756ee5a734cc42c73c4166c78f_292840_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/static/%E6%8E%A2%E7%B4%A2%E4%B9%8B%E6%97%85%E8%B7%AF%E7%BA%BF%E5%9B%BE_hu717f72756ee5a734cc42c73c4166c78f_292840_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;探索之旅路线图&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;167&#34;
+		data-flex-basis=&#34;402px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;浏览器生成消息&#34;&gt;浏览器生成消息&lt;/h2&gt;
+&lt;h2 id=&#34;用电信号传输tcpip&#34;&gt;用电信号传输TCP/IP&lt;/h2&gt;
+&lt;h2 id=&#34;从网络到网络设备&#34;&gt;从网络到网络设备&lt;/h2&gt;
+&lt;h2 id=&#34;通过接入网进入互联网内部&#34;&gt;通过接入网进入互联网内部&lt;/h2&gt;
+&lt;h2 id=&#34;请求到达web服务器响应返回浏览器&#34;&gt;请求到达web服务器，响应返回浏览器&lt;/h2&gt;</description>
+        </item>
+        <item>
+        <title>【读书笔记】操作系统导论</title>
+        <link>https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/</link>
+        <pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 【读书笔记】操作系统导论" /&gt;&lt;h2 id=&#34;操作系统是什么&#34;&gt;操作系统是什么？&lt;/h2&gt;
+&lt;p&gt;实际上，有一类软件负责让程序运行变得容易（甚至允许你同时运行多个程序），允许程序共享内存，让程序能够与设备交互，以及其他类似的有趣的工作。这些软件称为操作系统，因为它们负责&lt;em&gt;&lt;strong&gt;确保系统既易于使用又正确高效地运行&lt;/strong&gt;&lt;/em&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;关键问题操作系统如何将资源虚拟化&#34;&gt;关键问题：操作系统如何将资源虚拟化&lt;/h2&gt;
+&lt;p&gt;为什么操作系统这样做？这不是主要问题，因为答案应该很明显：它让系统更易于使用。因此，我们关注如何虚拟化：操作系统通过哪些机制和策略来实现虚拟化？操作系统如何有效地实现虚拟化？需要哪些硬件支持？&lt;br&gt;
 操作系统将物理资源（如处理器、内存或磁盘）转换为更通用、更强大且更易于使用的虚拟形式。因此，我们有时将操作系统称为虚拟机。
-因为虚拟化让许多程序运行（从而共享CPU），让许多程序可以同时访问自己的指令和数据（从而共享内存），让许多程序访问设备（从而共享磁盘等），所以操作系统有时被称为资源管理器。每个CPU、内存和磁盘都是系统的资源，因此操作系统扮演的主要角色就是管理这些资源，以做到高效或公平。&lt;/p>
-&lt;h3 id="虚拟化cpu">虚拟化CPU&lt;/h3>
-&lt;p>在硬件的一些帮助下，操作系统负责提供这种假象，即系统拥有非常多的虚拟CPU的假象。将单个CPU（或其中一小部分）转换为看似无限数量的CPU，从而让许多程序看似同时运行，这就是所谓的虚拟化CPU。&lt;/p>
-&lt;h3 id="虚拟化内存">虚拟化内存&lt;/h3>
-&lt;p>每个进程访问自己的私有虚拟地址空间（有时称为地址空间），操作系统以某种方式映射到机器的物理内存上。一个正在运行的程序中的内存引用不会影响其他进程（或操作系统本身）的地址空间。对于正在运行的程序，它完全拥有自己的物理内存。&lt;/p>
-&lt;h2 id="关键问题如何构建正确的并发程序">关键问题：如何构建正确的并发程序&lt;/h2>
-&lt;p>如果同一个内存空间中有很多并发执行的线程，如何构建一个正确工作的程序？操作系统需要什么原语？硬件应该提供哪些机制？我们如何利用它们来解决并发问题？&lt;/p>
-&lt;h2 id="关键问题如何持久地存储数据">关键问题：如何持久地存储数据&lt;/h2>
-&lt;p>文件系统是操作系统的一部分，负责管理持久的数据。持久性需要哪些技术才能正确地实现？需要哪些机制和策略才能高性能地实现？面对硬件和软件故障，可靠性如何实现？&lt;/p>
-&lt;h2 id="操作系统做了什么">操作系统做了什么？&lt;/h2>
-&lt;p>它取得CPU、内存或磁盘等物理资源，并对它们进行虚拟化。它处理与并发有关的麻烦且棘手的问题。它持久地存储文件，从而使它们长期安全。&lt;/p>
-&lt;h2 id="操作系统的设计目标">操作系统的设计目标&lt;/h2>
-&lt;p>一个最基本的目标，是建立一些&lt;em>&lt;strong>抽象&lt;/strong>&lt;/em>，让系统方便和易于使用。&lt;br>
-设计和实现操作系统的一个目标，是提供高性能。换言之，我们的目标是最小化操作系统的开销。&lt;br>
-另一个目标是在应用程序之间以及在OS和应用程序之间提供保护。&lt;br>
-根据系统的使用方式，操作系统将有不同的目标，因此可能至少以稍微不同的方式实现。&lt;/p></description></item><item><title>2022书单</title><link>https://soli.seekincs.com/2022/10/2022%E4%B9%A6%E5%8D%95/</link><pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/10/2022%E4%B9%A6%E5%8D%95/</guid><description>&lt;img src="https://soli.seekincs.com/2022/10/2022%E4%B9%A6%E5%8D%95/img.png" alt="Featured image of post 2022书单" />&lt;h2 id="文学">📖文学&lt;/h2>
-&lt;ul>
-&lt;li>&lt;input checked="" disabled="" type="checkbox"> 平凡的世界&lt;/li>
-&lt;li>&lt;input checked="" disabled="" type="checkbox"> 法治的细节&lt;/li>
-&lt;li>&lt;input checked="" disabled="" type="checkbox"> 活着&lt;/li>
-&lt;li>&lt;input disabled="" type="checkbox"> 三体&lt;img src="https://geps.dev/progress/23"
-loading="lazy"
->&lt;/li>
-&lt;/ul>
-&lt;h2 id="技术">🧑‍💻技术&lt;/h2>
-&lt;ul>
-&lt;li>&lt;input disabled="" type="checkbox"> 操作系统导论&lt;/li>
-&lt;li>&lt;input disabled="" type="checkbox"> 网络是怎样连接的&lt;/li>
-&lt;li>&lt;input disabled="" type="checkbox"> 深入剖析k8s&lt;/li>
-&lt;li>&lt;input disabled="" type="checkbox"> 计算机网络第6版&lt;img src="https://geps.dev/progress/33"
-loading="lazy"
->&lt;/li>
-&lt;/ul>
-&lt;h2 id="生活">生活&lt;/h2>
-&lt;ul>
-&lt;li>&lt;input disabled="" type="checkbox"> 控糖生活&lt;/li>
-&lt;/ul>
-&lt;h2 id="其他">其他&lt;/h2>
-&lt;ul>
-&lt;li>&lt;input disabled="" type="checkbox"> 我的人生样样稀松照样赢&lt;/li>
-&lt;/ul></description></item><item><title>【TODO】golang相关2333</title><link>https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/</guid><description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img8.png" alt="Featured image of post 【TODO】golang相关2333" />&lt;h2 id="golang概述">Golang概述&lt;/h2>
-&lt;h2 id="channel">Channel&lt;/h2>
-&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/channel-overview.png"
-width="1500"
-height="923"
-srcset="https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/channel-overview_hu0eb3b9f1ee24e4d337caae59151f5270_238819_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/channel-overview_hu0eb3b9f1ee24e4d337caae59151f5270_238819_1024x0_resize_box_3.png 1024w"
-loading="lazy"
-class="gallery-image"
-data-flex-grow="162"
-data-flex-basis="390px"
->&lt;/p>
-&lt;h2 id="gmp调度模型">GMP调度模型&lt;/h2>
-&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/gmp-overview.png"
-width="1240"
-height="698"
-srcset="https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/gmp-overview_hua11c6aaea3a84c49cd2aa3cbacab8952_289581_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/gmp-overview_hua11c6aaea3a84c49cd2aa3cbacab8952_289581_1024x0_resize_box_3.png 1024w"
-loading="lazy"
-class="gallery-image"
-data-flex-grow="177"
-data-flex-basis="426px"
->&lt;/p>
-&lt;h2 id="mutex">Mutex&lt;/h2>
-&lt;h2 id="waitgroup">WaitGroup&lt;/h2>
-&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/waitgroup.png"
-width="3033"
-height="1572"
-srcset="https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/waitgroup_hucb853939e1f51b2eb1dfcfd394cd0e16_275659_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/waitgroup_hucb853939e1f51b2eb1dfcfd394cd0e16_275659_1024x0_resize_box_3.png 1024w"
-loading="lazy"
-class="gallery-image"
-data-flex-grow="192"
-data-flex-basis="463px"
->&lt;/p></description></item><item><title>k8s-notes</title><link>https://soli.seekincs.com/2022/06/k8s-notes/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/06/k8s-notes/</guid><description>&lt;img src="https://soli.seekincs.com/2022/06/k8s-notes/img.png" alt="Featured image of post k8s-notes" />&lt;h2 id="k8s概述">k8s概述&lt;/h2>
-&lt;blockquote>
-&lt;p>自动化运维管理Docker(容器化)程序。&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="核心特性">核心特性&lt;/h2>
-&lt;h2 id="pod状态流转">pod状态流转&lt;/h2>
-&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/k8s-notes/pod-status-transfer.png"
-width="1808"
-height="732"
-srcset="https://soli.seekincs.com/2022/06/k8s-notes/pod-status-transfer_hu8b8ca875de7b11f9902f0c65dd172bb1_93987_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/k8s-notes/pod-status-transfer_hu8b8ca875de7b11f9902f0c65dd172bb1_93987_1024x0_resize_box_3.png 1024w"
-loading="lazy"
-class="gallery-image"
-data-flex-grow="246"
-data-flex-basis="592px"
->&lt;/p></description></item><item><title>kafka简介</title><link>https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/</guid><description>&lt;img src="https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/img.png" alt="Featured image of post kafka简介" />&lt;h2 id="kafka概述">Kafka概述&lt;/h2>
-&lt;blockquote>
-&lt;p>体系架构、多副本机制、分区机制。&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/kafka-overview.jpg"
-width="1500"
-height="711"
-srcset="https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/kafka-overview_hu1d5a1f7ef32392ffc1bb1be28d3dd3b9_385772_480x0_resize_q75_box.jpg 480w, https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/kafka-overview_hu1d5a1f7ef32392ffc1bb1be28d3dd3b9_385772_1024x0_resize_q75_box.jpg 1024w"
-loading="lazy"
-class="gallery-image"
-data-flex-grow="210"
-data-flex-basis="506px"
->&lt;/p>
-&lt;h2 id="kafka的生产者客户端">Kafka的生产者(客户端)&lt;/h2>
-&lt;h2 id="kafka的消费者客户端">Kafka的消费者(客户端)&lt;/h2>
-&lt;h2 id="kafka的服务端">Kafka的服务端&lt;/h2>
-&lt;h3 id="kafka的协调者">Kafka的协调者&lt;/h3>
-&lt;h2 id="kafka的存储层">Kafka的存储层&lt;/h2>
-&lt;h3 id="kafka日志结构">Kafka日志结构&lt;/h3>
-&lt;h2 id="kafka常见问题讨论">Kafka常见问题讨论&lt;/h2>
-&lt;ul>
-&lt;li>Kafka是如何保障数据不丢失的？&lt;/li>
-&lt;li>如何解决Kafka数据丢失问题？&lt;/li>
-&lt;li>Kafka可以保障永久不丢失数据吗？&lt;/li>
-&lt;li>如何保障Kafka中的消息是有序的？&lt;/li>
-&lt;li>如何确定Kafka主题的分区数量？&lt;/li>
-&lt;li>如何调整生产环境中Kafka主题的分区数量？&lt;/li>
-&lt;li>如何重平衡Kafka集群？&lt;/li>
-&lt;li>如何查看消费者组是否存在滞后消费？&lt;/li>
-&lt;/ul>
-&lt;h2 id="pagecache">PageCache&lt;/h2>
-&lt;ol>
-&lt;li>缓存最近被访问的数据&lt;/li>
-&lt;li>预读功能&lt;/li>
-&lt;/ol>
-&lt;h2 id="消息顺序性问题">消息顺序性问题&lt;/h2>
-&lt;blockquote>
-&lt;p>分区有序而不是主题有序。分区有序是通过offset实现的。&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="分区机制">分区机制&lt;/h2>
-&lt;p>一个主题不可能只对应一个文件(单机I/O会成为性能瓶颈)
-一个主题包含多个分区，每个分区是一个可追加的日志文件。不同分区在不同broker上。&lt;/p>
-&lt;h2 id="消息中间件选型">消息中间件选型&lt;/h2>
-&lt;ol>
-&lt;li>功能维度(延时队列)&lt;/li>
-&lt;li>性能维度()&lt;/li>
-&lt;li>可靠性和可用性&lt;/li>
-&lt;li>运维管理&lt;/li>
-&lt;li>社区力度和生态发展&lt;/li>
-&lt;/ol></description></item><item><title>mysql-notes</title><link>https://soli.seekincs.com/2022/06/mysql-notes/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/06/mysql-notes/</guid><description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img6.png" alt="Featured image of post mysql-notes" />&lt;h2 id="索引">索引&lt;/h2>
-&lt;h3 id="索引底层数据结构选型">索引底层数据结构选型&lt;/h3>
-&lt;blockquote>
-&lt;p>哈希表、二叉查找树、平衡二叉树、B树、B+树、跳表。&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="事务">事务&lt;/h2>
-&lt;h3 id="并发事务问题">并发事务问题&lt;/h3>
-&lt;blockquote>
-&lt;p>脏读、不可重复读、幻读。&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="日志">日志&lt;/h2>
-&lt;blockquote>
-&lt;p>redo、undo、bin。&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="锁">锁&lt;/h2>
-&lt;blockquote>
-&lt;p>行锁和表锁。&lt;/p>
-&lt;/blockquote>
-&lt;h3 id="乐观锁mvcc">乐观锁MVCC&lt;/h3>
-&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/mysql-notes/mvcc-demo.png"
-width="1440"
-height="649"
-srcset="https://soli.seekincs.com/2022/06/mysql-notes/mvcc-demo_hu8903680d18553c68f658c5ac0bc1328e_326372_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/mysql-notes/mvcc-demo_hu8903680d18553c68f658c5ac0bc1328e_326372_1024x0_resize_box_3.png 1024w"
-loading="lazy"
-class="gallery-image"
-data-flex-grow="221"
-data-flex-basis="532px"
->
-可重复读：事务开始的时候生成一个当前事务全局性的快照&lt;br>
-读提交：每次执行语句的时候都重新生成一次快照&lt;br>
-对于一个快照来说，它能够读到那些版本数据，要遵循以下规则：&lt;br>
-当前事务内的更新，可以读到；&lt;br>
-版本未提交，不能读到&lt;br>
-版本已提交，但是却在快照创建后提交的，不能读到 &lt;br>
-版本已提交，且是在快照创建前提交的，可以读到&lt;/p></description></item><item><title>mysql慢查询</title><link>https://soli.seekincs.com/2022/06/mysql%E6%85%A2%E6%9F%A5%E8%AF%A2/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/06/mysql%E6%85%A2%E6%9F%A5%E8%AF%A2/</guid><description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post mysql慢查询" />&lt;h2 id="字段类型与查询类型不一致导致不走索引">字段类型与查询类型不一致导致不走索引&lt;/h2>
-&lt;blockquote>
-&lt;p>third_id字段类型是varchar，参数传的却是数字，这种情况下不会走索引，导致慢查&lt;br/>&lt;/p>
-&lt;/blockquote>
-&lt;p>SQL示例
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">SELECT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">FROM&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">meta&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">WHERE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">audit_pass&lt;/span>&lt;span class="o">`=&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="k">state&lt;/span>&lt;span class="o">`=&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">third_id&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">in&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;/p></description></item><item><title>redis-notes</title><link>https://soli.seekincs.com/2022/06/redis-notes/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/06/redis-notes/</guid><description>&lt;img src="https://soli.seekincs.com/2022/06/redis-notes/img.png" alt="Featured image of post redis-notes" />&lt;h2 id="redis概述">Redis概述&lt;/h2>
-&lt;h2 id="核心数据结构">核心数据结构&lt;/h2>
-&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/redis-notes/redis-data-structure-overview.png"
-width="1648"
-height="376"
-srcset="https://soli.seekincs.com/2022/06/redis-notes/redis-data-structure-overview_hub2a6c8a9305badb65c15c58ab4b5e27d_80745_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/redis-notes/redis-data-structure-overview_hub2a6c8a9305badb65c15c58ab4b5e27d_80745_1024x0_resize_box_3.png 1024w"
-loading="lazy"
-class="gallery-image"
-data-flex-grow="438"
-data-flex-basis="1051px"
->&lt;/p>
-&lt;h2 id="持久化">持久化&lt;/h2>
-&lt;blockquote>
-&lt;p>RDB+AOF混用&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="io多路复用">I/O多路复用&lt;/h2>
-&lt;h2 id="redis常见问题讨论">Redis常见问题讨论&lt;/h2>
-&lt;ol>
-&lt;li>击穿问题：底层数据库有数据而缓存内没有数据&lt;/li>
-&lt;li>穿透问题：底层数据库没有数据且缓存内也没有数据。解决方法：布隆过滤器&lt;/li>
-&lt;li>雪崩问题：缓存击穿的&amp;quot;大面积&amp;quot;版&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/redis-notes/bloom-filter.png"
-width="815"
-height="728"
-srcset="https://soli.seekincs.com/2022/06/redis-notes/bloom-filter_hucde5a3dd1599056439a13f9692d0cc4f_103516_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/redis-notes/bloom-filter_hucde5a3dd1599056439a13f9692d0cc4f_103516_1024x0_resize_box_3.png 1024w"
-loading="lazy"
-alt="缓存穿透解决办法"
-class="gallery-image"
-data-flex-grow="111"
-data-flex-basis="268px"
->&lt;/p></description></item><item><title>spark原理浅析</title><link>https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/</link><pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/</guid><description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post spark原理浅析" />&lt;h2 id="spark概述">Spark概述&lt;/h2>
-&lt;blockquote>
-&lt;p>一个高效通用的内存型分布式计算框架。&lt;/p>
-&lt;/blockquote>
-&lt;p>Spark特点：&lt;/p>
-&lt;ol>
-&lt;li>速度快&lt;/li>
-&lt;li>易用使用&lt;/li>
-&lt;li>通用性&lt;/li>
-&lt;li>运行模式多样&lt;/li>
-&lt;/ol>
-&lt;h2 id="spark作业基本运行原理">Spark作业基本运行原理&lt;/h2>
-&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-job-overview.png"
-width="1500"
-height="1165"
-srcset="https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-job-overview_hu78bea729486ce89e2fe0a398a1ecaf9b_600608_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-job-overview_hu78bea729486ce89e2fe0a398a1ecaf9b_600608_1024x0_resize_box_3.png 1024w"
-loading="lazy"
-class="gallery-image"
-data-flex-grow="128"
-data-flex-basis="309px"
->&lt;/p>
-&lt;h2 id="运行流程">运行流程&lt;/h2>
-&lt;p>&lt;img src="https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-run-process.png"
-width="866"
-height="625"
-srcset="https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-run-process_huc9f081e82636bb0a42975df969154a76_141101_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-run-process_huc9f081e82636bb0a42975df969154a76_141101_1024x0_resize_box_3.png 1024w"
-loading="lazy"
-class="gallery-image"
-data-flex-grow="138"
-data-flex-basis="332px"
->&lt;/p></description></item><item><title>Archives</title><link>https://soli.seekincs.com/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/archives/</guid><description/></item><item><title>About</title><link>https://soli.seekincs.com/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/about/</guid><description>&lt;p>？&lt;/p></description></item><item><title>Links</title><link>https://soli.seekincs.com/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/links/</guid><description/></item><item><title>Search</title><link>https://soli.seekincs.com/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/search/</guid><description/></item></channel></rss>
+因为虚拟化让许多程序运行（从而共享CPU），让许多程序可以同时访问自己的指令和数据（从而共享内存），让许多程序访问设备（从而共享磁盘等），所以操作系统有时被称为资源管理器。每个CPU、内存和磁盘都是系统的资源，因此操作系统扮演的主要角色就是管理这些资源，以做到高效或公平。&lt;/p&gt;
+&lt;h3 id=&#34;虚拟化cpu&#34;&gt;虚拟化CPU&lt;/h3&gt;
+&lt;p&gt;在硬件的一些帮助下，操作系统负责提供这种假象，即系统拥有非常多的虚拟CPU的假象。将单个CPU（或其中一小部分）转换为看似无限数量的CPU，从而让许多程序看似同时运行，这就是所谓的虚拟化CPU。&lt;/p&gt;
+&lt;h3 id=&#34;虚拟化内存&#34;&gt;虚拟化内存&lt;/h3&gt;
+&lt;p&gt;每个进程访问自己的私有虚拟地址空间（有时称为地址空间），操作系统以某种方式映射到机器的物理内存上。一个正在运行的程序中的内存引用不会影响其他进程（或操作系统本身）的地址空间。对于正在运行的程序，它完全拥有自己的物理内存。&lt;/p&gt;
+&lt;h2 id=&#34;关键问题如何构建正确的并发程序&#34;&gt;关键问题：如何构建正确的并发程序&lt;/h2&gt;
+&lt;p&gt;如果同一个内存空间中有很多并发执行的线程，如何构建一个正确工作的程序？操作系统需要什么原语？硬件应该提供哪些机制？我们如何利用它们来解决并发问题？&lt;/p&gt;
+&lt;h2 id=&#34;关键问题如何持久地存储数据&#34;&gt;关键问题：如何持久地存储数据&lt;/h2&gt;
+&lt;p&gt;文件系统是操作系统的一部分，负责管理持久的数据。持久性需要哪些技术才能正确地实现？需要哪些机制和策略才能高性能地实现？面对硬件和软件故障，可靠性如何实现？&lt;/p&gt;
+&lt;h2 id=&#34;操作系统做了什么&#34;&gt;操作系统做了什么？&lt;/h2&gt;
+&lt;p&gt;它取得CPU、内存或磁盘等物理资源，并对它们进行虚拟化。它处理与并发有关的麻烦且棘手的问题。它持久地存储文件，从而使它们长期安全。&lt;/p&gt;
+&lt;h2 id=&#34;操作系统的设计目标&#34;&gt;操作系统的设计目标&lt;/h2&gt;
+&lt;p&gt;一个最基本的目标，是建立一些&lt;em&gt;&lt;strong&gt;抽象&lt;/strong&gt;&lt;/em&gt;，让系统方便和易于使用。&lt;br&gt;
+设计和实现操作系统的一个目标，是提供高性能。换言之，我们的目标是最小化操作系统的开销。&lt;br&gt;
+另一个目标是在应用程序之间以及在OS和应用程序之间提供保护。&lt;br&gt;
+根据系统的使用方式，操作系统将有不同的目标，因此可能至少以稍微不同的方式实现。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>【TODO】golang相关2333</title>
+        <link>https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/</link>
+        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img8.png" alt="Featured image of post 【TODO】golang相关2333" /&gt;&lt;h2 id=&#34;golang概述&#34;&gt;Golang概述&lt;/h2&gt;
+&lt;h2 id=&#34;channel&#34;&gt;Channel&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/channel-overview.png&#34;
+	width=&#34;1500&#34;
+	height=&#34;923&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/channel-overview_hu0eb3b9f1ee24e4d337caae59151f5270_238819_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/channel-overview_hu0eb3b9f1ee24e4d337caae59151f5270_238819_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;162&#34;
+		data-flex-basis=&#34;390px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;gmp调度模型&#34;&gt;GMP调度模型&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/gmp-overview.png&#34;
+	width=&#34;1240&#34;
+	height=&#34;698&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/gmp-overview_hua11c6aaea3a84c49cd2aa3cbacab8952_289581_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/gmp-overview_hua11c6aaea3a84c49cd2aa3cbacab8952_289581_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;mutex&#34;&gt;Mutex&lt;/h2&gt;
+&lt;h2 id=&#34;waitgroup&#34;&gt;WaitGroup&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/waitgroup.png&#34;
+	width=&#34;3033&#34;
+	height=&#34;1572&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/waitgroup_hucb853939e1f51b2eb1dfcfd394cd0e16_275659_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/waitgroup_hucb853939e1f51b2eb1dfcfd394cd0e16_275659_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;192&#34;
+		data-flex-basis=&#34;463px&#34;
+	
+&gt;&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>kafka简介</title>
+        <link>https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/</link>
+        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/</guid>
+        <description>&lt;img src="https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/img.png" alt="Featured image of post kafka简介" /&gt;&lt;h2 id=&#34;kafka概述&#34;&gt;Kafka概述&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;体系架构、多副本机制、分区机制。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/kafka-overview.jpg&#34;
+	width=&#34;1500&#34;
+	height=&#34;711&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/kafka-overview_hu1d5a1f7ef32392ffc1bb1be28d3dd3b9_385772_480x0_resize_q75_box.jpg 480w, https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/kafka-overview_hu1d5a1f7ef32392ffc1bb1be28d3dd3b9_385772_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;210&#34;
+		data-flex-basis=&#34;506px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;kafka的生产者客户端&#34;&gt;Kafka的生产者(客户端)&lt;/h2&gt;
+&lt;h2 id=&#34;kafka的消费者客户端&#34;&gt;Kafka的消费者(客户端)&lt;/h2&gt;
+&lt;h2 id=&#34;kafka的服务端&#34;&gt;Kafka的服务端&lt;/h2&gt;
+&lt;h3 id=&#34;kafka的协调者&#34;&gt;Kafka的协调者&lt;/h3&gt;
+&lt;h2 id=&#34;kafka的存储层&#34;&gt;Kafka的存储层&lt;/h2&gt;
+&lt;h3 id=&#34;kafka日志结构&#34;&gt;Kafka日志结构&lt;/h3&gt;
+&lt;h2 id=&#34;kafka常见问题讨论&#34;&gt;Kafka常见问题讨论&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Kafka是如何保障数据不丢失的？&lt;/li&gt;
+&lt;li&gt;如何解决Kafka数据丢失问题？&lt;/li&gt;
+&lt;li&gt;Kafka可以保障永久不丢失数据吗？&lt;/li&gt;
+&lt;li&gt;如何保障Kafka中的消息是有序的？&lt;/li&gt;
+&lt;li&gt;如何确定Kafka主题的分区数量？&lt;/li&gt;
+&lt;li&gt;如何调整生产环境中Kafka主题的分区数量？&lt;/li&gt;
+&lt;li&gt;如何重平衡Kafka集群？&lt;/li&gt;
+&lt;li&gt;如何查看消费者组是否存在滞后消费？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;pagecache&#34;&gt;PageCache&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;缓存最近被访问的数据&lt;/li&gt;
+&lt;li&gt;预读功能&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;消息顺序性问题&#34;&gt;消息顺序性问题&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;分区有序而不是主题有序。分区有序是通过offset实现的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;分区机制&#34;&gt;分区机制&lt;/h2&gt;
+&lt;p&gt;一个主题不可能只对应一个文件(单机I/O会成为性能瓶颈)
+一个主题包含多个分区，每个分区是一个可追加的日志文件。不同分区在不同broker上。&lt;/p&gt;
+&lt;h2 id=&#34;消息中间件选型&#34;&gt;消息中间件选型&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;功能维度(延时队列)&lt;/li&gt;
+&lt;li&gt;性能维度()&lt;/li&gt;
+&lt;li&gt;可靠性和可用性&lt;/li&gt;
+&lt;li&gt;运维管理&lt;/li&gt;
+&lt;li&gt;社区力度和生态发展&lt;/li&gt;
+&lt;/ol&gt;</description>
+        </item>
+        <item>
+        <title>mysql慢查询</title>
+        <link>https://soli.seekincs.com/2022/06/mysql%E6%85%A2%E6%9F%A5%E8%AF%A2/</link>
+        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/06/mysql%E6%85%A2%E6%9F%A5%E8%AF%A2/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post mysql慢查询" /&gt;&lt;h2 id=&#34;字段类型与查询类型不一致导致不走索引&#34;&gt;字段类型与查询类型不一致导致不走索引&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;third_id字段类型是varchar，参数传的却是数字，这种情况下不会走索引，导致慢查&lt;br/&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;SQL示例
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;meta&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;audit_pass&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;state&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;third_id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>spark原理浅析</title>
+        <link>https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/</link>
+        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post spark原理浅析" /&gt;&lt;h2 id=&#34;spark概述&#34;&gt;Spark概述&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个高效通用的内存型分布式计算框架。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Spark特点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;速度快&lt;/li&gt;
+&lt;li&gt;易用使用&lt;/li&gt;
+&lt;li&gt;通用性&lt;/li&gt;
+&lt;li&gt;运行模式多样&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;spark作业基本运行原理&#34;&gt;Spark作业基本运行原理&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-job-overview.png&#34;
+	width=&#34;1500&#34;
+	height=&#34;1165&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-job-overview_hu78bea729486ce89e2fe0a398a1ecaf9b_600608_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-job-overview_hu78bea729486ce89e2fe0a398a1ecaf9b_600608_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;128&#34;
+		data-flex-basis=&#34;309px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;运行流程&#34;&gt;运行流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-run-process.png&#34;
+	width=&#34;866&#34;
+	height=&#34;625&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-run-process_huc9f081e82636bb0a42975df969154a76_141101_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-run-process_huc9f081e82636bb0a42975df969154a76_141101_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;138&#34;
+		data-flex-basis=&#34;332px&#34;
+	
+&gt;&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>Archives</title>
+        <link>https://soli.seekincs.com/archives/</link>
+        <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/archives/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>About</title>
+        <link>https://soli.seekincs.com/about/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/about/</guid>
+        <description>&lt;p&gt;a gopher&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Links</title>
+        <link>https://soli.seekincs.com/links/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/links/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Search</title>
+        <link>https://soli.seekincs.com/search/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/search/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>
