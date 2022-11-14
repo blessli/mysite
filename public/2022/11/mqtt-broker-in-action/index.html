@@ -9,7 +9,7 @@
 <meta property='og:description' content='MQTT消息服务器实战'>
 <meta property='og:url' content='https://soli.seekincs.com/2022/11/mqtt-broker-in-action/'>
 <meta property='og:site_name' content='soli&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='inaction' /><meta property='article:tag' content='emqx' /><meta property='article:published_time' content='2022-11-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-11-14T11:48:10&#43;08:00'/><meta property='og:image' content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='inaction' /><meta property='article:tag' content='emqx' /><meta property='article:published_time' content='2022-11-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-11-14T17:04:07&#43;08:00'/><meta property='og:image' content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png' />
 <meta name="twitter:title" content="MQTT Broker in Action">
 <meta name="twitter:description" content="MQTT消息服务器实战"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png' />
@@ -269,7 +269,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                            <time class="article-time--updated" datetime="2022-11-14 11:48:10.507689739 &#43;0800 CST" title="2022-11-14 11:48:10.507689739 &#43;0800 CST">
+                            <time class="article-time--updated" datetime="2022-11-14 17:04:07.53414797 &#43;0800 CST" title="2022-11-14 17:04:07.53414797 &#43;0800 CST">
                                 2022年11月14日</time>
                         </div>
         
@@ -299,13 +299,15 @@
     
     <h2 id="mqtt协议">MQTT协议</h2>
 <p>使用wireshark工具捕获mqtt协议包，主要包括3.0和5.0版本。</p>
-<h2 id="部署emqx">部署EMQX</h2>
+<h2 id="emqx部署">EMQX部署</h2>
 <blockquote>
 <p>EMQX 是一款大规模可弹性伸缩的云原生分布式物联网 MQTT 消息服务器😂。</p>
 </blockquote>
-<h3 id="单机版">单机版</h3>
-<h3 id="集群版">集群版</h3>
-<h4 id="伪分布式集群">伪分布式集群</h4>
+<h3 id="docker单节点多实例">Docker单节点多实例</h3>
+<p>基于docker-compose+haproxy搭建伪分布式集群。
+docker-compose -f docker-compose-emqx-cluster.yaml up<br>
+docker-compose -f docker-compose-emqx-cluster.yaml down</p>
+<h3 id="docker多节点">Docker多节点</h3>
 <blockquote>
 <p>修改emqx.conf配置文件，集群节点开放某些端口</p>
 </blockquote>
@@ -315,13 +317,14 @@ rpc.port_discovery = manual
 rpc.tcp_server_port = 5369
 </code></pre>
 <p>两个集群节点分别执行docker run命令：</p>
-<pre><code class="language-sh">docker run -d --name emqx_cluster -v /usr/local/emqx444/emqx_cluster_remote/docker/dockeremqx/emqx.conf:/opt/emqx/etc/emqx.conf -v /usr/local/emqx444/emqx_cluster_remote/docker/dockeremqx/emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf -v /usr/local/emqx444/emqx_cluster_remote/docker/dockeremqx/loaded_plugins:/opt/emqx/data/loaded_plugins --env EMQX_LOG__TO=both --env EMQX_HOST=120.92.94.79 -p 1883:1883 -p 8081:8081 -p 8083:8083 -p 8084:8084 -p 8883:8883 -p 18083:18083 -p 4370:4370 -p 5370:5370 -p 4369:4369 -p 5369:5369 -p 6369:6369 -p 6370:6370 emqx/emqx:4.4.4
+<pre><code class="language-sh">docker run -d --name emqx_cluster -v /emqx.conf:/opt/emqx/etc/emqx.conf -v /emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf -v /loaded_plugins:/opt/emqx/data/loaded_plugins --env EMQX_LOG__TO=both --env EMQX_HOST=120.92.94.79 -p 1883:1883 -p 8081:8081 -p 8083:8083 -p 8084:8084 -p 8883:8883 -p 18083:18083 -p 4370:4370 -p 5370:5370 -p 4369:4369 -p 5369:5369 -p 6369:6369 -p 6370:6370 emqx/emqx:4.4.4
 </code></pre>
-<h4 id="分布式集群">分布式集群</h4>
+<h3 id="k8s集群">k8s集群</h3>
+<p>见另外一篇文章，传送门</p>
 <h2 id="安全">安全</h2>
 <h3 id="接入安全">接入安全</h3>
 <blockquote>
-<p>服务端访问控制</p>
+<p>服务端访问控制，主要是启用emqx_auth_mysql插件实现认证和授权。</p>
 </blockquote>
 <h3 id="客户端sdk安全">客户端SDK安全</h3>
 <blockquote>
@@ -332,7 +335,33 @@ rpc.tcp_server_port = 5369
     >MQTT Go 客户端库</a></h3>
 <h3 id="mqtt-c-客户端库httpsgithubcomeclipsepahomqttcpp"><a class="link" href="https://github.com/eclipse/paho.mqtt.cpp"  target="_blank" rel="noopener"
     >MQTT C++ 客户端库</a></h3>
-<h3 id="mqtt-javascript-客户端库">MQTT JavaScript 客户端库</h3>
+<h3 id="mqtt-javascript-客户端库httpsgithubcomemqxmqtt-client-examplesblobmastermqtt-client-websocketws-mqtthtml"><a class="link" href="https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-WebSocket/ws-mqtt.html"  target="_blank" rel="noopener"
+    >MQTT JavaScript 客户端库</a></h3>
+<h2 id="压力验证">压力验证</h2>
+<p><a class="link" href="https://github.com/emqx/emqtt-bench"  target="_blank" rel="noopener"
+    >压测工具</a><br>
+硬件配置：<br>
+一台腾讯云服务器2核4g<br>
+一个master节点的k8s上运行emqx 6个pod，目前只能支持27322个订阅端，服务器CPU 100%。<br></p>
+<h3 id="遇到的问题">遇到的问题</h3>
+<p>client(4): EXIT for {shutdown,eaddrinuse}<br>
+解决方法：<br>
+扩大端口数量<br>
+提高端口使用率<br>
+<img src="/2022/11/mqtt-broker-in-action/static/emqtt-bench-result.png"
+	width="1564"
+	height="709"
+	srcset="/2022/11/mqtt-broker-in-action/static/emqtt-bench-result_hud14d66730ab45c2af3ddfad68006f28b_105763_480x0_resize_box_3.png 480w, /2022/11/mqtt-broker-in-action/static/emqtt-bench-result_hud14d66730ab45c2af3ddfad68006f28b_105763_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="emqtt-bench-result.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="220"
+		data-flex-basis="529px"
+	
+></p>
 </section>
 
 
@@ -357,7 +386,7 @@ rpc.tcp_server_port = 5369
 
 
         <span>
-            最后更新于 2022年11月14日 11点48分10秒
+            最后更新于 2022年11月14日 17点04分07秒
         </span>
     </section></footer>
 
@@ -554,15 +583,11 @@ rpc.tcp_server_port = 5369
             <nav id="TableOfContents">
   <ol>
     <li><a href="#mqtt协议">MQTT协议</a></li>
-    <li><a href="#部署emqx">部署EMQX</a>
+    <li><a href="#emqx部署">EMQX部署</a>
       <ol>
-        <li><a href="#单机版">单机版</a></li>
-        <li><a href="#集群版">集群版</a>
-          <ol>
-            <li><a href="#伪分布式集群">伪分布式集群</a></li>
-            <li><a href="#分布式集群">分布式集群</a></li>
-          </ol>
-        </li>
+        <li><a href="#docker单节点多实例">Docker单节点多实例</a></li>
+        <li><a href="#docker多节点">Docker多节点</a></li>
+        <li><a href="#k8s集群">k8s集群</a></li>
       </ol>
     </li>
     <li><a href="#安全">安全</a>
@@ -575,7 +600,12 @@ rpc.tcp_server_port = 5369
       <ol>
         <li><a href="#mqtt-go-客户端库httpsgithubcomeclipsepahogolang"><a href="https://github.com/eclipse/paho.golang">MQTT Go 客户端库</a></a></li>
         <li><a href="#mqtt-c-客户端库httpsgithubcomeclipsepahomqttcpp"><a href="https://github.com/eclipse/paho.mqtt.cpp">MQTT C++ 客户端库</a></a></li>
-        <li><a href="#mqtt-javascript-客户端库">MQTT JavaScript 客户端库</a></li>
+        <li><a href="#mqtt-javascript-客户端库httpsgithubcomemqxmqtt-client-examplesblobmastermqtt-client-websocketws-mqtthtml"><a href="https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-WebSocket/ws-mqtt.html">MQTT JavaScript 客户端库</a></a></li>
+      </ol>
+    </li>
+    <li><a href="#压力验证">压力验证</a>
+      <ol>
+        <li><a href="#遇到的问题">遇到的问题</a></li>
       </ol>
     </li>
   </ol>
@@ -635,36 +665,36 @@ rpc.tcp_server_port = 5369
 
     <div class="tagCloud-tags">
         
-            <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="font_size_2">
-                中间件
+            <a href="/categories/language/" class="font_size_2">
+                language
+            </a>
+        
+            <a href="/categories/database/" class="font_size_1">
+                database
             </a>
         
             <a href="/categories/grpc/" class="font_size_1">
                 grpc
             </a>
         
-            <a href="/categories/linux/" class="font_size_1">
-                linux
+            <a href="/categories/k8s/" class="font_size_1">
+                k8s
             </a>
         
             <a href="/categories/mqtt/" class="font_size_1">
                 mqtt
             </a>
         
-            <a href="/categories/redis/" class="font_size_1">
-                redis
+            <a href="/categories/unknown/" class="font_size_1">
+                unknown
+            </a>
+        
+            <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="font_size_1">
+                中间件
             </a>
         
             <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="font_size_1">
                 大数据
-            </a>
-        
-            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="font_size_1">
-                操作系统
-            </a>
-        
-            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="font_size_1">
-                编程语言
             </a>
         
             <a href="/categories/%E7%BD%91%E7%BB%9C/" class="font_size_1">
@@ -692,36 +722,36 @@ rpc.tcp_server_port = 5369
 
     <div class="tagCloud-tags">
         
-            <a href="/tags/sourcecode/" class="font_size_2">
+            <a href="/tags/inaction/" class="font_size_3">
+                inaction
+            </a>
+        
+            <a href="/tags/sourcecode/" class="font_size_3">
                 sourcecode
             </a>
         
-            <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="font_size_2">
-                读书笔记
-            </a>
-        
-            <a href="/tags/cmd/" class="font_size_1">
-                cmd
+            <a href="/tags/cpp/" class="font_size_1">
+                cpp
             </a>
         
             <a href="/tags/emqx/" class="font_size_1">
                 emqx
             </a>
         
-            <a href="/tags/golang/" class="font_size_1">
-                golang
-            </a>
-        
             <a href="/tags/grpcgo/" class="font_size_1">
                 grpcgo
             </a>
         
-            <a href="/tags/inaction/" class="font_size_1">
-                inaction
+            <a href="/tags/linux/" class="font_size_1">
+                linux
             </a>
         
-            <a href="/tags/kafka/" class="font_size_1">
-                kafka
+            <a href="/tags/mqtt/" class="font_size_1">
+                mqtt
+            </a>
+        
+            <a href="/tags/redis/" class="font_size_1">
+                redis
             </a>
         
             <a href="/tags/spark/" class="font_size_1">
@@ -730,6 +760,10 @@ rpc.tcp_server_port = 5369
         
             <a href="/tags/%E5%AE%9E%E6%88%98/" class="font_size_1">
                 实战
+            </a>
+        
+            <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="font_size_1">
+                读书笔记
             </a>
         
     </div>

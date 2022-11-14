@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>database on soli&#39;s blog</title>
+        <link>https://soli.seekincs.com/categories/database/</link>
+        <description>Recent content in database on soli&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language><atom:link href="https://soli.seekincs.com/categories/database/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>redis source code learning</title>
+        <link>https://soli.seekincs.com/2022/11/redis-source-code-learning/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/redis-source-code-learning/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post redis source code learning" /&gt;&lt;h2 id=&#34;vscode本地调试&#34;&gt;vscode本地调试&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;version&amp;quot;: &amp;quot;0.2.0&amp;quot;,
+    &amp;quot;configurations&amp;quot;: [
+        {
+            &amp;quot;name&amp;quot;: &amp;quot;debug redis&amp;quot;,
+            &amp;quot;type&amp;quot;: &amp;quot;cppdbg&amp;quot;,
+            &amp;quot;request&amp;quot;: &amp;quot;launch&amp;quot;,
+            &amp;quot;program&amp;quot;: &amp;quot;${workspaceFolder}/src/redis-server&amp;quot;,
+            &amp;quot;args&amp;quot;: [&amp;quot;redis.conf&amp;quot;],
+            &amp;quot;stopAtEntry&amp;quot;: false,
+            &amp;quot;cwd&amp;quot;: &amp;quot;${workspaceFolder}&amp;quot;,
+            &amp;quot;environment&amp;quot;: [],
+            &amp;quot;externalConsole&amp;quot;: false
+        }
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;redis-benchmark压测&#34;&gt;redis-benchmark压测&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cd /usr/local/projs/redis/src &amp;amp;&amp;amp; ./redis-benchmark -h
+./redis-benchmark -t set -n 1000000 -r 100000000
+47496.91 requests per second
+./redis-benchmark -t set -n 1000000 -r 100000000 -P 16
+291290.41 requests per second
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;查看rdb快照文件&#34;&gt;查看RDB快照文件&lt;/h2&gt;
+&lt;p&gt;rdb -c memory dump.rdb &amp;gt; dump_rdb.csv&lt;br&gt;
+其中：size_in_bytes 内存的大小，由此可以查询内存最高的key&lt;/p&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

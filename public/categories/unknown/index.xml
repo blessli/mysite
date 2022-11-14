@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>unknown on soli&#39;s blog</title>
+        <link>https://soli.seekincs.com/categories/unknown/</link>
+        <description>Recent content in unknown on soli&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language><atom:link href="https://soli.seekincs.com/categories/unknown/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>linux cmd collection</title>
+        <link>https://soli.seekincs.com/2022/11/linux-cmd-collection/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/linux-cmd-collection/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post linux cmd collection" /&gt;&lt;p&gt;centos版本&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /etc/redhat-release
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;alias&#34;&gt;alias&lt;/h2&gt;
+&lt;p&gt;解决重启后alias失效问题：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;vim ~/.bashrc
+alias cdcode=&#39;cd /usr/local/projs&#39;
+source ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;查看项目代码行数&#34;&gt;查看项目代码行数&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;yum -y install cloc
+cloc src
+&lt;/code&gt;&lt;/pre&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

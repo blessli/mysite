@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>language on soli&#39;s blog</title>
+        <link>https://soli.seekincs.com/categories/language/</link>
+        <description>Recent content in language on soli&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language><atom:link href="https://soli.seekincs.com/categories/language/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>C&#43;&#43; in Action</title>
+        <link>https://soli.seekincs.com/2022/11/c-in-action/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/c-in-action/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post C&#43;&#43; in Action" /&gt;</description>
+        </item>
+        <item>
+        <title>go source code learning</title>
+        <link>https://soli.seekincs.com/2022/11/go-source-code-learning/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/go-source-code-learning/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post go source code learning" /&gt;&lt;h2 id=&#34;编译&#34;&gt;编译&lt;/h2&gt;
+&lt;p&gt;编译脚本(all.bash/make.bash)中注释掉，跳过编译test，否则太慢&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;mkdir -p ~/mygo/bin
+cd ~/mygo/bin
+ln -sf /usr/local/projs/go/bin/go mygo
+mygo version
+mygo run helloworld.go
+&lt;/code&gt;&lt;/pre&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -7,12 +7,41 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Mon, 14 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/sourcecode/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>go source code learning</title>
+        <link>https://soli.seekincs.com/2022/11/go-source-code-learning/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/go-source-code-learning/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post go source code learning" /&gt;&lt;h2 id=&#34;编译&#34;&gt;编译&lt;/h2&gt;
+&lt;p&gt;编译脚本(all.bash/make.bash)中注释掉，跳过编译test，否则太慢&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;mkdir -p ~/mygo/bin
+cd ~/mygo/bin
+ln -sf /usr/local/projs/go/bin/go mygo
+mygo version
+mygo run helloworld.go
+&lt;/code&gt;&lt;/pre&gt;</description>
+        </item>
+        <item>
         <title>grpcgo source code learning</title>
         <link>https://soli.seekincs.com/2022/11/grpcgo-source-code-learning/</link>
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/grpcgo-source-code-learning/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post grpcgo source code learning" /&gt;&lt;p&gt;test&lt;/p&gt;</description>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post grpcgo source code learning" /&gt;&lt;h2 id=&#34;wireshark捕获grpc消息&#34;&gt;wireshark捕获grpc消息&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/11/grpcgo-source-code-learning/static/wireshark-capture-grpc.jpg&#34;
+	width=&#34;1439&#34;
+	height=&#34;847&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/11/grpcgo-source-code-learning/static/wireshark-capture-grpc_hu19e47366ed7a2c4856115f5ef21cbcbd_204636_480x0_resize_q75_box.jpg 480w, https://soli.seekincs.com/2022/11/grpcgo-source-code-learning/static/wireshark-capture-grpc_hu19e47366ed7a2c4856115f5ef21cbcbd_204636_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;wireshark-capture-grpc.jpg&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;169&#34;
+		data-flex-basis=&#34;407px&#34;
+	
+&gt;&lt;/p&gt;</description>
         </item>
         <item>
         <title>redis source code learning</title>
@@ -20,7 +49,34 @@
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/redis-source-code-learning/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post redis source code learning" /&gt;&lt;p&gt;test&lt;/p&gt;</description>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post redis source code learning" /&gt;&lt;h2 id=&#34;vscode本地调试&#34;&gt;vscode本地调试&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;version&amp;quot;: &amp;quot;0.2.0&amp;quot;,
+    &amp;quot;configurations&amp;quot;: [
+        {
+            &amp;quot;name&amp;quot;: &amp;quot;debug redis&amp;quot;,
+            &amp;quot;type&amp;quot;: &amp;quot;cppdbg&amp;quot;,
+            &amp;quot;request&amp;quot;: &amp;quot;launch&amp;quot;,
+            &amp;quot;program&amp;quot;: &amp;quot;${workspaceFolder}/src/redis-server&amp;quot;,
+            &amp;quot;args&amp;quot;: [&amp;quot;redis.conf&amp;quot;],
+            &amp;quot;stopAtEntry&amp;quot;: false,
+            &amp;quot;cwd&amp;quot;: &amp;quot;${workspaceFolder}&amp;quot;,
+            &amp;quot;environment&amp;quot;: [],
+            &amp;quot;externalConsole&amp;quot;: false
+        }
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;redis-benchmark压测&#34;&gt;redis-benchmark压测&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cd /usr/local/projs/redis/src &amp;amp;&amp;amp; ./redis-benchmark -h
+./redis-benchmark -t set -n 1000000 -r 100000000
+47496.91 requests per second
+./redis-benchmark -t set -n 1000000 -r 100000000 -P 16
+291290.41 requests per second
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;查看rdb快照文件&#34;&gt;查看RDB快照文件&lt;/h2&gt;
+&lt;p&gt;rdb -c memory dump.rdb &amp;gt; dump_rdb.csv&lt;br&gt;
+其中：size_in_bytes 内存的大小，由此可以查询内存最高的key&lt;/p&gt;</description>
         </item>
         
     </channel>
