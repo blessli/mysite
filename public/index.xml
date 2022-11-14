@@ -81,6 +81,36 @@ cloc src
 &lt;/code&gt;&lt;/pre&gt;</description>
         </item>
         <item>
+        <title>mysql source code learning</title>
+        <link>https://soli.seekincs.com/2022/11/mysql-source-code-learning/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/mysql-source-code-learning/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post mysql source code learning" /&gt;&lt;h2 id=&#34;mysql8024源码编译安装&#34;&gt;mysql8.0.24源码编译安装&lt;/h2&gt;
+&lt;p&gt;主要是参考&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/jhno1/p/15324343.html#autoid-0-8-0&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这篇文章&lt;/a&gt;，操作过程中根据报错进行fix&lt;/p&gt;
+&lt;h2 id=&#34;vscode本地调试mysql8024&#34;&gt;vscode本地调试mysql8.0.24&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;version&amp;quot;: &amp;quot;0.2.0&amp;quot;,
+    &amp;quot;configurations&amp;quot;: [
+        {
+            &amp;quot;name&amp;quot;: &amp;quot;debug mysql&amp;quot;,
+            &amp;quot;type&amp;quot;: &amp;quot;cppdbg&amp;quot;,
+            &amp;quot;request&amp;quot;: &amp;quot;launch&amp;quot;,
+            &amp;quot;program&amp;quot;: &amp;quot;/usr/local/mysql/bin/mysqld&amp;quot;,
+            &amp;quot;args&amp;quot;: [&amp;quot;--defaults-file=/usr/local/mysql/etc/my.cnf&amp;quot;],
+            &amp;quot;stopAtEntry&amp;quot;: false,
+            &amp;quot;cwd&amp;quot;: &amp;quot;${workspaceFolder}&amp;quot;,
+            &amp;quot;environment&amp;quot;: [],
+            &amp;quot;externalConsole&amp;quot;: false
+        }
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;源码剖析&#34;&gt;源码剖析&lt;/h2&gt;
+&lt;p&gt;todo tomorrow&amp;hellip;&lt;/p&gt;</description>
+        </item>
+        <item>
         <title>redis source code learning</title>
         <link>https://soli.seekincs.com/2022/11/redis-source-code-learning/</link>
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
