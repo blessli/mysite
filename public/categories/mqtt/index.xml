@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>mqtt on soli&#39;s blog</title>
+        <link>https://soli.seekincs.com/categories/mqtt/</link>
+        <description>Recent content in mqtt on soli&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Sun, 13 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/categories/mqtt/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>MQTT Broker in Action</title>
+        <link>https://soli.seekincs.com/2022/11/mqtt-broker-in-action/</link>
+        <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/mqtt-broker-in-action/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post MQTT Broker in Action" /&gt;&lt;h2 id=&#34;mqtt协议&#34;&gt;MQTT协议&lt;/h2&gt;
+&lt;p&gt;使用wireshark工具捕获mqtt协议包，主要包括3.0和5.0版本。&lt;/p&gt;
+&lt;h2 id=&#34;部署emqx&#34;&gt;部署EMQX&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;EMQX 是一款大规模可弹性伸缩的云原生分布式物联网 MQTT 消息服务器😂。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;单机版&#34;&gt;单机版&lt;/h3&gt;
+&lt;h3 id=&#34;集群版&#34;&gt;集群版&lt;/h3&gt;
+&lt;h4 id=&#34;伪分布式集群&#34;&gt;伪分布式集群&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;修改emqx.conf配置文件，集群节点开放某些端口&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&#34;language-conf&#34;&gt;cluster.discovery = static
+cluster.static.seeds = emqx@120.92.94.79,emqx@120.92.88.242
+rpc.port_discovery = manual
+rpc.tcp_server_port = 5369
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;两个集群节点分别执行docker run命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;docker run -d --name emqx_cluster -v /usr/local/emqx444/emqx_cluster_remote/docker/dockeremqx/emqx.conf:/opt/emqx/etc/emqx.conf -v /usr/local/emqx444/emqx_cluster_remote/docker/dockeremqx/emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf -v /usr/local/emqx444/emqx_cluster_remote/docker/dockeremqx/loaded_plugins:/opt/emqx/data/loaded_plugins --env EMQX_LOG__TO=both --env EMQX_HOST=120.92.94.79 -p 1883:1883 -p 8081:8081 -p 8083:8083 -p 8084:8084 -p 8883:8883 -p 18083:18083 -p 4370:4370 -p 5370:5370 -p 4369:4369 -p 5369:5369 -p 6369:6369 -p 6370:6370 emqx/emqx:4.4.4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;分布式集群&#34;&gt;分布式集群&lt;/h4&gt;
+&lt;h2 id=&#34;安全&#34;&gt;安全&lt;/h2&gt;
+&lt;h3 id=&#34;接入安全&#34;&gt;接入安全&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;服务端访问控制&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;客户端sdk安全&#34;&gt;客户端SDK安全&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SDK引入了第三方库， 要走中台统一的三方库报备、审查，看看有没有漏洞或其他风险。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;客户端sdk&#34;&gt;客户端SDK&lt;/h2&gt;
+&lt;h3 id=&#34;mqtt-go-客户端库httpsgithubcomeclipsepahogolang&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.golang&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MQTT Go 客户端库&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;mqtt-c-客户端库httpsgithubcomeclipsepahomqttcpp&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.mqtt.cpp&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MQTT C++ 客户端库&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;mqtt-javascript-客户端库&#34;&gt;MQTT JavaScript 客户端库&lt;/h3&gt;</description>
+        </item>
+        
+    </channel>
+</rss>
