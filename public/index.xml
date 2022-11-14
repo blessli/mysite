@@ -25,12 +25,30 @@
 &lt;h2 id=&#34;安全&#34;&gt;安全&lt;/h2&gt;</description>
         </item>
         <item>
-        <title>【实战】如何快速部署开源服务器</title>
-        <link>https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+        <title>MQTT Broker in Action cockymang</title>
+        <link>https://soli.seekincs.com/2022/11/mqtt-broker-in-action-cockymang/</link>
+        <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/mqtt-broker-in-action-cockymang/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post MQTT Broker in Action cockymang" /&gt;&lt;h2 id=&#34;mqtt协议&#34;&gt;MQTT协议&lt;/h2&gt;
+&lt;p&gt;使用wireshark工具捕获mqtt协议包，主要包括3.0和5.0版本。&lt;/p&gt;
+&lt;h2 id=&#34;部署emqx&#34;&gt;部署EMQX&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;EMQX 是一款大规模可弹性伸缩的云原生分布式物联网 MQTT 消息服务器😂。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;单机版&#34;&gt;单机版&lt;/h3&gt;
+&lt;h3 id=&#34;集群版&#34;&gt;集群版&lt;/h3&gt;
+&lt;h4 id=&#34;伪分布式集群&#34;&gt;伪分布式集群&lt;/h4&gt;
+&lt;h4 id=&#34;分布式集群&#34;&gt;分布式集群&lt;/h4&gt;
+&lt;h2 id=&#34;安全&#34;&gt;安全&lt;/h2&gt;</description>
+        </item>
+        <item>
+        <title>如何快速部署开源服务器</title>
+        <link>https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
         <pubDate>Sun, 30 Oct 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 【实战】如何快速部署开源服务器" /&gt;&lt;p&gt;&lt;a name=&#34;NcnDm&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+        <guid>https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 如何快速部署开源服务器" /&gt;&lt;p&gt;&lt;a name=&#34;NcnDm&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
 &lt;p&gt;当需要提供一种新能力，考虑到成本问题，我们往往不会从0到1开发一个服务器，而是先在开源产品中选型对比，看是否已有能满足自身需求的开源产品(不重复造轮子的原则)。因为对开源服务器的不熟悉，部署过程中会踩这样那样的坑，效率比较低，如何快速部署并应用于实际业务场景呢？&lt;br /&gt;随便提一下，私有化部署的原因主要是考虑到数据安全，&lt;strong&gt;安全无小事，安全大于一切&lt;/strong&gt;
 &lt;a name=&#34;cGHID&#34;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -166,10 +184,10 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 &lt;p&gt;SDK引入了第三方库， 要走中台统一的三方库报备、审查，看看有没有漏洞或其他风险 。
 &lt;a name=&#34;ucIIH&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;集群部署&#34;&gt;集群部署&lt;/h2&gt;
-&lt;p&gt;实际业务场景可能对高性能、高可用有着一定要求。这里以伪分布式集群为例：&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE.jpeg&#34;
+&lt;p&gt;实际业务场景可能对高性能、高可用有着一定要求。这里以伪分布式集群为例：&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE.jpeg&#34;
 	width=&#34;1520&#34;
 	height=&#34;756&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_1024x0_resize_q75_box.jpeg 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_1024x0_resize_q75_box.jpeg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;image.png&#34;
@@ -372,10 +390,10 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;#       gateway: 172.100.239.1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg&#34;
+&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg&#34;
 	width=&#34;1562&#34;
 	height=&#34;392&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_1024x0_resize_q75_box.jpeg 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_1024x0_resize_q75_box.jpeg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;image.png&#34;
@@ -516,10 +534,10 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg&#34;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg&#34;
 	width=&#34;1001&#34;
 	height=&#34;379&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_142730_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_142730_1024x0_resize_q75_box.jpeg 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_142730_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_142730_1024x0_resize_q75_box.jpeg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;image.png&#34;
@@ -547,10 +565,10 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 &lt;/div&gt;
 &lt;a name=&#34;MWSkb&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;压测注意事项&#34;&gt;压测注意事项&lt;/h4&gt;
-&lt;p&gt;压测客户端被限制：ulimit命令修改进程最大连接数限制，否则会压测不准，最大并发连接数卡在1007上不去。&lt;br /&gt;发布端发送消息速率过快：  max_mqueue_len参数默认为1000，队列满会消息发送失败 &lt;br /&gt;负载均衡器maxconn设置过小：haproxy的maxconn默认值是1000，需要调大为50000&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png&#34;
+&lt;p&gt;压测客户端被限制：ulimit命令修改进程最大连接数限制，否则会压测不准，最大并发连接数卡在1007上不去。&lt;br /&gt;发布端发送消息速率过快：  max_mqueue_len参数默认为1000，队列满会消息发送失败 &lt;br /&gt;负载均衡器maxconn设置过小：haproxy的maxconn默认值是1000，需要调大为50000&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png&#34;
 	width=&#34;1724&#34;
 	height=&#34;492&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_huefad2e85d3792de91e62b1dc6b6f85d7_360856_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_huefad2e85d3792de91e62b1dc6b6f85d7_360856_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_huefad2e85d3792de91e62b1dc6b6f85d7_360856_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_huefad2e85d3792de91e62b1dc6b6f85d7_360856_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;image.png&#34;
@@ -560,10 +578,10 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 		data-flex-grow=&#34;350&#34;
 		data-flex-basis=&#34;840px&#34;
 	
-&gt;&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png&#34;
+&gt;&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png&#34;
 	width=&#34;451&#34;
 	height=&#34;211&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu05177a01e7c6baaaeded93db73876caf_20409_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu05177a01e7c6baaaeded93db73876caf_20409_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu05177a01e7c6baaaeded93db73876caf_20409_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu05177a01e7c6baaaeded93db73876caf_20409_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
