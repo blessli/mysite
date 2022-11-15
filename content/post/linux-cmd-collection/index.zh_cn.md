@@ -27,3 +27,37 @@ source ~/.bashrc
 yum -y install cloc
 cloc src
 ```
+## 显示当前文件夹大小
+```sh
+du -hs
+```
+## 安装git2.x
+```sh
+sudo yum install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
+sudo yum install git
+git --version
+git config --global user.name "Your Name"
+git config --global user.email "email@example.com"
+ssh-keygen -t rsa -C "your_email@youremail.com"
+cat /root/.ssh/id_rsa.pub
+```
+## gcc升级到7.13
+```sh
+sudo yum install centos-release-scl
+sudo yum install devtoolset-7-gcc*
+ln -sf /opt/rh/devtoolset-7/root/usr/bin/gcc /usr/bin/gcc
+ln -sf /opt/rh/devtoolset-7/root/usr/bin/g++ /usr/bin/g++
+```
+## 安装cmake3
+```sh
+yum -y install cmake3
+sudo ln -s /usr/bin/cmake3 /usr/bin/cmake
+cmake --version
+```
+## linux开启swap分区
+dd if=/dev/zero of=/swapfile bs=64M count=64
+chmod 0600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+swapon -s
+https://www.cnblogs.com/Axianba/p/13131620.html

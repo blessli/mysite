@@ -13,6 +13,19 @@ image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"
 <!--more-->
 ## mysql8.0.24源码编译安装
 主要是参考[这篇文章](https://www.cnblogs.com/jhno1/p/15324343.html#autoid-0-8-0)，操作过程中根据报错进行fix
+### 遇到的问题
+1. OpenSSL 版本不兼容<br>
+不兼容1.1版本，需要openssl1.0.2，通过yum install openssl-devel。<br>
+1. fatal error: error writing to /tmp/ccFtecZv.s: No space left on device<br>
+60g磁盘满了，导致make 终止，/data目录删掉即可。<br>
+1. 内存不足<br>
+g++: internal compiler error: Killed (program cc1plus)。<br>
+[ 88%] Building CXX object sql/CMakeFiles/sql_gis.dir/gis/transform.cc.o
+[ 88%] Building CXX object sql/CMakeFiles/sql_gis.dir/gis/union.cc.o
+g++: internal compiler error: Killed (program cc1plus)
+Please submit a full bug report
+1. 缺少依赖组件
+yum install ncurses-devel cmake libaio bison zlib-devel openssl openssl-devel patch
 ## vscode本地调试mysql8.0.24
 ```json
 {
@@ -32,5 +45,6 @@ image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"
     ]
 }
 ```
+![static/mysql-debug-capture](static/mysql-debug-capture.jpg)
 ## 源码剖析
 todo tomorrow...

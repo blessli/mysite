@@ -41,3 +41,5 @@ cd /usr/local/projs/redis/src && ./redis-benchmark -h
 ## 查看RDB快照文件
 rdb -c memory dump.rdb > dump_rdb.csv<br>
 其中：size_in_bytes 内存的大小，由此可以查询内存最高的key
+## 参考资料
+- [Redis中文网](https://www.redis.net.cn/)
