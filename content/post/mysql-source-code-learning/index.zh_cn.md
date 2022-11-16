@@ -16,18 +16,23 @@ image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"
 ### 编译遇到的问题
 1. OpenSSL 版本不兼容<br>
 不兼容1.1版本，需要openssl1.0.2，通过yum install openssl-devel。<br>
-1. fatal error: error writing to /tmp/ccFtecZv.s: No space left on device<br>
+2. 磁盘空间不足<br>
+fatal error: error writing to /tmp/ccFtecZv.s: No space left on device<br>
 60g磁盘满了，导致make 终止，/data目录删掉即可。<br>
-1. 内存不足<br>
-g++: internal compiler error: Killed (program cc1plus)。<br>
+3. 内存不足<br>
+```sh
+g++: internal compiler error: Killed (program cc1plus)。
 [ 88%] Building CXX object sql/CMakeFiles/sql_gis.dir/gis/transform.cc.o
 [ 88%] Building CXX object sql/CMakeFiles/sql_gis.dir/gis/union.cc.o
 g++: internal compiler error: Killed (program cc1plus)
 Please submit a full bug report
+```
 1. 缺少依赖组件
 yum install ncurses-devel cmake libaio bison zlib-devel openssl openssl-devel patch
 ### 启动遇到的问题
-1. 磁盘空间不足
+#### 磁盘空间不足
+> 注意my.cnf配置文件，特别innodb参数配置，可能因系统内存或磁盘容量导致启动失败
+
 查看系统磁盘: df -h<br>
 [InnoDB] Error number 28 means 'No space left on device'
 ## vscode本地调试mysql8.0.24

@@ -54,10 +54,18 @@ yum -y install cmake3
 sudo ln -s /usr/bin/cmake3 /usr/bin/cmake
 cmake --version
 ```
+安装指定版本
+```sh
+wget https://github.com/Kitware/CMake/releases/download/v3.24.0/cmake-3.24.0-linux-x86_64.tar.gz
+tar -zxvf cmake-3.24.0-linux-x86_64.tar.gz
+ln -sf /usr/local/cmake-3.24.0-linux-x86_64/bin/cmake /usr/bin/cmake
+```
 ## linux开启swap分区
+```sh
 dd if=/dev/zero of=/swapfile bs=64M count=64
 chmod 0600 /swapfile
 mkswap /swapfile
 swapon /swapfile
 swapon -s
+```
 https://www.cnblogs.com/Axianba/p/13131620.html

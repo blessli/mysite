@@ -56,23 +56,28 @@ mygo run helloworld.go
 &lt;ol&gt;
 &lt;li&gt;OpenSSL 版本不兼容&lt;br&gt;
 不兼容1.1版本，需要openssl1.0.2，通过yum install openssl-devel。&lt;br&gt;&lt;/li&gt;
-&lt;li&gt;fatal error: error writing to /tmp/ccFtecZv.s: No space left on device&lt;br&gt;
+&lt;li&gt;磁盘空间不足&lt;br&gt;
+fatal error: error writing to /tmp/ccFtecZv.s: No space left on device&lt;br&gt;
 60g磁盘满了，导致make 终止，/data目录删掉即可。&lt;br&gt;&lt;/li&gt;
-&lt;li&gt;内存不足&lt;br&gt;
-g++: internal compiler error: Killed (program cc1plus)。&lt;br&gt;
+&lt;li&gt;内存不足&lt;br&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;g++: internal compiler error: Killed (program cc1plus)。
 [ 88%] Building CXX object sql/CMakeFiles/sql_gis.dir/gis/transform.cc.o
 [ 88%] Building CXX object sql/CMakeFiles/sql_gis.dir/gis/union.cc.o
 g++: internal compiler error: Killed (program cc1plus)
-Please submit a full bug report&lt;/li&gt;
+Please submit a full bug report
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
 &lt;li&gt;缺少依赖组件
 yum install ncurses-devel cmake libaio bison zlib-devel openssl openssl-devel patch&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;启动遇到的问题&#34;&gt;启动遇到的问题&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;磁盘空间不足
-查看系统磁盘: df -h&lt;br&gt;
-[InnoDB] Error number 28 means &amp;lsquo;No space left on device&amp;rsquo;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h4 id=&#34;磁盘空间不足&#34;&gt;磁盘空间不足&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意my.cnf配置文件，特别innodb参数配置，可能因系统内存或磁盘容量导致启动失败&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;查看系统磁盘: df -h&lt;br&gt;
+[InnoDB] Error number 28 means &amp;lsquo;No space left on device&amp;rsquo;&lt;/p&gt;
 &lt;h2 id=&#34;vscode本地调试mysql8024&#34;&gt;vscode本地调试mysql8.0.24&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
     &amp;quot;version&amp;quot;: &amp;quot;0.2.0&amp;quot;,

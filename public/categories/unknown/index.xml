@@ -47,13 +47,19 @@ ln -sf /opt/rh/devtoolset-7/root/usr/bin/g++ /usr/bin/g++
 sudo ln -s /usr/bin/cmake3 /usr/bin/cmake
 cmake --version
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安装指定版本&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;wget https://github.com/Kitware/CMake/releases/download/v3.24.0/cmake-3.24.0-linux-x86_64.tar.gz
+tar -zxvf cmake-3.24.0-linux-x86_64.tar.gz
+ln -sf /usr/local/cmake-3.24.0-linux-x86_64/bin/cmake /usr/bin/cmake
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;linux开启swap分区&#34;&gt;linux开启swap分区&lt;/h2&gt;
-&lt;p&gt;dd if=/dev/zero of=/swapfile bs=64M count=64
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;dd if=/dev/zero of=/swapfile bs=64M count=64
 chmod 0600 /swapfile
 mkswap /swapfile
 swapon /swapfile
 swapon -s
-&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/Axianba/p/13131620.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/Axianba/p/13131620.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.cnblogs.com/Axianba/p/13131620.html&lt;/a&gt;&lt;/p&gt;</description>
         </item>
         
