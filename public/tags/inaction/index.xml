@@ -12,7 +12,7 @@
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/c-in-action/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post C&#43;&#43; in Action" /&gt;</description>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img8.png" alt="Featured image of post C&#43;&#43; in Action" /&gt;</description>
         </item>
         <item>
         <title>k8s cluster in Action</title>
@@ -20,7 +20,7 @@
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/k8s-cluster-in-action/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post k8s cluster in Action" /&gt;&lt;h2 id=&#34;跨vpc搭建k8s集群httpswwwlanweihongcomposts56314&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.lanweihong.com/posts/56314/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img4.png" alt="Featured image of post k8s cluster in Action" /&gt;&lt;h2 id=&#34;跨vpc搭建k8s集群httpswwwlanweihongcomposts56314&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.lanweihong.com/posts/56314/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;跨vpc搭建k8s集群&lt;/a&gt;&lt;/h2&gt;</description>
         </item>
         <item>
@@ -29,51 +29,44 @@
         <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/mqtt-broker-in-action/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post MQTT Broker in Action" /&gt;&lt;h2 id=&#34;mqtt协议&#34;&gt;MQTT协议&lt;/h2&gt;
-&lt;p&gt;使用wireshark工具捕获mqtt协议包，主要包括3.0和5.0版本。&lt;/p&gt;
-&lt;h2 id=&#34;emqx部署&#34;&gt;EMQX部署&lt;/h2&gt;
-&lt;blockquote&gt;
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post MQTT Broker in Action" /&gt;&lt;blockquote&gt;
 &lt;p&gt;EMQX 是一款大规模可弹性伸缩的云原生分布式物联网 MQTT 消息服务器😂。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;docker单节点多实例&#34;&gt;Docker单节点多实例&lt;/h3&gt;
-&lt;p&gt;基于docker-compose+haproxy搭建伪分布式集群。
-docker-compose -f docker-compose-emqx-cluster.yaml up&lt;br&gt;
-docker-compose -f docker-compose-emqx-cluster.yaml down&lt;/p&gt;
+&lt;p&gt;基于docker-compose+haproxy搭建伪分布式集群：&lt;br&gt;
+启动：docker-compose -f docker-compose-emqx-cluster.yaml up&lt;br&gt;
+关闭：docker-compose -f docker-compose-emqx-cluster.yaml down&lt;/p&gt;
 &lt;h3 id=&#34;docker多节点&#34;&gt;Docker多节点&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;修改emqx.conf配置文件，集群节点开放某些端口&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;修改emqx.conf配置文件(这里选择static方式)，集群节点开放某些端口：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-conf&#34;&gt;cluster.discovery = static
 cluster.static.seeds = emqx@120.92.94.79,emqx@120.92.88.242
 rpc.port_discovery = manual
 rpc.tcp_server_port = 5369
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;两个集群节点分别执行docker run命令：&lt;/p&gt;
+&lt;p&gt;两个集群节点分别执行以下命令：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;docker run -d --name emqx_cluster -v /emqx.conf:/opt/emqx/etc/emqx.conf -v /emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf -v /loaded_plugins:/opt/emqx/data/loaded_plugins --env EMQX_LOG__TO=both --env EMQX_HOST=120.92.94.79 -p 1883:1883 -p 8081:8081 -p 8083:8083 -p 8084:8084 -p 8883:8883 -p 18083:18083 -p 4370:4370 -p 5370:5370 -p 4369:4369 -p 5369:5369 -p 6369:6369 -p 6370:6370 emqx/emqx:4.4.4
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;k8s集群&#34;&gt;k8s集群&lt;/h3&gt;
 &lt;p&gt;见另外一篇文章，传送门&lt;/p&gt;
 &lt;h2 id=&#34;安全&#34;&gt;安全&lt;/h2&gt;
-&lt;h3 id=&#34;接入安全&#34;&gt;接入安全&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;服务端访问控制，主要是启用emqx_auth_mysql插件实现认证和授权。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;客户端sdk安全&#34;&gt;客户端SDK安全&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;SDK引入了第三方库， 要走中台统一的三方库报备、审查，看看有没有漏洞或其他风险。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;安全主要包括服务端访问控制和客户端SDK安全，具体如下：&lt;br&gt;
+服务端启用emqx_auth_mysql插件实现认证和授权。&lt;br&gt;
+客户端SDK引入的第三方库， 要走中台统一的三方库报备、审查，看看有没有漏洞或其他风险。&lt;/p&gt;
 &lt;h2 id=&#34;客户端sdk&#34;&gt;客户端SDK&lt;/h2&gt;
-&lt;h3 id=&#34;mqtt-go-客户端库httpsgithubcomeclipsepahogolang&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.golang&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;MQTT Go 客户端库&lt;/a&gt;&lt;/h3&gt;
-&lt;h3 id=&#34;mqtt-c-客户端库httpsgithubcomeclipsepahomqttcpp&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.mqtt.cpp&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;MQTT C++ 客户端库&lt;/a&gt;&lt;/h3&gt;
-&lt;h3 id=&#34;mqtt-javascript-客户端库httpsgithubcomemqxmqtt-client-examplesblobmastermqtt-client-websocketws-mqtthtml&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-WebSocket/ws-mqtt.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;MQTT JavaScript 客户端库&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;一些SDK不支持mqtt5.0，其影响是pub/sub操作无法拿到原因码。一些SDK不支持断线重连。&lt;br&gt;
+注意点：client_id尽量不填(或者重连时采用第一次连接后返回的client_id)，避免client_id重复导致会话互踢。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.golang&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MQTT Go 客户端库&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.mqtt.cpp&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MQTT C++ 客户端库&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-WebSocket/ws-mqtt.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MQTT JavaScript 客户端库&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h2 id=&#34;压力验证&#34;&gt;压力验证&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/emqx/emqtt-bench&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;压测工具&lt;/a&gt;&lt;br&gt;
-硬件配置：&lt;br&gt;
-一台腾讯云服务器2核4g&lt;br&gt;
+硬件配置：一台腾讯云服务器2c4g。&lt;br&gt;
 一个master节点的k8s上运行emqx 6个pod，目前只能支持27322个订阅端，服务器CPU 100%。&lt;br&gt;&lt;/p&gt;
 &lt;h3 id=&#34;遇到的问题&#34;&gt;遇到的问题&lt;/h3&gt;
 &lt;p&gt;client(4): EXIT for {shutdown,eaddrinuse}&lt;br&gt;

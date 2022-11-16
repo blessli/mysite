@@ -11,16 +11,19 @@
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/c-in-action/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post C&#43;&#43; in Action" /&gt;</description>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img8.png" alt="Featured image of post C&#43;&#43; in Action" /&gt;</description>
         </item>
         <item>
-        <title>go source code learning</title>
-        <link>https://soli.seekincs.com/2022/11/go-source-code-learning/</link>
+        <title>带着些许问题去源码中找答案</title>
+        <link>https://soli.seekincs.com/2022/11/%E5%B8%A6%E7%9D%80%E4%BA%9B%E8%AE%B8%E9%97%AE%E9%A2%98%E5%8E%BB%E6%BA%90%E7%A0%81%E4%B8%AD%E6%89%BE%E7%AD%94%E6%A1%88/</link>
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/11/go-source-code-learning/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post go source code learning" /&gt;&lt;h2 id=&#34;编译&#34;&gt;编译&lt;/h2&gt;
-&lt;p&gt;编译脚本(all.bash/make.bash)中注释掉，跳过编译test，否则太慢&lt;/p&gt;
+        <guid>https://soli.seekincs.com/2022/11/%E5%B8%A6%E7%9D%80%E4%BA%9B%E8%AE%B8%E9%97%AE%E9%A2%98%E5%8E%BB%E6%BA%90%E7%A0%81%E4%B8%AD%E6%89%BE%E7%AD%94%E6%A1%88/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img6.png" alt="Featured image of post 带着些许问题去源码中找答案" /&gt;&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
+&lt;h3 id=&#34;调度器&#34;&gt;调度器&lt;/h3&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
+&lt;h3 id=&#34;编译&#34;&gt;编译&lt;/h3&gt;
+&lt;p&gt;编译脚本(all.bash/make.bash)中注释掉，跳过编译test，因为太慢&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;mkdir -p ~/mygo/bin
 cd ~/mygo/bin
 ln -sf /usr/local/projs/go/bin/go mygo

@@ -12,22 +12,7 @@
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/c-in-action/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post C&#43;&#43; in Action" /&gt;</description>
-        </item>
-        <item>
-        <title>go source code learning</title>
-        <link>https://soli.seekincs.com/2022/11/go-source-code-learning/</link>
-        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/11/go-source-code-learning/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post go source code learning" /&gt;&lt;h2 id=&#34;编译&#34;&gt;编译&lt;/h2&gt;
-&lt;p&gt;编译脚本(all.bash/make.bash)中注释掉，跳过编译test，否则太慢&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;mkdir -p ~/mygo/bin
-cd ~/mygo/bin
-ln -sf /usr/local/projs/go/bin/go mygo
-mygo version
-mygo run helloworld.go
-&lt;/code&gt;&lt;/pre&gt;</description>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img8.png" alt="Featured image of post C&#43;&#43; in Action" /&gt;</description>
         </item>
         <item>
         <title>grpcgo source code learning</title>
@@ -35,7 +20,7 @@ mygo run helloworld.go
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/grpcgo-source-code-learning/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post grpcgo source code learning" /&gt;&lt;h2 id=&#34;wireshark捕获grpc消息&#34;&gt;wireshark捕获grpc消息&lt;/h2&gt;
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img5.png" alt="Featured image of post grpcgo source code learning" /&gt;&lt;h2 id=&#34;wireshark捕获grpc消息&#34;&gt;wireshark捕获grpc消息&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/11/grpcgo-source-code-learning/static/wireshark-capture-grpc.jpg&#34;
 	width=&#34;1439&#34;
 	height=&#34;847&#34;
@@ -57,7 +42,7 @@ mygo run helloworld.go
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/k8s-cluster-in-action/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post k8s cluster in Action" /&gt;&lt;h2 id=&#34;跨vpc搭建k8s集群httpswwwlanweihongcomposts56314&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.lanweihong.com/posts/56314/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img4.png" alt="Featured image of post k8s cluster in Action" /&gt;&lt;h2 id=&#34;跨vpc搭建k8s集群httpswwwlanweihongcomposts56314&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.lanweihong.com/posts/56314/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;跨vpc搭建k8s集群&lt;/a&gt;&lt;/h2&gt;</description>
         </item>
         <item>
@@ -66,7 +51,7 @@ mygo run helloworld.go
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/linux-cmd-collection/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post linux cmd collection" /&gt;&lt;p&gt;centos版本&lt;/p&gt;
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post linux cmd collection" /&gt;&lt;p&gt;centos版本&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /etc/redhat-release
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;alias&#34;&gt;alias&lt;/h2&gt;
@@ -123,36 +108,54 @@ swapon -s
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/mysql-source-code-learning/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post mysql source code learning" /&gt;&lt;h2 id=&#34;mysql8024源码编译安装&#34;&gt;mysql8.0.24源码编译安装&lt;/h2&gt;
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png" alt="Featured image of post mysql source code learning" /&gt;&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
+&lt;h3 id=&#34;一条sql的生命周期&#34;&gt;一条SQL的生命周期&lt;/h3&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.mipa.site/2020/06/021934.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;参考文章&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;网络io模型&#34;&gt;网络IO模型&lt;/h3&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.51cto.com/u_15069490/2937369&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;参考文章&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
+&lt;h3 id=&#34;mysql8024源码编译安装&#34;&gt;mysql8.0.24源码编译安装&lt;/h3&gt;
 &lt;p&gt;主要是参考&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/jhno1/p/15324343.html#autoid-0-8-0&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这篇文章&lt;/a&gt;，操作过程中根据报错进行fix&lt;/p&gt;
-&lt;h3 id=&#34;编译遇到的问题&#34;&gt;编译遇到的问题&lt;/h3&gt;
+&lt;h3 id=&#34;编译安装问题&#34;&gt;编译安装问题&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;OpenSSL 版本不兼容&lt;br&gt;
 不兼容1.1版本，需要openssl1.0.2，通过yum install openssl-devel。&lt;br&gt;&lt;/li&gt;
 &lt;li&gt;磁盘空间不足&lt;br&gt;
-fatal error: error writing to /tmp/ccFtecZv.s: No space left on device&lt;br&gt;
 60g磁盘满了，导致make 终止，/data目录删掉即可。&lt;br&gt;&lt;/li&gt;
-&lt;li&gt;内存不足&lt;br&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;g++: internal compiler error: Killed (program cc1plus)。
-[ 88%] Building CXX object sql/CMakeFiles/sql_gis.dir/gis/transform.cc.o
-[ 88%] Building CXX object sql/CMakeFiles/sql_gis.dir/gis/union.cc.o
-g++: internal compiler error: Killed (program cc1plus)
-Please submit a full bug report
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;fatal error: error writing to /tmp/ccFtecZv.s: No space left on device
 &lt;/code&gt;&lt;/pre&gt;
-&lt;ol&gt;
-&lt;li&gt;缺少依赖组件
-yum install ncurses-devel cmake libaio bison zlib-devel openssl openssl-devel patch&lt;/li&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;内存不足&lt;br&gt;
+需要开启swap分区&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;启动遇到的问题&#34;&gt;启动遇到的问题&lt;/h3&gt;
-&lt;h4 id=&#34;磁盘空间不足&#34;&gt;磁盘空间不足&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;g++: internal compiler error: Killed (program cc1plus)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;太吃内存，make巨慢&lt;br&gt;
+没找到解决方案&amp;hellip;&lt;/li&gt;
+&lt;li&gt;缺少依赖组件&lt;br&gt;
+可能是缺少ncurses-devel&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;yum install ncurses-devel libaio bison zlib-devel openssl openssl-devel patch
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;mysqld启动问题&#34;&gt;mysqld启动问题&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;磁盘空间不足&lt;/li&gt;
+&lt;/ol&gt;
 &lt;blockquote&gt;
 &lt;p&gt;注意my.cnf配置文件，特别innodb参数配置，可能因系统内存或磁盘容量导致启动失败&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;查看系统磁盘: df -h&lt;br&gt;
 [InnoDB] Error number 28 means &amp;lsquo;No space left on device&amp;rsquo;&lt;/p&gt;
-&lt;h2 id=&#34;vscode本地调试mysql8024&#34;&gt;vscode本地调试mysql8.0.24&lt;/h2&gt;
+&lt;h3 id=&#34;vscode本地调试mysql8024&#34;&gt;vscode本地调试mysql8.0.24&lt;/h3&gt;
+&lt;p&gt;先在云服务器上执行以下命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;./mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;launch.json配置文件如下：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
     &amp;quot;version&amp;quot;: &amp;quot;0.2.0&amp;quot;,
     &amp;quot;configurations&amp;quot;: [
@@ -183,9 +186,7 @@ yum install ncurses-devel cmake libaio bison zlib-devel openssl openssl-devel pa
 		data-flex-grow=&#34;137&#34;
 		data-flex-basis=&#34;330px&#34;
 	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;源码剖析&#34;&gt;源码剖析&lt;/h2&gt;
-&lt;p&gt;todo tomorrow&amp;hellip;&lt;/p&gt;</description>
+&gt;&lt;/p&gt;</description>
         </item>
         <item>
         <title>redis source code learning</title>
@@ -193,7 +194,10 @@ yum install ncurses-devel cmake libaio bison zlib-devel openssl openssl-devel pa
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/redis-source-code-learning/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post redis source code learning" /&gt;&lt;h2 id=&#34;vscode本地调试&#34;&gt;vscode本地调试&lt;/h2&gt;
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img3.png" alt="Featured image of post redis source code learning" /&gt;&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
+&lt;h3 id=&#34;事件处理&#34;&gt;事件处理&lt;/h3&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
+&lt;h3 id=&#34;vscode本地调试&#34;&gt;vscode本地调试&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
     &amp;quot;version&amp;quot;: &amp;quot;0.2.0&amp;quot;,
     &amp;quot;configurations&amp;quot;: [
@@ -211,21 +215,39 @@ yum install ncurses-devel cmake libaio bison zlib-devel openssl openssl-devel pa
     ]
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;redis-benchmark压测&#34;&gt;redis-benchmark压测&lt;/h2&gt;
+&lt;h3 id=&#34;redis-benchmark压测&#34;&gt;redis-benchmark压测&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cd /usr/local/projs/redis/src &amp;amp;&amp;amp; ./redis-benchmark -h
 ./redis-benchmark -t set -n 1000000 -r 100000000
 47496.91 requests per second
 ./redis-benchmark -t set -n 1000000 -r 100000000 -P 16
 291290.41 requests per second
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;查看rdb快照文件&#34;&gt;查看RDB快照文件&lt;/h2&gt;
+&lt;h3 id=&#34;查看rdb快照文件&#34;&gt;查看RDB快照文件&lt;/h3&gt;
 &lt;p&gt;rdb -c memory dump.rdb &amp;gt; dump_rdb.csv&lt;br&gt;
 其中：size_in_bytes 内存的大小，由此可以查询内存最高的key&lt;/p&gt;
-&lt;h2 id=&#34;参考资料&#34;&gt;参考资料&lt;/h2&gt;
+&lt;h3 id=&#34;参考资料&#34;&gt;参考资料&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.redis.net.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Redis中文网&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
+        </item>
+        <item>
+        <title>带着些许问题去源码中找答案</title>
+        <link>https://soli.seekincs.com/2022/11/%E5%B8%A6%E7%9D%80%E4%BA%9B%E8%AE%B8%E9%97%AE%E9%A2%98%E5%8E%BB%E6%BA%90%E7%A0%81%E4%B8%AD%E6%89%BE%E7%AD%94%E6%A1%88/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/%E5%B8%A6%E7%9D%80%E4%BA%9B%E8%AE%B8%E9%97%AE%E9%A2%98%E5%8E%BB%E6%BA%90%E7%A0%81%E4%B8%AD%E6%89%BE%E7%AD%94%E6%A1%88/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img6.png" alt="Featured image of post 带着些许问题去源码中找答案" /&gt;&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
+&lt;h3 id=&#34;调度器&#34;&gt;调度器&lt;/h3&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
+&lt;h3 id=&#34;编译&#34;&gt;编译&lt;/h3&gt;
+&lt;p&gt;编译脚本(all.bash/make.bash)中注释掉，跳过编译test，因为太慢&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;mkdir -p ~/mygo/bin
+cd ~/mygo/bin
+ln -sf /usr/local/projs/go/bin/go mygo
+mygo version
+mygo run helloworld.go
+&lt;/code&gt;&lt;/pre&gt;</description>
         </item>
         <item>
         <title>MQTT Broker in Action</title>
@@ -233,51 +255,44 @@ yum install ncurses-devel cmake libaio bison zlib-devel openssl openssl-devel pa
         <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/mqtt-broker-in-action/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post MQTT Broker in Action" /&gt;&lt;h2 id=&#34;mqtt协议&#34;&gt;MQTT协议&lt;/h2&gt;
-&lt;p&gt;使用wireshark工具捕获mqtt协议包，主要包括3.0和5.0版本。&lt;/p&gt;
-&lt;h2 id=&#34;emqx部署&#34;&gt;EMQX部署&lt;/h2&gt;
-&lt;blockquote&gt;
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post MQTT Broker in Action" /&gt;&lt;blockquote&gt;
 &lt;p&gt;EMQX 是一款大规模可弹性伸缩的云原生分布式物联网 MQTT 消息服务器😂。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;docker单节点多实例&#34;&gt;Docker单节点多实例&lt;/h3&gt;
-&lt;p&gt;基于docker-compose+haproxy搭建伪分布式集群。
-docker-compose -f docker-compose-emqx-cluster.yaml up&lt;br&gt;
-docker-compose -f docker-compose-emqx-cluster.yaml down&lt;/p&gt;
+&lt;p&gt;基于docker-compose+haproxy搭建伪分布式集群：&lt;br&gt;
+启动：docker-compose -f docker-compose-emqx-cluster.yaml up&lt;br&gt;
+关闭：docker-compose -f docker-compose-emqx-cluster.yaml down&lt;/p&gt;
 &lt;h3 id=&#34;docker多节点&#34;&gt;Docker多节点&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;修改emqx.conf配置文件，集群节点开放某些端口&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;修改emqx.conf配置文件(这里选择static方式)，集群节点开放某些端口：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-conf&#34;&gt;cluster.discovery = static
 cluster.static.seeds = emqx@120.92.94.79,emqx@120.92.88.242
 rpc.port_discovery = manual
 rpc.tcp_server_port = 5369
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;两个集群节点分别执行docker run命令：&lt;/p&gt;
+&lt;p&gt;两个集群节点分别执行以下命令：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;docker run -d --name emqx_cluster -v /emqx.conf:/opt/emqx/etc/emqx.conf -v /emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf -v /loaded_plugins:/opt/emqx/data/loaded_plugins --env EMQX_LOG__TO=both --env EMQX_HOST=120.92.94.79 -p 1883:1883 -p 8081:8081 -p 8083:8083 -p 8084:8084 -p 8883:8883 -p 18083:18083 -p 4370:4370 -p 5370:5370 -p 4369:4369 -p 5369:5369 -p 6369:6369 -p 6370:6370 emqx/emqx:4.4.4
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;k8s集群&#34;&gt;k8s集群&lt;/h3&gt;
 &lt;p&gt;见另外一篇文章，传送门&lt;/p&gt;
 &lt;h2 id=&#34;安全&#34;&gt;安全&lt;/h2&gt;
-&lt;h3 id=&#34;接入安全&#34;&gt;接入安全&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;服务端访问控制，主要是启用emqx_auth_mysql插件实现认证和授权。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;客户端sdk安全&#34;&gt;客户端SDK安全&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;SDK引入了第三方库， 要走中台统一的三方库报备、审查，看看有没有漏洞或其他风险。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;安全主要包括服务端访问控制和客户端SDK安全，具体如下：&lt;br&gt;
+服务端启用emqx_auth_mysql插件实现认证和授权。&lt;br&gt;
+客户端SDK引入的第三方库， 要走中台统一的三方库报备、审查，看看有没有漏洞或其他风险。&lt;/p&gt;
 &lt;h2 id=&#34;客户端sdk&#34;&gt;客户端SDK&lt;/h2&gt;
-&lt;h3 id=&#34;mqtt-go-客户端库httpsgithubcomeclipsepahogolang&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.golang&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;MQTT Go 客户端库&lt;/a&gt;&lt;/h3&gt;
-&lt;h3 id=&#34;mqtt-c-客户端库httpsgithubcomeclipsepahomqttcpp&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.mqtt.cpp&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;MQTT C++ 客户端库&lt;/a&gt;&lt;/h3&gt;
-&lt;h3 id=&#34;mqtt-javascript-客户端库httpsgithubcomemqxmqtt-client-examplesblobmastermqtt-client-websocketws-mqtthtml&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-WebSocket/ws-mqtt.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;MQTT JavaScript 客户端库&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;一些SDK不支持mqtt5.0，其影响是pub/sub操作无法拿到原因码。一些SDK不支持断线重连。&lt;br&gt;
+注意点：client_id尽量不填(或者重连时采用第一次连接后返回的client_id)，避免client_id重复导致会话互踢。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.golang&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MQTT Go 客户端库&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.mqtt.cpp&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MQTT C++ 客户端库&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-WebSocket/ws-mqtt.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MQTT JavaScript 客户端库&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h2 id=&#34;压力验证&#34;&gt;压力验证&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/emqx/emqtt-bench&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;压测工具&lt;/a&gt;&lt;br&gt;
-硬件配置：&lt;br&gt;
-一台腾讯云服务器2核4g&lt;br&gt;
+硬件配置：一台腾讯云服务器2c4g。&lt;br&gt;
 一个master节点的k8s上运行emqx 6个pod，目前只能支持27322个订阅端，服务器CPU 100%。&lt;br&gt;&lt;/p&gt;
 &lt;h3 id=&#34;遇到的问题&#34;&gt;遇到的问题&lt;/h3&gt;
 &lt;p&gt;client(4): EXIT for {shutdown,eaddrinuse}&lt;br&gt;
@@ -850,35 +865,6 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 &lt;a name=&#34;b4Tai&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
 &lt;p&gt;搭建开源服务器，需要实现协议接入、集群部署、接入安全等核心功能来满足业务需求，最终目的是为业务带来一定的价值。&lt;/p&gt;</description>
-        </item>
-        <item>
-        <title>【读书笔记】网络是怎样连接的</title>
-        <link>https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/</link>
-        <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img0.png" alt="Featured image of post 【读书笔记】网络是怎样连接的" /&gt;&lt;blockquote&gt;
-&lt;p&gt;从在浏览器中输入网址，到屏幕上显示出网页的内容，在这个只有几秒钟的过程中，很多硬件和软件都在各自的岗位上相互配合完成了一系列的工作。&lt;br&gt;
-&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/static/%E6%8E%A2%E7%B4%A2%E4%B9%8B%E6%97%85%E8%B7%AF%E7%BA%BF%E5%9B%BE.png&#34;
-	width=&#34;1019&#34;
-	height=&#34;607&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/static/%E6%8E%A2%E7%B4%A2%E4%B9%8B%E6%97%85%E8%B7%AF%E7%BA%BF%E5%9B%BE_hu717f72756ee5a734cc42c73c4166c78f_292840_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/static/%E6%8E%A2%E7%B4%A2%E4%B9%8B%E6%97%85%E8%B7%AF%E7%BA%BF%E5%9B%BE_hu717f72756ee5a734cc42c73c4166c78f_292840_1024x0_resize_box_3.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;探索之旅路线图&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;167&#34;
-		data-flex-basis=&#34;402px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;浏览器生成消息&#34;&gt;浏览器生成消息&lt;/h2&gt;
-&lt;h2 id=&#34;用电信号传输tcpip&#34;&gt;用电信号传输TCP/IP&lt;/h2&gt;
-&lt;h2 id=&#34;从网络到网络设备&#34;&gt;从网络到网络设备&lt;/h2&gt;
-&lt;h2 id=&#34;通过接入网进入互联网内部&#34;&gt;通过接入网进入互联网内部&lt;/h2&gt;
-&lt;h2 id=&#34;请求到达web服务器响应返回浏览器&#34;&gt;请求到达web服务器，响应返回浏览器&lt;/h2&gt;</description>
         </item>
         <item>
         <title>spark原理浅析</title>
