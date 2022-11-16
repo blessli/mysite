@@ -39,7 +39,12 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;查看rdb快照文件&#34;&gt;查看RDB快照文件&lt;/h2&gt;
 &lt;p&gt;rdb -c memory dump.rdb &amp;gt; dump_rdb.csv&lt;br&gt;
-其中：size_in_bytes 内存的大小，由此可以查询内存最高的key&lt;/p&gt;</description>
+其中：size_in_bytes 内存的大小，由此可以查询内存最高的key&lt;/p&gt;
+&lt;h2 id=&#34;参考资料&#34;&gt;参考资料&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.redis.net.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Redis中文网&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
         </item>
         
     </channel>

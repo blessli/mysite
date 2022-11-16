@@ -13,7 +13,7 @@ image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"
 <!--more-->
 ## mysql8.0.24源码编译安装
 主要是参考[这篇文章](https://www.cnblogs.com/jhno1/p/15324343.html#autoid-0-8-0)，操作过程中根据报错进行fix
-### 遇到的问题
+### 编译遇到的问题
 1. OpenSSL 版本不兼容<br>
 不兼容1.1版本，需要openssl1.0.2，通过yum install openssl-devel。<br>
 1. fatal error: error writing to /tmp/ccFtecZv.s: No space left on device<br>
@@ -26,6 +26,10 @@ g++: internal compiler error: Killed (program cc1plus)
 Please submit a full bug report
 1. 缺少依赖组件
 yum install ncurses-devel cmake libaio bison zlib-devel openssl openssl-devel patch
+### 启动遇到的问题
+1. 磁盘空间不足
+查看系统磁盘: df -h<br>
+[InnoDB] Error number 28 means 'No space left on device'
 ## vscode本地调试mysql8.0.24
 ```json
 {

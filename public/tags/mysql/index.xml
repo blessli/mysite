@@ -15,6 +15,27 @@
         <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post mysql source code learning" /&gt;&lt;h2 id=&#34;mysql8024源码编译安装&#34;&gt;mysql8.0.24源码编译安装&lt;/h2&gt;
 &lt;p&gt;主要是参考&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/jhno1/p/15324343.html#autoid-0-8-0&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这篇文章&lt;/a&gt;，操作过程中根据报错进行fix&lt;/p&gt;
+&lt;h3 id=&#34;编译遇到的问题&#34;&gt;编译遇到的问题&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;OpenSSL 版本不兼容&lt;br&gt;
+不兼容1.1版本，需要openssl1.0.2，通过yum install openssl-devel。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;fatal error: error writing to /tmp/ccFtecZv.s: No space left on device&lt;br&gt;
+60g磁盘满了，导致make 终止，/data目录删掉即可。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;内存不足&lt;br&gt;
+g++: internal compiler error: Killed (program cc1plus)。&lt;br&gt;
+[ 88%] Building CXX object sql/CMakeFiles/sql_gis.dir/gis/transform.cc.o
+[ 88%] Building CXX object sql/CMakeFiles/sql_gis.dir/gis/union.cc.o
+g++: internal compiler error: Killed (program cc1plus)
+Please submit a full bug report&lt;/li&gt;
+&lt;li&gt;缺少依赖组件
+yum install ncurses-devel cmake libaio bison zlib-devel openssl openssl-devel patch&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;启动遇到的问题&#34;&gt;启动遇到的问题&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;磁盘空间不足
+查看系统磁盘: df -h&lt;br&gt;
+[InnoDB] Error number 28 means &amp;lsquo;No space left on device&amp;rsquo;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h2 id=&#34;vscode本地调试mysql8024&#34;&gt;vscode本地调试mysql8.0.24&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
     &amp;quot;version&amp;quot;: &amp;quot;0.2.0&amp;quot;,
@@ -33,6 +54,20 @@
     ]
 }
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/11/mysql-source-code-learning/static/mysql-debug-capture.jpg&#34;
+	width=&#34;1400&#34;
+	height=&#34;1018&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/11/mysql-source-code-learning/static/mysql-debug-capture_hua96c84624f874841e8ede985cb3d2228_146303_480x0_resize_q75_box.jpg 480w, https://soli.seekincs.com/2022/11/mysql-source-code-learning/static/mysql-debug-capture_hua96c84624f874841e8ede985cb3d2228_146303_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;static/mysql-debug-capture&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;137&#34;
+		data-flex-basis=&#34;330px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h2 id=&#34;源码剖析&#34;&gt;源码剖析&lt;/h2&gt;
 &lt;p&gt;todo tomorrow&amp;hellip;&lt;/p&gt;</description>
         </item>
