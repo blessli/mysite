@@ -11,7 +11,6 @@ tags = [
 "inaction","mqtt"
 ]
 series = ["Themes Guide"]
-aliases = ["migrate-from-jekyl"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img4.png"
 +++
 <!--more-->

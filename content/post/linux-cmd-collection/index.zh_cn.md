@@ -7,7 +7,6 @@ description = ""
 categories = ["unknown"]
 tags = ["linux"]
 series = ["Themes Guide"]
-aliases = ["migrate-from-jekyl"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png"
 +++
 <!--more-->

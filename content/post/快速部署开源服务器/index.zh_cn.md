@@ -10,7 +10,6 @@ tags = [
 "实战"
 ]
 series = ["Themes Guide"]
-aliases = ["migrate-from-jekyl"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"
 +++
 <!--more-->

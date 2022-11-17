@@ -7,7 +7,6 @@ description = "带着些许问题去源码中找答案"
 categories = ["language"]
 tags = ["sourcecode"]
 series = ["Themes Guide"]
-aliases = ["migrate-from-jekyl"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img6.png"
 +++
 <!--more-->

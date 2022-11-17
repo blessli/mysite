@@ -11,7 +11,6 @@ tags = [
 "grpcgo","sourcecode"
 ]
 series = ["Themes Guide"]
-aliases = ["migrate-from-jekyl"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img5.png"
 +++
 <!--more-->
