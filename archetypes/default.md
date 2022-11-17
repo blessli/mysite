@@ -1,3 +1,4 @@
 ---
 lastmod: {{ .Date }}
+keywords:
 ---
