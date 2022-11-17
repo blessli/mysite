@@ -40,10 +40,10 @@ docker run -d --name emqx_cluster -v /emqx.conf:/opt/emqx/etc/emqx.conf -v /emqx
 客户端SDK引入的第三方库， 要走中台统一的三方库报备、审查，看看有没有漏洞或其他风险。
 ## 客户端SDK
 一些SDK不支持mqtt5.0，其影响是pub/sub操作无法拿到原因码。一些SDK不支持断线重连。<br>
-注意点：client_id尽量不填(或者重连时采用第一次连接后返回的client_id)，避免client_id重复导致会话互踢。
-1. [MQTT Go 客户端库](https://github.com/eclipse/paho.golang)
-2. [MQTT C++ 客户端库](https://github.com/eclipse/paho.mqtt.cpp)
-3. [MQTT JavaScript 客户端库](https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-WebSocket/ws-mqtt.html)
+注意点：client_id尽量不填(或者重连时采用第一次连接后返回的client_id)，避免client_id重复导致会话互踢。<br>
+Go版本建议选择[paho.golang](https://github.com/eclipse/paho.golang)，因为支持5.0协议。<br>
+C++版本建议选择[paho.mqtt.cpp](https://github.com/eclipse/paho.mqtt.cpp)，也可以参考我写的[一个基于vcpkg+cmake的demo](https://github.com/blessli/mqtt-cpp-demo)<br>
+JS版本建议选择[ws-mqtt](https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-WebSocket/ws-mqtt.html)
 ## 压力验证
 [压测工具](https://github.com/emqx/emqtt-bench)<br>
 硬件配置：一台腾讯云服务器2c4g。<br>

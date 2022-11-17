@@ -13,7 +13,9 @@
         
         <guid>https://soli.seekincs.com/2022/11/k8s-cluster-in-action/</guid>
         <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img4.png" alt="Featured image of post k8s cluster in Action" /&gt;&lt;h2 id=&#34;跨vpc搭建k8s集群httpswwwlanweihongcomposts56314&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.lanweihong.com/posts/56314/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;跨vpc搭建k8s集群&lt;/a&gt;&lt;/h2&gt;</description>
+    &gt;跨vpc搭建k8s集群&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;集成sidecar&#34;&gt;集成sidecar&lt;/h2&gt;
+&lt;p&gt;todo&lt;/p&gt;</description>
         </item>
         
     </channel>

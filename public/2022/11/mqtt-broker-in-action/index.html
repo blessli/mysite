@@ -9,7 +9,7 @@
 <meta property='og:description' content='MQTT消息服务器实战'>
 <meta property='og:url' content='https://soli.seekincs.com/2022/11/mqtt-broker-in-action/'>
 <meta property='og:site_name' content='soli&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='inaction' /><meta property='article:tag' content='emqx' /><meta property='article:published_time' content='2022-11-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-11-17T02:30:01&#43;08:00'/><meta property='og:image' content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='inaction' /><meta property='article:tag' content='emqx' /><meta property='article:published_time' content='2022-11-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-11-17T10:11:10&#43;08:00'/><meta property='og:image' content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png' />
 <meta name="twitter:title" content="MQTT Broker in Action">
 <meta name="twitter:description" content="MQTT消息服务器实战"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png' />
@@ -269,7 +269,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                            <time class="article-time--updated" datetime="2022-11-17 02:30:01.501976068 &#43;0800 CST" title="2022-11-17 02:30:01.501976068 &#43;0800 CST">
+                            <time class="article-time--updated" datetime="2022-11-17 10:11:10.270577816 &#43;0800 CST" title="2022-11-17 10:11:10.270577816 &#43;0800 CST">
                                 2022年11月17日</time>
                         </div>
         
@@ -322,15 +322,14 @@ rpc.tcp_server_port = 5369
 客户端SDK引入的第三方库， 要走中台统一的三方库报备、审查，看看有没有漏洞或其他风险。</p>
 <h2 id="客户端sdk">客户端SDK</h2>
 <p>一些SDK不支持mqtt5.0，其影响是pub/sub操作无法拿到原因码。一些SDK不支持断线重连。<br>
-注意点：client_id尽量不填(或者重连时采用第一次连接后返回的client_id)，避免client_id重复导致会话互踢。</p>
-<ol>
-<li><a class="link" href="https://github.com/eclipse/paho.golang"  target="_blank" rel="noopener"
-    >MQTT Go 客户端库</a></li>
-<li><a class="link" href="https://github.com/eclipse/paho.mqtt.cpp"  target="_blank" rel="noopener"
-    >MQTT C++ 客户端库</a></li>
-<li><a class="link" href="https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-WebSocket/ws-mqtt.html"  target="_blank" rel="noopener"
-    >MQTT JavaScript 客户端库</a></li>
-</ol>
+注意点：client_id尽量不填(或者重连时采用第一次连接后返回的client_id)，避免client_id重复导致会话互踢。<br>
+Go版本建议选择<a class="link" href="https://github.com/eclipse/paho.golang"  target="_blank" rel="noopener"
+    >paho.golang</a>，因为支持5.0协议。<br>
+C++版本建议选择<a class="link" href="https://github.com/eclipse/paho.mqtt.cpp"  target="_blank" rel="noopener"
+    >paho.mqtt.cpp</a>，也可以参考我写的<a class="link" href="https://github.com/blessli/mqtt-cpp-demo"  target="_blank" rel="noopener"
+    >一个基于vcpkg+cmake的demo</a><br>
+JS版本建议选择<a class="link" href="https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-WebSocket/ws-mqtt.html"  target="_blank" rel="noopener"
+    >ws-mqtt</a></p>
 <h2 id="压力验证">压力验证</h2>
 <p><a class="link" href="https://github.com/emqx/emqtt-bench"  target="_blank" rel="noopener"
     >压测工具</a><br>
@@ -379,7 +378,7 @@ rpc.tcp_server_port = 5369
 
 
         <span>
-            最后更新于 2022年11月17日 02点30分01秒
+            最后更新于 2022年11月17日 10点11分10秒
         </span>
     </section></footer>
 

@@ -15,6 +15,24 @@
         <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img8.png" alt="Featured image of post C&#43;&#43; in Action" /&gt;</description>
         </item>
         <item>
+        <title>go source code learning</title>
+        <link>https://soli.seekincs.com/2022/11/go-source-code-learning/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/go-source-code-learning/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img6.png" alt="Featured image of post go source code learning" /&gt;&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
+&lt;h3 id=&#34;调度器&#34;&gt;调度器&lt;/h3&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
+&lt;h3 id=&#34;编译&#34;&gt;编译&lt;/h3&gt;
+&lt;p&gt;编译脚本(all.bash/make.bash)中注释掉，跳过编译test，因为太慢&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;mkdir -p ~/mygo/bin
+cd ~/mygo/bin
+ln -sf /usr/local/projs/go/bin/go mygo
+mygo version
+mygo run helloworld.go
+&lt;/code&gt;&lt;/pre&gt;</description>
+        </item>
+        <item>
         <title>grpcgo source code learning</title>
         <link>https://soli.seekincs.com/2022/11/grpcgo-source-code-learning/</link>
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
@@ -43,7 +61,9 @@
         
         <guid>https://soli.seekincs.com/2022/11/k8s-cluster-in-action/</guid>
         <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img4.png" alt="Featured image of post k8s cluster in Action" /&gt;&lt;h2 id=&#34;跨vpc搭建k8s集群httpswwwlanweihongcomposts56314&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.lanweihong.com/posts/56314/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;跨vpc搭建k8s集群&lt;/a&gt;&lt;/h2&gt;</description>
+    &gt;跨vpc搭建k8s集群&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;集成sidecar&#34;&gt;集成sidecar&lt;/h2&gt;
+&lt;p&gt;todo&lt;/p&gt;</description>
         </item>
         <item>
         <title>linux cmd collection</title>
@@ -232,24 +252,6 @@ swapon -s
 &lt;/ul&gt;</description>
         </item>
         <item>
-        <title>带着些许问题去源码中找答案</title>
-        <link>https://soli.seekincs.com/2022/11/%E5%B8%A6%E7%9D%80%E4%BA%9B%E8%AE%B8%E9%97%AE%E9%A2%98%E5%8E%BB%E6%BA%90%E7%A0%81%E4%B8%AD%E6%89%BE%E7%AD%94%E6%A1%88/</link>
-        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/11/%E5%B8%A6%E7%9D%80%E4%BA%9B%E8%AE%B8%E9%97%AE%E9%A2%98%E5%8E%BB%E6%BA%90%E7%A0%81%E4%B8%AD%E6%89%BE%E7%AD%94%E6%A1%88/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img6.png" alt="Featured image of post 带着些许问题去源码中找答案" /&gt;&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
-&lt;h3 id=&#34;调度器&#34;&gt;调度器&lt;/h3&gt;
-&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
-&lt;h3 id=&#34;编译&#34;&gt;编译&lt;/h3&gt;
-&lt;p&gt;编译脚本(all.bash/make.bash)中注释掉，跳过编译test，因为太慢&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;mkdir -p ~/mygo/bin
-cd ~/mygo/bin
-ln -sf /usr/local/projs/go/bin/go mygo
-mygo version
-mygo run helloworld.go
-&lt;/code&gt;&lt;/pre&gt;</description>
-        </item>
-        <item>
         <title>MQTT Broker in Action</title>
         <link>https://soli.seekincs.com/2022/11/mqtt-broker-in-action/</link>
         <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
@@ -280,15 +282,14 @@ rpc.tcp_server_port = 5369
 客户端SDK引入的第三方库， 要走中台统一的三方库报备、审查，看看有没有漏洞或其他风险。&lt;/p&gt;
 &lt;h2 id=&#34;客户端sdk&#34;&gt;客户端SDK&lt;/h2&gt;
 &lt;p&gt;一些SDK不支持mqtt5.0，其影响是pub/sub操作无法拿到原因码。一些SDK不支持断线重连。&lt;br&gt;
-注意点：client_id尽量不填(或者重连时采用第一次连接后返回的client_id)，避免client_id重复导致会话互踢。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.golang&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;MQTT Go 客户端库&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.mqtt.cpp&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;MQTT C++ 客户端库&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-WebSocket/ws-mqtt.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;MQTT JavaScript 客户端库&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
+注意点：client_id尽量不填(或者重连时采用第一次连接后返回的client_id)，避免client_id重复导致会话互踢。&lt;br&gt;
+Go版本建议选择&lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.golang&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;paho.golang&lt;/a&gt;，因为支持5.0协议。&lt;br&gt;
+C++版本建议选择&lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.mqtt.cpp&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;paho.mqtt.cpp&lt;/a&gt;，也可以参考我写的&lt;a class=&#34;link&#34; href=&#34;https://github.com/blessli/mqtt-cpp-demo&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;一个基于vcpkg+cmake的demo&lt;/a&gt;&lt;br&gt;
+JS版本建议选择&lt;a class=&#34;link&#34; href=&#34;https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-WebSocket/ws-mqtt.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ws-mqtt&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;压力验证&#34;&gt;压力验证&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/emqx/emqtt-bench&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;压测工具&lt;/a&gt;&lt;br&gt;
