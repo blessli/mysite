@@ -7,14 +7,6 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Mon, 14 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/post/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>C&#43;&#43; in Action</title>
-        <link>https://soli.seekincs.com/2022/11/c-in-action/</link>
-        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/11/c-in-action/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img8.png" alt="Featured image of post C&#43;&#43; in Action" /&gt;</description>
-        </item>
-        <item>
         <title>go source code learning</title>
         <link>https://soli.seekincs.com/2022/11/go-source-code-learning/</link>
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
@@ -120,7 +112,20 @@ swapon /swapfile
 swapon -s
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/Axianba/p/13131620.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.cnblogs.com/Axianba/p/13131620.html&lt;/a&gt;&lt;/p&gt;</description>
+    &gt;https://www.cnblogs.com/Axianba/p/13131620.html&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;安装mysql-8024&#34;&gt;安装mysql-8.0.24&lt;/h2&gt;
+&lt;p&gt;cmake命令&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;mkdir build &amp;amp;&amp;amp; cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/usr/local/mysql/data -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -DSYSCONFDIR=/etc -DWITH_BOOST=/usr/local/boost -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLED_LOCAL_INFILE=ON -DWITH_INNODB_MEMCACHED=ON -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_FEDERATED_STORAGE_ENGINE=1 -DWITH_BLACKHOLE_STORAGE_ENGINE=1 -DWITH_ARCHIVE_STORAGE_ENGINE=1 -DWITHOUT_EXAMPLE_STORAGE_ENGINE=1 -DWITH_PERFSCHEMA_STORAGE_ENGINE=1 -DFORCE_INSOURCE_BUILD=1 -DMYSQL_TCP_PORT=3306
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;编译，安装，初始化，启动：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;groupadd mysql
+useradd -r -g mysql -s /bin/false mysql
+make&amp;amp;&amp;amp;make install
+chown -R mysql:mysql /usr/local/mysql/
+/usr/local/mysql/bin/mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
+/usr/local/mysql/bin/mysqld_safe --defaults-file=/usr/local/mysql/etc/my.cnf
+&lt;/code&gt;&lt;/pre&gt;</description>
         </item>
         <item>
         <title>mysql source code learning</title>
@@ -206,7 +211,43 @@ swapon -s
 		data-flex-grow=&#34;137&#34;
 		data-flex-basis=&#34;330px&#34;
 	
-&gt;&lt;/p&gt;</description>
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;源码结构&#34;&gt;源码结构&lt;/h2&gt;
+&lt;p&gt;安装tree工具，执行tree -d -L 1命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;|-- build
+|-- client
+|-- cmake
+|-- components
+|-- Docs
+|-- doxygen_resources
+|-- extra
+|-- include
+|-- libbinlogevents
+|-- libbinlogstandalone
+|-- libmysql
+|-- libservices
+|-- man
+|-- mysql-test
+|-- mysys
+|-- packaging
+|-- plugin
+|-- router
+|-- scripts
+|-- share
+|-- source_downloads
+|-- sql
+|-- sql-common
+|-- storage
+|-- strings
+|-- support-files
+|-- testclients
+|-- unittest
+|-- utilities
+`-- vio
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;语雀代码画时序图：
+&lt;a class=&#34;link&#34; href=&#34;https://www.bookstack.cn/read/yuque/34.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.bookstack.cn/read/yuque/34.md&lt;/a&gt;&lt;/p&gt;</description>
         </item>
         <item>
         <title>redis source code learning</title>

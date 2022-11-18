@@ -90,7 +90,43 @@
 		data-flex-grow=&#34;137&#34;
 		data-flex-basis=&#34;330px&#34;
 	
-&gt;&lt;/p&gt;</description>
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;源码结构&#34;&gt;源码结构&lt;/h2&gt;
+&lt;p&gt;安装tree工具，执行tree -d -L 1命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;|-- build
+|-- client
+|-- cmake
+|-- components
+|-- Docs
+|-- doxygen_resources
+|-- extra
+|-- include
+|-- libbinlogevents
+|-- libbinlogstandalone
+|-- libmysql
+|-- libservices
+|-- man
+|-- mysql-test
+|-- mysys
+|-- packaging
+|-- plugin
+|-- router
+|-- scripts
+|-- share
+|-- source_downloads
+|-- sql
+|-- sql-common
+|-- storage
+|-- strings
+|-- support-files
+|-- testclients
+|-- unittest
+|-- utilities
+`-- vio
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;语雀代码画时序图：
+&lt;a class=&#34;link&#34; href=&#34;https://www.bookstack.cn/read/yuque/34.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.bookstack.cn/read/yuque/34.md&lt;/a&gt;&lt;/p&gt;</description>
         </item>
         
     </channel>

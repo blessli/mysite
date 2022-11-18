@@ -10,7 +10,7 @@
 <meta property='keywords' content='mqttaction'>
 <meta property='og:url' content='https://soli.seekincs.com/2022/11/mysql-source-code-learning/'>
 <meta property='og:site_name' content='soli&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='mysql' /><meta property='article:tag' content='sourcecode' /><meta property='article:published_time' content='2022-11-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-11-17T10:50:43&#43;08:00'/><meta property='og:image' content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='mysql' /><meta property='article:tag' content='sourcecode' /><meta property='article:published_time' content='2022-11-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-11-18T09:53:25&#43;08:00'/><meta property='og:image' content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png' />
 <meta name="twitter:title" content="mysql source code learning">
 <meta name="twitter:description" content="带着些许问题去源码中找答案"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png' />
@@ -269,8 +269,8 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                            <time class="article-time--updated" datetime="2022-11-17 10:50:43.657421279 &#43;0800 CST" title="2022-11-17 10:50:43.657421279 &#43;0800 CST">
-                                2022年11月17日</time>
+                            <time class="article-time--updated" datetime="2022-11-18 09:53:25.621474537 &#43;0800 CST" title="2022-11-18 09:53:25.621474537 &#43;0800 CST">
+                                2022年11月18日</time>
                         </div>
         
             <div>
@@ -283,7 +283,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -376,6 +376,42 @@
 		data-flex-basis="330px"
 	
 ></p>
+<h2 id="源码结构">源码结构</h2>
+<p>安装tree工具，执行tree -d -L 1命令：</p>
+<pre><code>|-- build
+|-- client
+|-- cmake
+|-- components
+|-- Docs
+|-- doxygen_resources
+|-- extra
+|-- include
+|-- libbinlogevents
+|-- libbinlogstandalone
+|-- libmysql
+|-- libservices
+|-- man
+|-- mysql-test
+|-- mysys
+|-- packaging
+|-- plugin
+|-- router
+|-- scripts
+|-- share
+|-- source_downloads
+|-- sql
+|-- sql-common
+|-- storage
+|-- strings
+|-- support-files
+|-- testclients
+|-- unittest
+|-- utilities
+`-- vio
+</code></pre>
+<p>语雀代码画时序图：
+<a class="link" href="https://www.bookstack.cn/read/yuque/34.md"  target="_blank" rel="noopener"
+    >https://www.bookstack.cn/read/yuque/34.md</a></p>
 </section>
 
 
@@ -400,7 +436,7 @@
 
 
         <span>
-            最后更新于 2022年11月17日 10点50分43秒
+            最后更新于 2022年11月18日 09点53分25秒
         </span>
     </section></footer>
 
@@ -638,6 +674,7 @@
         <li><a href="#vscode本地调试mysql8024">vscode本地调试mysql8.0.24</a></li>
       </ol>
     </li>
+    <li><a href="#源码结构">源码结构</a></li>
   </ol>
 </nav>
         </div>
@@ -668,7 +705,7 @@
                     <a href="/archives/#2022">
                         
                             <span class="year">2022</span>
-                            <span class="count">9</span>
+                            <span class="count">8</span>
                         
                     </a> 
                 </div>
@@ -699,16 +736,16 @@
                 database
             </a>
         
-            <a href="/categories/language/" class="font_size_2">
-                language
-            </a>
-        
             <a href="/categories/grpc/" class="font_size_1">
                 grpc
             </a>
         
             <a href="/categories/k8s/" class="font_size_1">
                 k8s
+            </a>
+        
+            <a href="/categories/language/" class="font_size_1">
+                language
             </a>
         
             <a href="/categories/mqtt/" class="font_size_1">
@@ -748,12 +785,8 @@
                 sourcecode
             </a>
         
-            <a href="/tags/inaction/" class="font_size_3">
+            <a href="/tags/inaction/" class="font_size_2">
                 inaction
-            </a>
-        
-            <a href="/tags/cpp/" class="font_size_1">
-                cpp
             </a>
         
             <a href="/tags/emqx/" class="font_size_1">

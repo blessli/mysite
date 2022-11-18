@@ -69,3 +69,39 @@ launch.json配置文件如下：
 }
 ```
 ![static/mysql-debug-capture](static/mysql-debug-capture.jpg)
+## 源码结构
+安装tree工具，执行tree -d -L 1命令：
+```
+|-- build
+|-- client
+|-- cmake
+|-- components
+|-- Docs
+|-- doxygen_resources
+|-- extra
+|-- include
+|-- libbinlogevents
+|-- libbinlogstandalone
+|-- libmysql
+|-- libservices
+|-- man
+|-- mysql-test
+|-- mysys
+|-- packaging
+|-- plugin
+|-- router
+|-- scripts
+|-- share
+|-- source_downloads
+|-- sql
+|-- sql-common
+|-- storage
+|-- strings
+|-- support-files
+|-- testclients
+|-- unittest
+|-- utilities
+`-- vio
+```
+语雀代码画时序图：
+https://www.bookstack.cn/read/yuque/34.md

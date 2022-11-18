@@ -10,7 +10,7 @@
 <meta property='keywords' content='mqttaction'>
 <meta property='og:url' content='https://soli.seekincs.com/2022/11/linux-cmd-collection/'>
 <meta property='og:site_name' content='soli&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='linux' /><meta property='article:published_time' content='2022-11-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-11-17T10:51:05&#43;08:00'/><meta property='og:image' content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='linux' /><meta property='article:published_time' content='2022-11-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-11-17T14:49:44&#43;08:00'/><meta property='og:image' content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png' />
 <meta name="twitter:title" content="linux cmd collection">
 <meta name="twitter:description" content=""><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png' />
@@ -265,7 +265,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                            <time class="article-time--updated" datetime="2022-11-17 10:51:05.601346365 &#43;0800 CST" title="2022-11-17 10:51:05.601346365 &#43;0800 CST">
+                            <time class="article-time--updated" datetime="2022-11-17 14:49:44.034100642 &#43;0800 CST" title="2022-11-17 14:49:44.034100642 &#43;0800 CST">
                                 2022年11月17日</time>
                         </div>
         
@@ -343,6 +343,19 @@ swapon -s
 </code></pre>
 <p><a class="link" href="https://www.cnblogs.com/Axianba/p/13131620.html"  target="_blank" rel="noopener"
     >https://www.cnblogs.com/Axianba/p/13131620.html</a></p>
+<h2 id="安装mysql-8024">安装mysql-8.0.24</h2>
+<p>cmake命令</p>
+<pre><code class="language-sh">mkdir build &amp;&amp; cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/usr/local/mysql/data -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -DSYSCONFDIR=/etc -DWITH_BOOST=/usr/local/boost -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLED_LOCAL_INFILE=ON -DWITH_INNODB_MEMCACHED=ON -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_FEDERATED_STORAGE_ENGINE=1 -DWITH_BLACKHOLE_STORAGE_ENGINE=1 -DWITH_ARCHIVE_STORAGE_ENGINE=1 -DWITHOUT_EXAMPLE_STORAGE_ENGINE=1 -DWITH_PERFSCHEMA_STORAGE_ENGINE=1 -DFORCE_INSOURCE_BUILD=1 -DMYSQL_TCP_PORT=3306
+</code></pre>
+<p>编译，安装，初始化，启动：</p>
+<pre><code class="language-sh">groupadd mysql
+useradd -r -g mysql -s /bin/false mysql
+make&amp;&amp;make install
+chown -R mysql:mysql /usr/local/mysql/
+/usr/local/mysql/bin/mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
+/usr/local/mysql/bin/mysqld_safe --defaults-file=/usr/local/mysql/etc/my.cnf
+</code></pre>
 </section>
 
 
@@ -365,7 +378,7 @@ swapon -s
 
 
         <span>
-            最后更新于 2022年11月17日 10点51分05秒
+            最后更新于 2022年11月17日 14点49分44秒
         </span>
     </section></footer>
 
@@ -568,6 +581,7 @@ swapon -s
     <li><a href="#gcc升级到713">gcc升级到7.13</a></li>
     <li><a href="#安装cmake3">安装cmake3</a></li>
     <li><a href="#linux开启swap分区">linux开启swap分区</a></li>
+    <li><a href="#安装mysql-8024">安装mysql-8.0.24</a></li>
   </ol>
 </nav>
         </div>
@@ -598,7 +612,7 @@ swapon -s
                     <a href="/archives/#2022">
                         
                             <span class="year">2022</span>
-                            <span class="count">9</span>
+                            <span class="count">8</span>
                         
                     </a> 
                 </div>
@@ -629,16 +643,16 @@ swapon -s
                 database
             </a>
         
-            <a href="/categories/language/" class="font_size_2">
-                language
-            </a>
-        
             <a href="/categories/grpc/" class="font_size_1">
                 grpc
             </a>
         
             <a href="/categories/k8s/" class="font_size_1">
                 k8s
+            </a>
+        
+            <a href="/categories/language/" class="font_size_1">
+                language
             </a>
         
             <a href="/categories/mqtt/" class="font_size_1">
@@ -678,12 +692,8 @@ swapon -s
                 sourcecode
             </a>
         
-            <a href="/tags/inaction/" class="font_size_3">
+            <a href="/tags/inaction/" class="font_size_2">
                 inaction
-            </a>
-        
-            <a href="/tags/cpp/" class="font_size_1">
-                cpp
             </a>
         
             <a href="/tags/emqx/" class="font_size_1">
