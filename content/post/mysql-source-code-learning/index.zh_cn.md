@@ -10,9 +10,25 @@ series = ["Themes Guide"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png"
 +++
 <!--more-->
+## 指南
+```
+能坚持到/看到这里的，那绝壁是真爱！！
+赠送两个小小的建议
+建议一： 从handler出发
+MySQL插件式引擎，连接MySQL Server与各种存储引擎的，是其Handler
+模块 —— hanlder模块是灵魂；
+以InnoDB引擎为例，从ha_innodb.cc文件出发，理解其中的每一个接口的
+功能，能够上达MySQL Server，下抵InnoDB引擎的内部实现；
+建议二： 不放过源码中的每一处注释
+MySQL/InnoDB源码中，有很多注释，一些注释相当详细，对理解某一个
+函数/某一个功能模块都相当有用；
+```
 ## 问题探索
 ### 一条SQL的生命周期
 [参考文章](https://blog.mipa.site/2020/06/021934.html)
+### mysql插件化架构
+### mysql8.0取消查询缓存
+[官方说明](https://dev.mysql.com/blog-archive/mysql-8-0-retiring-support-for-the-query-cache/)
 ### 网络IO模型
 [参考文章](https://blog.51cto.com/u_15069490/2937369)
 ## 其他
@@ -105,3 +121,39 @@ launch.json配置文件如下：
 ```
 语雀代码画时序图：
 https://www.bookstack.cn/read/yuque/34.md
+### Mysql线程的基本设置
+```
+mysql> show variables like 'thread%';
++-------------------+---------------------------+
+| Variable_name     | Value                     |
++-------------------+---------------------------+
+| thread_cache_size | 1536                      |
+| thread_handling   | one-thread-per-connection |
+| thread_stack      | 524288                    |
++-------------------+---------------------------+
+3 rows in set (0.05 sec)
+mysql> show global status like 'Thread%';
++-------------------+-------+
+| Variable_name     | Value |
++-------------------+-------+
+| Threads_cached    | 0     |
+| Threads_connected | 1     |
+| Threads_created   | 1     |
+| Threads_running   | 1     |
++-------------------+-------+
+4 rows in set (0.07 sec)
+```
+## 远程连接
+root忘记密码
+```sql
+--- mysqld模块下增加skip-grant-tables配置,免密登录后执行以下命令：
+update user set authentication_string = '' where user ='root';
+--- 注释掉skip-grant-tables配置,重新登录，设置新密码：
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root123456';
+```
+允许外部访问
+```sql
+use mysql;
+update user set host='%' where user ='root';
+FLUSH PRIVILEGES;
+```
