@@ -52,17 +52,33 @@ mygo run helloworld.go
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/mysql-source-code-learning/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png" alt="Featured image of post mysql source code learning" /&gt;&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png" alt="Featured image of post mysql source code learning" /&gt;&lt;h2 id=&#34;指南&#34;&gt;指南&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;能坚持到/看到这里的，那绝壁是真爱！！
+赠送两个小小的建议
+建议一： 从handler出发
+MySQL插件式引擎，连接MySQL Server与各种存储引擎的，是其Handler
+模块 —— hanlder模块是灵魂；
+以InnoDB引擎为例，从ha_innodb.cc文件出发，理解其中的每一个接口的
+功能，能够上达MySQL Server，下抵InnoDB引擎的内部实现；
+建议二： 不放过源码中的每一处注释
+MySQL/InnoDB源码中，有很多注释，一些注释相当详细，对理解某一个
+函数/某一个功能模块都相当有用；
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
 &lt;h3 id=&#34;一条sql的生命周期&#34;&gt;一条SQL的生命周期&lt;/h3&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.mipa.site/2020/06/021934.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;参考文章&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;mysql插件化架构&#34;&gt;mysql插件化架构&lt;/h3&gt;
+&lt;h3 id=&#34;mysql80取消查询缓存&#34;&gt;mysql8.0取消查询缓存&lt;/h3&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://dev.mysql.com/blog-archive/mysql-8-0-retiring-support-for-the-query-cache/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官方说明&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;网络io模型&#34;&gt;网络IO模型&lt;/h3&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.51cto.com/u_15069490/2937369&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;参考文章&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
 &lt;h3 id=&#34;mysql8024源码编译安装&#34;&gt;mysql8.0.24源码编译安装&lt;/h3&gt;
 &lt;p&gt;主要是参考&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/jhno1/p/15324343.html#autoid-0-8-0&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;这篇文章&lt;/a&gt;，操作过程中根据报错进行fix&lt;/p&gt;
+    &gt;这篇文章&lt;/a&gt;，操作过程中根据报错进行fix，特别是修改my.cnf配置文件。&lt;/p&gt;
 &lt;h3 id=&#34;编译安装问题&#34;&gt;编译安装问题&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;OpenSSL 版本不兼容&lt;br&gt;
@@ -166,7 +182,40 @@ mygo run helloworld.go
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;语雀代码画时序图：
 &lt;a class=&#34;link&#34; href=&#34;https://www.bookstack.cn/read/yuque/34.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.bookstack.cn/read/yuque/34.md&lt;/a&gt;&lt;/p&gt;</description>
+    &gt;https://www.bookstack.cn/read/yuque/34.md&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;mysql线程的基本设置&#34;&gt;Mysql线程的基本设置&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;mysql&amp;gt; show variables like &#39;thread%&#39;;
++-------------------+---------------------------+
+| Variable_name     | Value                     |
++-------------------+---------------------------+
+| thread_cache_size | 1536                      |
+| thread_handling   | one-thread-per-connection |
+| thread_stack      | 524288                    |
++-------------------+---------------------------+
+3 rows in set (0.05 sec)
+mysql&amp;gt; show global status like &#39;Thread%&#39;;
++-------------------+-------+
+| Variable_name     | Value |
++-------------------+-------+
+| Threads_cached    | 0     |
+| Threads_connected | 1     |
+| Threads_created   | 1     |
+| Threads_running   | 1     |
++-------------------+-------+
+4 rows in set (0.07 sec)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;远程连接&#34;&gt;远程连接&lt;/h2&gt;
+&lt;p&gt;root忘记密码&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;--- mysqld模块下增加skip-grant-tables配置,免密登录后执行以下命令：
+update user set authentication_string = &#39;&#39; where user =&#39;root&#39;;
+--- 注释掉skip-grant-tables配置,重新登录，设置新密码：
+ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;root123456&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;允许外部访问&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;use mysql;
+update user set host=&#39;%&#39; where user =&#39;root&#39;;
+FLUSH PRIVILEGES;
+&lt;/code&gt;&lt;/pre&gt;</description>
         </item>
         <item>
         <title>redis source code learning</title>

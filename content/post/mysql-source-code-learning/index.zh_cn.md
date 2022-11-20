@@ -33,7 +33,7 @@ MySQL/InnoDB源码中，有很多注释，一些注释相当详细，对理解�
 [参考文章](https://blog.51cto.com/u_15069490/2937369)
 ## 其他
 ### mysql8.0.24源码编译安装
-主要是参考[这篇文章](https://www.cnblogs.com/jhno1/p/15324343.html#autoid-0-8-0)，操作过程中根据报错进行fix
+主要是参考[这篇文章](https://www.cnblogs.com/jhno1/p/15324343.html#autoid-0-8-0)，操作过程中根据报错进行fix，特别是修改my.cnf配置文件。
 ### 编译安装问题
 1. OpenSSL 版本不兼容<br>
 不兼容1.1版本，需要openssl1.0.2，通过yum install openssl-devel。<br>
