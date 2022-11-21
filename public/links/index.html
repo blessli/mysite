@@ -432,7 +432,38 @@
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.12.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
+<script>
+      const loadScript = (url, onloadFunction) => {
+    var newScript = document.createElement("script");
+    newScript.onerror =  (oError) => {
+      throw new URIError("The script " + oError.target.src + " didn't load correctly.");
+    };
+    if (onloadFunction) { newScript.onload = onloadFunction; }
+    document.head.insertAdjacentElement('beforeend', newScript);
+    newScript.src = url;
+  }
 
+  
+  const loadMermaidOnNeed = () => {
+    if (document.querySelectorAll('.mermaid').length > 0) {
+      loadScript('https://cdn.jsdelivr.net/npm/mermaid@8.10.1/dist/mermaid.min.js', () => {
+        document.head.insertAdjacentHTML("beforeend", `<style>.mermaid svg { background-color: #dadcd8 !important; }</style>`);
+        // default, dark, neutral, forest
+        mermaid.initialize({ startOnLoad: false, securityLevel: "strict", theme: "default" });
+        
+        
+        mermaid.init();
+        console.log("mermaid init done");
+      })
+    }
+  }
+
+  window.addEventListener('load', function(event) {
+    
+    loadMermaidOnNeed();
+  });
+
+</script>
 
     
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">

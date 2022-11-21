@@ -296,7 +296,22 @@ ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;root123456&#39;
 &lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;use mysql;
 update user set host=&#39;%&#39; where user =&#39;root&#39;;
 FLUSH PRIVILEGES;
-&lt;/code&gt;&lt;/pre&gt;</description>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;测试mermaid&#34;&gt;测试mermaid&lt;/h2&gt;
+
+&lt;pre class=&#34;mermaid&#34; align=&#34;center&#34;&gt;
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice-&gt;&gt;John: Hello John, how are you?
+    loop Healthcheck
+        John-&gt;John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts prevail...
+    John--&gt;Alice: Great!
+    John-&gt;Bob: How about you?
+    Bob--&gt;John: Jolly good!
+&lt;/pre&gt;</description>
         </item>
         <item>
         <title>redis source code learning</title>

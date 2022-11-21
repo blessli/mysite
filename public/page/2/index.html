@@ -11,7 +11,7 @@
 <meta property='keywords' content='mqttaction'>
 <meta property='og:url' content='https://soli.seekincs.com/'>
 <meta property='og:site_name' content='soli&#39;s blog'>
-<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2022-11-20T15:48:51&#43;08:00 '/>
+<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2022-11-21T11:43:18&#43;08:00 '/>
 <meta name="twitter:title" content="soli&#39;s blog">
 <meta name="twitter:description" content="ability&#43;&#43;&#43;"><link rel="alternate" type="application/rss&#43;xml" href="https://soli.seekincs.com/index.xml">
     <link rel="shortcut icon" href="img/avatar.jpeg" />
@@ -511,7 +511,38 @@
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.12.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
+<script>
+      const loadScript = (url, onloadFunction) => {
+    var newScript = document.createElement("script");
+    newScript.onerror =  (oError) => {
+      throw new URIError("The script " + oError.target.src + " didn't load correctly.");
+    };
+    if (onloadFunction) { newScript.onload = onloadFunction; }
+    document.head.insertAdjacentElement('beforeend', newScript);
+    newScript.src = url;
+  }
 
+  
+  const loadMermaidOnNeed = () => {
+    if (document.querySelectorAll('.mermaid').length > 0) {
+      loadScript('https://cdn.jsdelivr.net/npm/mermaid@8.10.1/dist/mermaid.min.js', () => {
+        document.head.insertAdjacentHTML("beforeend", `<style>.mermaid svg { background-color: #dadcd8 !important; }</style>`);
+        // default, dark, neutral, forest
+        mermaid.initialize({ startOnLoad: false, securityLevel: "strict", theme: "default" });
+        
+        
+        mermaid.init();
+        console.log("mermaid init done");
+      })
+    }
+  }
+
+  window.addEventListener('load', function(event) {
+    
+    loadMermaidOnNeed();
+  });
+
+</script>
             </main>
     <aside class="sidebar right-sidebar sticky">
         
