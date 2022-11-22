@@ -66,7 +66,7 @@ yum install ncurses-devel libaio bison zlib-devel openssl openssl-devel patch
 ./mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
 ```
 launch.json配置文件如下：
-```json
+{{< highlight json "linenos=table" >}}
 {
     "version": "0.2.0",
     "configurations": [
@@ -83,7 +83,7 @@ launch.json配置文件如下：
         }
     ]
 }
-```
+{{< / highlight >}}
 ![static/mysql-debug-capture](static/mysql-debug-capture.jpg)
 ## 源码结构
 安装tree工具，执行tree -d -L 1命令：
