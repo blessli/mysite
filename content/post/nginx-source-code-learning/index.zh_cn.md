@@ -37,3 +37,23 @@ mkcert -install # 将 mkcert 的认证机构安装到服务器上
 mkcert -CAROOT # 查看 CA 证书的位置，在PC上安装 rootCA.crt 证书
 mkcert www.aaa.com aiPlatform.dev localhost 127.0.0.1 ::1 43.139.87.74 # 生成证书
 {{< / highlight >}}
+
+### nginx四层转发
+源码编译时，执行以下命令手动加载stream模块:<br>
+./auto/configure --with-http_ssl_module --prefix=/home/github/nginx --with-stream<br>
+然后在nginx.conf添加以下配置内容支持tcp转发，[stream_backend程序](git@github.com:blessli/epoll-cpp-demo.git):
+{{< highlight conf "linenos=table" >}}
+stream {
+  upstream stream_backend {
+      zone tcp_servers 64k;
+      hash $remote_addr;
+      server 127.0.0.1:18000;
+  }
+
+  server {
+      listen 8000;
+      proxy_pass stream_backend;
+  }
+}
+
+{{< / highlight >}}
