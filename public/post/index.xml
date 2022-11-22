@@ -508,7 +508,8 @@ sequenceDiagram
         <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/mqtt-broker-in-action/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post MQTT Broker in Action" /&gt;&lt;blockquote&gt;
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post MQTT Broker in Action" /&gt;&lt;h2 id=&#34;emqx安装部署&#34;&gt;EMQX安装部署&lt;/h2&gt;
+&lt;blockquote&gt;
 &lt;p&gt;EMQX 是一款大规模可弹性伸缩的云原生分布式物联网 MQTT 消息服务器😂。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;docker单节点多实例&#34;&gt;Docker单节点多实例&lt;/h3&gt;

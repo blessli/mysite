@@ -66,11 +66,11 @@ params:
 
     sidebar:
         emoji:
-        subtitle: ability+++
+        subtitle: 光锥
         avatar:
             enabled: true
             local: true
-            src: img/avatar.jpeg
+            src: img/avatar.jpg
 
     article:
         math: true

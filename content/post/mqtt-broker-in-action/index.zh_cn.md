@@ -14,6 +14,7 @@ series = ["Themes Guide"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"
 +++
 <!--more-->
+## EMQX安装部署
 > EMQX 是一款大规模可弹性伸缩的云原生分布式物联网 MQTT 消息服务器:joy:。
 ### Docker单节点多实例
 基于docker-compose+haproxy搭建伪分布式集群：<br>
