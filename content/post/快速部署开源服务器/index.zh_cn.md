@@ -2,6 +2,7 @@
 author = "soli"
 title = "如何快速部署开源服务器"
 date = "2022-10-30"
+weight = 1
 description = "快速部署MQTT消息服务器"
 categories = [
 "中间件"
