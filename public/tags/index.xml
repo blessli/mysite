@@ -6,7 +6,15 @@
         <description>Recent content in Tags on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 22 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 25 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>codeforces</title>
+        <link>https://soli.seekincs.com/tags/codeforces/</link>
+        <pubDate>Fri, 25 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/tags/codeforces/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>nginx</title>
         <link>https://soli.seekincs.com/tags/nginx/</link>
         <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
@@ -20,14 +28,6 @@
         <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/tags/sourcecode/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>codeforces</title>
-        <link>https://soli.seekincs.com/tags/codeforces/</link>
-        <pubDate>Sun, 20 Nov 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/tags/codeforces/</guid>
         <description></description>
         </item>
         <item>
