@@ -10,7 +10,7 @@
 <meta property='keywords' content='mqttaction'>
 <meta property='og:url' content='https://soli.seekincs.com/2022/11/linux-cmd-collection/'>
 <meta property='og:site_name' content='soli&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='linux' /><meta property='article:published_time' content='2022-11-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-11-24T10:30:06&#43;08:00'/><meta property='og:image' content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='linux' /><meta property='article:published_time' content='2022-11-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-11-26T05:03:53&#43;08:00'/><meta property='og:image' content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png' />
 <meta name="twitter:title" content="linux cmd collection">
 <meta name="twitter:description" content=""><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png' />
@@ -265,8 +265,8 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                            <time class="article-time--updated" datetime="2022-11-24 10:30:06.678973356 &#43;0800 CST" title="2022-11-24 10:30:06.678973356 &#43;0800 CST">
-                                2022年11月24日</time>
+                            <time class="article-time--updated" datetime="2022-11-26 05:03:53.083238972 &#43;0800 CST" title="2022-11-26 05:03:53.083238972 &#43;0800 CST">
+                                2022年11月26日</time>
                         </div>
         
             <div>
@@ -360,6 +360,23 @@ chown -R mysql:mysql /usr/local/mysql/
 <pre><code class="language-sh">netstat -nat | grep -i &quot;80&quot; | wc -l
 netstat -nat | grep -i &quot;18000&quot; | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}' # 查看TCP连接状态
 </code></pre>
+<h2 id="磁盘占满排查">磁盘占满排查</h2>
+<pre><code class="language-sh">df -hl
+du -s /* | sort -nr |head # 选出排在前面的10个，head改成tail则是后面10个
+du -sh /* | sort -nr # 加了h排序错乱
+du -sh /home/* | sort -nr
+</code></pre>
+<h2 id="内存占用高排查">内存占用高排查</h2>
+<pre><code class="language-sh">top -o %MEM # 按内存占用排序
+vmstat 2 # 每隔2秒展示内存占用情况
+kill -9 `ps -ef| grep tail |awk '{print $2}' `
+cat /proc/24573/status # 查看进程内存
+</code></pre>
+<h2 id="健康检查脚本health-check-script">健康检查脚本health-check-script</h2>
+<p><a class="link" href="https://github.com/SimplyLinuxFAQ/health-check-script/blob/master/health-check.sh"  target="_blank" rel="noopener"
+    >健康检查脚本</a>
+<a class="link" href="https://www.jianshu.com/p/759b3bd7360e"  target="_blank" rel="noopener"
+    >具体使用例子</a></p>
 </section>
 
 
@@ -382,7 +399,7 @@ netstat -nat | grep -i &quot;18000&quot; | awk '/^tcp/ {++S[$NF]} END {for(a in 
 
 
         <span>
-            最后更新于 2022年11月24日 10点30分06秒
+            最后更新于 2022年11月26日 05点03分53秒
         </span>
     </section></footer>
 
@@ -646,6 +663,9 @@ netstat -nat | grep -i &quot;18000&quot; | awk '/^tcp/ {++S[$NF]} END {for(a in 
     <li><a href="#linux开启swap分区">linux开启swap分区</a></li>
     <li><a href="#安装mysql-8024">安装mysql-8.0.24</a></li>
     <li><a href="#统计80端口连接数">统计80端口连接数</a></li>
+    <li><a href="#磁盘占满排查">磁盘占满排查</a></li>
+    <li><a href="#内存占用高排查">内存占用高排查</a></li>
+    <li><a href="#健康检查脚本health-check-script">健康检查脚本health-check-script</a></li>
   </ol>
 </nav>
         </div>

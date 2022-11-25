@@ -164,7 +164,24 @@ chown -R mysql:mysql /usr/local/mysql/
 &lt;h2 id=&#34;统计80端口连接数&#34;&gt;统计80端口连接数&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;netstat -nat | grep -i &amp;quot;80&amp;quot; | wc -l
 netstat -nat | grep -i &amp;quot;18000&amp;quot; | awk &#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39; # 查看TCP连接状态
-&lt;/code&gt;&lt;/pre&gt;</description>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;磁盘占满排查&#34;&gt;磁盘占满排查&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;df -hl
+du -s /* | sort -nr |head # 选出排在前面的10个，head改成tail则是后面10个
+du -sh /* | sort -nr # 加了h排序错乱
+du -sh /home/* | sort -nr
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;内存占用高排查&#34;&gt;内存占用高排查&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;top -o %MEM # 按内存占用排序
+vmstat 2 # 每隔2秒展示内存占用情况
+kill -9 `ps -ef| grep tail |awk &#39;{print $2}&#39; `
+cat /proc/24573/status # 查看进程内存
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;健康检查脚本health-check-script&#34;&gt;健康检查脚本health-check-script&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/SimplyLinuxFAQ/health-check-script/blob/master/health-check.sh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;健康检查脚本&lt;/a&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/759b3bd7360e&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;具体使用例子&lt;/a&gt;&lt;/p&gt;</description>
         </item>
         
     </channel>

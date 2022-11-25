@@ -88,3 +88,20 @@ chown -R mysql:mysql /usr/local/mysql/
 netstat -nat | grep -i "80" | wc -l
 netstat -nat | grep -i "18000" | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}' # 查看TCP连接状态
 ```
+## 磁盘占满排查
+```sh
+df -hl
+du -s /* | sort -nr |head # 选出排在前面的10个，head改成tail则是后面10个
+du -sh /* | sort -nr # 加了h排序错乱
+du -sh /home/* | sort -nr
+```
+## 内存占用高排查
+```sh
+top -o %MEM # 按内存占用排序
+vmstat 2 # 每隔2秒展示内存占用情况
+kill -9 `ps -ef| grep tail |awk '{print $2}' `
+cat /proc/24573/status # 查看进程内存
+```
+## 健康检查脚本health-check-script
+[健康检查脚本](https://github.com/SimplyLinuxFAQ/health-check-script/blob/master/health-check.sh)
+[具体使用例子](https://www.jianshu.com/p/759b3bd7360e)
