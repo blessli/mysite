@@ -83,3 +83,8 @@ chown -R mysql:mysql /usr/local/mysql/
 /usr/local/mysql/bin/mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
 /usr/local/mysql/bin/mysqld_safe --defaults-file=/usr/local/mysql/etc/my.cnf
 ```
+## 统计80端口连接数
+```sh
+netstat -nat | grep -i "80" | wc -l
+netstat -nat | grep -i "18000" | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}' # 查看TCP连接状态
+```

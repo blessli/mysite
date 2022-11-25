@@ -6,6 +6,14 @@
         <description>Recent content in unknown on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language><atom:link href="https://soli.seekincs.com/categories/unknown/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>codeforces practices</title>
+        <link>https://soli.seekincs.com/2022/11/codeforces-practices/</link>
+        <pubDate>Sun, 20 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/codeforces-practices/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post codeforces practices" /&gt;&lt;p&gt;codeforces practices&lt;/p&gt;</description>
+        </item>
+        <item>
         <title>linux cmd collection</title>
         <link>https://soli.seekincs.com/2022/11/linux-cmd-collection/</link>
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
@@ -73,6 +81,10 @@ make&amp;amp;&amp;amp;make install
 chown -R mysql:mysql /usr/local/mysql/
 /usr/local/mysql/bin/mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
 /usr/local/mysql/bin/mysqld_safe --defaults-file=/usr/local/mysql/etc/my.cnf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;统计80端口连接数&#34;&gt;统计80端口连接数&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;netstat -nat | grep -i &amp;quot;80&amp;quot; | wc -l
+netstat -nat | grep -i &amp;quot;18000&amp;quot; | awk &#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39; # 查看TCP连接状态
 &lt;/code&gt;&lt;/pre&gt;</description>
         </item>
         

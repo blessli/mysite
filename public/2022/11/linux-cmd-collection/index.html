@@ -10,7 +10,7 @@
 <meta property='keywords' content='mqttaction'>
 <meta property='og:url' content='https://soli.seekincs.com/2022/11/linux-cmd-collection/'>
 <meta property='og:site_name' content='soli&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='linux' /><meta property='article:published_time' content='2022-11-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-11-17T14:49:44&#43;08:00'/><meta property='og:image' content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='linux' /><meta property='article:published_time' content='2022-11-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-11-24T10:30:06&#43;08:00'/><meta property='og:image' content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png' />
 <meta name="twitter:title" content="linux cmd collection">
 <meta name="twitter:description" content=""><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png' />
@@ -265,8 +265,8 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                            <time class="article-time--updated" datetime="2022-11-17 14:49:44.034100642 &#43;0800 CST" title="2022-11-17 14:49:44.034100642 &#43;0800 CST">
-                                2022年11月17日</time>
+                            <time class="article-time--updated" datetime="2022-11-24 10:30:06.678973356 &#43;0800 CST" title="2022-11-24 10:30:06.678973356 &#43;0800 CST">
+                                2022年11月24日</time>
                         </div>
         
             <div>
@@ -356,6 +356,10 @@ chown -R mysql:mysql /usr/local/mysql/
 /usr/local/mysql/bin/mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
 /usr/local/mysql/bin/mysqld_safe --defaults-file=/usr/local/mysql/etc/my.cnf
 </code></pre>
+<h2 id="统计80端口连接数">统计80端口连接数</h2>
+<pre><code class="language-sh">netstat -nat | grep -i &quot;80&quot; | wc -l
+netstat -nat | grep -i &quot;18000&quot; | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}' # 查看TCP连接状态
+</code></pre>
 </section>
 
 
@@ -378,7 +382,7 @@ chown -R mysql:mysql /usr/local/mysql/
 
 
         <span>
-            最后更新于 2022年11月17日 14点49分44秒
+            最后更新于 2022年11月24日 10点30分06秒
         </span>
     </section></footer>
 
@@ -412,6 +416,34 @@ chown -R mysql:mysql /usr/local/mysql/
     
 
     
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/2022/11/codeforces-practices/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" loading="lazy" data-key="" data-hash="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">codeforces practices</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
 
      
     
@@ -613,6 +645,7 @@ chown -R mysql:mysql /usr/local/mysql/
     <li><a href="#安装cmake3">安装cmake3</a></li>
     <li><a href="#linux开启swap分区">linux开启swap分区</a></li>
     <li><a href="#安装mysql-8024">安装mysql-8.0.24</a></li>
+    <li><a href="#统计80端口连接数">统计80端口连接数</a></li>
   </ol>
 </nav>
         </div>
@@ -643,7 +676,7 @@ chown -R mysql:mysql /usr/local/mysql/
                     <a href="/archives/#2022">
                         
                             <span class="year">2022</span>
-                            <span class="count">9</span>
+                            <span class="count">10</span>
                         
                     </a> 
                 </div>
@@ -674,6 +707,10 @@ chown -R mysql:mysql /usr/local/mysql/
                 database
             </a>
         
+            <a href="/categories/unknown/" class="font_size_2">
+                unknown
+            </a>
+        
             <a href="/categories/grpc/" class="font_size_1">
                 grpc
             </a>
@@ -692,10 +729,6 @@ chown -R mysql:mysql /usr/local/mysql/
         
             <a href="/categories/nginx/" class="font_size_1">
                 nginx
-            </a>
-        
-            <a href="/categories/unknown/" class="font_size_1">
-                unknown
             </a>
         
             <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="font_size_1">
@@ -729,6 +762,10 @@ chown -R mysql:mysql /usr/local/mysql/
         
             <a href="/tags/inaction/" class="font_size_2">
                 inaction
+            </a>
+        
+            <a href="/tags/codeforces/" class="font_size_1">
+                codeforces
             </a>
         
             <a href="/tags/emqx/" class="font_size_1">
