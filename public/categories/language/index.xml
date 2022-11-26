@@ -5,24 +5,6 @@
         <link>https://soli.seekincs.com/categories/language/</link>
         <description>Recent content in language on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language><atom:link href="https://soli.seekincs.com/categories/language/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>go source code learning</title>
-        <link>https://soli.seekincs.com/2022/11/go-source-code-learning/</link>
-        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/11/go-source-code-learning/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img6.png" alt="Featured image of post go source code learning" /&gt;&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
-&lt;h3 id=&#34;调度器&#34;&gt;调度器&lt;/h3&gt;
-&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
-&lt;h3 id=&#34;编译&#34;&gt;编译&lt;/h3&gt;
-&lt;p&gt;编译脚本(all.bash/make.bash)中注释掉，跳过编译test，因为太慢&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;mkdir -p ~/mygo/bin
-cd ~/mygo/bin
-ln -sf /usr/local/projs/go/bin/go mygo
-mygo version
-mygo run helloworld.go
-&lt;/code&gt;&lt;/pre&gt;</description>
-        </item>
-        
+        <language>en-us</language><atom:link href="https://soli.seekincs.com/categories/language/index.xml" rel="self" type="application/rss+xml" />
     </channel>
 </rss>

@@ -14,6 +14,7 @@ series = ["Themes Guide"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img4.png"
 +++
 <!--more-->
+## k8s集群部署mqtt需要解决的问题
 ## [跨vpc搭建k8s集群](https://www.lanweihong.com/posts/56314/)
 ## 集成sidecar
 todo

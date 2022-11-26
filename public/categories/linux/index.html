@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='ability&#43;&#43;&#43;'><title>Category: linux - soli&#39;s blog</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='光锥'><title>Category: linux - soli&#39;s blog</title>
 
 <link rel='canonical' href='https://soli.seekincs.com/categories/linux/'>
 
 <link rel="stylesheet" href="/scss/style.min.ac77dcf8b111b51da39a92990f431923f210f3876d85798a2125667f96dc33a4.css"><meta property='og:title' content='Category: linux - soli&#39;s blog'>
-<meta property='og:description' content='ability&#43;&#43;&#43;'>
+<meta property='og:description' content='光锥'>
+<meta property='keywords' content='mqttaction'>
 <meta property='og:url' content='https://soli.seekincs.com/categories/linux/'>
 <meta property='og:site_name' content='soli&#39;s blog'>
-<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2022-11-14T11:48:10&#43;08:00 '/>
+<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2022-11-26T23:17:59&#43;08:00 '/>
 <meta name="twitter:title" content="Category: linux - soli&#39;s blog">
-<meta name="twitter:description" content="ability&#43;&#43;&#43;"><link rel="alternate" type="application/rss&#43;xml" href="https://soli.seekincs.com/categories/linux/index.xml">
+<meta name="twitter:description" content="光锥"><link rel="alternate" type="application/rss&#43;xml" href="https://soli.seekincs.com/categories/linux/index.xml">
     <link rel="shortcut icon" href="img/avatar.jpeg" />
 
     </head>
@@ -55,7 +56,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu2dae3d955b2ad1999f53c2d1f5f072a1_95417_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/img/avatar_hu4cd8ef5a667abb845ea2802dee6ee18c_184557_300x0_resize_q75_box.jpg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -67,7 +68,7 @@
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">soli&#39;s blog</a></h1>
-            <h2 class="site-description">ability&#43;&#43;&#43;</h2>
+            <h2 class="site-description">光锥</h2>
         </div>
     </header><ol class="menu" id="main-menu">
         
@@ -221,16 +222,16 @@
     <section class="article-list--compact">
         
             <article>
-    <a href="/2022/11/linux-cmd-collection/">
+    <a href="/2022/11/linux%E8%BF%90%E7%BB%B4%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/">
         <div class="article-details">
-            <h2 class="article-title">linux cmd collection</h2>
+            <h2 class="article-title">linux运维常用命令大全</h2>
             <footer class="article-time">
                 <time datetime='2022-11-14T00:00:00Z'>2022年11月14日</time>
             </footer>
         </div>
             <div class="article-image">
                 
-                    <img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" loading="lazy" alt="Featured image of post linux cmd collection" />
+                    <img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" loading="lazy" alt="Featured image of post linux运维常用命令大全" />
                 
             </div>
         
@@ -252,7 +253,38 @@
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.12.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
+<script>
+      const loadScript = (url, onloadFunction) => {
+    var newScript = document.createElement("script");
+    newScript.onerror =  (oError) => {
+      throw new URIError("The script " + oError.target.src + " didn't load correctly.");
+    };
+    if (onloadFunction) { newScript.onload = onloadFunction; }
+    document.head.insertAdjacentElement('beforeend', newScript);
+    newScript.src = url;
+  }
 
+  
+  const loadMermaidOnNeed = () => {
+    if (document.querySelectorAll('.mermaid').length > 0) {
+      loadScript('https://cdn.jsdelivr.net/npm/mermaid@8.10.1/dist/mermaid.min.js', () => {
+        document.head.insertAdjacentHTML("beforeend", `<style>.mermaid svg { background-color: #dadcd8 !important; }</style>`);
+        // default, dark, neutral, forest
+        mermaid.initialize({ startOnLoad: false, securityLevel: "strict", theme: "default" });
+        
+        
+        mermaid.init();
+        console.log("mermaid init done");
+      })
+    }
+  }
+
+  window.addEventListener('load', function(event) {
+    
+    loadMermaidOnNeed();
+  });
+
+</script>
 
             </main>
     <aside class="sidebar right-sidebar sticky">
@@ -327,12 +359,24 @@
 
     <div class="tagCloud-tags">
         
-            <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="font_size_2">
-                中间件
+            <a href="/categories/database/" class="font_size_2">
+                database
             </a>
         
-            <a href="/categories/grpc/" class="font_size_1">
-                grpc
+            <a href="/categories/codeforces/" class="font_size_1">
+                codeforces
+            </a>
+        
+            <a href="/categories/golang/" class="font_size_1">
+                golang
+            </a>
+        
+            <a href="/categories/grpcgo/" class="font_size_1">
+                grpcgo
+            </a>
+        
+            <a href="/categories/k8s/" class="font_size_1">
+                k8s
             </a>
         
             <a href="/categories/linux/" class="font_size_1">
@@ -343,24 +387,20 @@
                 mqtt
             </a>
         
+            <a href="/categories/mysql/" class="font_size_1">
+                mysql
+            </a>
+        
+            <a href="/categories/nginx/" class="font_size_1">
+                nginx
+            </a>
+        
             <a href="/categories/redis/" class="font_size_1">
                 redis
             </a>
         
-            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="font_size_1">
-                大数据
-            </a>
-        
-            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="font_size_1">
-                操作系统
-            </a>
-        
-            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="font_size_1">
-                编程语言
-            </a>
-        
-            <a href="/categories/%E7%BD%91%E7%BB%9C/" class="font_size_1">
-                网络
+            <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="font_size_1">
+                中间件
             </a>
         
     </div>
@@ -384,40 +424,32 @@
 
     <div class="tagCloud-tags">
         
-            <a href="/tags/sourcecode/" class="font_size_2">
+            <a href="/tags/sourcecode/" class="font_size_5">
                 sourcecode
             </a>
         
-            <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="font_size_2">
-                读书笔记
+            <a href="/tags/inaction/" class="font_size_2">
+                inaction
             </a>
         
-            <a href="/tags/cmd/" class="font_size_1">
-                cmd
+            <a href="/tags/codeforces/" class="font_size_1">
+                codeforces
             </a>
         
             <a href="/tags/emqx/" class="font_size_1">
                 emqx
             </a>
         
-            <a href="/tags/golang/" class="font_size_1">
-                golang
-            </a>
-        
             <a href="/tags/grpcgo/" class="font_size_1">
                 grpcgo
             </a>
         
-            <a href="/tags/inaction/" class="font_size_1">
-                inaction
+            <a href="/tags/linux/" class="font_size_1">
+                linux
             </a>
         
-            <a href="/tags/kafka/" class="font_size_1">
-                kafka
-            </a>
-        
-            <a href="/tags/spark/" class="font_size_1">
-                spark
+            <a href="/tags/mqtt/" class="font_size_1">
+                mqtt
             </a>
         
             <a href="/tags/%E5%AE%9E%E6%88%98/" class="font_size_1">
@@ -449,5 +481,12 @@
     }());
 </script>
 
+        <script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+        <script>addBackToTop({
+        diameter: 56,
+        backgroundColor: 'rgb(255, 82, 82)',
+        textColor: '#fff'
+        })
+        </script>
     </body>
 </html>

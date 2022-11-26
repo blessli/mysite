@@ -63,6 +63,14 @@
         <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/categories/animal5.jpeg" alt="Featured image of post unknown" /&gt;</description>
         </item>
         <item>
+        <title>codeforces</title>
+        <link>https://soli.seekincs.com/categories/codeforces/</link>
+        <pubDate>Fri, 25 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/categories/codeforces/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>nginx</title>
         <link>https://soli.seekincs.com/categories/nginx/</link>
         <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
@@ -71,11 +79,19 @@
         <description></description>
         </item>
         <item>
-        <title>grpc</title>
-        <link>https://soli.seekincs.com/categories/grpc/</link>
+        <title>golang</title>
+        <link>https://soli.seekincs.com/categories/golang/</link>
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/categories/grpc/</guid>
+        <guid>https://soli.seekincs.com/categories/golang/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>grpcgo</title>
+        <link>https://soli.seekincs.com/categories/grpcgo/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/categories/grpcgo/</guid>
         <description></description>
         </item>
         <item>
@@ -84,6 +100,30 @@
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/categories/k8s/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>linux</title>
+        <link>https://soli.seekincs.com/categories/linux/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/categories/linux/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>mysql</title>
+        <link>https://soli.seekincs.com/categories/mysql/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/categories/mysql/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>redis</title>
+        <link>https://soli.seekincs.com/categories/redis/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/categories/redis/</guid>
         <description></description>
         </item>
         <item>

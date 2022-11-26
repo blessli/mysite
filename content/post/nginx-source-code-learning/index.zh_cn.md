@@ -5,7 +5,7 @@ title = "nginx source code learning"
 date = "2022-11-22"
 description = "带着些许问题去源码中找答案"
 categories = ["nginx"]
-tags = ["nginx","sourcecode"]
+tags = ["sourcecode"]
 series = ["Themes Guide"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"
 +++

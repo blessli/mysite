@@ -1,10 +1,9 @@
 +++
 author = "soli"
-keywords = ["cockymang","mqtt broker","in action","mqttaction"]
 title = "codeforces practices"
 date = "2022-11-25"
 description = ""
-categories = ["unknown"]
+categories = ["codeforces"]
 tags = ["codeforces"]
 series = ["Themes Guide"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png"

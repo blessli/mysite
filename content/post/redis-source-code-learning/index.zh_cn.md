@@ -4,8 +4,8 @@ keywords = ["cockymang","mqtt broker","in action","mqttaction"]
 title = "redis source code learning"
 date = "2022-11-14"
 description = "带着些许问题去源码中找答案"
-categories = ["database"]
-tags = ["redis","sourcecode"]
+categories = ["database","redis"]
+tags = ["sourcecode"]
 series = ["Themes Guide"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"
 +++
@@ -43,6 +43,13 @@ cd /usr/local/projs/redis/src && ./redis-benchmark -h
 ### 查看RDB快照文件
 rdb -c memory dump.rdb > dump_rdb.csv<br>
 其中：size_in_bytes 内存的大小，由此可以查询内存最高的key
-
+### redis5.0搭建伪分布式集群
+[具体配置参考commit](https://github.com/blessli/redis/commit/cae296cf3035b8529250eb72ffb3263f380b3ef6)
+```sh
+/home/github/redis/src/redis-cli --cluster create --cluster-replicas 1 10.0.12.2:7001 10.0.12.2:7002 10.0.12.2:7003 10.0.12.2:7004 10.0.12.2:7005 10.0.12.2:7006
+./src/redis-cli -h 10.0.12.2 -p 7001 -c
+cluser nodes
+cluser info
+```
 ### 参考资料
 - [Redis中文网](https://www.redis.net.cn/)

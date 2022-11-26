@@ -7,12 +7,12 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Mon, 14 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/linux/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>linux cmd collection</title>
-        <link>https://soli.seekincs.com/2022/11/linux-cmd-collection/</link>
+        <title>linux运维常用命令大全</title>
+        <link>https://soli.seekincs.com/2022/11/linux%E8%BF%90%E7%BB%B4%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/</link>
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/11/linux-cmd-collection/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post linux cmd collection" /&gt;&lt;p&gt;centos版本&lt;/p&gt;
+        <guid>https://soli.seekincs.com/2022/11/linux%E8%BF%90%E7%BB%B4%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post linux运维常用命令大全" /&gt;&lt;p&gt;centos版本&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /etc/redhat-release
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;alias&#34;&gt;alias&lt;/h2&gt;
@@ -93,8 +93,8 @@ cat /proc/24573/status # 查看进程内存
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;健康检查脚本health-check-script&#34;&gt;健康检查脚本health-check-script&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/SimplyLinuxFAQ/health-check-script/blob/master/health-check.sh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;健康检查脚本&lt;/a&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/759b3bd7360e&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;健康检查脚本&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/759b3bd7360e&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;具体使用例子&lt;/a&gt;&lt;/p&gt;</description>
         </item>
         

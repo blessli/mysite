@@ -13,7 +13,9 @@
         
         <guid>https://soli.seekincs.com/2022/11/grpcgo-source-code-learning/</guid>
         <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img5.png" alt="Featured image of post grpcgo source code learning" /&gt;&lt;h2 id=&#34;wireshark捕获grpc消息&#34;&gt;wireshark捕获grpc消息&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/11/grpcgo-source-code-learning/static/wireshark-capture-grpc.jpg&#34;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.imlc.me/how-to-inspect-grpc-with-wireshark/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;具体参考&lt;/a&gt;
+&lt;img src=&#34;https://soli.seekincs.com/2022/11/grpcgo-source-code-learning/static/wireshark-capture-grpc.jpg&#34;
 	width=&#34;1439&#34;
 	height=&#34;847&#34;
 	srcset=&#34;https://soli.seekincs.com/2022/11/grpcgo-source-code-learning/static/wireshark-capture-grpc_hu19e47366ed7a2c4856115f5ef21cbcbd_204636_480x0_resize_q75_box.jpg 480w, https://soli.seekincs.com/2022/11/grpcgo-source-code-learning/static/wireshark-capture-grpc_hu19e47366ed7a2c4856115f5ef21cbcbd_204636_1024x0_resize_q75_box.jpg 1024w&#34;

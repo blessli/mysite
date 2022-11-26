@@ -1,10 +1,10 @@
 +++
 author = "soli"
 keywords = ["cockymang","mqtt broker","in action","mqttaction"]
-title = "linux cmd collection"
+title = "linux运维常用命令大全"
 date = "2022-11-14"
 description = ""
-categories = ["unknown"]
+categories = ["linux"]
 tags = ["linux"]
 series = ["Themes Guide"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png"
@@ -104,4 +104,5 @@ cat /proc/24573/status # 查看进程内存
 ```
 ## 健康检查脚本health-check-script
 [健康检查脚本](https://github.com/SimplyLinuxFAQ/health-check-script/blob/master/health-check.sh)
+
 [具体使用例子](https://www.jianshu.com/p/759b3bd7360e)

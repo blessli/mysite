@@ -4,16 +4,14 @@ keywords = ["cockymang","mqtt broker","in action","mqttaction"]
 title = "mysql source code learning"
 date = "2022-11-14"
 description = "带着些许问题去源码中找答案"
-categories = ["database"]
-tags = ["mysql","sourcecode"]
+categories = ["database","mysql"]
+tags = ["sourcecode"]
 series = ["Themes Guide"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png"
 +++
 <!--more-->
 ## 指南
 ```
-能坚持到/看到这里的，那绝壁是真爱！！
-赠送两个小小的建议
 建议一： 从handler出发
 MySQL插件式引擎，连接MySQL Server与各种存储引擎的，是其Handler
 模块 —— hanlder模块是灵魂；

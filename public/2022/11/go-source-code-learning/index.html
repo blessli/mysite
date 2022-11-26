@@ -10,7 +10,7 @@
 <meta property='keywords' content='mqttaction'>
 <meta property='og:url' content='https://soli.seekincs.com/2022/11/go-source-code-learning/'>
 <meta property='og:site_name' content='soli&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='sourcecode' /><meta property='article:published_time' content='2022-11-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-11-17T10:51:20&#43;08:00'/><meta property='og:image' content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img6.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='sourcecode' /><meta property='article:published_time' content='2022-11-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-11-26T23:17:59&#43;08:00'/><meta property='og:image' content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img6.png' />
 <meta name="twitter:title" content="go source code learning">
 <meta name="twitter:description" content="带着些许问题去源码中找答案"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img6.png' />
@@ -221,8 +221,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/language/" style="background-color: #2a9d8f; color: #fff;">
-                language
+            <a href="/categories/golang/" >
+                golang
             </a>
         
     </header>
@@ -269,8 +269,8 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                            <time class="article-time--updated" datetime="2022-11-17 10:51:20.592295184 &#43;0800 CST" title="2022-11-17 10:51:20.592295184 &#43;0800 CST">
-                                2022年11月17日</time>
+                            <time class="article-time--updated" datetime="2022-11-26 23:17:59.076223224 &#43;0800 CST" title="2022-11-26 23:17:59.076223224 &#43;0800 CST">
+                                2022年11月26日</time>
                         </div>
         
             <div>
@@ -283,7 +283,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -299,6 +299,189 @@
     
     <h2 id="问题探索">问题探索</h2>
 <h3 id="调度器">调度器</h3>
+<p>调度器的工作是在适当的时机将合适的协程分配到合适的位置，在调度过程中需要保证公平和效率。</p>
+<h4 id="调度时机">调度时机</h4>
+<p>根据调度方式的不同，将调度时机分为主动、被动和抢占调度。<br></p>
+<h5 id="主动调度">主动调度</h5>
+<p>需要先从当前协程切换到协程g0，取消G与M之间的绑定关系，将G放入全局运行队列，并调用schedule函数开始新一轮的循环。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">goschedImpl</span><span class="p">(</span><span class="nx">gp</span> <span class="o">*</span><span class="nx">g</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">status</span> <span class="o">:=</span> <span class="nf">readgstatus</span><span class="p">(</span><span class="nx">gp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">status</span><span class="o">&amp;^</span><span class="nx">_Gscan</span> <span class="o">!=</span> <span class="nx">_Grunning</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">dumpgstatus</span><span class="p">(</span><span class="nx">gp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">throw</span><span class="p">(</span><span class="s">&#34;bad g status&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">casgstatus</span><span class="p">(</span><span class="nx">gp</span><span class="p">,</span> <span class="nx">_Grunning</span><span class="p">,</span> <span class="nx">_Grunnable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 取消G与M之间的绑定关系
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">dropg</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">lock</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">sched</span><span class="p">.</span><span class="nx">lock</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 把G放入全局运行队列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">globrunqput</span><span class="p">(</span><span class="nx">gp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">sched</span><span class="p">.</span><span class="nx">lock</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 进入新一轮调度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">schedule</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div></p>
+<h5 id="被动调度">被动调度</h5>
+<p>和主动调度类似的是，被动调度需要先从当前协程切换到协程g0，更新协程的状态并解绑与M的关系，重新调度。
+和主动调度不同的是，被动调度不会将G放入全局运行队列，因为当前G的状态不是_Grunnable而是_Gwaiting，
+所以，被动调度需要一个额外的唤醒机制。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">park_m</span><span class="p">(</span><span class="nx">gp</span> <span class="o">*</span><span class="nx">g</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">_g_</span> <span class="o">:=</span> <span class="nf">getg</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">casgstatus</span><span class="p">(</span><span class="nx">gp</span><span class="p">,</span> <span class="nx">_Grunning</span><span class="p">,</span> <span class="nx">_Gwaiting</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">dropg</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">fn</span> <span class="o">:=</span> <span class="nx">_g_</span><span class="p">.</span><span class="nx">m</span><span class="p">.</span><span class="nx">waitunlockf</span><span class="p">;</span> <span class="nx">fn</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">ok</span> <span class="o">:=</span> <span class="nf">fn</span><span class="p">(</span><span class="nx">gp</span><span class="p">,</span> <span class="nx">_g_</span><span class="p">.</span><span class="nx">m</span><span class="p">.</span><span class="nx">waitlock</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">_g_</span><span class="p">.</span><span class="nx">m</span><span class="p">.</span><span class="nx">waitunlockf</span> <span class="p">=</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">_g_</span><span class="p">.</span><span class="nx">m</span><span class="p">.</span><span class="nx">waitlock</span> <span class="p">=</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="nx">trace</span><span class="p">.</span><span class="nx">enabled</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nf">traceGoUnpark</span><span class="p">(</span><span class="nx">gp</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="nf">casgstatus</span><span class="p">(</span><span class="nx">gp</span><span class="p">,</span> <span class="nx">_Gwaiting</span><span class="p">,</span> <span class="nx">_Grunnable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="nf">execute</span><span class="p">(</span><span class="nx">gp</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span> <span class="c1">// Schedule it back, never returns.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">schedule</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div></p>
+<h5 id="抢占调度">抢占调度</h5>
+<p>为了让每个协程都有执行的机会，并且最大化利用CPU资源，Go语言在初始化时会启动一个特殊的线程来执行系统监控任务。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// proc.retake函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">retake</span><span class="p">(</span><span class="nx">now</span> <span class="kt">int64</span><span class="p">)</span> <span class="kt">uint32</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">n</span> <span class="o">:=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">lock</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">allpLock</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 遍历所有的P
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">allp</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">_p_</span> <span class="o">:=</span> <span class="nx">allp</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">_p_</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">continue</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">pd</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">_p_</span><span class="p">.</span><span class="nx">sysmontick</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">s</span> <span class="o">:=</span> <span class="nx">_p_</span><span class="p">.</span><span class="nx">status</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">sysretake</span> <span class="o">:=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">s</span> <span class="o">==</span> <span class="nx">_Prunning</span> <span class="o">||</span> <span class="nx">s</span> <span class="o">==</span> <span class="nx">_Psyscall</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">// 如果G运行时间过长则抢占
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">t</span> <span class="o">:=</span> <span class="nb">int64</span><span class="p">(</span><span class="nx">_p_</span><span class="p">.</span><span class="nx">schedtick</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="nb">int64</span><span class="p">(</span><span class="nx">pd</span><span class="p">.</span><span class="nx">schedtick</span><span class="p">)</span> <span class="o">!=</span> <span class="nx">t</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">pd</span><span class="p">.</span><span class="nx">schedtick</span> <span class="p">=</span> <span class="nb">uint32</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">pd</span><span class="p">.</span><span class="nx">schedwhen</span> <span class="p">=</span> <span class="nx">now</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">pd</span><span class="p">.</span><span class="nx">schedwhen</span><span class="o">+</span><span class="nx">forcePreemptNS</span> <span class="o">&lt;=</span> <span class="nx">now</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="c1">// 连续运行超过10ms，设置抢占请求
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="nf">preemptone</span><span class="p">(</span><span class="nx">_p_</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">sysretake</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// P处于系统调用之中，检查是否需要抢占
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="nx">s</span> <span class="o">==</span> <span class="nx">_Psyscall</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">// 如果已经超过了一个系统监控的tick(20us)，则从系统调用中抢占P
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="c1">// ...省略
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">allpLock</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nb">uint32</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div></p>
+<h4 id="调度策略">调度策略</h4>
+<p>调度协程的优先级与顺序如下所示:<br>
+
+<pre class="mermaid" align="center">
+graph LR
+    A[runnext] --> B{nil?};
+    B -- Yes --> C[p.runq];
+    C --> D{head=tail?};
+    D -- Yes ----> F[schet.runq];
+    F --> G{runqsize=0?};
+    G -- Yes --> H[从其他P窃取];
+    H --> J{find?};
+    J -- Yes ----> K[找到G];
+    J -- No ----> L[未找到G,休眠];
+    F -- No ----> I[找到G];
+    D -- No --> E[找到G];
+    B -- No ----> W[找到G];
+</pre></p>
 <h2 id="其他">其他</h2>
 <h3 id="编译">编译</h3>
 <p>编译脚本(all.bash/make.bash)中注释掉，跳过编译test，因为太慢</p>
@@ -330,7 +513,7 @@ mygo run helloworld.go
 
 
         <span>
-            最后更新于 2022年11月17日 10点51分20秒
+            最后更新于 2022年11月26日 23点17分59秒
         </span>
     </section></footer>
 
@@ -559,7 +742,12 @@ mygo run helloworld.go
   <ol>
     <li><a href="#问题探索">问题探索</a>
       <ol>
-        <li><a href="#调度器">调度器</a></li>
+        <li><a href="#调度器">调度器</a>
+          <ol>
+            <li><a href="#调度时机">调度时机</a></li>
+            <li><a href="#调度策略">调度策略</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
     <li><a href="#其他">其他</a>
@@ -628,28 +816,40 @@ mygo run helloworld.go
                 database
             </a>
         
-            <a href="/categories/unknown/" class="font_size_2">
-                unknown
+            <a href="/categories/codeforces/" class="font_size_1">
+                codeforces
             </a>
         
-            <a href="/categories/grpc/" class="font_size_1">
-                grpc
+            <a href="/categories/golang/" class="font_size_1">
+                golang
+            </a>
+        
+            <a href="/categories/grpcgo/" class="font_size_1">
+                grpcgo
             </a>
         
             <a href="/categories/k8s/" class="font_size_1">
                 k8s
             </a>
         
-            <a href="/categories/language/" class="font_size_1">
-                language
+            <a href="/categories/linux/" class="font_size_1">
+                linux
             </a>
         
             <a href="/categories/mqtt/" class="font_size_1">
                 mqtt
             </a>
         
+            <a href="/categories/mysql/" class="font_size_1">
+                mysql
+            </a>
+        
             <a href="/categories/nginx/" class="font_size_1">
                 nginx
+            </a>
+        
+            <a href="/categories/redis/" class="font_size_1">
+                redis
             </a>
         
             <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="font_size_1">
@@ -703,18 +903,6 @@ mygo run helloworld.go
         
             <a href="/tags/mqtt/" class="font_size_1">
                 mqtt
-            </a>
-        
-            <a href="/tags/mysql/" class="font_size_1">
-                mysql
-            </a>
-        
-            <a href="/tags/nginx/" class="font_size_1">
-                nginx
-            </a>
-        
-            <a href="/tags/redis/" class="font_size_1">
-                redis
             </a>
         
             <a href="/tags/%E5%AE%9E%E6%88%98/" class="font_size_1">

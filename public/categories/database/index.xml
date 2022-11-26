@@ -12,9 +12,7 @@
         
         <guid>https://soli.seekincs.com/2022/11/mysql-source-code-learning/</guid>
         <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png" alt="Featured image of post mysql source code learning" /&gt;&lt;h2 id=&#34;指南&#34;&gt;指南&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;能坚持到/看到这里的，那绝壁是真爱！！
-赠送两个小小的建议
-建议一： 从handler出发
+&lt;pre&gt;&lt;code&gt;建议一： 从handler出发
 MySQL插件式引擎，连接MySQL Server与各种存储引擎的，是其Handler
 模块 —— hanlder模块是灵魂；
 以InnoDB引擎为例，从ha_innodb.cc文件出发，理解其中的每一个接口的
@@ -280,6 +278,14 @@ sequenceDiagram
 &lt;h3 id=&#34;查看rdb快照文件&#34;&gt;查看RDB快照文件&lt;/h3&gt;
 &lt;p&gt;rdb -c memory dump.rdb &amp;gt; dump_rdb.csv&lt;br&gt;
 其中：size_in_bytes 内存的大小，由此可以查询内存最高的key&lt;/p&gt;
+&lt;h3 id=&#34;redis50搭建伪分布式集群&#34;&gt;redis5.0搭建伪分布式集群&lt;/h3&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/blessli/redis/commit/cae296cf3035b8529250eb72ffb3263f380b3ef6&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;具体配置参考commit&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;/home/github/redis/src/redis-cli --cluster create --cluster-replicas 1 10.0.12.2:7001 10.0.12.2:7002 10.0.12.2:7003 10.0.12.2:7004 10.0.12.2:7005 10.0.12.2:7006
+./src/redis-cli -h 10.0.12.2 -p 7001 -c
+cluser nodes
+cluser info
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;参考资料&#34;&gt;参考资料&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.redis.net.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
