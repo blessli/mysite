@@ -26,6 +26,21 @@
     <loc>https://soli.seekincs.com/categories/unknown/</loc>
     <lastmod>2022-11-14T17:50:13+08:00</lastmod>
   </url><url>
+    <loc>https://soli.seekincs.com/2022/12/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B%E4%BD%BF%E7%94%A8muduo-c-%E7%BD%91%E7%BB%9C%E5%BA%93.pdf/</loc>
+    <lastmod>2022-12-04T03:09:12+08:00</lastmod>
+  </url><url>
+    <loc>https://soli.seekincs.com/tags/pdf/</loc>
+    <lastmod>2022-12-04T03:09:12+08:00</lastmod>
+  </url><url>
+    <loc>https://soli.seekincs.com/post/</loc>
+    <lastmod>2022-12-04T03:09:12+08:00</lastmod>
+  </url><url>
+    <loc>https://soli.seekincs.com/</loc>
+    <lastmod>2022-12-04T03:09:12+08:00</lastmod>
+  </url><url>
+    <loc>https://soli.seekincs.com/tags/</loc>
+    <lastmod>2022-12-04T03:09:12+08:00</lastmod>
+  </url><url>
     <loc>https://soli.seekincs.com/categories/</loc>
     <lastmod>2022-12-03T01:25:30+08:00</lastmod>
   </url><url>
@@ -37,15 +52,6 @@
   </url><url>
     <loc>https://soli.seekincs.com/2022/11/codeforces-practices/</loc>
     <lastmod>2022-11-26T22:54:55+08:00</lastmod>
-  </url><url>
-    <loc>https://soli.seekincs.com/post/</loc>
-    <lastmod>2022-12-03T01:25:30+08:00</lastmod>
-  </url><url>
-    <loc>https://soli.seekincs.com/</loc>
-    <lastmod>2022-12-03T01:25:30+08:00</lastmod>
-  </url><url>
-    <loc>https://soli.seekincs.com/tags/</loc>
-    <lastmod>2022-12-03T01:25:30+08:00</lastmod>
   </url><url>
     <loc>https://soli.seekincs.com/categories/nginx/</loc>
     <lastmod>2022-12-03T01:25:30+08:00</lastmod>
@@ -130,5 +136,7 @@
   </url><url>
     <loc>https://soli.seekincs.com/search/</loc>
     <lastmod>2022-11-11T10:10:28+08:00</lastmod>
+  </url><url>
+    <loc>https://soli.seekincs.com/categories/tcp/ip/</loc>
   </url>
 </urlset>
