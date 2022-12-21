@@ -2,8 +2,8 @@
 author = "soli"
 title = "Linux多线程服务端编程：使用muduo C++网络库.pdf"
 date = "2022-12-03"
-description = "笔记"
-categories = ["tcp/ip"]
+description = "做些记录"
+categories = ["笔记"]
 tags = ["pdf"]
 series = ["Themes Guide"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"

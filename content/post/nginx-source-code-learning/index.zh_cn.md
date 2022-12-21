@@ -3,9 +3,9 @@ author = "soli"
 keywords = ["cockymang","mqtt broker","in action","mqttaction"]
 title = "nginx工作笔记"
 date = "2022-11-22"
-description = "带着些许问题去源码中找答案"
+description = "深入理解Nginx:模块开发与架构解析(第2版).pdf"
 categories = ["nginx"]
-tags = ["sourcecode"]
+tags = ["pdf"]
 series = ["Themes Guide"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"
 +++

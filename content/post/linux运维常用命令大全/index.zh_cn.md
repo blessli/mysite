@@ -1,7 +1,7 @@
 +++
 author = "soli"
 keywords = ["cockymang","mqtt broker","in action","mqttaction"]
-title = "linux运维常用命令大全"
+title = "Centos7工作笔记"
 date = "2022-11-14"
 description = ""
 categories = ["linux"]
@@ -10,15 +10,17 @@ series = ["Themes Guide"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png"
 +++
 <!--more-->
-centos版本
+## centos版本
+目前都是用centos7
 ```sh
 cat /etc/redhat-release
 ```
 ## alias
-解决重启后alias失效问题：
+解决重启后alias失效问题。尽量放在home目录下
 ```sh
 vim ~/.bashrc
-alias cdcode='cd /usr/local/projs'
+alias cdhub='cd /home/github'
+alias cdclash='cd /home/clash'
 source ~/.bashrc
 ```
 ## 查看项目代码行数
@@ -88,6 +90,10 @@ chown -R mysql:mysql /usr/local/mysql/
 netstat -nat | grep -i "80" | wc -l
 netstat -nat | grep -i "18000" | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}' # 查看TCP连接状态
 ```
+## 生成32位随机串
+```sh
+cat /dev/urandom | head -n 10 | md5sum
+```
 ## 磁盘占满排查
 ```sh
 df -hl
@@ -106,3 +112,37 @@ cat /proc/24573/status # 查看进程内存
 [健康检查脚本](https://github.com/SimplyLinuxFAQ/health-check-script/blob/master/health-check.sh)
 
 [具体使用例子](https://www.jianshu.com/p/759b3bd7360e)
+## centos7安装clash
+[url1](https://i.jakeyu.top/2021/11/27/centos-%E4%BD%BF%E7%94%A8-Clash-%E6%A2%AF%E5%AD%90/)<br>
+[url2](https://199604.com/2001)
+## 安装prometheus和grafana
+场景: 编写Dockerfile<br>
+[grafana8.0.6官网下载](https://grafana.com/grafana/download/8.0.6?edition=oss&pg=get&platform=linux&plcmt=selfmanaged-box1-cta1)<br>
+```sh
+FROM quay.io/prometheus/prometheus
+USER root
+RUN echo 'Asia/Shanghai' >/etc/timezone
+ADD prometheus.yml /etc/prometheus/
+```
+## 解压
+```sh
+tar -zxvf grafana-8.0.6.linux-amd64.tar.gz
+```
+## 服务启动脚本
+```sh
+#!/bin/sh
+mainpid=$(lsof -i:8686|grep 'LISTEN'|awk '{print $2}')
+echo $mainpid
+if [ $mainpid > 0 ];then
+    echo "main process id:$mainpid"
+    kill -9 $mainpid
+    if [ $? -eq 0 ];then
+    echo "kill $mainpid success"
+    go run main.go
+    else
+    echo "kill $mainpid fail"
+    fi
+else
+    go run main.go
+fi
+```

@@ -7,18 +7,20 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Mon, 14 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/linux/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>linux运维常用命令大全</title>
-        <link>https://soli.seekincs.com/2022/11/linux%E8%BF%90%E7%BB%B4%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/</link>
+        <title>Centos7工作笔记</title>
+        <link>https://soli.seekincs.com/2022/11/centos7%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/11/linux%E8%BF%90%E7%BB%B4%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post linux运维常用命令大全" /&gt;&lt;p&gt;centos版本&lt;/p&gt;
+        <guid>https://soli.seekincs.com/2022/11/centos7%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post Centos7工作笔记" /&gt;&lt;h2 id=&#34;centos版本&#34;&gt;centos版本&lt;/h2&gt;
+&lt;p&gt;目前都是用centos7&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /etc/redhat-release
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;alias&#34;&gt;alias&lt;/h2&gt;
-&lt;p&gt;解决重启后alias失效问题：&lt;/p&gt;
+&lt;p&gt;解决重启后alias失效问题。尽量放在home目录下&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;vim ~/.bashrc
-alias cdcode=&#39;cd /usr/local/projs&#39;
+alias cdhub=&#39;cd /home/github&#39;
+alias cdclash=&#39;cd /home/clash&#39;
 source ~/.bashrc
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;查看项目代码行数&#34;&gt;查看项目代码行数&lt;/h2&gt;
@@ -79,6 +81,9 @@ chown -R mysql:mysql /usr/local/mysql/
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;netstat -nat | grep -i &amp;quot;80&amp;quot; | wc -l
 netstat -nat | grep -i &amp;quot;18000&amp;quot; | awk &#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39; # 查看TCP连接状态
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;生成32位随机串&#34;&gt;生成32位随机串&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /dev/urandom | head -n 10 | md5sum
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;磁盘占满排查&#34;&gt;磁盘占满排查&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;df -hl
 du -s /* | sort -nr |head # 选出排在前面的10个，head改成tail则是后面10个
@@ -95,7 +100,41 @@ cat /proc/24573/status # 查看进程内存
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/SimplyLinuxFAQ/health-check-script/blob/master/health-check.sh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;健康检查脚本&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/759b3bd7360e&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;具体使用例子&lt;/a&gt;&lt;/p&gt;</description>
+    &gt;具体使用例子&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;centos7安装clash&#34;&gt;centos7安装clash&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://i.jakeyu.top/2021/11/27/centos-%E4%BD%BF%E7%94%A8-Clash-%E6%A2%AF%E5%AD%90/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;url1&lt;/a&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://199604.com/2001&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;url2&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;安装prometheus和grafana&#34;&gt;安装prometheus和grafana&lt;/h2&gt;
+&lt;p&gt;场景: 编写Dockerfile&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://grafana.com/grafana/download/8.0.6?edition=oss&amp;amp;pg=get&amp;amp;platform=linux&amp;amp;plcmt=selfmanaged-box1-cta1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;grafana8.0.6官网下载&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;FROM quay.io/prometheus/prometheus
+USER root
+RUN echo &#39;Asia/Shanghai&#39; &amp;gt;/etc/timezone
+ADD prometheus.yml /etc/prometheus/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;解压&#34;&gt;解压&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;tar -zxvf grafana-8.0.6.linux-amd64.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;服务启动脚本&#34;&gt;服务启动脚本&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;#!/bin/sh
+mainpid=$(lsof -i:8686|grep &#39;LISTEN&#39;|awk &#39;{print $2}&#39;)
+echo $mainpid
+if [ $mainpid &amp;gt; 0 ];then
+    echo &amp;quot;main process id:$mainpid&amp;quot;
+    kill -9 $mainpid
+    if [ $? -eq 0 ];then
+    echo &amp;quot;kill $mainpid success&amp;quot;
+    go run main.go
+    else
+    echo &amp;quot;kill $mainpid fail&amp;quot;
+    fi
+else
+    go run main.go
+fi
+&lt;/code&gt;&lt;/pre&gt;</description>
         </item>
         
     </channel>
