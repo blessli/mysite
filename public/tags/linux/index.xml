@@ -7,13 +7,13 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Mon, 14 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/linux/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Centos7工作笔记</title>
-        <link>https://soli.seekincs.com/2022/11/centos7%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
+        <title>Centos工作笔记</title>
+        <link>https://soli.seekincs.com/2022/11/centos%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/11/centos7%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post Centos7工作笔记" /&gt;&lt;h2 id=&#34;centos版本&#34;&gt;centos版本&lt;/h2&gt;
-&lt;p&gt;目前都是用centos7&lt;/p&gt;
+        <guid>https://soli.seekincs.com/2022/11/centos%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post Centos工作笔记" /&gt;&lt;h2 id=&#34;centos版本&#34;&gt;centos版本&lt;/h2&gt;
+&lt;p&gt;centos7&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /etc/redhat-release
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;alias&#34;&gt;alias&lt;/h2&gt;
@@ -81,7 +81,7 @@ chown -R mysql:mysql /usr/local/mysql/
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;netstat -nat | grep -i &amp;quot;80&amp;quot; | wc -l
 netstat -nat | grep -i &amp;quot;18000&amp;quot; | awk &#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39; # 查看TCP连接状态
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;生成32位随机串&#34;&gt;生成32位随机串&lt;/h2&gt;
+&lt;h2 id=&#34;linux生成32位随机串&#34;&gt;linux生成32位随机串&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /dev/urandom | head -n 10 | md5sum
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;磁盘占满排查&#34;&gt;磁盘占满排查&lt;/h2&gt;

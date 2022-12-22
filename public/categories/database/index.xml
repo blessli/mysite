@@ -211,12 +211,12 @@ sequenceDiagram
 &lt;/pre&gt;</description>
         </item>
         <item>
-        <title>redis source code learning</title>
-        <link>https://soli.seekincs.com/2022/11/redis-source-code-learning/</link>
+        <title>redis工作笔记</title>
+        <link>https://soli.seekincs.com/2022/11/redis%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/11/redis-source-code-learning/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post redis source code learning" /&gt;&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
+        <guid>https://soli.seekincs.com/2022/11/redis%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post redis工作笔记" /&gt;&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
 &lt;h3 id=&#34;事件处理&#34;&gt;事件处理&lt;/h3&gt;
 &lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
 &lt;h3 id=&#34;vscode本地调试&#34;&gt;vscode本地调试&lt;/h3&gt;

@@ -1,7 +1,7 @@
 +++
 author = "soli"
 keywords = ["cockymang","mqtt broker","in action","mqttaction"]
-title = "Centos7工作笔记"
+title = "Centos工作笔记"
 date = "2022-11-14"
 description = ""
 categories = ["linux"]
@@ -11,7 +11,7 @@ image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png"
 +++
 <!--more-->
 ## centos版本
-目前都是用centos7
+centos7
 ```sh
 cat /etc/redhat-release
 ```
@@ -90,7 +90,7 @@ chown -R mysql:mysql /usr/local/mysql/
 netstat -nat | grep -i "80" | wc -l
 netstat -nat | grep -i "18000" | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}' # 查看TCP连接状态
 ```
-## 生成32位随机串
+## linux生成32位随机串
 ```sh
 cat /dev/urandom | head -n 10 | md5sum
 ```

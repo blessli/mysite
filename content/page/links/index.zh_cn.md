@@ -16,6 +16,9 @@ links:
   - title: LeetCode
     description: 刷题平台
     website: https://leetcode.cn/problem-list/2cktkvj/
+  - title: 浮墨笔记
+    description: 记笔记最根本的目的 —— 更好地思考
+    website: https://v.flomoapp.com/mine
 menu:
     main: 
         weight: -50

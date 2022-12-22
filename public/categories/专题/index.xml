@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>专题 on soli&#39;s blog</title>
+        <link>https://soli.seekincs.com/categories/%E4%B8%93%E9%A2%98/</link>
+        <description>Recent content in 专题 on soli&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Thu, 22 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/categories/%E4%B8%93%E9%A2%98/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>专题一：高性能</title>
+        <link>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%98%E4%B8%80%E9%AB%98%E6%80%A7%E8%83%BD/</link>
+        <pubDate>Thu, 22 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%98%E4%B8%80%E9%AB%98%E6%80%A7%E8%83%BD/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post 专题一：高性能" /&gt;&lt;h2 id=&#34;balance&#34;&gt;balance&lt;/h2&gt;
+&lt;p&gt;折中：成本 VS 收益&lt;/p&gt;
+&lt;h2 id=&#34;trap&#34;&gt;trap&lt;/h2&gt;
+&lt;p&gt;过早优化：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;代码可读性&lt;/li&gt;
+&lt;li&gt;多维度团队成本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;quantity&#34;&gt;quantity&lt;/h2&gt;
+&lt;p&gt;性能建模：性能度量指标&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;references&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.huoban.com/news/post/2189.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;当我们谈高性能时，我们谈些什么？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

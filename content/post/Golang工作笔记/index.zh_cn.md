@@ -1,7 +1,7 @@
 +++
 author = "soli"
 keywords = ["cockymang","mqtt broker","in action","mqttaction"]
-title = "go source code learning"
+title = "Golang工作笔记"
 date = "2022-11-14"
 description = "带着些许问题去源码中找答案"
 categories = ["golang"]

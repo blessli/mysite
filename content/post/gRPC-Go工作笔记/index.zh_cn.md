@@ -1,10 +1,10 @@
 +++
 author = "soli"
-title = "grpcgo source code learning"
+title = "gRPC-Go工作笔记"
 date = "2022-11-14"
 description = ""
-categories = ["grpcgo"]
-tags = ["grpcgo","sourcecode"]
+categories = ["rpc"]
+tags = ["grpcgo"]
 series = ["Themes Guide"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img5.png"
 +++

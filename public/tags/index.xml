@@ -6,7 +6,15 @@
         <description>Recent content in Tags on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sat, 03 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 22 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>高性能</title>
+        <link>https://soli.seekincs.com/tags/%E9%AB%98%E6%80%A7%E8%83%BD/</link>
+        <pubDate>Thu, 22 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/tags/%E9%AB%98%E6%80%A7%E8%83%BD/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>pdf</title>
         <link>https://soli.seekincs.com/tags/pdf/</link>
         <pubDate>Sat, 03 Dec 2022 00:00:00 +0000</pubDate>
@@ -52,6 +60,22 @@
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/tags/mqtt/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>mysql</title>
+        <link>https://soli.seekincs.com/tags/mysql/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/tags/mysql/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>redis</title>
+        <link>https://soli.seekincs.com/tags/redis/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/tags/redis/</guid>
         <description></description>
         </item>
         <item>
