@@ -1,6 +1,6 @@
 +++
 author = "soli"
-title = "专题一：高性能"
+title = "专题1：高性能"
 date = "2022-12-22"
 description = "普适性的性能优化的思路和原理"
 categories = ["专题"]
