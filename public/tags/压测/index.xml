@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>压测 on soli&#39;s blog</title>
+        <link>https://soli.seekincs.com/tags/%E5%8E%8B%E6%B5%8B/</link>
+        <description>Recent content in 压测 on soli&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Mon, 26 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/%E5%8E%8B%E6%B5%8B/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>专题2：性能压测</title>
+        <link>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%982%E6%80%A7%E8%83%BD%E5%8E%8B%E6%B5%8B/</link>
+        <pubDate>Mon, 26 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%982%E6%80%A7%E8%83%BD%E5%8E%8B%E6%B5%8B/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 专题2：性能压测" /&gt;&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+1. 稳定性
+2. 潜在性能瓶颈
+3. 熔断降级演练
+4. 容量规划
+&lt;p&gt;压测成本&lt;br&gt;
+压测目标&lt;br&gt;
+压测场景&lt;br&gt;
+严格&lt;br&gt;
+GC&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&#34;trap&#34;&gt;trap&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#&lt;/th&gt;
+&lt;th&gt;detail&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;日志浪费cpu&lt;/td&gt;
+&lt;td&gt;容易忽视&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SDK性能问题&lt;/td&gt;
+&lt;td&gt;高并发时才会暴露出来&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;评估偏差&lt;/td&gt;
+&lt;td&gt;cpu、memory、load average&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;how-to-choose-benchmark-tool&#34;&gt;how to choose benchmark tool&lt;/h2&gt;
+&lt;h2 id=&#34;reference&#34;&gt;reference&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://juejin.cn/post/7133851547477213221#heading-10&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;记一次业务压测过程中发现的问题&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

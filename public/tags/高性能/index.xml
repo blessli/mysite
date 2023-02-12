@@ -7,12 +7,13 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Thu, 22 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/%E9%AB%98%E6%80%A7%E8%83%BD/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>专题一：高性能</title>
-        <link>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%98%E4%B8%80%E9%AB%98%E6%80%A7%E8%83%BD/</link>
+        <title>专题1：高性能</title>
+        <link>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%981%E9%AB%98%E6%80%A7%E8%83%BD/</link>
         <pubDate>Thu, 22 Dec 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%98%E4%B8%80%E9%AB%98%E6%80%A7%E8%83%BD/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post 专题一：高性能" /&gt;&lt;h2 id=&#34;balance&#34;&gt;balance&lt;/h2&gt;
+        <guid>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%981%E9%AB%98%E6%80%A7%E8%83%BD/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post 专题1：高性能" /&gt;&lt;h2 id=&#34;高性能的秘密&#34;&gt;高性能的秘密&lt;/h2&gt;
+&lt;h2 id=&#34;balance&#34;&gt;balance&lt;/h2&gt;
 &lt;p&gt;折中：成本 VS 收益&lt;/p&gt;
 &lt;h2 id=&#34;trap&#34;&gt;trap&lt;/h2&gt;
 &lt;p&gt;过早优化：&lt;/p&gt;
@@ -22,11 +23,20 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;quantity&#34;&gt;quantity&lt;/h2&gt;
 &lt;p&gt;性能建模：性能度量指标&lt;/p&gt;
+&lt;h2 id=&#34;性能瓶颈发现剖析解决&#34;&gt;性能瓶颈：发现、剖析、解决&lt;/h2&gt;
 &lt;h2 id=&#34;references&#34;&gt;references&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.huoban.com/news/post/2189.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;当我们谈高性能时，我们谈些什么？&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
+        </item>
+        <item>
+        <title>专题3：限流</title>
+        <link>https://soli.seekincs.com/2022/02/%E4%B8%93%E9%A2%983%E9%99%90%E6%B5%81/</link>
+        <pubDate>Fri, 11 Feb 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/02/%E4%B8%93%E9%A2%983%E9%99%90%E6%B5%81/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post 专题3：限流" /&gt;</description>
         </item>
         
     </channel>

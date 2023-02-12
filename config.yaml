@@ -58,7 +58,7 @@ params:
 
     footer:
         since: 2022
-        customText: 别人在等伞，我在等雨停
+        customText: 你很棒,明天请继续
 
     dateFormat:
         published: 2006年01月02日
@@ -66,7 +66,7 @@ params:
 
     sidebar:
         emoji:
-        subtitle: 光锥
+        subtitle: 你很棒,明天请继续
         avatar:
             enabled: true
             local: true

@@ -3,14 +3,15 @@ author = "soli"
 keywords = ["cockymang","mqtt broker","in action","mqttaction"]
 title = "redis工作笔记"
 date = "2022-11-14"
-description = ""
+description = "带着问题出发"
 categories = ["database"]
 tags = ["redis"]
 series = ["Themes Guide"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"
 +++
 <!--more-->
-## 问题探索
+## redis+lua实现分布式限流
+
 ### 事件处理
 ## 其他
 ### vscode本地调试
@@ -53,3 +54,4 @@ cluser info
 ```
 ### 参考资料
 - [Redis中文网](https://www.redis.net.cn/)
+- [用go实现redis服务器](https://juejin.cn/post/6974560368026714119#heading-8)

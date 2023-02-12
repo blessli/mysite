@@ -7,30 +7,45 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Mon, 14 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/linux/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Centos工作笔记</title>
-        <link>https://soli.seekincs.com/2022/11/centos%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
+        <title>linux开发常用笔记</title>
+        <link>https://soli.seekincs.com/2022/11/linux%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/11/centos%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post Centos工作笔记" /&gt;&lt;h2 id=&#34;centos版本&#34;&gt;centos版本&lt;/h2&gt;
-&lt;p&gt;centos7&lt;/p&gt;
+        <guid>https://soli.seekincs.com/2022/11/linux%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post linux开发常用笔记" /&gt;&lt;h2 id=&#34;基础命令&#34;&gt;基础命令&lt;/h2&gt;
+&lt;h3 id=&#34;centos7版本&#34;&gt;centos7版本&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /etc/redhat-release
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;alias&#34;&gt;alias&lt;/h2&gt;
-&lt;p&gt;解决重启后alias失效问题。尽量放在home目录下&lt;/p&gt;
+&lt;h3 id=&#34;解压&#34;&gt;解压&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;tar -zxvf grafana-8.0.6.linux-amd64.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;alias别名&#34;&gt;alias别名&lt;/h3&gt;
+&lt;p&gt;解决重启后alias失效问题。非系统文件尽量放在home目录下&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;vim ~/.bashrc
 alias cdhub=&#39;cd /home/github&#39;
 alias cdclash=&#39;cd /home/clash&#39;
 source ~/.bashrc
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;查看项目代码行数&#34;&gt;查看项目代码行数&lt;/h2&gt;
+&lt;h3 id=&#34;查看项目代码行数&#34;&gt;查看项目代码行数&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;yum -y install cloc
 cloc src
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;显示当前文件夹大小&#34;&gt;显示当前文件夹大小&lt;/h2&gt;
+&lt;h3 id=&#34;显示当前文件夹大小&#34;&gt;显示当前文件夹大小&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;du -hs
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;安装git2x&#34;&gt;安装git2.x&lt;/h2&gt;
+&lt;h3 id=&#34;linux开启swap分区&#34;&gt;linux开启swap分区&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;dd if=/dev/zero of=/swapfile bs=64M count=64
+chmod 0600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+swapon -s
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;linux生成32位随机串&#34;&gt;linux生成32位随机串&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /dev/urandom | head -n 10 | md5sum
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/Axianba/p/13131620.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.cnblogs.com/Axianba/p/13131620.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;安装git2x&#34;&gt;安装git2.x&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;sudo yum install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
 sudo yum install git
 git --version
@@ -55,15 +70,6 @@ cmake --version
 tar -zxvf cmake-3.24.0-linux-x86_64.tar.gz
 ln -sf /usr/local/cmake-3.24.0-linux-x86_64/bin/cmake /usr/bin/cmake
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;linux开启swap分区&#34;&gt;linux开启swap分区&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;dd if=/dev/zero of=/swapfile bs=64M count=64
-chmod 0600 /swapfile
-mkswap /swapfile
-swapon /swapfile
-swapon -s
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/Axianba/p/13131620.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.cnblogs.com/Axianba/p/13131620.html&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;安装mysql-8024&#34;&gt;安装mysql-8.0.24&lt;/h2&gt;
 &lt;p&gt;cmake命令&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;mkdir build &amp;amp;&amp;amp; cd build
@@ -80,9 +86,6 @@ chown -R mysql:mysql /usr/local/mysql/
 &lt;h2 id=&#34;统计80端口连接数&#34;&gt;统计80端口连接数&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;netstat -nat | grep -i &amp;quot;80&amp;quot; | wc -l
 netstat -nat | grep -i &amp;quot;18000&amp;quot; | awk &#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39; # 查看TCP连接状态
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;linux生成32位随机串&#34;&gt;linux生成32位随机串&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /dev/urandom | head -n 10 | md5sum
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;磁盘占满排查&#34;&gt;磁盘占满排查&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;df -hl
@@ -115,9 +118,6 @@ USER root
 RUN echo &#39;Asia/Shanghai&#39; &amp;gt;/etc/timezone
 ADD prometheus.yml /etc/prometheus/
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;解压&#34;&gt;解压&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;tar -zxvf grafana-8.0.6.linux-amd64.tar.gz
-&lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;服务启动脚本&#34;&gt;服务启动脚本&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;#!/bin/sh
 mainpid=$(lsof -i:8686|grep &#39;LISTEN&#39;|awk &#39;{print $2}&#39;)
@@ -134,7 +134,22 @@ if [ $mainpid &amp;gt; 0 ];then
 else
     go run main.go
 fi
-&lt;/code&gt;&lt;/pre&gt;</description>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;mysql相关&#34;&gt;mysql相关&lt;/h2&gt;
+&lt;h3 id=&#34;docker启动mysql57&#34;&gt;docker启动mysql5.7&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;docker run --name mysql -p 3306:3306 -v /home/github/utopia/my.cnf:/etc/my.cnf -v /home/mysql/data:/var/lib/mysql/data -e MYSQL_ROOT_PASSWORD=rootroot -d mysql:5.7
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;docker-mysql导表&#34;&gt;docker-mysql导表&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;docker exec -i mysql mysql -h 127.0.0.1 -P 3306 -u root -p&#39;rootroot&#39; &amp;lt; /home/github/ranger/dao/gozero_sys_dept.sql
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;innodb_space工具调试&#34;&gt;innodb_space工具调试&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;innodb_space -s ibdata1 -T mask/t_mask -p 3 page-dump
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;抓包&#34;&gt;抓包&lt;/h2&gt;
+&lt;p&gt;常用抓包工具：
+Charles、wiresharks、http debug。
+部分软件(eg: WPS windows端)只能抓到极少量的https请求。
+解决办法：基于proxifier+charles抓包捕获所有请求。&lt;/p&gt;</description>
         </item>
         
     </channel>

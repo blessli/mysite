@@ -6,13 +6,201 @@
         <description>Recent content in Posts on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 22 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/post/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>专题一：高性能</title>
-        <link>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%98%E4%B8%80%E9%AB%98%E6%80%A7%E8%83%BD/</link>
+        <lastBuildDate>Sat, 11 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>gorpc设计与实现</title>
+        <link>https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/</link>
+        <pubDate>Sat, 11 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post gorpc设计与实现" /&gt;&lt;p&gt;&lt;a name=&#34;vAlT3&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;背景&#34;&gt;背景&lt;/h1&gt;
+&lt;p&gt;&lt;a name=&#34;MQrO1&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;_缩短从需求到上线的距离_&#34;&gt;&lt;em&gt;&lt;strong&gt;缩短从需求到上线的距离&lt;/strong&gt;&lt;/em&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;服务端资源成本&lt;/li&gt;
+&lt;li&gt;工程效率
+&lt;a name=&#34;JSGwx&#34;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;设计理念&#34;&gt;设计理念&lt;/h1&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;高性能&lt;/th&gt;
+&lt;th&gt;保证易用性和通用性的前提下，追求性能极致&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;插件化&lt;/td&gt;
+&lt;td&gt;支持业务对框架注入自定义处理，增强扩展能力和灵活度&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;测试&lt;/td&gt;
+&lt;td&gt;单元测试覆盖率100%，提供工具链方便业务测试&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;a name=&#34;qqIaU&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;整体形态&#34;&gt;整体形态&lt;/h1&gt;
+&lt;p&gt;标准化、模块化、插件化、易扩展。&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc1.png&#34;
+	width=&#34;1091&#34;
+	height=&#34;658&#34;
+	srcset=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc1_huf3c8c79c7a43048799de80b62d70e487_48410_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc1_huf3c8c79c7a43048799de80b62d70e487_48410_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;165&#34;
+		data-flex-basis=&#34;397px&#34;
+	
+&gt;
+&lt;a name=&#34;GYoUG&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;协议设计&#34;&gt;协议设计&lt;/h1&gt;
+&lt;p&gt;协议报文：帧头+包头+包体。&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc2.png&#34;
+	width=&#34;1373&#34;
+	height=&#34;266&#34;
+	srcset=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc2_hud26eed2f460ef3040735136aece227f0_27468_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc2_hud26eed2f460ef3040735136aece227f0_27468_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;516&#34;
+		data-flex-basis=&#34;1238px&#34;
+	
+&gt;&lt;br /&gt;帧头是固定的16个字节。&lt;br /&gt;包头和包体可变长。包头通过pb序列化方式，包体支持业务自定义序列化方式。
+&lt;a name=&#34;GK8xD&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;协议打解包过程全剖析&#34;&gt;&lt;strong&gt;协议打解包过程全剖析&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;codec是协议打解包的统一接口。&lt;br /&gt;rpc框架内部会通过协议名(比如http/grpc等)自动获取对应协议的Codec接口实现，也就是clientCodec和serverCodec分别实现client-&amp;gt;server发包和解包、server-&amp;gt;client解包和回包。
+&lt;a name=&#34;q2P5j&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;rpc调用&#34;&gt;RPC调用&lt;/h1&gt;
+&lt;p&gt;&lt;a name=&#34;gkMTS&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;基于protoc文件的rpc调用实现&#34;&gt;基于protoc文件的rpc调用实现&lt;/h2&gt;
+&lt;p&gt;关键代码：proxy := pb.NewGreeterClientProxy(opts&amp;hellip;)&lt;br /&gt;基于PB实现,通过提供脚手架工具生成接口代码,并生成服务模板,实现业务快速开发。
+&lt;a name=&#34;mCYnl&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;服务交互流程&#34;&gt;服务交互流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc.png&#34;
+	width=&#34;1172&#34;
+	height=&#34;1485&#34;
+	srcset=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc_hu56b04216e182a970485f838ca4eba18c_100839_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc_hu56b04216e182a970485f838ca4eba18c_100839_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;78&#34;
+		data-flex-basis=&#34;189px&#34;
+	
+&gt;
+&lt;a name=&#34;COYDR&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;插件化架构&#34;&gt;插件化架构&lt;/h1&gt;
+&lt;p&gt;通过框架配置文件或import的方式，易插拔，扩展灵活。
+&lt;a name=&#34;fZECQ&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;插件原理&#34;&gt;插件原理&lt;/h2&gt;
+&lt;p&gt;框架定义了每种插件类型的标准接口。&lt;br /&gt;没有具体实现,只提供map注册方式。&lt;br /&gt;业务代码import即可。
+&lt;a name=&#34;AHWAE&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;服务治理&#34;&gt;服务治理&lt;/h1&gt;
+&lt;p&gt;统一标准化接口，灵活易扩展。&lt;br /&gt;通过插件对接服务治理相关系统,灵活组装自己的微服务体系。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;插件类型&lt;/th&gt;
+&lt;th&gt;代表&lt;/th&gt;
+&lt;th&gt;具体实现&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;名字服务&lt;/td&gt;
+&lt;td&gt;北极星(已开源)&lt;/td&gt;
+&lt;td&gt;服务注册：&lt;br /&gt;server端main.go里会import北极星服务注册插件。rpc框架会在服务端口起来后，会自动调用register接口，也就是自动将服务名与ip_port信息注册到北极星。&lt;br /&gt;服务发现：&lt;br /&gt;client端main.go里会import北极星服务发现插件。rpc框架的内部封装了rpc调用，会自动调用select接口，也就是自动拿到callee的ip_port。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;监控&lt;/td&gt;
+&lt;td&gt;prometheus&lt;/td&gt;
+&lt;td&gt;rpc框架对外开放counter、gauge、histogram三种类型的监控类型。提供sink接口封装了report功能。&lt;br /&gt;server端main.go里会import prometheus/statusd监控上报插件。通过这个插件自动上报到监控平台。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;配置&lt;/td&gt;
+&lt;td&gt;etcd&lt;/td&gt;
+&lt;td&gt;rpc框架提供本地文件和远程配置中心那种方式，抽象出provider标准化接口。提供多种序列化方式。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;调用链&lt;/td&gt;
+&lt;td&gt;jaeger&lt;/td&gt;
+&lt;td&gt;rpc框架的包头可变长，其中包含metadata信息，并对外暴露get和set标准接口，可用于集成服务可观测性功能。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;日志&lt;/td&gt;
+&lt;td&gt;zap&lt;/td&gt;
+&lt;td&gt;rpc框架支持通过配置文件里注册日志插件，实现根据日志级别按console或file模式写入指定文件名并自动滚动。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;a name=&#34;ejOAJ&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;拦截器&#34;&gt;拦截器&lt;/h1&gt;
+&lt;p&gt;假设有一个方法 handler(ctx context.Context) ，我想要给这个方法赋予一个能力：允许在这个方法执行之前能够打印一行日志。同时，保证handler方法只执行一次。
+&lt;a name=&#34;XSoXB&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;自定义一个拦截器&#34;&gt;自定义一个拦截器&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;定义处理逻辑函数&lt;/li&gt;
+&lt;li&gt;注册到框架中&lt;/li&gt;
+&lt;li&gt;配置文件开启使用&lt;/li&gt;
+&lt;/ol&gt;</description>
+        </item>
+        <item>
+        <title>专题2：性能压测</title>
+        <link>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%982%E6%80%A7%E8%83%BD%E5%8E%8B%E6%B5%8B/</link>
+        <pubDate>Mon, 26 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%982%E6%80%A7%E8%83%BD%E5%8E%8B%E6%B5%8B/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 专题2：性能压测" /&gt;&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+1. 稳定性
+2. 潜在性能瓶颈
+3. 熔断降级演练
+4. 容量规划
+&lt;p&gt;压测成本&lt;br&gt;
+压测目标&lt;br&gt;
+压测场景&lt;br&gt;
+严格&lt;br&gt;
+GC&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&#34;trap&#34;&gt;trap&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#&lt;/th&gt;
+&lt;th&gt;detail&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;日志浪费cpu&lt;/td&gt;
+&lt;td&gt;容易忽视&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SDK性能问题&lt;/td&gt;
+&lt;td&gt;高并发时才会暴露出来&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;评估偏差&lt;/td&gt;
+&lt;td&gt;cpu、memory、load average&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;how-to-choose-benchmark-tool&#34;&gt;how to choose benchmark tool&lt;/h2&gt;
+&lt;h2 id=&#34;reference&#34;&gt;reference&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://juejin.cn/post/7133851547477213221#heading-10&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;记一次业务压测过程中发现的问题&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+        </item>
+        <item>
+        <title>专题1：高性能</title>
+        <link>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%981%E9%AB%98%E6%80%A7%E8%83%BD/</link>
         <pubDate>Thu, 22 Dec 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%98%E4%B8%80%E9%AB%98%E6%80%A7%E8%83%BD/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post 专题一：高性能" /&gt;&lt;h2 id=&#34;balance&#34;&gt;balance&lt;/h2&gt;
+        <guid>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%981%E9%AB%98%E6%80%A7%E8%83%BD/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post 专题1：高性能" /&gt;&lt;h2 id=&#34;高性能的秘密&#34;&gt;高性能的秘密&lt;/h2&gt;
+&lt;h2 id=&#34;balance&#34;&gt;balance&lt;/h2&gt;
 &lt;p&gt;折中：成本 VS 收益&lt;/p&gt;
 &lt;h2 id=&#34;trap&#34;&gt;trap&lt;/h2&gt;
 &lt;p&gt;过早优化：&lt;/p&gt;
@@ -22,6 +210,7 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;quantity&#34;&gt;quantity&lt;/h2&gt;
 &lt;p&gt;性能建模：性能度量指标&lt;/p&gt;
+&lt;h2 id=&#34;性能瓶颈发现剖析解决&#34;&gt;性能瓶颈：发现、剖析、解决&lt;/h2&gt;
 &lt;h2 id=&#34;references&#34;&gt;references&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.huoban.com/news/post/2189.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -89,93 +278,6 @@ what: 所谓最弱连接问题，就是如果往两端用力拉一条由很多�
 		data-flex-basis=&#34;634px&#34;
 	
 &gt;&lt;/p&gt;</description>
-        </item>
-        <item>
-        <title>codeforces practices</title>
-        <link>https://soli.seekincs.com/2022/11/codeforces-practices/</link>
-        <pubDate>Fri, 25 Nov 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/11/codeforces-practices/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post codeforces practices" /&gt;&lt;h2 id=&#34;栽在了简单数学题上&#34;&gt;栽在了简单数学题上&lt;/h2&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://codeforces.com/contest/1758/problem/B&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Codeforces Round #836 (Div. 2) B题目链接&lt;/a&gt;&lt;br&gt;
-反思：&lt;br&gt;
-其实就是((n-1)*(n+1)+1)/n=n。。。对简单数学不够敏感哎&lt;br&gt;
-题目意思没理解对，误以为𝑎1+𝑎2+⋯+𝑎𝑛求和可以不整除𝑛。。。
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;string&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;algorithm&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;using&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;namespace&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;scanf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;%d&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;scanf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;%d&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;n&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;%d&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    &lt;span class=&#34;n&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34; &amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;continue&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;n&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34; %d&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;</description>
         </item>
         <item>
         <title>nginx工作笔记</title>
@@ -300,136 +402,6 @@ nginx规定了同一时刻只能有唯一一个worker子进程监听Web端口，
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/p&gt;</description>
-        </item>
-        <item>
-        <title>Centos工作笔记</title>
-        <link>https://soli.seekincs.com/2022/11/centos%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
-        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/11/centos%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post Centos工作笔记" /&gt;&lt;h2 id=&#34;centos版本&#34;&gt;centos版本&lt;/h2&gt;
-&lt;p&gt;centos7&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /etc/redhat-release
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;alias&#34;&gt;alias&lt;/h2&gt;
-&lt;p&gt;解决重启后alias失效问题。尽量放在home目录下&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;vim ~/.bashrc
-alias cdhub=&#39;cd /home/github&#39;
-alias cdclash=&#39;cd /home/clash&#39;
-source ~/.bashrc
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;查看项目代码行数&#34;&gt;查看项目代码行数&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;yum -y install cloc
-cloc src
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;显示当前文件夹大小&#34;&gt;显示当前文件夹大小&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;du -hs
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;安装git2x&#34;&gt;安装git2.x&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;sudo yum install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
-sudo yum install git
-git --version
-git config --global user.name &amp;quot;Your Name&amp;quot;
-git config --global user.email &amp;quot;email@example.com&amp;quot;
-ssh-keygen -t rsa -C &amp;quot;your_email@youremail.com&amp;quot;
-cat /root/.ssh/id_rsa.pub
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;gcc升级到713&#34;&gt;gcc升级到7.13&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;sudo yum install centos-release-scl
-sudo yum install devtoolset-7-gcc*
-ln -sf /opt/rh/devtoolset-7/root/usr/bin/gcc /usr/bin/gcc
-ln -sf /opt/rh/devtoolset-7/root/usr/bin/g++ /usr/bin/g++
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;安装cmake3&#34;&gt;安装cmake3&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;yum -y install cmake3
-sudo ln -s /usr/bin/cmake3 /usr/bin/cmake
-cmake --version
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;安装指定版本&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;wget https://github.com/Kitware/CMake/releases/download/v3.24.0/cmake-3.24.0-linux-x86_64.tar.gz
-tar -zxvf cmake-3.24.0-linux-x86_64.tar.gz
-ln -sf /usr/local/cmake-3.24.0-linux-x86_64/bin/cmake /usr/bin/cmake
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;linux开启swap分区&#34;&gt;linux开启swap分区&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;dd if=/dev/zero of=/swapfile bs=64M count=64
-chmod 0600 /swapfile
-mkswap /swapfile
-swapon /swapfile
-swapon -s
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/Axianba/p/13131620.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.cnblogs.com/Axianba/p/13131620.html&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;安装mysql-8024&#34;&gt;安装mysql-8.0.24&lt;/h2&gt;
-&lt;p&gt;cmake命令&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;mkdir build &amp;amp;&amp;amp; cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/usr/local/mysql/data -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -DSYSCONFDIR=/etc -DWITH_BOOST=/usr/local/boost -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLED_LOCAL_INFILE=ON -DWITH_INNODB_MEMCACHED=ON -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_FEDERATED_STORAGE_ENGINE=1 -DWITH_BLACKHOLE_STORAGE_ENGINE=1 -DWITH_ARCHIVE_STORAGE_ENGINE=1 -DWITHOUT_EXAMPLE_STORAGE_ENGINE=1 -DWITH_PERFSCHEMA_STORAGE_ENGINE=1 -DFORCE_INSOURCE_BUILD=1 -DMYSQL_TCP_PORT=3306
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;编译，安装，初始化，启动：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;groupadd mysql
-useradd -r -g mysql -s /bin/false mysql
-make&amp;amp;&amp;amp;make install
-chown -R mysql:mysql /usr/local/mysql/
-/usr/local/mysql/bin/mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
-/usr/local/mysql/bin/mysqld_safe --defaults-file=/usr/local/mysql/etc/my.cnf
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;统计80端口连接数&#34;&gt;统计80端口连接数&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;netstat -nat | grep -i &amp;quot;80&amp;quot; | wc -l
-netstat -nat | grep -i &amp;quot;18000&amp;quot; | awk &#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39; # 查看TCP连接状态
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;linux生成32位随机串&#34;&gt;linux生成32位随机串&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /dev/urandom | head -n 10 | md5sum
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;磁盘占满排查&#34;&gt;磁盘占满排查&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;df -hl
-du -s /* | sort -nr |head # 选出排在前面的10个，head改成tail则是后面10个
-du -sh /* | sort -nr # 加了h排序错乱
-du -sh /home/* | sort -nr
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;内存占用高排查&#34;&gt;内存占用高排查&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;top -o %MEM # 按内存占用排序
-vmstat 2 # 每隔2秒展示内存占用情况
-kill -9 `ps -ef| grep tail |awk &#39;{print $2}&#39; `
-cat /proc/24573/status # 查看进程内存
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;健康检查脚本health-check-script&#34;&gt;健康检查脚本health-check-script&lt;/h2&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/SimplyLinuxFAQ/health-check-script/blob/master/health-check.sh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;健康检查脚本&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/759b3bd7360e&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;具体使用例子&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;centos7安装clash&#34;&gt;centos7安装clash&lt;/h2&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://i.jakeyu.top/2021/11/27/centos-%E4%BD%BF%E7%94%A8-Clash-%E6%A2%AF%E5%AD%90/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;url1&lt;/a&gt;&lt;br&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://199604.com/2001&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;url2&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;安装prometheus和grafana&#34;&gt;安装prometheus和grafana&lt;/h2&gt;
-&lt;p&gt;场景: 编写Dockerfile&lt;br&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://grafana.com/grafana/download/8.0.6?edition=oss&amp;amp;pg=get&amp;amp;platform=linux&amp;amp;plcmt=selfmanaged-box1-cta1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;grafana8.0.6官网下载&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;FROM quay.io/prometheus/prometheus
-USER root
-RUN echo &#39;Asia/Shanghai&#39; &amp;gt;/etc/timezone
-ADD prometheus.yml /etc/prometheus/
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;解压&#34;&gt;解压&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;tar -zxvf grafana-8.0.6.linux-amd64.tar.gz
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;服务启动脚本&#34;&gt;服务启动脚本&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;#!/bin/sh
-mainpid=$(lsof -i:8686|grep &#39;LISTEN&#39;|awk &#39;{print $2}&#39;)
-echo $mainpid
-if [ $mainpid &amp;gt; 0 ];then
-    echo &amp;quot;main process id:$mainpid&amp;quot;
-    kill -9 $mainpid
-    if [ $? -eq 0 ];then
-    echo &amp;quot;kill $mainpid success&amp;quot;
-    go run main.go
-    else
-    echo &amp;quot;kill $mainpid fail&amp;quot;
-    fi
-else
-    go run main.go
-fi
-&lt;/code&gt;&lt;/pre&gt;</description>
         </item>
         <item>
         <title>Golang工作笔记</title>
@@ -657,16 +629,149 @@ mygo run helloworld.go
 &gt;&lt;/p&gt;</description>
         </item>
         <item>
-        <title>k8s cluster in Action</title>
-        <link>https://soli.seekincs.com/2022/11/k8s-cluster-in-action/</link>
+        <title>linux开发常用笔记</title>
+        <link>https://soli.seekincs.com/2022/11/linux%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/11/k8s-cluster-in-action/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img4.png" alt="Featured image of post k8s cluster in Action" /&gt;&lt;h2 id=&#34;k8s集群部署mqtt需要解决的问题&#34;&gt;k8s集群部署mqtt需要解决的问题&lt;/h2&gt;
-&lt;h2 id=&#34;跨vpc搭建k8s集群httpswwwlanweihongcomposts56314&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.lanweihong.com/posts/56314/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;跨vpc搭建k8s集群&lt;/a&gt;&lt;/h2&gt;
-&lt;h2 id=&#34;集成sidecar&#34;&gt;集成sidecar&lt;/h2&gt;
-&lt;p&gt;todo&lt;/p&gt;</description>
+        <guid>https://soli.seekincs.com/2022/11/linux%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post linux开发常用笔记" /&gt;&lt;h2 id=&#34;基础命令&#34;&gt;基础命令&lt;/h2&gt;
+&lt;h3 id=&#34;centos7版本&#34;&gt;centos7版本&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /etc/redhat-release
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;解压&#34;&gt;解压&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;tar -zxvf grafana-8.0.6.linux-amd64.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;alias别名&#34;&gt;alias别名&lt;/h3&gt;
+&lt;p&gt;解决重启后alias失效问题。非系统文件尽量放在home目录下&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;vim ~/.bashrc
+alias cdhub=&#39;cd /home/github&#39;
+alias cdclash=&#39;cd /home/clash&#39;
+source ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;查看项目代码行数&#34;&gt;查看项目代码行数&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;yum -y install cloc
+cloc src
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;显示当前文件夹大小&#34;&gt;显示当前文件夹大小&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;du -hs
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;linux开启swap分区&#34;&gt;linux开启swap分区&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;dd if=/dev/zero of=/swapfile bs=64M count=64
+chmod 0600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+swapon -s
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;linux生成32位随机串&#34;&gt;linux生成32位随机串&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /dev/urandom | head -n 10 | md5sum
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/Axianba/p/13131620.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.cnblogs.com/Axianba/p/13131620.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;安装git2x&#34;&gt;安装git2.x&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;sudo yum install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
+sudo yum install git
+git --version
+git config --global user.name &amp;quot;Your Name&amp;quot;
+git config --global user.email &amp;quot;email@example.com&amp;quot;
+ssh-keygen -t rsa -C &amp;quot;your_email@youremail.com&amp;quot;
+cat /root/.ssh/id_rsa.pub
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;gcc升级到713&#34;&gt;gcc升级到7.13&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;sudo yum install centos-release-scl
+sudo yum install devtoolset-7-gcc*
+ln -sf /opt/rh/devtoolset-7/root/usr/bin/gcc /usr/bin/gcc
+ln -sf /opt/rh/devtoolset-7/root/usr/bin/g++ /usr/bin/g++
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;安装cmake3&#34;&gt;安装cmake3&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;yum -y install cmake3
+sudo ln -s /usr/bin/cmake3 /usr/bin/cmake
+cmake --version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安装指定版本&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;wget https://github.com/Kitware/CMake/releases/download/v3.24.0/cmake-3.24.0-linux-x86_64.tar.gz
+tar -zxvf cmake-3.24.0-linux-x86_64.tar.gz
+ln -sf /usr/local/cmake-3.24.0-linux-x86_64/bin/cmake /usr/bin/cmake
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;安装mysql-8024&#34;&gt;安装mysql-8.0.24&lt;/h2&gt;
+&lt;p&gt;cmake命令&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;mkdir build &amp;amp;&amp;amp; cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/usr/local/mysql/data -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -DSYSCONFDIR=/etc -DWITH_BOOST=/usr/local/boost -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLED_LOCAL_INFILE=ON -DWITH_INNODB_MEMCACHED=ON -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_FEDERATED_STORAGE_ENGINE=1 -DWITH_BLACKHOLE_STORAGE_ENGINE=1 -DWITH_ARCHIVE_STORAGE_ENGINE=1 -DWITHOUT_EXAMPLE_STORAGE_ENGINE=1 -DWITH_PERFSCHEMA_STORAGE_ENGINE=1 -DFORCE_INSOURCE_BUILD=1 -DMYSQL_TCP_PORT=3306
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;编译，安装，初始化，启动：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;groupadd mysql
+useradd -r -g mysql -s /bin/false mysql
+make&amp;amp;&amp;amp;make install
+chown -R mysql:mysql /usr/local/mysql/
+/usr/local/mysql/bin/mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
+/usr/local/mysql/bin/mysqld_safe --defaults-file=/usr/local/mysql/etc/my.cnf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;统计80端口连接数&#34;&gt;统计80端口连接数&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;netstat -nat | grep -i &amp;quot;80&amp;quot; | wc -l
+netstat -nat | grep -i &amp;quot;18000&amp;quot; | awk &#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39; # 查看TCP连接状态
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;磁盘占满排查&#34;&gt;磁盘占满排查&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;df -hl
+du -s /* | sort -nr |head # 选出排在前面的10个，head改成tail则是后面10个
+du -sh /* | sort -nr # 加了h排序错乱
+du -sh /home/* | sort -nr
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;内存占用高排查&#34;&gt;内存占用高排查&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;top -o %MEM # 按内存占用排序
+vmstat 2 # 每隔2秒展示内存占用情况
+kill -9 `ps -ef| grep tail |awk &#39;{print $2}&#39; `
+cat /proc/24573/status # 查看进程内存
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;健康检查脚本health-check-script&#34;&gt;健康检查脚本health-check-script&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/SimplyLinuxFAQ/health-check-script/blob/master/health-check.sh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;健康检查脚本&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/759b3bd7360e&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;具体使用例子&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;centos7安装clash&#34;&gt;centos7安装clash&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://i.jakeyu.top/2021/11/27/centos-%E4%BD%BF%E7%94%A8-Clash-%E6%A2%AF%E5%AD%90/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;url1&lt;/a&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://199604.com/2001&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;url2&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;安装prometheus和grafana&#34;&gt;安装prometheus和grafana&lt;/h2&gt;
+&lt;p&gt;场景: 编写Dockerfile&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://grafana.com/grafana/download/8.0.6?edition=oss&amp;amp;pg=get&amp;amp;platform=linux&amp;amp;plcmt=selfmanaged-box1-cta1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;grafana8.0.6官网下载&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;FROM quay.io/prometheus/prometheus
+USER root
+RUN echo &#39;Asia/Shanghai&#39; &amp;gt;/etc/timezone
+ADD prometheus.yml /etc/prometheus/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;服务启动脚本&#34;&gt;服务启动脚本&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;#!/bin/sh
+mainpid=$(lsof -i:8686|grep &#39;LISTEN&#39;|awk &#39;{print $2}&#39;)
+echo $mainpid
+if [ $mainpid &amp;gt; 0 ];then
+    echo &amp;quot;main process id:$mainpid&amp;quot;
+    kill -9 $mainpid
+    if [ $? -eq 0 ];then
+    echo &amp;quot;kill $mainpid success&amp;quot;
+    go run main.go
+    else
+    echo &amp;quot;kill $mainpid fail&amp;quot;
+    fi
+else
+    go run main.go
+fi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;mysql相关&#34;&gt;mysql相关&lt;/h2&gt;
+&lt;h3 id=&#34;docker启动mysql57&#34;&gt;docker启动mysql5.7&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;docker run --name mysql -p 3306:3306 -v /home/github/utopia/my.cnf:/etc/my.cnf -v /home/mysql/data:/var/lib/mysql/data -e MYSQL_ROOT_PASSWORD=rootroot -d mysql:5.7
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;docker-mysql导表&#34;&gt;docker-mysql导表&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;docker exec -i mysql mysql -h 127.0.0.1 -P 3306 -u root -p&#39;rootroot&#39; &amp;lt; /home/github/ranger/dao/gozero_sys_dept.sql
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;innodb_space工具调试&#34;&gt;innodb_space工具调试&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;innodb_space -s ibdata1 -T mask/t_mask -p 3 page-dump
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;抓包&#34;&gt;抓包&lt;/h2&gt;
+&lt;p&gt;常用抓包工具：
+Charles、wiresharks、http debug。
+部分软件(eg: WPS windows端)只能抓到极少量的https请求。
+解决办法：基于proxifier+charles抓包捕获所有请求。&lt;/p&gt;</description>
         </item>
         <item>
         <title>mysql source code learning</title>
@@ -674,17 +779,7 @@ mygo run helloworld.go
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/mysql-source-code-learning/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png" alt="Featured image of post mysql source code learning" /&gt;&lt;h2 id=&#34;指南&#34;&gt;指南&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;建议一： 从handler出发
-MySQL插件式引擎，连接MySQL Server与各种存储引擎的，是其Handler
-模块 —— hanlder模块是灵魂；
-以InnoDB引擎为例，从ha_innodb.cc文件出发，理解其中的每一个接口的
-功能，能够上达MySQL Server，下抵InnoDB引擎的内部实现；
-建议二： 不放过源码中的每一处注释
-MySQL/InnoDB源码中，有很多注释，一些注释相当详细，对理解某一个
-函数/某一个功能模块都相当有用；
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png" alt="Featured image of post mysql source code learning" /&gt;&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
 &lt;h3 id=&#34;一条sql的生命周期&#34;&gt;一条SQL的生命周期&lt;/h3&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.mipa.site/2020/06/021934.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;参考文章&lt;/a&gt;&lt;/p&gt;
@@ -879,7 +974,7 @@ sequenceDiagram
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/redis%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post redis工作笔记" /&gt;&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post redis工作笔记" /&gt;&lt;h2 id=&#34;redislua实现分布式限流&#34;&gt;redis+lua实现分布式限流&lt;/h2&gt;
 &lt;h3 id=&#34;事件处理&#34;&gt;事件处理&lt;/h3&gt;
 &lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
 &lt;h3 id=&#34;vscode本地调试&#34;&gt;vscode本地调试&lt;/h3&gt;
@@ -953,6 +1048,8 @@ cluser info
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.redis.net.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Redis中文网&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://juejin.cn/post/6974560368026714119#heading-8&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;用go实现redis服务器&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
         </item>
         <item>
@@ -1571,6 +1668,14 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 &lt;a name=&#34;b4Tai&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
 &lt;p&gt;搭建开源服务器，需要实现协议接入、集群部署、接入安全等核心功能来满足业务需求，最终目的是为业务带来一定的价值。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>专题3：限流</title>
+        <link>https://soli.seekincs.com/2022/02/%E4%B8%93%E9%A2%983%E9%99%90%E6%B5%81/</link>
+        <pubDate>Fri, 11 Feb 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/02/%E4%B8%93%E9%A2%983%E9%99%90%E6%B5%81/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post 专题3：限流" /&gt;</description>
         </item>
         
     </channel>

@@ -10,6 +10,7 @@ image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"
 +++
 <!--more-->
 ## 背景
+<p></p>
 1. 稳定性
 2. 潜在性能瓶颈
 3. 熔断降级演练
@@ -20,12 +21,12 @@ image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"
 压测场景<br>
 严格<br>
 GC<br>
-## business-benchmark-issues
-1. 日志浪费cpu
-2. 第三方、自建SDK高并发性能问题
-3. 压力评估<br>
-***单看cpu和内存无法准时评估***，一定要结合load average看是否大于cpu核数，并结合cs指标看是否cpu空闲时间过高导致cpu无法跑满。<br>
-压测时长过短，也会导致load average不准
+## trap
+| #  | detail |
+| ------------- | ------------- |
+| 日志浪费cpu  | 容易忽视  |
+| SDK性能问题  | 高并发时才会暴露出来  |
+| 评估偏差  | cpu、memory、load average  |
 
 ## how to choose benchmark tool
 

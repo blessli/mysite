@@ -10,17 +10,6 @@ series = ["Themes Guide"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png"
 +++
 <!--more-->
-## 指南
-```
-建议一： 从handler出发
-MySQL插件式引擎，连接MySQL Server与各种存储引擎的，是其Handler
-模块 —— hanlder模块是灵魂；
-以InnoDB引擎为例，从ha_innodb.cc文件出发，理解其中的每一个接口的
-功能，能够上达MySQL Server，下抵InnoDB引擎的内部实现；
-建议二： 不放过源码中的每一处注释
-MySQL/InnoDB源码中，有很多注释，一些注释相当详细，对理解某一个
-函数/某一个功能模块都相当有用；
-```
 ## 问题探索
 ### 一条SQL的生命周期
 [参考文章](https://blog.mipa.site/2020/06/021934.html)

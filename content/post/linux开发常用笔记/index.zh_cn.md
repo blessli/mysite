@@ -1,38 +1,55 @@
 +++
 author = "soli"
 keywords = ["cockymang","mqtt broker","in action","mqttaction"]
-title = "Centos工作笔记"
+title = "linux开发常用笔记"
 date = "2022-11-14"
-description = ""
+description = "Do not go gentle into that good night"
 categories = ["linux"]
 tags = ["linux"]
 series = ["Themes Guide"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png"
 +++
 <!--more-->
-## centos版本
-centos7
+## 基础命令
+### centos7版本
 ```sh
 cat /etc/redhat-release
 ```
-## alias
-解决重启后alias失效问题。尽量放在home目录下
+### 解压
+```sh
+tar -zxvf grafana-8.0.6.linux-amd64.tar.gz
+```
+### alias别名
+解决重启后alias失效问题。非系统文件尽量放在home目录下
 ```sh
 vim ~/.bashrc
 alias cdhub='cd /home/github'
 alias cdclash='cd /home/clash'
 source ~/.bashrc
 ```
-## 查看项目代码行数
+### 查看项目代码行数
 ```sh
 yum -y install cloc
 cloc src
 ```
-## 显示当前文件夹大小
+### 显示当前文件夹大小
 ```sh
 du -hs
 ```
-## 安装git2.x
+### linux开启swap分区
+```sh
+dd if=/dev/zero of=/swapfile bs=64M count=64
+chmod 0600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+swapon -s
+```
+### linux生成32位随机串
+```sh
+cat /dev/urandom | head -n 10 | md5sum
+```
+https://www.cnblogs.com/Axianba/p/13131620.html
+### 安装git2.x
 ```sh
 sudo yum install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
 sudo yum install git
@@ -61,15 +78,6 @@ wget https://github.com/Kitware/CMake/releases/download/v3.24.0/cmake-3.24.0-lin
 tar -zxvf cmake-3.24.0-linux-x86_64.tar.gz
 ln -sf /usr/local/cmake-3.24.0-linux-x86_64/bin/cmake /usr/bin/cmake
 ```
-## linux开启swap分区
-```sh
-dd if=/dev/zero of=/swapfile bs=64M count=64
-chmod 0600 /swapfile
-mkswap /swapfile
-swapon /swapfile
-swapon -s
-```
-https://www.cnblogs.com/Axianba/p/13131620.html
 ## 安装mysql-8.0.24
 cmake命令
 ```sh
@@ -90,10 +98,7 @@ chown -R mysql:mysql /usr/local/mysql/
 netstat -nat | grep -i "80" | wc -l
 netstat -nat | grep -i "18000" | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}' # 查看TCP连接状态
 ```
-## linux生成32位随机串
-```sh
-cat /dev/urandom | head -n 10 | md5sum
-```
+
 ## 磁盘占满排查
 ```sh
 df -hl
@@ -124,10 +129,6 @@ USER root
 RUN echo 'Asia/Shanghai' >/etc/timezone
 ADD prometheus.yml /etc/prometheus/
 ```
-## 解压
-```sh
-tar -zxvf grafana-8.0.6.linux-amd64.tar.gz
-```
 ## 服务启动脚本
 ```sh
 #!/bin/sh
@@ -146,3 +147,21 @@ else
     go run main.go
 fi
 ```
+## mysql相关
+### docker启动mysql5.7
+```sh
+docker run --name mysql -p 3306:3306 -v /home/github/utopia/my.cnf:/etc/my.cnf -v /home/mysql/data:/var/lib/mysql/data -e MYSQL_ROOT_PASSWORD=rootroot -d mysql:5.7
+```
+### docker-mysql导表
+```sh
+docker exec -i mysql mysql -h 127.0.0.1 -P 3306 -u root -p'rootroot' < /home/github/ranger/dao/gozero_sys_dept.sql
+```
+### innodb_space工具调试
+```sh
+innodb_space -s ibdata1 -T mask/t_mask -p 3 page-dump
+```
+## 抓包
+常用抓包工具：
+Charles、wiresharks、http debug。
+部分软件(eg: WPS windows端)只能抓到极少量的https请求。
+解决办法：基于proxifier+charles抓包捕获所有请求。

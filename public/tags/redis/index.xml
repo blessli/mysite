@@ -12,7 +12,7 @@
         <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/2022/11/redis%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post redis工作笔记" /&gt;&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post redis工作笔记" /&gt;&lt;h2 id=&#34;redislua实现分布式限流&#34;&gt;redis+lua实现分布式限流&lt;/h2&gt;
 &lt;h3 id=&#34;事件处理&#34;&gt;事件处理&lt;/h3&gt;
 &lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
 &lt;h3 id=&#34;vscode本地调试&#34;&gt;vscode本地调试&lt;/h3&gt;
@@ -86,6 +86,8 @@ cluser info
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.redis.net.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Redis中文网&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://juejin.cn/post/6974560368026714119#heading-8&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;用go实现redis服务器&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
         </item>
         
