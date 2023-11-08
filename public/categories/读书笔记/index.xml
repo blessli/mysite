@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>读书笔记 on soli</title>
+        <link>https://soli.seekincs.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+        <description>Recent content in 读书笔记 on soli</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Wed, 08 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>计算机心智读书笔记</title>
+        <link>https://soli.seekincs.com/2023/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BF%83%E6%99%BA%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Wed, 08 Nov 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2023/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BF%83%E6%99%BA%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 计算机心智读书笔记" /&gt;&lt;p&gt;书名：计算机的心智操作系统之哲学原理&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;As you will(意愿、将要)&lt;/li&gt;
+&lt;li&gt;什么是计算机的根本特征？(人造学科的4个特点)&lt;/li&gt;
+&lt;li&gt;一个运动中的程序，即进程&lt;/li&gt;
+&lt;li&gt;计算机程序是怎样运行的呢？一个从程序到微指令执行的整个过程&lt;/li&gt;
+&lt;li&gt;程序的运行至少需要哪4个因素？&lt;/li&gt;
+&lt;li&gt;操作系统到底是什么？&lt;/li&gt;
+&lt;li&gt;操作系统到底操控什么事情？&lt;/li&gt;
+&lt;li&gt;操作系统所扮演的两个根本角色？&lt;/li&gt;
+&lt;li&gt;怎么让用户很好地利用这些硬件资源呢？&lt;/li&gt;
+&lt;li&gt;操作系统要完成的任务具体有哪些呢？4个管理&lt;/li&gt;
+&lt;li&gt;仅仅是因为操作系统重要就要学习它吗？触类旁通、好奇心&lt;/li&gt;
+&lt;li&gt;操作系统为什么是现在这个样子，以及将来会是什么样子&lt;/li&gt;
+&lt;li&gt;操作系统的不断发展与改善由两个因素驱动？&lt;/li&gt;
+&lt;li&gt;驱动操作系统发展的主要动力有哪些？它们是如何驱动的？&lt;/li&gt;
+&lt;li&gt;差不多精神&lt;/li&gt;
+&lt;li&gt;怎样理解抽象？&lt;/li&gt;
+&lt;li&gt;进程出现的动机是什么呢？&lt;/li&gt;
+&lt;li&gt;进程管理要处理的最大问题？&lt;/li&gt;
+&lt;/ol&gt;</description>
+        </item>
+        
+    </channel>
+</rss>
