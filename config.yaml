@@ -3,7 +3,7 @@ baseurl: https://soli.seekincs.com/
 languageCode: en-us
 theme: hugo-theme-stack
 paginate: 5
-title: soli's blog
+title: soli
 
 # Change it to your Disqus shortname before using
 disqusShortname: hugo-theme-stack
