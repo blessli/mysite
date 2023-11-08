@@ -7,4 +7,4 @@ menu:
             icon: user
 ---
 
-？
+a gopher

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>k8s on soli&#39;s blog</title>
+        <link>https://soli.seekincs.com/categories/k8s/</link>
+        <description>Recent content in k8s on soli&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Mon, 14 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/categories/k8s/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>k8s cluster in Action</title>
+        <link>https://soli.seekincs.com/2022/11/k8s-cluster-in-action/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/k8s-cluster-in-action/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img4.png" alt="Featured image of post k8s cluster in Action" /&gt;&lt;h2 id=&#34;k8s集群部署mqtt需要解决的问题&#34;&gt;k8s集群部署mqtt需要解决的问题&lt;/h2&gt;
+&lt;h2 id=&#34;跨vpc搭建k8s集群httpswwwlanweihongcomposts56314&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.lanweihong.com/posts/56314/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;跨vpc搭建k8s集群&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;集成sidecar&#34;&gt;集成sidecar&lt;/h2&gt;
+&lt;p&gt;todo&lt;/p&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>rpc on soli&#39;s blog</title>
+        <link>https://soli.seekincs.com/tags/rpc/</link>
+        <description>Recent content in rpc on soli&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Sat, 11 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/rpc/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>gorpc设计与实现</title>
+        <link>https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/</link>
+        <pubDate>Sat, 11 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post gorpc设计与实现" /&gt;&lt;p&gt;&lt;a name=&#34;vAlT3&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;背景&#34;&gt;背景&lt;/h1&gt;
+&lt;p&gt;&lt;a name=&#34;MQrO1&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;_缩短从需求到上线的距离_&#34;&gt;&lt;em&gt;&lt;strong&gt;缩短从需求到上线的距离&lt;/strong&gt;&lt;/em&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;服务端资源成本&lt;/li&gt;
+&lt;li&gt;工程效率
+&lt;a name=&#34;JSGwx&#34;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;设计理念&#34;&gt;设计理念&lt;/h1&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;高性能&lt;/th&gt;
+&lt;th&gt;保证易用性和通用性的前提下，追求性能极致&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;插件化&lt;/td&gt;
+&lt;td&gt;支持业务对框架注入自定义处理，增强扩展能力和灵活度&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;测试&lt;/td&gt;
+&lt;td&gt;单元测试覆盖率100%，提供工具链方便业务测试&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;a name=&#34;qqIaU&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;整体形态&#34;&gt;整体形态&lt;/h1&gt;
+&lt;p&gt;标准化、模块化、插件化、易扩展。&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc1.png&#34;
+	width=&#34;1091&#34;
+	height=&#34;658&#34;
+	srcset=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc1_huf3c8c79c7a43048799de80b62d70e487_48410_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc1_huf3c8c79c7a43048799de80b62d70e487_48410_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;165&#34;
+		data-flex-basis=&#34;397px&#34;
+	
+&gt;
+&lt;a name=&#34;GYoUG&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;协议设计&#34;&gt;协议设计&lt;/h1&gt;
+&lt;p&gt;协议报文：帧头+包头+包体。&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc2.png&#34;
+	width=&#34;1373&#34;
+	height=&#34;266&#34;
+	srcset=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc2_hud26eed2f460ef3040735136aece227f0_27468_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc2_hud26eed2f460ef3040735136aece227f0_27468_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;516&#34;
+		data-flex-basis=&#34;1238px&#34;
+	
+&gt;&lt;br /&gt;帧头是固定的16个字节。&lt;br /&gt;包头和包体可变长。包头通过pb序列化方式，包体支持业务自定义序列化方式。
+&lt;a name=&#34;GK8xD&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;协议打解包过程全剖析&#34;&gt;&lt;strong&gt;协议打解包过程全剖析&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;codec是协议打解包的统一接口。&lt;br /&gt;rpc框架内部会通过协议名(比如http/grpc等)自动获取对应协议的Codec接口实现，也就是clientCodec和serverCodec分别实现client-&amp;gt;server发包和解包、server-&amp;gt;client解包和回包。
+&lt;a name=&#34;q2P5j&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;rpc调用&#34;&gt;RPC调用&lt;/h1&gt;
+&lt;p&gt;&lt;a name=&#34;gkMTS&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;基于protoc文件的rpc调用实现&#34;&gt;基于protoc文件的rpc调用实现&lt;/h2&gt;
+&lt;p&gt;关键代码：proxy := pb.NewGreeterClientProxy(opts&amp;hellip;)&lt;br /&gt;基于PB实现,通过提供脚手架工具生成接口代码,并生成服务模板,实现业务快速开发。
+&lt;a name=&#34;mCYnl&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;服务交互流程&#34;&gt;服务交互流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc.png&#34;
+	width=&#34;1172&#34;
+	height=&#34;1485&#34;
+	srcset=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc_hu56b04216e182a970485f838ca4eba18c_100839_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc_hu56b04216e182a970485f838ca4eba18c_100839_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;78&#34;
+		data-flex-basis=&#34;189px&#34;
+	
+&gt;
+&lt;a name=&#34;COYDR&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;插件化架构&#34;&gt;插件化架构&lt;/h1&gt;
+&lt;p&gt;通过框架配置文件或import的方式，易插拔，扩展灵活。
+&lt;a name=&#34;fZECQ&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;插件原理&#34;&gt;插件原理&lt;/h2&gt;
+&lt;p&gt;框架定义了每种插件类型的标准接口。&lt;br /&gt;没有具体实现,只提供map注册方式。&lt;br /&gt;业务代码import即可。
+&lt;a name=&#34;AHWAE&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;服务治理&#34;&gt;服务治理&lt;/h1&gt;
+&lt;p&gt;统一标准化接口，灵活易扩展。&lt;br /&gt;通过插件对接服务治理相关系统,灵活组装自己的微服务体系。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;插件类型&lt;/th&gt;
+&lt;th&gt;代表&lt;/th&gt;
+&lt;th&gt;具体实现&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;名字服务&lt;/td&gt;
+&lt;td&gt;北极星(已开源)&lt;/td&gt;
+&lt;td&gt;服务注册：&lt;br /&gt;server端main.go里会import北极星服务注册插件。rpc框架会在服务端口起来后，会自动调用register接口，也就是自动将服务名与ip_port信息注册到北极星。&lt;br /&gt;服务发现：&lt;br /&gt;client端main.go里会import北极星服务发现插件。rpc框架的内部封装了rpc调用，会自动调用select接口，也就是自动拿到callee的ip_port。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;监控&lt;/td&gt;
+&lt;td&gt;prometheus&lt;/td&gt;
+&lt;td&gt;rpc框架对外开放counter、gauge、histogram三种类型的监控类型。提供sink接口封装了report功能。&lt;br /&gt;server端main.go里会import prometheus/statusd监控上报插件。通过这个插件自动上报到监控平台。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;配置&lt;/td&gt;
+&lt;td&gt;etcd&lt;/td&gt;
+&lt;td&gt;rpc框架提供本地文件和远程配置中心那种方式，抽象出provider标准化接口。提供多种序列化方式。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;调用链&lt;/td&gt;
+&lt;td&gt;jaeger&lt;/td&gt;
+&lt;td&gt;rpc框架的包头可变长，其中包含metadata信息，并对外暴露get和set标准接口，可用于集成服务可观测性功能。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;日志&lt;/td&gt;
+&lt;td&gt;zap&lt;/td&gt;
+&lt;td&gt;rpc框架支持通过配置文件里注册日志插件，实现根据日志级别按console或file模式写入指定文件名并自动滚动。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;a name=&#34;ejOAJ&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;拦截器&#34;&gt;拦截器&lt;/h1&gt;
+&lt;p&gt;假设有一个方法 handler(ctx context.Context) ，我想要给这个方法赋予一个能力：允许在这个方法执行之前能够打印一行日志。同时，保证handler方法只执行一次。
+&lt;a name=&#34;XSoXB&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;自定义一个拦截器&#34;&gt;自定义一个拦截器&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;定义处理逻辑函数&lt;/li&gt;
+&lt;li&gt;注册到框架中&lt;/li&gt;
+&lt;li&gt;配置文件开启使用&lt;/li&gt;
+&lt;/ol&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

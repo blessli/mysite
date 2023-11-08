@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='带着些许问题去源码中找答案'><title>mysql source code learning</title>
+
+<link rel='canonical' href='https://soli.seekincs.com/2022/11/mysql-source-code-learning/'>
+
+<link rel="stylesheet" href="/scss/style.min.ac77dcf8b111b51da39a92990f431923f210f3876d85798a2125667f96dc33a4.css"><meta property='og:title' content='mysql source code learning'>
+<meta property='og:description' content='带着些许问题去源码中找答案'>
+<meta property='keywords' content='mqttaction'>
+<meta property='og:url' content='https://soli.seekincs.com/2022/11/mysql-source-code-learning/'>
+<meta property='og:site_name' content='soli&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='mysql' /><meta property='article:published_time' content='2022-11-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-02-12T13:45:55&#43;08:00'/><meta property='og:image' content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png' />
+<meta name="twitter:title" content="mysql source code learning">
+<meta name="twitter:description" content="带着些许问题去源码中找答案"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png' />
+    <link rel="shortcut icon" href="img/avatar.jpeg" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu176fd69700073da68598c0962f142a08_68035_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">soli&#39;s blog</a></h1>
+            <h2 class="site-description">你很棒,明天请继续</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/2022/11/mysql-source-code-learning/">
+                
+                    <img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png" loading="lazy" alt="Featured image of post mysql source code learning" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/database/" style="background-color: #2a9d8f; color: #fff;">
+                database
+            </a>
+        
+            <a href="/categories/mysql/" >
+                mysql
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/2022/11/mysql-source-code-learning/">mysql source code learning</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            带着些许问题去源码中找答案
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2022年11月14日</time>
+            </div>
+        
+                
+                
+                            
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                            <time class="article-time--updated" datetime="2023-02-12 13:45:55.780580548 &#43;0800 CST" title="2023-02-12 13:45:55.780580548 &#43;0800 CST">
+                                2023年02月12日</time>
+                        </div>
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="问题探索">问题探索</h2>
+<h3 id="一条sql的生命周期">一条SQL的生命周期</h3>
+<p><a class="link" href="https://blog.mipa.site/2020/06/021934.html"  target="_blank" rel="noopener"
+    >参考文章</a></p>
+<h3 id="mysql插件化架构">mysql插件化架构</h3>
+<h3 id="mysql80取消查询缓存">mysql8.0取消查询缓存</h3>
+<p><a class="link" href="https://dev.mysql.com/blog-archive/mysql-8-0-retiring-support-for-the-query-cache/"  target="_blank" rel="noopener"
+    >官方说明</a></p>
+<h3 id="网络io模型">网络IO模型</h3>
+<p><a class="link" href="https://blog.51cto.com/u_15069490/2937369"  target="_blank" rel="noopener"
+    >参考文章</a></p>
+<h2 id="其他">其他</h2>
+<h3 id="mysql8024源码编译安装">mysql8.0.24源码编译安装</h3>
+<p>主要是参考<a class="link" href="https://www.cnblogs.com/jhno1/p/15324343.html#autoid-0-8-0"  target="_blank" rel="noopener"
+    >这篇文章</a>，操作过程中根据报错进行fix，特别是修改my.cnf配置文件。</p>
+<h3 id="编译安装问题">编译安装问题</h3>
+<ol>
+<li>OpenSSL 版本不兼容<br>
+不兼容1.1版本，需要openssl1.0.2，通过yum install openssl-devel。<br></li>
+<li>磁盘空间不足<br>
+60g磁盘满了，导致make 终止，/data目录删掉即可。<br></li>
+</ol>
+<pre><code class="language-sh">fatal error: error writing to /tmp/ccFtecZv.s: No space left on device
+</code></pre>
+<ol start="3">
+<li>内存不足<br>
+需要开启swap分区</li>
+</ol>
+<pre><code class="language-sh">g++: internal compiler error: Killed (program cc1plus)
+</code></pre>
+<ol start="4">
+<li>太吃内存，make巨慢<br>
+没找到解决方案&hellip;</li>
+<li>缺少依赖组件<br>
+可能是缺少ncurses-devel</li>
+</ol>
+<pre><code class="language-sh">yum install ncurses-devel libaio bison zlib-devel openssl openssl-devel patch
+</code></pre>
+<h3 id="mysqld启动问题">mysqld启动问题</h3>
+<ol>
+<li>磁盘空间不足</li>
+</ol>
+<blockquote>
+<p>注意my.cnf配置文件，特别innodb参数配置，可能因系统内存或磁盘容量导致启动失败</p>
+</blockquote>
+<p>查看系统磁盘: df -h<br>
+[InnoDB] Error number 28 means &lsquo;No space left on device&rsquo;</p>
+<h3 id="vscode本地调试mysql8024">vscode本地调试mysql8.0.24</h3>
+<p>先在云服务器上执行以下命令：</p>
+<pre><code class="language-sh">./mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
+</code></pre>
+<p>launch.json配置文件如下：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.2.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;configurations&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;debug mysql&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;cppdbg&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="s2">&#34;launch&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;program&#34;</span><span class="p">:</span> <span class="s2">&#34;/usr/local/mysql/bin/mysqld&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;--defaults-file=/usr/local/mysql/etc/my.cnf&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;stopAtEntry&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;cwd&#34;</span><span class="p">:</span> <span class="s2">&#34;${workspaceFolder}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;environment&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;externalConsole&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<img src="/2022/11/mysql-source-code-learning/static/mysql-debug-capture.jpg"
+	width="1400"
+	height="1018"
+	srcset="/2022/11/mysql-source-code-learning/static/mysql-debug-capture_hua96c84624f874841e8ede985cb3d2228_146303_480x0_resize_q75_box.jpg 480w, /2022/11/mysql-source-code-learning/static/mysql-debug-capture_hua96c84624f874841e8ede985cb3d2228_146303_1024x0_resize_q75_box.jpg 1024w"
+	loading="lazy"
+	
+		alt="static/mysql-debug-capture"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="137"
+		data-flex-basis="330px"
+	
+></p>
+<h2 id="源码结构">源码结构</h2>
+<p>安装tree工具，执行tree -d -L 1命令：</p>
+<pre><code>|-- build
+|-- client
+|-- cmake
+|-- components
+|-- Docs
+|-- doxygen_resources
+|-- extra
+|-- include
+|-- libbinlogevents
+|-- libbinlogstandalone
+|-- libmysql
+|-- libservices
+|-- man
+|-- mysql-test
+|-- mysys
+|-- packaging
+|-- plugin
+|-- router
+|-- scripts
+|-- share
+|-- source_downloads
+|-- sql
+|-- sql-common
+|-- storage
+|-- strings
+|-- support-files
+|-- testclients
+|-- unittest
+|-- utilities
+`-- vio
+</code></pre>
+<p>语雀代码画时序图：
+<a class="link" href="https://www.bookstack.cn/read/yuque/34.md"  target="_blank" rel="noopener"
+    >https://www.bookstack.cn/read/yuque/34.md</a></p>
+<h3 id="mysql线程的基本设置">Mysql线程的基本设置</h3>
+<pre><code>mysql&gt; show variables like 'thread%';
++-------------------+---------------------------+
+| Variable_name     | Value                     |
++-------------------+---------------------------+
+| thread_cache_size | 1536                      |
+| thread_handling   | one-thread-per-connection |
+| thread_stack      | 524288                    |
++-------------------+---------------------------+
+3 rows in set (0.05 sec)
+mysql&gt; show global status like 'Thread%';
++-------------------+-------+
+| Variable_name     | Value |
++-------------------+-------+
+| Threads_cached    | 0     |
+| Threads_connected | 1     |
+| Threads_created   | 1     |
+| Threads_running   | 1     |
++-------------------+-------+
+4 rows in set (0.07 sec)
+</code></pre>
+<h2 id="远程连接">远程连接</h2>
+<p>root忘记密码</p>
+<pre><code class="language-sql">--- mysqld模块下增加skip-grant-tables配置,免密登录后执行以下命令：
+update user set authentication_string = '' where user ='root';
+--- 注释掉skip-grant-tables配置,重新登录，设置新密码：
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root123456';
+</code></pre>
+<p>允许外部访问</p>
+<pre><code class="language-sql">use mysql;
+update user set host='%' where user ='root';
+FLUSH PRIVILEGES;
+</code></pre>
+<h2 id="测试mermaid">测试mermaid</h2>
+
+<pre class="mermaid" align="center">
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts prevail...
+    John-->Alice: Great!
+    John->Bob: How about you?
+    Bob-->John: Jolly good!
+</pre>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/mysql/">mysql</a>
+        
+    </section>
+
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2023年02月12日 13点45分55秒
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/2022/11/redis%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" loading="lazy" data-key="" data-hash="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">redis工作笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"avatar":"identicon","comment_count":true,"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/tieba"],"lang":"zh-CN","locale":{"admin":"Admin"},"placeholder":"允许匿名评论","requiredMeta":["name","email"],"serverURL":"waline-comment-eosin.vercel.app","visitor":true});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2022 - 
+        
+        2023 soli&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            你很棒,明天请继续 <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.12.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+<script>
+      const loadScript = (url, onloadFunction) => {
+    var newScript = document.createElement("script");
+    newScript.onerror =  (oError) => {
+      throw new URIError("The script " + oError.target.src + " didn't load correctly.");
+    };
+    if (onloadFunction) { newScript.onload = onloadFunction; }
+    document.head.insertAdjacentElement('beforeend', newScript);
+    newScript.src = url;
+  }
+
+  
+  const loadMermaidOnNeed = () => {
+    if (document.querySelectorAll('.mermaid').length > 0) {
+      loadScript('https://cdn.jsdelivr.net/npm/mermaid@8.10.1/dist/mermaid.min.js', () => {
+        document.head.insertAdjacentHTML("beforeend", `<style>.mermaid svg { background-color: #dadcd8 !important; }</style>`);
+        // default, dark, neutral, forest
+        mermaid.initialize({ startOnLoad: false, securityLevel: "strict", theme: "default" });
+        
+        
+        mermaid.init();
+        console.log("mermaid init done");
+      })
+    }
+  }
+
+  window.addEventListener('load', function(event) {
+    
+    loadMermaidOnNeed();
+  });
+
+</script>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                <form action="/search/" class="search-form widget" >
+        <p>
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
+        
+            <button title="搜索">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#问题探索">问题探索</a>
+      <ol>
+        <li><a href="#一条sql的生命周期">一条SQL的生命周期</a></li>
+        <li><a href="#mysql插件化架构">mysql插件化架构</a></li>
+        <li><a href="#mysql80取消查询缓存">mysql8.0取消查询缓存</a></li>
+        <li><a href="#网络io模型">网络IO模型</a></li>
+      </ol>
+    </li>
+    <li><a href="#其他">其他</a>
+      <ol>
+        <li><a href="#mysql8024源码编译安装">mysql8.0.24源码编译安装</a></li>
+        <li><a href="#编译安装问题">编译安装问题</a></li>
+        <li><a href="#mysqld启动问题">mysqld启动问题</a></li>
+        <li><a href="#vscode本地调试mysql8024">vscode本地调试mysql8.0.24</a></li>
+      </ol>
+    </li>
+    <li><a href="#源码结构">源码结构</a>
+      <ol>
+        <li><a href="#mysql线程的基本设置">Mysql线程的基本设置</a></li>
+      </ol>
+    </li>
+    <li><a href="#远程连接">远程连接</a></li>
+    <li><a href="#测试mermaid">测试mermaid</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+            
+                <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M9.828 9.172a4 4 0 1 0 0 5.656 a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828 a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">归档</h2>
+
+        
+        
+        
+        
+        
+        <div class="widget-archive--list">
+            <div class="archives-year">
+                    <a href="/archives/#2023">
+                        
+                            <span class="year">2023</span>
+                            <span class="count">1</span>
+                        
+                    </a> 
+                </div>
+            <div class="archives-year">
+                    <a href="/archives/#2022">
+                        
+                            <span class="year">2022</span>
+                            <span class="count">12</span>
+                        
+                    </a> 
+                </div>
+            
+        </div>
+    </section>
+            
+        
+            
+                <section class="widget tagCloud">
+    <div class="widget-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+    </div>
+    <h2 class="widget-title section-title">分类</h2>
+
+    <div class="tagCloud-tags">
+        
+            <a href="/categories/%E4%B8%93%E9%A2%98/" class="font_size_3">
+                专题
+            </a>
+        
+            <a href="/categories/database/" class="font_size_2">
+                database
+            </a>
+        
+            <a href="/categories/rpc/" class="font_size_2">
+                rpc
+            </a>
+        
+            <a href="/categories/golang/" class="font_size_1">
+                golang
+            </a>
+        
+            <a href="/categories/linux/" class="font_size_1">
+                linux
+            </a>
+        
+            <a href="/categories/mqtt/" class="font_size_1">
+                mqtt
+            </a>
+        
+            <a href="/categories/mysql/" class="font_size_1">
+                mysql
+            </a>
+        
+            <a href="/categories/nginx/" class="font_size_1">
+                nginx
+            </a>
+        
+            <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="font_size_1">
+                中间件
+            </a>
+        
+            <a href="/categories/%E7%AC%94%E8%AE%B0/" class="font_size_1">
+                笔记
+            </a>
+        
+    </div>
+</section>
+
+            
+        
+            
+                <section class="widget tagCloud">
+    <div class="widget-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+    </div>
+    <h2 class="widget-title section-title">标签云</h2>
+
+    <div class="tagCloud-tags">
+        
+            <a href="/tags/pdf/" class="font_size_2">
+                pdf
+            </a>
+        
+            <a href="/tags/%E9%AB%98%E6%80%A7%E8%83%BD/" class="font_size_2">
+                高性能
+            </a>
+        
+            <a href="/tags/emqx/" class="font_size_1">
+                emqx
+            </a>
+        
+            <a href="/tags/grpcgo/" class="font_size_1">
+                grpcgo
+            </a>
+        
+            <a href="/tags/inaction/" class="font_size_1">
+                inaction
+            </a>
+        
+            <a href="/tags/linux/" class="font_size_1">
+                linux
+            </a>
+        
+            <a href="/tags/mysql/" class="font_size_1">
+                mysql
+            </a>
+        
+            <a href="/tags/redis/" class="font_size_1">
+                redis
+            </a>
+        
+            <a href="/tags/rpc/" class="font_size_1">
+                rpc
+            </a>
+        
+            <a href="/tags/sourcecode/" class="font_size_1">
+                sourcecode
+            </a>
+        
+            <a href="/tags/%E5%8E%8B%E6%B5%8B/" class="font_size_1">
+                压测
+            </a>
+        
+            <a href="/tags/%E5%AE%9E%E6%88%98/" class="font_size_1">
+                实战
+            </a>
+        
+    </div>
+</section>
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+        <script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+        <script>addBackToTop({
+        diameter: 56,
+        backgroundColor: 'rgb(255, 82, 82)',
+        textColor: '#fff'
+        })
+        </script>
+    </body>
+</html>

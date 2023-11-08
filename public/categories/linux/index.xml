@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>linux on soli&#39;s blog</title>
+        <link>https://soli.seekincs.com/categories/linux/</link>
+        <description>Recent content in linux on soli&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Mon, 14 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>linux开发常用笔记</title>
+        <link>https://soli.seekincs.com/2022/11/linux%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/linux%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post linux开发常用笔记" /&gt;&lt;h2 id=&#34;基础命令&#34;&gt;基础命令&lt;/h2&gt;
+&lt;h3 id=&#34;centos7版本&#34;&gt;centos7版本&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /etc/redhat-release
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;解压&#34;&gt;解压&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;tar -zxvf grafana-8.0.6.linux-amd64.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;alias别名&#34;&gt;alias别名&lt;/h3&gt;
+&lt;p&gt;解决重启后alias失效问题。非系统文件尽量放在home目录下&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;vim ~/.bashrc
+alias cdhub=&#39;cd /home/github&#39;
+alias cdclash=&#39;cd /home/clash&#39;
+source ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;查看项目代码行数&#34;&gt;查看项目代码行数&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;yum -y install cloc
+cloc src
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;显示当前文件夹大小&#34;&gt;显示当前文件夹大小&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;du -hs
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;linux开启swap分区&#34;&gt;linux开启swap分区&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;dd if=/dev/zero of=/swapfile bs=64M count=64
+chmod 0600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+swapon -s
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;linux生成32位随机串&#34;&gt;linux生成32位随机串&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /dev/urandom | head -n 10 | md5sum
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/Axianba/p/13131620.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.cnblogs.com/Axianba/p/13131620.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;安装git2x&#34;&gt;安装git2.x&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;sudo yum install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
+sudo yum install git
+git --version
+git config --global user.name &amp;quot;Your Name&amp;quot;
+git config --global user.email &amp;quot;email@example.com&amp;quot;
+ssh-keygen -t rsa -C &amp;quot;your_email@youremail.com&amp;quot;
+cat /root/.ssh/id_rsa.pub
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;gcc升级到713&#34;&gt;gcc升级到7.13&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;sudo yum install centos-release-scl
+sudo yum install devtoolset-7-gcc*
+ln -sf /opt/rh/devtoolset-7/root/usr/bin/gcc /usr/bin/gcc
+ln -sf /opt/rh/devtoolset-7/root/usr/bin/g++ /usr/bin/g++
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;安装cmake3&#34;&gt;安装cmake3&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;yum -y install cmake3
+sudo ln -s /usr/bin/cmake3 /usr/bin/cmake
+cmake --version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安装指定版本&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;wget https://github.com/Kitware/CMake/releases/download/v3.24.0/cmake-3.24.0-linux-x86_64.tar.gz
+tar -zxvf cmake-3.24.0-linux-x86_64.tar.gz
+ln -sf /usr/local/cmake-3.24.0-linux-x86_64/bin/cmake /usr/bin/cmake
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;安装mysql-8024&#34;&gt;安装mysql-8.0.24&lt;/h2&gt;
+&lt;p&gt;cmake命令&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;mkdir build &amp;amp;&amp;amp; cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/usr/local/mysql/data -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -DSYSCONFDIR=/etc -DWITH_BOOST=/usr/local/boost -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLED_LOCAL_INFILE=ON -DWITH_INNODB_MEMCACHED=ON -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_FEDERATED_STORAGE_ENGINE=1 -DWITH_BLACKHOLE_STORAGE_ENGINE=1 -DWITH_ARCHIVE_STORAGE_ENGINE=1 -DWITHOUT_EXAMPLE_STORAGE_ENGINE=1 -DWITH_PERFSCHEMA_STORAGE_ENGINE=1 -DFORCE_INSOURCE_BUILD=1 -DMYSQL_TCP_PORT=3306
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;编译，安装，初始化，启动：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;groupadd mysql
+useradd -r -g mysql -s /bin/false mysql
+make&amp;amp;&amp;amp;make install
+chown -R mysql:mysql /usr/local/mysql/
+/usr/local/mysql/bin/mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
+/usr/local/mysql/bin/mysqld_safe --defaults-file=/usr/local/mysql/etc/my.cnf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;统计80端口连接数&#34;&gt;统计80端口连接数&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;netstat -nat | grep -i &amp;quot;80&amp;quot; | wc -l
+netstat -nat | grep -i &amp;quot;18000&amp;quot; | awk &#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39; # 查看TCP连接状态
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;磁盘占满排查&#34;&gt;磁盘占满排查&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;df -hl
+du -s /* | sort -nr |head # 选出排在前面的10个，head改成tail则是后面10个
+du -sh /* | sort -nr # 加了h排序错乱
+du -sh /home/* | sort -nr
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;内存占用高排查&#34;&gt;内存占用高排查&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;top -o %MEM # 按内存占用排序
+vmstat 2 # 每隔2秒展示内存占用情况
+kill -9 `ps -ef| grep tail |awk &#39;{print $2}&#39; `
+cat /proc/24573/status # 查看进程内存
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;健康检查脚本health-check-script&#34;&gt;健康检查脚本health-check-script&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/SimplyLinuxFAQ/health-check-script/blob/master/health-check.sh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;健康检查脚本&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/759b3bd7360e&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;具体使用例子&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;centos7安装clash&#34;&gt;centos7安装clash&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://i.jakeyu.top/2021/11/27/centos-%E4%BD%BF%E7%94%A8-Clash-%E6%A2%AF%E5%AD%90/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;url1&lt;/a&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://199604.com/2001&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;url2&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;安装prometheus和grafana&#34;&gt;安装prometheus和grafana&lt;/h2&gt;
+&lt;p&gt;场景: 编写Dockerfile&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://grafana.com/grafana/download/8.0.6?edition=oss&amp;amp;pg=get&amp;amp;platform=linux&amp;amp;plcmt=selfmanaged-box1-cta1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;grafana8.0.6官网下载&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;FROM quay.io/prometheus/prometheus
+USER root
+RUN echo &#39;Asia/Shanghai&#39; &amp;gt;/etc/timezone
+ADD prometheus.yml /etc/prometheus/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;服务启动脚本&#34;&gt;服务启动脚本&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;#!/bin/sh
+mainpid=$(lsof -i:8686|grep &#39;LISTEN&#39;|awk &#39;{print $2}&#39;)
+echo $mainpid
+if [ $mainpid &amp;gt; 0 ];then
+    echo &amp;quot;main process id:$mainpid&amp;quot;
+    kill -9 $mainpid
+    if [ $? -eq 0 ];then
+    echo &amp;quot;kill $mainpid success&amp;quot;
+    go run main.go
+    else
+    echo &amp;quot;kill $mainpid fail&amp;quot;
+    fi
+else
+    go run main.go
+fi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;mysql相关&#34;&gt;mysql相关&lt;/h2&gt;
+&lt;h3 id=&#34;docker启动mysql57&#34;&gt;docker启动mysql5.7&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;docker run --name mysql -p 3306:3306 -v /home/github/utopia/my.cnf:/etc/my.cnf -v /home/mysql/data:/var/lib/mysql/data -e MYSQL_ROOT_PASSWORD=rootroot -d mysql:5.7
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;docker-mysql导表&#34;&gt;docker-mysql导表&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;docker exec -i mysql mysql -h 127.0.0.1 -P 3306 -u root -p&#39;rootroot&#39; &amp;lt; /home/github/ranger/dao/gozero_sys_dept.sql
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;innodb_space工具调试&#34;&gt;innodb_space工具调试&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;innodb_space -s ibdata1 -T mask/t_mask -p 3 page-dump
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;抓包&#34;&gt;抓包&lt;/h2&gt;
+&lt;p&gt;常用抓包工具：
+Charles、wiresharks、http debug。
+部分软件(eg: WPS windows端)只能抓到极少量的https请求。
+解决办法：基于proxifier+charles抓包捕获所有请求。&lt;/p&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

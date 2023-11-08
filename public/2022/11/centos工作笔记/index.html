@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=''><title>Centos工作笔记</title>
+
+<link rel='canonical' href='https://soli.seekincs.com/2022/11/centos%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/'>
+
+<link rel="stylesheet" href="/scss/style.min.ac77dcf8b111b51da39a92990f431923f210f3876d85798a2125667f96dc33a4.css"><meta property='og:title' content='Centos工作笔记'>
+<meta property='og:description' content=''>
+<meta property='keywords' content='mqttaction'>
+<meta property='og:url' content='https://soli.seekincs.com/2022/11/centos%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/'>
+<meta property='og:site_name' content='soli&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='linux' /><meta property='article:published_time' content='2022-11-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-12-22T10:56:06&#43;08:00'/><meta property='og:image' content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png' />
+<meta name="twitter:title" content="Centos工作笔记">
+<meta name="twitter:description" content=""><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png' />
+    <link rel="shortcut icon" href="img/avatar.jpeg" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu4cd8ef5a667abb845ea2802dee6ee18c_184557_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">soli&#39;s blog</a></h1>
+            <h2 class="site-description">光锥</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/2022/11/centos%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/">
+                
+                    <img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" loading="lazy" alt="Featured image of post Centos工作笔记" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/linux/" >
+                linux
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/2022/11/centos%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/">Centos工作笔记</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2022年11月14日</time>
+            </div>
+        
+                
+                
+                            
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                            <time class="article-time--updated" datetime="2022-12-22 10:56:06.678374269 &#43;0800 CST" title="2022-12-22 10:56:06.678374269 &#43;0800 CST">
+                                2022年12月22日</time>
+                        </div>
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="centos版本">centos版本</h2>
+<p>centos7</p>
+<pre><code class="language-sh">cat /etc/redhat-release
+</code></pre>
+<h2 id="alias">alias</h2>
+<p>解决重启后alias失效问题。尽量放在home目录下</p>
+<pre><code class="language-sh">vim ~/.bashrc
+alias cdhub='cd /home/github'
+alias cdclash='cd /home/clash'
+source ~/.bashrc
+</code></pre>
+<h2 id="查看项目代码行数">查看项目代码行数</h2>
+<pre><code class="language-sh">yum -y install cloc
+cloc src
+</code></pre>
+<h2 id="显示当前文件夹大小">显示当前文件夹大小</h2>
+<pre><code class="language-sh">du -hs
+</code></pre>
+<h2 id="安装git2x">安装git2.x</h2>
+<pre><code class="language-sh">sudo yum install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
+sudo yum install git
+git --version
+git config --global user.name &quot;Your Name&quot;
+git config --global user.email &quot;email@example.com&quot;
+ssh-keygen -t rsa -C &quot;your_email@youremail.com&quot;
+cat /root/.ssh/id_rsa.pub
+</code></pre>
+<h2 id="gcc升级到713">gcc升级到7.13</h2>
+<pre><code class="language-sh">sudo yum install centos-release-scl
+sudo yum install devtoolset-7-gcc*
+ln -sf /opt/rh/devtoolset-7/root/usr/bin/gcc /usr/bin/gcc
+ln -sf /opt/rh/devtoolset-7/root/usr/bin/g++ /usr/bin/g++
+</code></pre>
+<h2 id="安装cmake3">安装cmake3</h2>
+<pre><code class="language-sh">yum -y install cmake3
+sudo ln -s /usr/bin/cmake3 /usr/bin/cmake
+cmake --version
+</code></pre>
+<p>安装指定版本</p>
+<pre><code class="language-sh">wget https://github.com/Kitware/CMake/releases/download/v3.24.0/cmake-3.24.0-linux-x86_64.tar.gz
+tar -zxvf cmake-3.24.0-linux-x86_64.tar.gz
+ln -sf /usr/local/cmake-3.24.0-linux-x86_64/bin/cmake /usr/bin/cmake
+</code></pre>
+<h2 id="linux开启swap分区">linux开启swap分区</h2>
+<pre><code class="language-sh">dd if=/dev/zero of=/swapfile bs=64M count=64
+chmod 0600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+swapon -s
+</code></pre>
+<p><a class="link" href="https://www.cnblogs.com/Axianba/p/13131620.html"  target="_blank" rel="noopener"
+    >https://www.cnblogs.com/Axianba/p/13131620.html</a></p>
+<h2 id="安装mysql-8024">安装mysql-8.0.24</h2>
+<p>cmake命令</p>
+<pre><code class="language-sh">mkdir build &amp;&amp; cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/usr/local/mysql/data -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -DSYSCONFDIR=/etc -DWITH_BOOST=/usr/local/boost -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLED_LOCAL_INFILE=ON -DWITH_INNODB_MEMCACHED=ON -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_FEDERATED_STORAGE_ENGINE=1 -DWITH_BLACKHOLE_STORAGE_ENGINE=1 -DWITH_ARCHIVE_STORAGE_ENGINE=1 -DWITHOUT_EXAMPLE_STORAGE_ENGINE=1 -DWITH_PERFSCHEMA_STORAGE_ENGINE=1 -DFORCE_INSOURCE_BUILD=1 -DMYSQL_TCP_PORT=3306
+</code></pre>
+<p>编译，安装，初始化，启动：</p>
+<pre><code class="language-sh">groupadd mysql
+useradd -r -g mysql -s /bin/false mysql
+make&amp;&amp;make install
+chown -R mysql:mysql /usr/local/mysql/
+/usr/local/mysql/bin/mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
+/usr/local/mysql/bin/mysqld_safe --defaults-file=/usr/local/mysql/etc/my.cnf
+</code></pre>
+<h2 id="统计80端口连接数">统计80端口连接数</h2>
+<pre><code class="language-sh">netstat -nat | grep -i &quot;80&quot; | wc -l
+netstat -nat | grep -i &quot;18000&quot; | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}' # 查看TCP连接状态
+</code></pre>
+<h2 id="linux生成32位随机串">linux生成32位随机串</h2>
+<pre><code class="language-sh">cat /dev/urandom | head -n 10 | md5sum
+</code></pre>
+<h2 id="磁盘占满排查">磁盘占满排查</h2>
+<pre><code class="language-sh">df -hl
+du -s /* | sort -nr |head # 选出排在前面的10个，head改成tail则是后面10个
+du -sh /* | sort -nr # 加了h排序错乱
+du -sh /home/* | sort -nr
+</code></pre>
+<h2 id="内存占用高排查">内存占用高排查</h2>
+<pre><code class="language-sh">top -o %MEM # 按内存占用排序
+vmstat 2 # 每隔2秒展示内存占用情况
+kill -9 `ps -ef| grep tail |awk '{print $2}' `
+cat /proc/24573/status # 查看进程内存
+</code></pre>
+<h2 id="健康检查脚本health-check-script">健康检查脚本health-check-script</h2>
+<p><a class="link" href="https://github.com/SimplyLinuxFAQ/health-check-script/blob/master/health-check.sh"  target="_blank" rel="noopener"
+    >健康检查脚本</a></p>
+<p><a class="link" href="https://www.jianshu.com/p/759b3bd7360e"  target="_blank" rel="noopener"
+    >具体使用例子</a></p>
+<h2 id="centos7安装clash">centos7安装clash</h2>
+<p><a class="link" href="https://i.jakeyu.top/2021/11/27/centos-%E4%BD%BF%E7%94%A8-Clash-%E6%A2%AF%E5%AD%90/"  target="_blank" rel="noopener"
+    >url1</a><br>
+<a class="link" href="https://199604.com/2001"  target="_blank" rel="noopener"
+    >url2</a></p>
+<h2 id="安装prometheus和grafana">安装prometheus和grafana</h2>
+<p>场景: 编写Dockerfile<br>
+<a class="link" href="https://grafana.com/grafana/download/8.0.6?edition=oss&amp;pg=get&amp;platform=linux&amp;plcmt=selfmanaged-box1-cta1"  target="_blank" rel="noopener"
+    >grafana8.0.6官网下载</a><br></p>
+<pre><code class="language-sh">FROM quay.io/prometheus/prometheus
+USER root
+RUN echo 'Asia/Shanghai' &gt;/etc/timezone
+ADD prometheus.yml /etc/prometheus/
+</code></pre>
+<h2 id="解压">解压</h2>
+<pre><code class="language-sh">tar -zxvf grafana-8.0.6.linux-amd64.tar.gz
+</code></pre>
+<h2 id="服务启动脚本">服务启动脚本</h2>
+<pre><code class="language-sh">#!/bin/sh
+mainpid=$(lsof -i:8686|grep 'LISTEN'|awk '{print $2}')
+echo $mainpid
+if [ $mainpid &gt; 0 ];then
+    echo &quot;main process id:$mainpid&quot;
+    kill -9 $mainpid
+    if [ $? -eq 0 ];then
+    echo &quot;kill $mainpid success&quot;
+    go run main.go
+    else
+    echo &quot;kill $mainpid fail&quot;
+    fi
+else
+    go run main.go
+fi
+</code></pre>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/linux/">linux</a>
+        
+    </section>
+
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2022年12月22日 10点56分06秒
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"avatar":"identicon","comment_count":true,"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/tieba"],"lang":"zh-CN","locale":{"admin":"Admin"},"placeholder":"允许匿名评论","requiredMeta":["name","email"],"serverURL":"waline-comment-eosin.vercel.app","visitor":true});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2022 soli&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            别人在等伞，我在等雨停 <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.12.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+<script>
+      const loadScript = (url, onloadFunction) => {
+    var newScript = document.createElement("script");
+    newScript.onerror =  (oError) => {
+      throw new URIError("The script " + oError.target.src + " didn't load correctly.");
+    };
+    if (onloadFunction) { newScript.onload = onloadFunction; }
+    document.head.insertAdjacentElement('beforeend', newScript);
+    newScript.src = url;
+  }
+
+  
+  const loadMermaidOnNeed = () => {
+    if (document.querySelectorAll('.mermaid').length > 0) {
+      loadScript('https://cdn.jsdelivr.net/npm/mermaid@8.10.1/dist/mermaid.min.js', () => {
+        document.head.insertAdjacentHTML("beforeend", `<style>.mermaid svg { background-color: #dadcd8 !important; }</style>`);
+        // default, dark, neutral, forest
+        mermaid.initialize({ startOnLoad: false, securityLevel: "strict", theme: "default" });
+        
+        
+        mermaid.init();
+        console.log("mermaid init done");
+      })
+    }
+  }
+
+  window.addEventListener('load', function(event) {
+    
+    loadMermaidOnNeed();
+  });
+
+</script>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                <form action="/search/" class="search-form widget" >
+        <p>
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
+        
+            <button title="搜索">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#centos版本">centos版本</a></li>
+    <li><a href="#alias">alias</a></li>
+    <li><a href="#查看项目代码行数">查看项目代码行数</a></li>
+    <li><a href="#显示当前文件夹大小">显示当前文件夹大小</a></li>
+    <li><a href="#安装git2x">安装git2.x</a></li>
+    <li><a href="#gcc升级到713">gcc升级到7.13</a></li>
+    <li><a href="#安装cmake3">安装cmake3</a></li>
+    <li><a href="#linux开启swap分区">linux开启swap分区</a></li>
+    <li><a href="#安装mysql-8024">安装mysql-8.0.24</a></li>
+    <li><a href="#统计80端口连接数">统计80端口连接数</a></li>
+    <li><a href="#linux生成32位随机串">linux生成32位随机串</a></li>
+    <li><a href="#磁盘占满排查">磁盘占满排查</a></li>
+    <li><a href="#内存占用高排查">内存占用高排查</a></li>
+    <li><a href="#健康检查脚本health-check-script">健康检查脚本health-check-script</a></li>
+    <li><a href="#centos7安装clash">centos7安装clash</a></li>
+    <li><a href="#安装prometheus和grafana">安装prometheus和grafana</a></li>
+    <li><a href="#解压">解压</a></li>
+    <li><a href="#服务启动脚本">服务启动脚本</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+            
+                <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M9.828 9.172a4 4 0 1 0 0 5.656 a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828 a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">归档</h2>
+
+        
+        
+        
+        
+        
+        <div class="widget-archive--list">
+            <div class="archives-year">
+                    <a href="/archives/#2022">
+                        
+                            <span class="year">2022</span>
+                            <span class="count">12</span>
+                        
+                    </a> 
+                </div>
+            
+        </div>
+    </section>
+            
+        
+            
+                <section class="widget tagCloud">
+    <div class="widget-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+    </div>
+    <h2 class="widget-title section-title">分类</h2>
+
+    <div class="tagCloud-tags">
+        
+            <a href="/categories/database/" class="font_size_2">
+                database
+            </a>
+        
+            <a href="/categories/codeforces/" class="font_size_1">
+                codeforces
+            </a>
+        
+            <a href="/categories/golang/" class="font_size_1">
+                golang
+            </a>
+        
+            <a href="/categories/k8s/" class="font_size_1">
+                k8s
+            </a>
+        
+            <a href="/categories/linux/" class="font_size_1">
+                linux
+            </a>
+        
+            <a href="/categories/mqtt/" class="font_size_1">
+                mqtt
+            </a>
+        
+            <a href="/categories/mysql/" class="font_size_1">
+                mysql
+            </a>
+        
+            <a href="/categories/nginx/" class="font_size_1">
+                nginx
+            </a>
+        
+            <a href="/categories/rpc/" class="font_size_1">
+                rpc
+            </a>
+        
+            <a href="/categories/%E4%B8%93%E9%A2%98/" class="font_size_1">
+                专题
+            </a>
+        
+            <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="font_size_1">
+                中间件
+            </a>
+        
+            <a href="/categories/%E7%AC%94%E8%AE%B0/" class="font_size_1">
+                笔记
+            </a>
+        
+    </div>
+</section>
+
+            
+        
+            
+                <section class="widget tagCloud">
+    <div class="widget-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+    </div>
+    <h2 class="widget-title section-title">标签云</h2>
+
+    <div class="tagCloud-tags">
+        
+            <a href="/tags/inaction/" class="font_size_2">
+                inaction
+            </a>
+        
+            <a href="/tags/pdf/" class="font_size_2">
+                pdf
+            </a>
+        
+            <a href="/tags/codeforces/" class="font_size_1">
+                codeforces
+            </a>
+        
+            <a href="/tags/emqx/" class="font_size_1">
+                emqx
+            </a>
+        
+            <a href="/tags/grpcgo/" class="font_size_1">
+                grpcgo
+            </a>
+        
+            <a href="/tags/linux/" class="font_size_1">
+                linux
+            </a>
+        
+            <a href="/tags/mqtt/" class="font_size_1">
+                mqtt
+            </a>
+        
+            <a href="/tags/mysql/" class="font_size_1">
+                mysql
+            </a>
+        
+            <a href="/tags/redis/" class="font_size_1">
+                redis
+            </a>
+        
+            <a href="/tags/sourcecode/" class="font_size_1">
+                sourcecode
+            </a>
+        
+            <a href="/tags/%E5%AE%9E%E6%88%98/" class="font_size_1">
+                实战
+            </a>
+        
+            <a href="/tags/%E9%AB%98%E6%80%A7%E8%83%BD/" class="font_size_1">
+                高性能
+            </a>
+        
+    </div>
+</section>
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+        <script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+        <script>addBackToTop({
+        diameter: 56,
+        backgroundColor: 'rgb(255, 82, 82)',
+        textColor: '#fff'
+        })
+        </script>
+    </body>
+</html>

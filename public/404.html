@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='生活可以忙忙碌碌随大流，思想必须偷偷摸摸求上进'><title>404 Page not found</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='你很棒,明天请继续'><title>404 Page not found</title>
 
 <link rel='canonical' href='https://soli.seekincs.com/404.html'>
 
 <link rel="stylesheet" href="/scss/style.min.ac77dcf8b111b51da39a92990f431923f210f3876d85798a2125667f96dc33a4.css"><meta property='og:title' content='404 Page not found'>
-<meta property='og:description' content='生活可以忙忙碌碌随大流，思想必须偷偷摸摸求上进'>
+<meta property='og:description' content='你很棒,明天请继续'>
+<meta property='keywords' content='mqttaction'>
 <meta property='og:url' content='https://soli.seekincs.com/404.html'>
 <meta property='og:site_name' content='soli&#39;s blog'>
-<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2022-11-02T00:38:47&#43;08:00 '/>
+<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2023-02-12T14:11:37&#43;08:00 '/>
 <meta name="twitter:title" content="404 Page not found">
-<meta name="twitter:description" content="生活可以忙忙碌碌随大流，思想必须偷偷摸摸求上进">
+<meta name="twitter:description" content="你很棒,明天请继续">
     <link rel="shortcut icon" href="img/avatar.jpeg" />
 
     </head>
@@ -55,7 +56,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu2dae3d955b2ad1999f53c2d1f5f072a1_95417_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/img/avatar_hu176fd69700073da68598c0962f142a08_68035_300x0_resize_q75_box.jpg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -67,7 +68,7 @@
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">soli&#39;s blog</a></h1>
-            <h2 class="site-description">生活可以忙忙碌碌随大流，思想必须偷偷摸摸求上进</h2>
+            <h2 class="site-description">你很棒,明天请继续</h2>
         </div>
     </header><ol class="menu" id="main-menu">
         
@@ -210,15 +211,50 @@
     <section class="copyright">
         &copy; 
         
-        2022 soli&#39;s blog
+            2022 - 
+        
+        2023 soli&#39;s blog
     </section>
     
     <section class="powerby">
+        
+            你很棒,明天请继续 <br/>
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.12.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
+<script>
+      const loadScript = (url, onloadFunction) => {
+    var newScript = document.createElement("script");
+    newScript.onerror =  (oError) => {
+      throw new URIError("The script " + oError.target.src + " didn't load correctly.");
+    };
+    if (onloadFunction) { newScript.onload = onloadFunction; }
+    document.head.insertAdjacentElement('beforeend', newScript);
+    newScript.src = url;
+  }
 
+  
+  const loadMermaidOnNeed = () => {
+    if (document.querySelectorAll('.mermaid').length > 0) {
+      loadScript('https://cdn.jsdelivr.net/npm/mermaid@8.10.1/dist/mermaid.min.js', () => {
+        document.head.insertAdjacentHTML("beforeend", `<style>.mermaid svg { background-color: #dadcd8 !important; }</style>`);
+        // default, dark, neutral, forest
+        mermaid.initialize({ startOnLoad: false, securityLevel: "strict", theme: "default" });
+        
+        
+        mermaid.init();
+        console.log("mermaid init done");
+      })
+    }
+  }
+
+  window.addEventListener('load', function(event) {
+    
+    loadMermaidOnNeed();
+  });
+
+</script>
 
             </main>
         </div>
@@ -239,5 +275,12 @@
     }());
 </script>
 
+        <script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+        <script>addBackToTop({
+        diameter: 56,
+        backgroundColor: 'rgb(255, 82, 82)',
+        textColor: '#fff'
+        })
+        </script>
     </body>
 </html>

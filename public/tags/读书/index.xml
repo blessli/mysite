@@ -1,54 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>读书 on soli&#39;s blog</title>
-        <link>https://soli.seekincs.com/tags/%E8%AF%BB%E4%B9%A6/</link>
-        <description>Recent content in 读书 on soli&#39;s blog</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language>
-        <lastBuildDate>Sat, 08 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/%E8%AF%BB%E4%B9%A6/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>2022书单</title>
-        <link>https://soli.seekincs.com/2022/10/2022%E4%B9%A6%E5%8D%95/</link>
-        <pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/10/2022%E4%B9%A6%E5%8D%95/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/2022/10/2022%E4%B9%A6%E5%8D%95/img.png" alt="Featured image of post 2022书单" /&gt;&lt;h2 id=&#34;文学&#34;&gt;📖文学&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 平凡的世界&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 法治的细节&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 活着&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 三体&lt;img src=&#34;https://geps.dev/progress/23&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;技术&#34;&gt;🧑‍💻技术&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 操作系统导论&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 网络是怎样连接的&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 深入剖析k8s&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 计算机网络第6版&lt;img src=&#34;https://geps.dev/progress/33&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;生活&#34;&gt;生活&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 控糖生活&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 我的人生样样稀松照样赢&lt;/li&gt;
-&lt;/ul&gt;</description>
-        </item>
-        
-    </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>读书 on cockyman's blog</title><link>https://soli.seekincs.com/tags/%E8%AF%BB%E4%B9%A6/</link><description>Recent content in 读书 on cockyman's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 08 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/%E8%AF%BB%E4%B9%A6/index.xml" rel="self" type="application/rss+xml"/><item><title>2022书单</title><link>https://soli.seekincs.com/2022/10/2022%E4%B9%A6%E5%8D%95/</link><pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate><guid>https://soli.seekincs.com/2022/10/2022%E4%B9%A6%E5%8D%95/</guid><description>&lt;img src="https://soli.seekincs.com/2022/10/2022%E4%B9%A6%E5%8D%95/img.png" alt="Featured image of post 2022书单" />&lt;h2 id="文学">📖文学&lt;/h2>
+&lt;ul>
+&lt;li>&lt;input checked="" disabled="" type="checkbox"> 平凡的世界&lt;/li>
+&lt;li>&lt;input checked="" disabled="" type="checkbox"> 法治的细节&lt;/li>
+&lt;li>&lt;input checked="" disabled="" type="checkbox"> 活着&lt;/li>
+&lt;li>&lt;input disabled="" type="checkbox"> 三体&lt;img src="https://geps.dev/progress/23"
+loading="lazy"
+>&lt;/li>
+&lt;/ul>
+&lt;h2 id="技术">🧑‍💻技术&lt;/h2>
+&lt;ul>
+&lt;li>&lt;input disabled="" type="checkbox"> 操作系统导论&lt;/li>
+&lt;li>&lt;input disabled="" type="checkbox"> 网络是怎样连接的&lt;/li>
+&lt;li>&lt;input disabled="" type="checkbox"> 深入剖析k8s&lt;/li>
+&lt;li>&lt;input disabled="" type="checkbox"> 计算机网络第6版&lt;img src="https://geps.dev/progress/33"
+loading="lazy"
+>&lt;/li>
+&lt;/ul>
+&lt;h2 id="生活">生活&lt;/h2>
+&lt;ul>
+&lt;li>&lt;input disabled="" type="checkbox"> 控糖生活&lt;/li>
+&lt;/ul>
+&lt;h2 id="其他">其他&lt;/h2>
+&lt;ul>
+&lt;li>&lt;input disabled="" type="checkbox"> 我的人生样样稀松照样赢&lt;/li>
+&lt;/ul></description></item></channel></rss>

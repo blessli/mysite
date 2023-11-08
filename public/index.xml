@@ -6,30 +6,1124 @@
         <description>Recent content on soli&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Mon, 31 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>【打卡】LeetCode刷题记录</title>
-        <link>https://soli.seekincs.com/2022/10/%E6%89%93%E5%8D%A1leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</link>
-        <pubDate>Mon, 31 Oct 2022 00:00:00 +0000</pubDate>
+        <lastBuildDate>Sat, 11 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>gorpc设计与实现</title>
+        <link>https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/</link>
+        <pubDate>Sat, 11 Feb 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/10/%E6%89%93%E5%8D%A1leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 【打卡】LeetCode刷题记录" /&gt;&lt;ol&gt;
-&lt;li&gt;2022-10-29 &lt;a class=&#34;link&#34; href=&#34;https://leetcode.cn/problems/longest-consecutive-sequence/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;最长连续序列&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2022-10-31 &lt;a class=&#34;link&#34; href=&#34;https://leetcode.cn/problems/validate-binary-search-tree/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;验证二叉搜索树&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2022-10-31 &lt;a class=&#34;link&#34; href=&#34;https://leetcode.cn/problems/symmetric-tree/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;对称二叉树&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2022-10-31 &lt;a class=&#34;link&#34; href=&#34;https://leetcode.cn/problems/maximum-depth-of-binary-tree/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;二叉树的最大深度&lt;/a&gt;&lt;/li&gt;
+        <guid>https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post gorpc设计与实现" /&gt;&lt;p&gt;&lt;a name=&#34;vAlT3&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;背景&#34;&gt;背景&lt;/h1&gt;
+&lt;p&gt;&lt;a name=&#34;MQrO1&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;_缩短从需求到上线的距离_&#34;&gt;&lt;em&gt;&lt;strong&gt;缩短从需求到上线的距离&lt;/strong&gt;&lt;/em&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;服务端资源成本&lt;/li&gt;
+&lt;li&gt;工程效率
+&lt;a name=&#34;JSGwx&#34;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;设计理念&#34;&gt;设计理念&lt;/h1&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;高性能&lt;/th&gt;
+&lt;th&gt;保证易用性和通用性的前提下，追求性能极致&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;插件化&lt;/td&gt;
+&lt;td&gt;支持业务对框架注入自定义处理，增强扩展能力和灵活度&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;测试&lt;/td&gt;
+&lt;td&gt;单元测试覆盖率100%，提供工具链方便业务测试&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;a name=&#34;qqIaU&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;整体形态&#34;&gt;整体形态&lt;/h1&gt;
+&lt;p&gt;标准化、模块化、插件化、易扩展。&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc1.png&#34;
+	width=&#34;1091&#34;
+	height=&#34;658&#34;
+	srcset=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc1_huf3c8c79c7a43048799de80b62d70e487_48410_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc1_huf3c8c79c7a43048799de80b62d70e487_48410_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;165&#34;
+		data-flex-basis=&#34;397px&#34;
+	
+&gt;
+&lt;a name=&#34;GYoUG&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;协议设计&#34;&gt;协议设计&lt;/h1&gt;
+&lt;p&gt;协议报文：帧头+包头+包体。&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc2.png&#34;
+	width=&#34;1373&#34;
+	height=&#34;266&#34;
+	srcset=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc2_hud26eed2f460ef3040735136aece227f0_27468_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc2_hud26eed2f460ef3040735136aece227f0_27468_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;516&#34;
+		data-flex-basis=&#34;1238px&#34;
+	
+&gt;&lt;br /&gt;帧头是固定的16个字节。&lt;br /&gt;包头和包体可变长。包头通过pb序列化方式，包体支持业务自定义序列化方式。
+&lt;a name=&#34;GK8xD&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;协议打解包过程全剖析&#34;&gt;&lt;strong&gt;协议打解包过程全剖析&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;codec是协议打解包的统一接口。&lt;br /&gt;rpc框架内部会通过协议名(比如http/grpc等)自动获取对应协议的Codec接口实现，也就是clientCodec和serverCodec分别实现client-&amp;gt;server发包和解包、server-&amp;gt;client解包和回包。
+&lt;a name=&#34;q2P5j&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;rpc调用&#34;&gt;RPC调用&lt;/h1&gt;
+&lt;p&gt;&lt;a name=&#34;gkMTS&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;基于protoc文件的rpc调用实现&#34;&gt;基于protoc文件的rpc调用实现&lt;/h2&gt;
+&lt;p&gt;关键代码：proxy := pb.NewGreeterClientProxy(opts&amp;hellip;)&lt;br /&gt;基于PB实现,通过提供脚手架工具生成接口代码,并生成服务模板,实现业务快速开发。
+&lt;a name=&#34;mCYnl&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;服务交互流程&#34;&gt;服务交互流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc.png&#34;
+	width=&#34;1172&#34;
+	height=&#34;1485&#34;
+	srcset=&#34;https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc_hu56b04216e182a970485f838ca4eba18c_100839_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2023/02/gorpc%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/static/rpc_hu56b04216e182a970485f838ca4eba18c_100839_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;78&#34;
+		data-flex-basis=&#34;189px&#34;
+	
+&gt;
+&lt;a name=&#34;COYDR&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;插件化架构&#34;&gt;插件化架构&lt;/h1&gt;
+&lt;p&gt;通过框架配置文件或import的方式，易插拔，扩展灵活。
+&lt;a name=&#34;fZECQ&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;插件原理&#34;&gt;插件原理&lt;/h2&gt;
+&lt;p&gt;框架定义了每种插件类型的标准接口。&lt;br /&gt;没有具体实现,只提供map注册方式。&lt;br /&gt;业务代码import即可。
+&lt;a name=&#34;AHWAE&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;服务治理&#34;&gt;服务治理&lt;/h1&gt;
+&lt;p&gt;统一标准化接口，灵活易扩展。&lt;br /&gt;通过插件对接服务治理相关系统,灵活组装自己的微服务体系。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;插件类型&lt;/th&gt;
+&lt;th&gt;代表&lt;/th&gt;
+&lt;th&gt;具体实现&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;名字服务&lt;/td&gt;
+&lt;td&gt;北极星(已开源)&lt;/td&gt;
+&lt;td&gt;服务注册：&lt;br /&gt;server端main.go里会import北极星服务注册插件。rpc框架会在服务端口起来后，会自动调用register接口，也就是自动将服务名与ip_port信息注册到北极星。&lt;br /&gt;服务发现：&lt;br /&gt;client端main.go里会import北极星服务发现插件。rpc框架的内部封装了rpc调用，会自动调用select接口，也就是自动拿到callee的ip_port。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;监控&lt;/td&gt;
+&lt;td&gt;prometheus&lt;/td&gt;
+&lt;td&gt;rpc框架对外开放counter、gauge、histogram三种类型的监控类型。提供sink接口封装了report功能。&lt;br /&gt;server端main.go里会import prometheus/statusd监控上报插件。通过这个插件自动上报到监控平台。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;配置&lt;/td&gt;
+&lt;td&gt;etcd&lt;/td&gt;
+&lt;td&gt;rpc框架提供本地文件和远程配置中心那种方式，抽象出provider标准化接口。提供多种序列化方式。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;调用链&lt;/td&gt;
+&lt;td&gt;jaeger&lt;/td&gt;
+&lt;td&gt;rpc框架的包头可变长，其中包含metadata信息，并对外暴露get和set标准接口，可用于集成服务可观测性功能。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;日志&lt;/td&gt;
+&lt;td&gt;zap&lt;/td&gt;
+&lt;td&gt;rpc框架支持通过配置文件里注册日志插件，实现根据日志级别按console或file模式写入指定文件名并自动滚动。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;a name=&#34;ejOAJ&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;拦截器&#34;&gt;拦截器&lt;/h1&gt;
+&lt;p&gt;假设有一个方法 handler(ctx context.Context) ，我想要给这个方法赋予一个能力：允许在这个方法执行之前能够打印一行日志。同时，保证handler方法只执行一次。
+&lt;a name=&#34;XSoXB&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;自定义一个拦截器&#34;&gt;自定义一个拦截器&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;定义处理逻辑函数&lt;/li&gt;
+&lt;li&gt;注册到框架中&lt;/li&gt;
+&lt;li&gt;配置文件开启使用&lt;/li&gt;
 &lt;/ol&gt;</description>
         </item>
         <item>
-        <title>【实战】如何快速部署开源服务器并应用于业务场景</title>
-        <link>https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/</link>
+        <title>专题2：性能压测</title>
+        <link>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%982%E6%80%A7%E8%83%BD%E5%8E%8B%E6%B5%8B/</link>
+        <pubDate>Mon, 26 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%982%E6%80%A7%E8%83%BD%E5%8E%8B%E6%B5%8B/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 专题2：性能压测" /&gt;&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+1. 稳定性
+2. 潜在性能瓶颈
+3. 熔断降级演练
+4. 容量规划
+&lt;p&gt;压测成本&lt;br&gt;
+压测目标&lt;br&gt;
+压测场景&lt;br&gt;
+严格&lt;br&gt;
+GC&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&#34;trap&#34;&gt;trap&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#&lt;/th&gt;
+&lt;th&gt;detail&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;日志浪费cpu&lt;/td&gt;
+&lt;td&gt;容易忽视&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SDK性能问题&lt;/td&gt;
+&lt;td&gt;高并发时才会暴露出来&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;评估偏差&lt;/td&gt;
+&lt;td&gt;cpu、memory、load average&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;how-to-choose-benchmark-tool&#34;&gt;how to choose benchmark tool&lt;/h2&gt;
+&lt;h2 id=&#34;reference&#34;&gt;reference&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://juejin.cn/post/7133851547477213221#heading-10&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;记一次业务压测过程中发现的问题&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+        </item>
+        <item>
+        <title>专题1：高性能</title>
+        <link>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%981%E9%AB%98%E6%80%A7%E8%83%BD/</link>
+        <pubDate>Thu, 22 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/12/%E4%B8%93%E9%A2%981%E9%AB%98%E6%80%A7%E8%83%BD/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post 专题1：高性能" /&gt;&lt;h2 id=&#34;高性能的秘密&#34;&gt;高性能的秘密&lt;/h2&gt;
+&lt;h2 id=&#34;balance&#34;&gt;balance&lt;/h2&gt;
+&lt;p&gt;折中：成本 VS 收益&lt;/p&gt;
+&lt;h2 id=&#34;trap&#34;&gt;trap&lt;/h2&gt;
+&lt;p&gt;过早优化：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;代码可读性&lt;/li&gt;
+&lt;li&gt;多维度团队成本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;quantity&#34;&gt;quantity&lt;/h2&gt;
+&lt;p&gt;性能建模：性能度量指标&lt;/p&gt;
+&lt;h2 id=&#34;性能瓶颈发现剖析解决&#34;&gt;性能瓶颈：发现、剖析、解决&lt;/h2&gt;
+&lt;h2 id=&#34;references&#34;&gt;references&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.huoban.com/news/post/2189.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;当我们谈高性能时，我们谈些什么？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+        </item>
+        <item>
+        <title>Linux多线程服务端编程：使用muduo C&#43;&#43;网络库.pdf</title>
+        <link>https://soli.seekincs.com/2022/12/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B%E4%BD%BF%E7%94%A8muduo-c-%E7%BD%91%E7%BB%9C%E5%BA%93.pdf/</link>
+        <pubDate>Sat, 03 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/12/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B%E4%BD%BF%E7%94%A8muduo-c-%E7%BD%91%E7%BB%9C%E5%BA%93.pdf/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post Linux多线程服务端编程：使用muduo C&#43;&#43;网络库.pdf" /&gt;&lt;h2 id=&#34;questions&#34;&gt;Questions&lt;/h2&gt;
+&lt;h3 id=&#34;q1-tcp服务最大并发连接数&#34;&gt;Q1: TCP服务最大并发连接数？&lt;/h3&gt;
+&lt;p&gt;即有一个 TCP 服务程序的地址是 1.2.3.4:8765，问它从理论上能接受多少个并发连接？&lt;br&gt;
+单独谈论“TCP 并发连接数”是没有意义的，因为连接数基本上是要多少有多少。更有意义的性能指标或许是：“每秒收发多少条消息”、“每秒收发多少字节的数据”、“支持多少个活动的并发客户”等等。&lt;br&gt;
+在只考虑 IPv4 的情况下，并发数的理论上限是 2^48。考虑某些 IP 段被保留了，这个上界可适当缩小，但数量级不变。实际的限制是操作系统全局文件描述符的数量，以及内存大小。&lt;br&gt;
+2^48由来：
+一个 TCP 连接有两个 end points，每个 end point 是 {ip, port}，题目说其中一
+个 end point 已经固定，那么留下一个 end point 的自由度，即 2^48。客户端 IP 的上限是 2^32 个，每个客户端 IP 发起连接的上限是 2^16，乘到一起得到理论上限&lt;br&gt;
+在真实的 Linux 系统中，可以通过调整内核参数来支持上百万并发连接。&lt;/p&gt;
+&lt;h3 id=&#34;q2-tcp-的可靠性有多高&#34;&gt;Q2: TCP 的可靠性有多高?&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Realize That TCP Is a Reliable Protocol, Not an Infallible Protocol。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;那么 TCP 在哪种情况下会出错？这里说的“出错”指的是收到的数据与发送的数据不一致，而不是数据不可达。&lt;br&gt;
+什么情况下 TCP 传送的数据会出错？&lt;br&gt;
+IP header 和 TCP header 的 checksum 是一种非常弱的 16-bit check sum 算法，
+其把数据当成反码表示的 16-bit integers，再加到一起。这种 checksum 算法能检出
+一些简单的错误，而对某些错误无能为力。&lt;br&gt;
+路由器可能出现硬件故障，比方说它的内存故障（或偶然错误）导致收发 IP 报
+文出现多 bit 的反转或双字节交换，这个反转如果发生在 payload 区，那么无法用
+链路层、网络层、传输层的 check sum 查出来，只能通过应用层的 check sum 来检
+测。&lt;br&gt;
+另外一个例证：下载大文件的时候一般都会附上 MD5，这除了有安全方面的考
+虑（防止篡改），也说明应用层应该自己设法校验数据的正确性。这是 end-to-end
+principle 的一个例证。&lt;/p&gt;
+&lt;h3 id=&#34;q4-tcp如何实现可靠&#34;&gt;Q4: TCP如何实现可靠？&lt;/h3&gt;
+&lt;p&gt;TCP 作为一个可靠的传输层协议，其核心有三点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Positive acknowledgement with retransmission；&lt;/li&gt;
+&lt;li&gt;Flow control using sliding window （包括 Nagle 算法等）；&lt;/li&gt;
+&lt;li&gt;Congestion control （包括 slow start、congestion avoidance、fast retransmit
+等）。
+第一点已经足以满足“可靠性”要求（为什么？）；第二点是为了提高吞吐量，充
+分利用链路层带宽；第三点是防止过载造成丢包。换言之，第二点是避免发得太慢，
+第三点是避免发得太快，二者相互制约。从反馈控制的角度看，TCP 像是一个自适应
+的节流阀，根据管道的拥堵情况自动调整阀门的流量。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;q3-c10k问题&#34;&gt;Q3: C10K问题？&lt;/h3&gt;
+&lt;p&gt;what：所谓C10K问题，就是Client 10000 Problem，即“在同时连接到服务器的客户端数量超过10000个的环境中，即便硬件性能足够，依然无法正常提供服务”这样一个问题&lt;br&gt;
+what: 所谓最弱连接问题，就是如果往两端用力拉一条由很多环（连接）组成的锁链，其中最脆弱的一个连接会先断掉。因此，锁链整体的强度取决于其中最脆弱的一环。安全问题也是一样，整体的强度取决于其中最脆弱的部分。&lt;/p&gt;
+&lt;h3 id=&#34;q6-常见的并发网络服务程序设计方案&#34;&gt;Q6: 常见的并发网络服务程序设计方案&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/12/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B%E4%BD%BF%E7%94%A8muduo-c-%E7%BD%91%E7%BB%9C%E5%BA%93.pdf/static/concurreny-mode.jpg&#34;
+	width=&#34;2078&#34;
+	height=&#34;786&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/12/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B%E4%BD%BF%E7%94%A8muduo-c-%E7%BD%91%E7%BB%9C%E5%BA%93.pdf/static/concurreny-mode_hu2f1e02e515e351c311ec896043222feb_527718_480x0_resize_q75_box.jpg 480w, https://soli.seekincs.com/2022/12/linux%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B%E4%BD%BF%E7%94%A8muduo-c-%E7%BD%91%E7%BB%9C%E5%BA%93.pdf/static/concurreny-mode_hu2f1e02e515e351c311ec896043222feb_527718_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;12 种常见方案&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;264&#34;
+		data-flex-basis=&#34;634px&#34;
+	
+&gt;&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>nginx工作笔记</title>
+        <link>https://soli.seekincs.com/2022/11/nginx%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/nginx%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post nginx工作笔记" /&gt;&lt;h2 id=&#34;questions&#34;&gt;Questions&lt;/h2&gt;
+&lt;h3 id=&#34;q1master与worker进程通信方式&#34;&gt;Q1:master与worker进程通信方式？&lt;/h3&gt;
+&lt;p&gt;即master进程如何通知worker进程停止服务或更换日志文件呢？
+对于这样控制进程运行的进程间通信方式，Nginx采用的是信号。见ngx_signal_handler方法。&lt;br&gt;
+在ngx_worker_process_cycle方法中，通过检查ngx_exiting、ngx_terminate、ngx_quit、
+ngx_reopen这4个标志位来决定后续动作。&lt;/p&gt;
+&lt;h3 id=&#34;q2worker进程的惊群问题&#34;&gt;Q2:worker进程的惊群问题？&lt;/h3&gt;
+&lt;p&gt;即如何解决多个worker子进程监听同一端口引起的“惊群”现象的?&lt;br&gt;
+加锁：ngx_process_events_and_timers方法中调用了ngx_trylock_accept_mutex方法。&lt;br&gt;
+nginx规定了同一时刻只能有唯一一个worker子进程监听Web端口，这样就不会发生“惊
+群”了，此时新连接事件只能唤醒唯一正在监听端口的worker子进程。&lt;/p&gt;
+&lt;h3 id=&#34;q3worker进程的均衡问题&#34;&gt;Q3:worker进程的均衡问题？&lt;/h3&gt;
+&lt;p&gt;即如何均衡多个worker子进程上处理的连接数?&lt;br&gt;
+与“惊群”问题的解决方法一样，只有打开了accept_mutex锁，才能实现worker子进程间的
+负载均衡。&lt;/p&gt;
+&lt;h3 id=&#34;q4master进程主要功能&#34;&gt;Q4:master进程主要功能？&lt;/h3&gt;
+&lt;p&gt;master进程不需要处理网络事件，它不负责业务的执行，只会通过管理worker等子进程
+来实现重启服务、平滑升级、更换日志文件、配置文件实时生效等功能。&lt;/p&gt;
+&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
+&lt;h3 id=&#34;nginx特点&#34;&gt;nginx特点&lt;/h3&gt;
+&lt;p&gt;选择Nginx的核心理由还是它能在支持高并发请求的同时保持高效的服务。&lt;br&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;低内存消耗&lt;/li&gt;
+&lt;li&gt;高可靠性:一个master管理进程、多个worker工作进程的设计方式&lt;/li&gt;
+&lt;li&gt;高扩展性:高度模块化的设计&lt;/li&gt;
+&lt;li&gt;更快&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;事件处理&#34;&gt;事件处理&lt;/h3&gt;
+&lt;h3 id=&#34;开发一个简单的http模块&#34;&gt;开发一个简单的HTTP模块&lt;/h3&gt;
+&lt;p&gt;todo: 开发ngx_http_mytest_module&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.open-open.com/lib/view/open1451446610308.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;参考例子&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
+&lt;h3 id=&#34;vscode本地调试&#34;&gt;vscode本地调试&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;version&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;0.2.0&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;configurations&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;debug nginx&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;cppdbg&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;request&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;launch&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;program&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;${workspaceFolder}/objs/nginx&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;stopAtEntry&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;cwd&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;${workspaceFolder}&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;environment&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;externalConsole&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;mkcert创建自签名ssl证书&#34;&gt;mkcert创建自签名SSL证书&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkcert -install &lt;span class=&#34;c1&#34;&gt;# 将 mkcert 的认证机构安装到服务器上&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkcert -CAROOT &lt;span class=&#34;c1&#34;&gt;# 查看 CA 证书的位置，在PC上安装 rootCA.crt 证书&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkcert www.aaa.com aiPlatform.dev localhost 127.0.0.1 ::1 43.139.87.74 &lt;span class=&#34;c1&#34;&gt;# 生成证书，配置在nginx.conf中&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;nginx四层转发&#34;&gt;nginx四层转发&lt;/h3&gt;
+&lt;p&gt;源码编译时，执行以下命令手动加载stream模块:&lt;br&gt;
+./auto/configure &amp;ndash;with-http_ssl_module &amp;ndash;prefix=/home/github/nginx &amp;ndash;with-stream&lt;br&gt;
+然后在nginx.conf添加以下配置内容支持tcp转发，&lt;a class=&#34;link&#34; href=&#34;git@github.com:blessli/epoll-cpp-demo.git&#34; &gt;stream_backend程序&lt;/a&gt;:
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cfg&#34; data-lang=&#34;cfg&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;stream {&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;upstream stream_backend {&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;na&#34;&gt;zone tcp_servers 64k;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;na&#34;&gt;hash $remote_addr;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;na&#34;&gt;server 127.0.0.1:18000;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;server {&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;na&#34;&gt;listen 8000;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;na&#34;&gt;proxy_pass stream_backend;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;na&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>Golang工作笔记</title>
+        <link>https://soli.seekincs.com/2022/11/golang%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/golang%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img6.png" alt="Featured image of post Golang工作笔记" /&gt;&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
+&lt;h3 id=&#34;调度器&#34;&gt;调度器&lt;/h3&gt;
+&lt;p&gt;调度器的工作是在适当的时机将合适的协程分配到合适的位置，在调度过程中需要保证公平和效率。&lt;/p&gt;
+&lt;h4 id=&#34;调度时机&#34;&gt;调度时机&lt;/h4&gt;
+&lt;p&gt;根据调度方式的不同，将调度时机分为主动、被动和抢占调度。&lt;br&gt;&lt;/p&gt;
+&lt;h5 id=&#34;主动调度&#34;&gt;主动调度&lt;/h5&gt;
+&lt;p&gt;需要先从当前协程切换到协程g0，取消G与M之间的绑定关系，将G放入全局运行队列，并调用schedule函数开始新一轮的循环。
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;goschedImpl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;readgstatus&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;status&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;^&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;_Gscan&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_Grunning&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nf&#34;&gt;dumpgstatus&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nf&#34;&gt;throw&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;bad g status&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nf&#34;&gt;casgstatus&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_Grunning&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_Grunnable&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;c1&#34;&gt;// 取消G与M之间的绑定关系
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nf&#34;&gt;dropg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nf&#34;&gt;lock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sched&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;lock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;c1&#34;&gt;// 把G放入全局运行队列
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nf&#34;&gt;globrunqput&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nf&#34;&gt;unlock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sched&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;lock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;c1&#34;&gt;// 进入新一轮调度
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nf&#34;&gt;schedule&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;h5 id=&#34;被动调度&#34;&gt;被动调度&lt;/h5&gt;
+&lt;p&gt;和主动调度类似的是，被动调度需要先从当前协程切换到协程g0，更新协程的状态并解绑与M的关系，重新调度。
+和主动调度不同的是，被动调度不会将G放入全局运行队列，因为当前G的状态不是_Grunnable而是_Gwaiting，
+所以，被动调度需要一个额外的唤醒机制。
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;park_m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;_g_&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;getg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nf&#34;&gt;casgstatus&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_Grunning&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_Gwaiting&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nf&#34;&gt;dropg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fn&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_g_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;waitunlockf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fn&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nx&#34;&gt;ok&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;fn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_g_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;waitlock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nx&#34;&gt;_g_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;waitunlockf&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nx&#34;&gt;_g_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;waitlock&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ok&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;trace&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;enabled&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				&lt;span class=&#34;nf&#34;&gt;traceGoUnpark&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;nf&#34;&gt;casgstatus&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_Gwaiting&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_Grunnable&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;nf&#34;&gt;execute&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// Schedule it back, never returns.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;		&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nf&#34;&gt;schedule&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;h5 id=&#34;抢占调度&#34;&gt;抢占调度&lt;/h5&gt;
+&lt;p&gt;为了让每个协程都有执行的机会，并且最大化利用CPU资源，Go语言在初始化时会启动一个特殊的线程来执行系统监控任务。
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// proc.retake函数
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;retake&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;now&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int64&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;uint32&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nf&#34;&gt;lock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;allpLock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;c1&#34;&gt;// 遍历所有的P
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;len&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;allp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nx&#34;&gt;_p_&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;allp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_p_&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;k&#34;&gt;continue&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nx&#34;&gt;pd&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;_p_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sysmontick&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_p_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;status&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nx&#34;&gt;sysretake&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_Prunning&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;||&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_Psyscall&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;c1&#34;&gt;// 如果G运行时间过长则抢占
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;			&lt;span class=&#34;nx&#34;&gt;t&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;int64&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;_p_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;schedtick&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;int64&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;schedtick&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;t&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				&lt;span class=&#34;nx&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;schedtick&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;uint32&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				&lt;span class=&#34;nx&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;schedwhen&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;now&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;schedwhen&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;forcePreemptNS&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;now&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				&lt;span class=&#34;c1&#34;&gt;// 连续运行超过10ms，设置抢占请求
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;				&lt;span class=&#34;nf&#34;&gt;preemptone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;_p_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				&lt;span class=&#34;nx&#34;&gt;sysretake&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;c1&#34;&gt;// P处于系统调用之中，检查是否需要抢占
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;		&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_Psyscall&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;c1&#34;&gt;// 如果已经超过了一个系统监控的tick(20us)，则从系统调用中抢占P
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;			&lt;span class=&#34;c1&#34;&gt;// ...省略
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;		&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nf&#34;&gt;unlock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;allpLock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;uint32&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;h4 id=&#34;调度策略&#34;&gt;调度策略&lt;/h4&gt;
+&lt;p&gt;调度协程的优先级与顺序如下所示:&lt;br&gt;
+
+&lt;pre class=&#34;mermaid&#34; align=&#34;center&#34;&gt;
+graph LR
+    A[runnext] --&gt; B{nil?};
+    B -- Yes --&gt; C[p.runq];
+    C --&gt; D{head=tail?};
+    D -- Yes ----&gt; F[schet.runq];
+    F --&gt; G{runqsize=0?};
+    G -- Yes --&gt; H[从其他P窃取];
+    H --&gt; J{find?};
+    J -- Yes ----&gt; K[找到G];
+    J -- No ----&gt; L[未找到G,休眠];
+    F -- No ----&gt; I[找到G];
+    D -- No --&gt; E[找到G];
+    B -- No ----&gt; W[找到G];
+&lt;/pre&gt;&lt;/p&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
+&lt;h3 id=&#34;编译&#34;&gt;编译&lt;/h3&gt;
+&lt;p&gt;编译脚本(all.bash/make.bash)中注释掉，跳过编译test，因为太慢&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;mkdir -p ~/mygo/bin
+cd ~/mygo/bin
+ln -sf /usr/local/projs/go/bin/go mygo
+mygo version
+mygo run helloworld.go
+&lt;/code&gt;&lt;/pre&gt;</description>
+        </item>
+        <item>
+        <title>gRPC-Go工作笔记</title>
+        <link>https://soli.seekincs.com/2022/11/grpc-go%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/grpc-go%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img5.png" alt="Featured image of post gRPC-Go工作笔记" /&gt;&lt;h2 id=&#34;wireshark捕获grpc消息&#34;&gt;wireshark捕获grpc消息&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.imlc.me/how-to-inspect-grpc-with-wireshark/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;具体参考&lt;/a&gt;
+&lt;img src=&#34;https://soli.seekincs.com/2022/11/grpc-go%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/static/wireshark-capture-grpc.jpg&#34;
+	width=&#34;1439&#34;
+	height=&#34;847&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/11/grpc-go%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/static/wireshark-capture-grpc_hu19e47366ed7a2c4856115f5ef21cbcbd_204636_480x0_resize_q75_box.jpg 480w, https://soli.seekincs.com/2022/11/grpc-go%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/static/wireshark-capture-grpc_hu19e47366ed7a2c4856115f5ef21cbcbd_204636_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;wireshark-capture-grpc.jpg&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;169&#34;
+		data-flex-basis=&#34;407px&#34;
+	
+&gt;&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>linux开发常用笔记</title>
+        <link>https://soli.seekincs.com/2022/11/linux%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/linux%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post linux开发常用笔记" /&gt;&lt;h2 id=&#34;基础命令&#34;&gt;基础命令&lt;/h2&gt;
+&lt;h3 id=&#34;centos7版本&#34;&gt;centos7版本&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /etc/redhat-release
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;解压&#34;&gt;解压&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;tar -zxvf grafana-8.0.6.linux-amd64.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;alias别名&#34;&gt;alias别名&lt;/h3&gt;
+&lt;p&gt;解决重启后alias失效问题。非系统文件尽量放在home目录下&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;vim ~/.bashrc
+alias cdhub=&#39;cd /home/github&#39;
+alias cdclash=&#39;cd /home/clash&#39;
+source ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;查看项目代码行数&#34;&gt;查看项目代码行数&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;yum -y install cloc
+cloc src
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;显示当前文件夹大小&#34;&gt;显示当前文件夹大小&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;du -hs
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;linux开启swap分区&#34;&gt;linux开启swap分区&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;dd if=/dev/zero of=/swapfile bs=64M count=64
+chmod 0600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+swapon -s
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;linux生成32位随机串&#34;&gt;linux生成32位随机串&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cat /dev/urandom | head -n 10 | md5sum
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/Axianba/p/13131620.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.cnblogs.com/Axianba/p/13131620.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;安装git2x&#34;&gt;安装git2.x&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;sudo yum install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
+sudo yum install git
+git --version
+git config --global user.name &amp;quot;Your Name&amp;quot;
+git config --global user.email &amp;quot;email@example.com&amp;quot;
+ssh-keygen -t rsa -C &amp;quot;your_email@youremail.com&amp;quot;
+cat /root/.ssh/id_rsa.pub
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;gcc升级到713&#34;&gt;gcc升级到7.13&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;sudo yum install centos-release-scl
+sudo yum install devtoolset-7-gcc*
+ln -sf /opt/rh/devtoolset-7/root/usr/bin/gcc /usr/bin/gcc
+ln -sf /opt/rh/devtoolset-7/root/usr/bin/g++ /usr/bin/g++
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;安装cmake3&#34;&gt;安装cmake3&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;yum -y install cmake3
+sudo ln -s /usr/bin/cmake3 /usr/bin/cmake
+cmake --version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安装指定版本&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;wget https://github.com/Kitware/CMake/releases/download/v3.24.0/cmake-3.24.0-linux-x86_64.tar.gz
+tar -zxvf cmake-3.24.0-linux-x86_64.tar.gz
+ln -sf /usr/local/cmake-3.24.0-linux-x86_64/bin/cmake /usr/bin/cmake
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;安装mysql-8024&#34;&gt;安装mysql-8.0.24&lt;/h2&gt;
+&lt;p&gt;cmake命令&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;mkdir build &amp;amp;&amp;amp; cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/usr/local/mysql/data -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -DSYSCONFDIR=/etc -DWITH_BOOST=/usr/local/boost -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLED_LOCAL_INFILE=ON -DWITH_INNODB_MEMCACHED=ON -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_FEDERATED_STORAGE_ENGINE=1 -DWITH_BLACKHOLE_STORAGE_ENGINE=1 -DWITH_ARCHIVE_STORAGE_ENGINE=1 -DWITHOUT_EXAMPLE_STORAGE_ENGINE=1 -DWITH_PERFSCHEMA_STORAGE_ENGINE=1 -DFORCE_INSOURCE_BUILD=1 -DMYSQL_TCP_PORT=3306
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;编译，安装，初始化，启动：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;groupadd mysql
+useradd -r -g mysql -s /bin/false mysql
+make&amp;amp;&amp;amp;make install
+chown -R mysql:mysql /usr/local/mysql/
+/usr/local/mysql/bin/mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
+/usr/local/mysql/bin/mysqld_safe --defaults-file=/usr/local/mysql/etc/my.cnf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;统计80端口连接数&#34;&gt;统计80端口连接数&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;netstat -nat | grep -i &amp;quot;80&amp;quot; | wc -l
+netstat -nat | grep -i &amp;quot;18000&amp;quot; | awk &#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39; # 查看TCP连接状态
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;磁盘占满排查&#34;&gt;磁盘占满排查&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;df -hl
+du -s /* | sort -nr |head # 选出排在前面的10个，head改成tail则是后面10个
+du -sh /* | sort -nr # 加了h排序错乱
+du -sh /home/* | sort -nr
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;内存占用高排查&#34;&gt;内存占用高排查&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;top -o %MEM # 按内存占用排序
+vmstat 2 # 每隔2秒展示内存占用情况
+kill -9 `ps -ef| grep tail |awk &#39;{print $2}&#39; `
+cat /proc/24573/status # 查看进程内存
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;健康检查脚本health-check-script&#34;&gt;健康检查脚本health-check-script&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/SimplyLinuxFAQ/health-check-script/blob/master/health-check.sh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;健康检查脚本&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/759b3bd7360e&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;具体使用例子&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;centos7安装clash&#34;&gt;centos7安装clash&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://i.jakeyu.top/2021/11/27/centos-%E4%BD%BF%E7%94%A8-Clash-%E6%A2%AF%E5%AD%90/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;url1&lt;/a&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://199604.com/2001&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;url2&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;安装prometheus和grafana&#34;&gt;安装prometheus和grafana&lt;/h2&gt;
+&lt;p&gt;场景: 编写Dockerfile&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://grafana.com/grafana/download/8.0.6?edition=oss&amp;amp;pg=get&amp;amp;platform=linux&amp;amp;plcmt=selfmanaged-box1-cta1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;grafana8.0.6官网下载&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;FROM quay.io/prometheus/prometheus
+USER root
+RUN echo &#39;Asia/Shanghai&#39; &amp;gt;/etc/timezone
+ADD prometheus.yml /etc/prometheus/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;服务启动脚本&#34;&gt;服务启动脚本&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;#!/bin/sh
+mainpid=$(lsof -i:8686|grep &#39;LISTEN&#39;|awk &#39;{print $2}&#39;)
+echo $mainpid
+if [ $mainpid &amp;gt; 0 ];then
+    echo &amp;quot;main process id:$mainpid&amp;quot;
+    kill -9 $mainpid
+    if [ $? -eq 0 ];then
+    echo &amp;quot;kill $mainpid success&amp;quot;
+    go run main.go
+    else
+    echo &amp;quot;kill $mainpid fail&amp;quot;
+    fi
+else
+    go run main.go
+fi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;mysql相关&#34;&gt;mysql相关&lt;/h2&gt;
+&lt;h3 id=&#34;docker启动mysql57&#34;&gt;docker启动mysql5.7&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;docker run --name mysql -p 3306:3306 -v /home/github/utopia/my.cnf:/etc/my.cnf -v /home/mysql/data:/var/lib/mysql/data -e MYSQL_ROOT_PASSWORD=rootroot -d mysql:5.7
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;docker-mysql导表&#34;&gt;docker-mysql导表&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;docker exec -i mysql mysql -h 127.0.0.1 -P 3306 -u root -p&#39;rootroot&#39; &amp;lt; /home/github/ranger/dao/gozero_sys_dept.sql
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;innodb_space工具调试&#34;&gt;innodb_space工具调试&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;innodb_space -s ibdata1 -T mask/t_mask -p 3 page-dump
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;抓包&#34;&gt;抓包&lt;/h2&gt;
+&lt;p&gt;常用抓包工具：
+Charles、wiresharks、http debug。
+部分软件(eg: WPS windows端)只能抓到极少量的https请求。
+解决办法：基于proxifier+charles抓包捕获所有请求。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>mysql source code learning</title>
+        <link>https://soli.seekincs.com/2022/11/mysql-source-code-learning/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/mysql-source-code-learning/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img2.png" alt="Featured image of post mysql source code learning" /&gt;&lt;h2 id=&#34;问题探索&#34;&gt;问题探索&lt;/h2&gt;
+&lt;h3 id=&#34;一条sql的生命周期&#34;&gt;一条SQL的生命周期&lt;/h3&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.mipa.site/2020/06/021934.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;参考文章&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;mysql插件化架构&#34;&gt;mysql插件化架构&lt;/h3&gt;
+&lt;h3 id=&#34;mysql80取消查询缓存&#34;&gt;mysql8.0取消查询缓存&lt;/h3&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://dev.mysql.com/blog-archive/mysql-8-0-retiring-support-for-the-query-cache/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官方说明&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;网络io模型&#34;&gt;网络IO模型&lt;/h3&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.51cto.com/u_15069490/2937369&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;参考文章&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
+&lt;h3 id=&#34;mysql8024源码编译安装&#34;&gt;mysql8.0.24源码编译安装&lt;/h3&gt;
+&lt;p&gt;主要是参考&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/jhno1/p/15324343.html#autoid-0-8-0&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这篇文章&lt;/a&gt;，操作过程中根据报错进行fix，特别是修改my.cnf配置文件。&lt;/p&gt;
+&lt;h3 id=&#34;编译安装问题&#34;&gt;编译安装问题&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;OpenSSL 版本不兼容&lt;br&gt;
+不兼容1.1版本，需要openssl1.0.2，通过yum install openssl-devel。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;磁盘空间不足&lt;br&gt;
+60g磁盘满了，导致make 终止，/data目录删掉即可。&lt;br&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;fatal error: error writing to /tmp/ccFtecZv.s: No space left on device
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;内存不足&lt;br&gt;
+需要开启swap分区&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;g++: internal compiler error: Killed (program cc1plus)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;太吃内存，make巨慢&lt;br&gt;
+没找到解决方案&amp;hellip;&lt;/li&gt;
+&lt;li&gt;缺少依赖组件&lt;br&gt;
+可能是缺少ncurses-devel&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;yum install ncurses-devel libaio bison zlib-devel openssl openssl-devel patch
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;mysqld启动问题&#34;&gt;mysqld启动问题&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;磁盘空间不足&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意my.cnf配置文件，特别innodb参数配置，可能因系统内存或磁盘容量导致启动失败&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;查看系统磁盘: df -h&lt;br&gt;
+[InnoDB] Error number 28 means &amp;lsquo;No space left on device&amp;rsquo;&lt;/p&gt;
+&lt;h3 id=&#34;vscode本地调试mysql8024&#34;&gt;vscode本地调试mysql8.0.24&lt;/h3&gt;
+&lt;p&gt;先在云服务器上执行以下命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;./mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;launch.json配置文件如下：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;version&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;0.2.0&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;configurations&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;debug mysql&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;cppdbg&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;request&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;launch&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;program&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;/usr/local/mysql/bin/mysqld&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;args&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;--defaults-file=/usr/local/mysql/etc/my.cnf&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;stopAtEntry&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;cwd&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;${workspaceFolder}&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;environment&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;externalConsole&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;img src=&#34;https://soli.seekincs.com/2022/11/mysql-source-code-learning/static/mysql-debug-capture.jpg&#34;
+	width=&#34;1400&#34;
+	height=&#34;1018&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/11/mysql-source-code-learning/static/mysql-debug-capture_hua96c84624f874841e8ede985cb3d2228_146303_480x0_resize_q75_box.jpg 480w, https://soli.seekincs.com/2022/11/mysql-source-code-learning/static/mysql-debug-capture_hua96c84624f874841e8ede985cb3d2228_146303_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;static/mysql-debug-capture&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;137&#34;
+		data-flex-basis=&#34;330px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;源码结构&#34;&gt;源码结构&lt;/h2&gt;
+&lt;p&gt;安装tree工具，执行tree -d -L 1命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;|-- build
+|-- client
+|-- cmake
+|-- components
+|-- Docs
+|-- doxygen_resources
+|-- extra
+|-- include
+|-- libbinlogevents
+|-- libbinlogstandalone
+|-- libmysql
+|-- libservices
+|-- man
+|-- mysql-test
+|-- mysys
+|-- packaging
+|-- plugin
+|-- router
+|-- scripts
+|-- share
+|-- source_downloads
+|-- sql
+|-- sql-common
+|-- storage
+|-- strings
+|-- support-files
+|-- testclients
+|-- unittest
+|-- utilities
+`-- vio
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;语雀代码画时序图：
+&lt;a class=&#34;link&#34; href=&#34;https://www.bookstack.cn/read/yuque/34.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.bookstack.cn/read/yuque/34.md&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;mysql线程的基本设置&#34;&gt;Mysql线程的基本设置&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;mysql&amp;gt; show variables like &#39;thread%&#39;;
++-------------------+---------------------------+
+| Variable_name     | Value                     |
++-------------------+---------------------------+
+| thread_cache_size | 1536                      |
+| thread_handling   | one-thread-per-connection |
+| thread_stack      | 524288                    |
++-------------------+---------------------------+
+3 rows in set (0.05 sec)
+mysql&amp;gt; show global status like &#39;Thread%&#39;;
++-------------------+-------+
+| Variable_name     | Value |
++-------------------+-------+
+| Threads_cached    | 0     |
+| Threads_connected | 1     |
+| Threads_created   | 1     |
+| Threads_running   | 1     |
++-------------------+-------+
+4 rows in set (0.07 sec)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;远程连接&#34;&gt;远程连接&lt;/h2&gt;
+&lt;p&gt;root忘记密码&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;--- mysqld模块下增加skip-grant-tables配置,免密登录后执行以下命令：
+update user set authentication_string = &#39;&#39; where user =&#39;root&#39;;
+--- 注释掉skip-grant-tables配置,重新登录，设置新密码：
+ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;root123456&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;允许外部访问&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;use mysql;
+update user set host=&#39;%&#39; where user =&#39;root&#39;;
+FLUSH PRIVILEGES;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;测试mermaid&#34;&gt;测试mermaid&lt;/h2&gt;
+
+&lt;pre class=&#34;mermaid&#34; align=&#34;center&#34;&gt;
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice-&gt;&gt;John: Hello John, how are you?
+    loop Healthcheck
+        John-&gt;John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts prevail...
+    John--&gt;Alice: Great!
+    John-&gt;Bob: How about you?
+    Bob--&gt;John: Jolly good!
+&lt;/pre&gt;</description>
+        </item>
+        <item>
+        <title>redis工作笔记</title>
+        <link>https://soli.seekincs.com/2022/11/redis%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Mon, 14 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/redis%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post redis工作笔记" /&gt;&lt;h2 id=&#34;redislua实现分布式限流&#34;&gt;redis+lua实现分布式限流&lt;/h2&gt;
+&lt;h3 id=&#34;事件处理&#34;&gt;事件处理&lt;/h3&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
+&lt;h3 id=&#34;vscode本地调试&#34;&gt;vscode本地调试&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;version&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;0.2.0&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;configurations&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;debug redis&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;cppdbg&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;request&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;launch&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;program&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;${workspaceFolder}/src/redis-server&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;args&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;redis.conf&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;stopAtEntry&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;cwd&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;${workspaceFolder}&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;environment&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;externalConsole&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;redis-benchmark压测&#34;&gt;redis-benchmark压测&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /usr/local/projs/redis/src &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./redis-benchmark -h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./redis-benchmark -t &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; -n &lt;span class=&#34;m&#34;&gt;1000000&lt;/span&gt; -r &lt;span class=&#34;m&#34;&gt;100000000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;47496.91 requests per second
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./redis-benchmark -t &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; -n &lt;span class=&#34;m&#34;&gt;1000000&lt;/span&gt; -r &lt;span class=&#34;m&#34;&gt;100000000&lt;/span&gt; -P &lt;span class=&#34;m&#34;&gt;16&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;291290.41 requests per second&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;查看rdb快照文件&#34;&gt;查看RDB快照文件&lt;/h3&gt;
+&lt;p&gt;rdb -c memory dump.rdb &amp;gt; dump_rdb.csv&lt;br&gt;
+其中：size_in_bytes 内存的大小，由此可以查询内存最高的key&lt;/p&gt;
+&lt;h3 id=&#34;redis50搭建伪分布式集群&#34;&gt;redis5.0搭建伪分布式集群&lt;/h3&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/blessli/redis/commit/cae296cf3035b8529250eb72ffb3263f380b3ef6&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;具体配置参考commit&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;/home/github/redis/src/redis-cli --cluster create --cluster-replicas 1 10.0.12.2:7001 10.0.12.2:7002 10.0.12.2:7003 10.0.12.2:7004 10.0.12.2:7005 10.0.12.2:7006
+./src/redis-cli -h 10.0.12.2 -p 7001 -c
+cluser nodes
+cluser info
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;参考资料&#34;&gt;参考资料&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.redis.net.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Redis中文网&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://juejin.cn/post/6974560368026714119#heading-8&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;用go实现redis服务器&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+        </item>
+        <item>
+        <title>MQTT Broker in Action</title>
+        <link>https://soli.seekincs.com/2022/11/mqtt-broker-in-action/</link>
+        <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/2022/11/mqtt-broker-in-action/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post MQTT Broker in Action" /&gt;&lt;h2 id=&#34;emqx安装部署&#34;&gt;EMQX安装部署&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;EMQX 是一款大规模可弹性伸缩的云原生分布式物联网 MQTT 消息服务器😂。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;docker单节点多实例&#34;&gt;Docker单节点多实例&lt;/h3&gt;
+&lt;p&gt;基于docker-compose+haproxy搭建伪分布式集群：&lt;br&gt;
+启动：docker-compose -f docker-compose-emqx-cluster.yaml up&lt;br&gt;
+关闭：docker-compose -f docker-compose-emqx-cluster.yaml down&lt;/p&gt;
+&lt;h3 id=&#34;docker多节点&#34;&gt;Docker多节点&lt;/h3&gt;
+&lt;p&gt;修改emqx.conf配置文件(这里选择static方式)，集群节点开放某些端口：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-conf&#34;&gt;cluster.discovery = static
+cluster.static.seeds = emqx@120.92.94.79,emqx@120.92.88.242
+rpc.port_discovery = manual
+rpc.tcp_server_port = 5369
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;两个集群节点分别执行以下命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;docker run -d --name emqx_cluster -v /emqx.conf:/opt/emqx/etc/emqx.conf -v /emqx_auth_mysql.conf:/opt/emqx/etc/plugins/emqx_auth_mysql.conf -v /loaded_plugins:/opt/emqx/data/loaded_plugins --env EMQX_LOG__TO=both --env EMQX_HOST=120.92.94.79 -p 1883:1883 -p 8081:8081 -p 8083:8083 -p 8084:8084 -p 8883:8883 -p 18083:18083 -p 4370:4370 -p 5370:5370 -p 4369:4369 -p 5369:5369 -p 6369:6369 -p 6370:6370 emqx/emqx:4.4.4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;k8s集群&#34;&gt;k8s集群&lt;/h3&gt;
+&lt;p&gt;见另外一篇文章，传送门&lt;/p&gt;
+&lt;h2 id=&#34;安全&#34;&gt;安全&lt;/h2&gt;
+&lt;p&gt;安全主要包括服务端访问控制和客户端SDK安全，具体如下：&lt;br&gt;
+服务端启用emqx_auth_mysql插件实现认证和授权。&lt;br&gt;
+客户端SDK引入的第三方库， 要走中台统一的三方库报备、审查，看看有没有漏洞或其他风险。&lt;/p&gt;
+&lt;h2 id=&#34;客户端sdk&#34;&gt;客户端SDK&lt;/h2&gt;
+&lt;p&gt;一些SDK不支持mqtt5.0，其影响是pub/sub操作无法拿到原因码。一些SDK不支持断线重连。&lt;br&gt;
+注意点：client_id尽量不填(或者重连时采用第一次连接后返回的client_id)，避免client_id重复导致会话互踢。&lt;br&gt;
+Go版本建议选择&lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.golang&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;paho.golang&lt;/a&gt;，因为支持5.0协议。&lt;br&gt;
+C++版本建议选择&lt;a class=&#34;link&#34; href=&#34;https://github.com/eclipse/paho.mqtt.cpp&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;paho.mqtt.cpp&lt;/a&gt;，也可以参考我写的&lt;a class=&#34;link&#34; href=&#34;https://github.com/blessli/mqtt-cpp-demo&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;一个基于vcpkg+cmake的demo&lt;/a&gt;&lt;br&gt;
+JS版本建议选择&lt;a class=&#34;link&#34; href=&#34;https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-WebSocket/ws-mqtt.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ws-mqtt&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;压力验证&#34;&gt;压力验证&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/emqx/emqtt-bench&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;压测工具&lt;/a&gt;&lt;br&gt;
+硬件配置：一台腾讯云服务器2c4g。&lt;br&gt;
+一个master节点的k8s上运行emqx 6个pod，目前只能支持27322个订阅端，服务器CPU 100%。&lt;br&gt;&lt;/p&gt;
+&lt;h3 id=&#34;遇到的问题&#34;&gt;遇到的问题&lt;/h3&gt;
+&lt;p&gt;client(4): EXIT for {shutdown,eaddrinuse}&lt;br&gt;
+解决方法：&lt;br&gt;
+扩大端口数量&lt;br&gt;
+提高端口使用率&lt;br&gt;
+&lt;img src=&#34;https://soli.seekincs.com/2022/11/mqtt-broker-in-action/static/emqtt-bench-result.png&#34;
+	width=&#34;1564&#34;
+	height=&#34;709&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/11/mqtt-broker-in-action/static/emqtt-bench-result_hud14d66730ab45c2af3ddfad68006f28b_105763_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/11/mqtt-broker-in-action/static/emqtt-bench-result_hud14d66730ab45c2af3ddfad68006f28b_105763_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;emqtt-bench-result.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;220&#34;
+		data-flex-basis=&#34;529px&#34;
+	
+&gt;&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>如何快速部署开源服务器</title>
+        <link>https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
         <pubDate>Sun, 30 Oct 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 【实战】如何快速部署开源服务器并应用于业务场景" /&gt;&lt;p&gt;&lt;a name=&#34;NcnDm&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+        <guid>https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 如何快速部署开源服务器" /&gt;&lt;p&gt;&lt;a name=&#34;NcnDm&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
 &lt;p&gt;当需要提供一种新能力，考虑到成本问题，我们往往不会从0到1开发一个服务器，而是先在开源产品中选型对比，看是否已有能满足自身需求的开源产品(不重复造轮子的原则)。因为对开源服务器的不熟悉，部署过程中会踩这样那样的坑，效率比较低，如何快速部署并应用于实际业务场景呢？&lt;br /&gt;随便提一下，私有化部署的原因主要是考虑到数据安全，&lt;strong&gt;安全无小事，安全大于一切&lt;/strong&gt;
 &lt;a name=&#34;cGHID&#34;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -165,10 +1259,10 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 &lt;p&gt;SDK引入了第三方库， 要走中台统一的三方库报备、审查，看看有没有漏洞或其他风险 。
 &lt;a name=&#34;ucIIH&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;集群部署&#34;&gt;集群部署&lt;/h2&gt;
-&lt;p&gt;实际业务场景可能对高性能、高可用有着一定要求。这里以伪分布式集群为例：&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE.jpeg&#34;
+&lt;p&gt;实际业务场景可能对高性能、高可用有着一定要求。这里以伪分布式集群为例：&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE.jpeg&#34;
 	width=&#34;1520&#34;
 	height=&#34;756&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_1024x0_resize_q75_box.jpeg 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/LB%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_84621_1024x0_resize_q75_box.jpeg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;image.png&#34;
@@ -371,10 +1465,10 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;#       gateway: 172.100.239.1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg&#34;
+&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg&#34;
 	width=&#34;1562&#34;
 	height=&#34;392&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_1024x0_resize_q75_box.jpeg 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_81125_1024x0_resize_q75_box.jpeg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;image.png&#34;
@@ -515,10 +1609,10 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg&#34;
+&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE.jpeg&#34;
 	width=&#34;1001&#34;
 	height=&#34;379&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_142730_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_142730_1024x0_resize_q75_box.jpeg 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_142730_480x0_resize_q75_box.jpeg 480w, https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E%E6%95%88%E6%9E%9C%E5%9B%BE_hu0a02987c1b5bc970b81bbe1882c329b7_142730_1024x0_resize_q75_box.jpeg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;image.png&#34;
@@ -546,10 +1640,10 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 &lt;/div&gt;
 &lt;a name=&#34;MWSkb&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;压测注意事项&#34;&gt;压测注意事项&lt;/h4&gt;
-&lt;p&gt;压测客户端被限制：ulimit命令修改进程最大连接数限制，否则会压测不准，最大并发连接数卡在1007上不去。&lt;br /&gt;发布端发送消息速率过快：  max_mqueue_len参数默认为1000，队列满会消息发送失败 &lt;br /&gt;负载均衡器maxconn设置过小：haproxy的maxconn默认值是1000，需要调大为50000&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png&#34;
+&lt;p&gt;压测客户端被限制：ulimit命令修改进程最大连接数限制，否则会压测不准，最大并发连接数卡在1007上不去。&lt;br /&gt;发布端发送消息速率过快：  max_mqueue_len参数默认为1000，队列满会消息发送失败 &lt;br /&gt;负载均衡器maxconn设置过小：haproxy的maxconn默认值是1000，需要调大为50000&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png&#34;
 	width=&#34;1724&#34;
 	height=&#34;492&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_huefad2e85d3792de91e62b1dc6b6f85d7_360856_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_huefad2e85d3792de91e62b1dc6b6f85d7_360856_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_huefad2e85d3792de91e62b1dc6b6f85d7_360856_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_huefad2e85d3792de91e62b1dc6b6f85d7_360856_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;image.png&#34;
@@ -559,10 +1653,10 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 		data-flex-grow=&#34;350&#34;
 		data-flex-basis=&#34;840px&#34;
 	
-&gt;&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png&#34;
+&gt;&lt;br /&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE.png&#34;
 	width=&#34;451&#34;
 	height=&#34;211&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu05177a01e7c6baaaeded93db73876caf_20409_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/10/%E5%AE%9E%E6%88%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu05177a01e7c6baaaeded93db73876caf_20409_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu05177a01e7c6baaaeded93db73876caf_20409_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/10/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E5%BC%80%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/static/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%8B%E6%B5%8B%E6%95%88%E6%9E%9C%E5%9B%BE_hu05177a01e7c6baaaeded93db73876caf_20409_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -576,392 +1670,12 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
 &lt;p&gt;搭建开源服务器，需要实现协议接入、集群部署、接入安全等核心功能来满足业务需求，最终目的是为业务带来一定的价值。&lt;/p&gt;</description>
         </item>
         <item>
-        <title>【读书笔记】网络是怎样连接的</title>
-        <link>https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/</link>
-        <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+        <title>专题3：限流</title>
+        <link>https://soli.seekincs.com/2022/02/%E4%B8%93%E9%A2%983%E9%99%90%E6%B5%81/</link>
+        <pubDate>Fri, 11 Feb 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img0.png" alt="Featured image of post 【读书笔记】网络是怎样连接的" /&gt;&lt;blockquote&gt;
-&lt;p&gt;从在浏览器中输入网址，到屏幕上显示出网页的内容，在这个只有几秒钟的过程中，很多硬件和软件都在各自的岗位上相互配合完成了一系列的工作。&lt;br&gt;
-&lt;img src=&#34;https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/static/%E6%8E%A2%E7%B4%A2%E4%B9%8B%E6%97%85%E8%B7%AF%E7%BA%BF%E5%9B%BE.png&#34;
-	width=&#34;1019&#34;
-	height=&#34;607&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/static/%E6%8E%A2%E7%B4%A2%E4%B9%8B%E6%97%85%E8%B7%AF%E7%BA%BF%E5%9B%BE_hu717f72756ee5a734cc42c73c4166c78f_292840_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/static/%E6%8E%A2%E7%B4%A2%E4%B9%8B%E6%97%85%E8%B7%AF%E7%BA%BF%E5%9B%BE_hu717f72756ee5a734cc42c73c4166c78f_292840_1024x0_resize_box_3.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;探索之旅路线图&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;167&#34;
-		data-flex-basis=&#34;402px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;浏览器生成消息&#34;&gt;浏览器生成消息&lt;/h2&gt;
-&lt;h2 id=&#34;用电信号传输tcpip&#34;&gt;用电信号传输TCP/IP&lt;/h2&gt;
-&lt;h2 id=&#34;从网络到网络设备&#34;&gt;从网络到网络设备&lt;/h2&gt;
-&lt;h2 id=&#34;通过接入网进入互联网内部&#34;&gt;通过接入网进入互联网内部&lt;/h2&gt;
-&lt;h2 id=&#34;请求到达web服务器响应返回浏览器&#34;&gt;请求到达web服务器，响应返回浏览器&lt;/h2&gt;</description>
-        </item>
-        <item>
-        <title>【读书笔记】操作系统导论</title>
-        <link>https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/</link>
-        <pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/10/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post 【读书笔记】操作系统导论" /&gt;&lt;h2 id=&#34;操作系统是什么&#34;&gt;操作系统是什么？&lt;/h2&gt;
-&lt;p&gt;实际上，有一类软件负责让程序运行变得容易（甚至允许你同时运行多个程序），允许程序共享内存，让程序能够与设备交互，以及其他类似的有趣的工作。这些软件称为操作系统，因为它们负责&lt;em&gt;&lt;strong&gt;确保系统既易于使用又正确高效地运行&lt;/strong&gt;&lt;/em&gt;。&lt;/p&gt;
-&lt;h2 id=&#34;关键问题操作系统如何将资源虚拟化&#34;&gt;关键问题：操作系统如何将资源虚拟化&lt;/h2&gt;
-&lt;p&gt;为什么操作系统这样做？这不是主要问题，因为答案应该很明显：它让系统更易于使用。因此，我们关注如何虚拟化：操作系统通过哪些机制和策略来实现虚拟化？操作系统如何有效地实现虚拟化？需要哪些硬件支持？&lt;br&gt;
-操作系统将物理资源（如处理器、内存或磁盘）转换为更通用、更强大且更易于使用的虚拟形式。因此，我们有时将操作系统称为虚拟机。
-因为虚拟化让许多程序运行（从而共享CPU），让许多程序可以同时访问自己的指令和数据（从而共享内存），让许多程序访问设备（从而共享磁盘等），所以操作系统有时被称为资源管理器。每个CPU、内存和磁盘都是系统的资源，因此操作系统扮演的主要角色就是管理这些资源，以做到高效或公平。&lt;/p&gt;
-&lt;h3 id=&#34;虚拟化cpu&#34;&gt;虚拟化CPU&lt;/h3&gt;
-&lt;p&gt;在硬件的一些帮助下，操作系统负责提供这种假象，即系统拥有非常多的虚拟CPU的假象。将单个CPU（或其中一小部分）转换为看似无限数量的CPU，从而让许多程序看似同时运行，这就是所谓的虚拟化CPU。&lt;/p&gt;
-&lt;h3 id=&#34;虚拟化内存&#34;&gt;虚拟化内存&lt;/h3&gt;
-&lt;p&gt;每个进程访问自己的私有虚拟地址空间（有时称为地址空间），操作系统以某种方式映射到机器的物理内存上。一个正在运行的程序中的内存引用不会影响其他进程（或操作系统本身）的地址空间。对于正在运行的程序，它完全拥有自己的物理内存。&lt;/p&gt;
-&lt;h2 id=&#34;关键问题如何构建正确的并发程序&#34;&gt;关键问题：如何构建正确的并发程序&lt;/h2&gt;
-&lt;p&gt;如果同一个内存空间中有很多并发执行的线程，如何构建一个正确工作的程序？操作系统需要什么原语？硬件应该提供哪些机制？我们如何利用它们来解决并发问题？&lt;/p&gt;
-&lt;h2 id=&#34;关键问题如何持久地存储数据&#34;&gt;关键问题：如何持久地存储数据&lt;/h2&gt;
-&lt;p&gt;文件系统是操作系统的一部分，负责管理持久的数据。持久性需要哪些技术才能正确地实现？需要哪些机制和策略才能高性能地实现？面对硬件和软件故障，可靠性如何实现？&lt;/p&gt;
-&lt;h2 id=&#34;操作系统做了什么&#34;&gt;操作系统做了什么？&lt;/h2&gt;
-&lt;p&gt;它取得CPU、内存或磁盘等物理资源，并对它们进行虚拟化。它处理与并发有关的麻烦且棘手的问题。它持久地存储文件，从而使它们长期安全。&lt;/p&gt;
-&lt;h2 id=&#34;操作系统的设计目标&#34;&gt;操作系统的设计目标&lt;/h2&gt;
-&lt;p&gt;一个最基本的目标，是建立一些&lt;em&gt;&lt;strong&gt;抽象&lt;/strong&gt;&lt;/em&gt;，让系统方便和易于使用。&lt;br&gt;
-设计和实现操作系统的一个目标，是提供高性能。换言之，我们的目标是最小化操作系统的开销。&lt;br&gt;
-另一个目标是在应用程序之间以及在OS和应用程序之间提供保护。&lt;br&gt;
-根据系统的使用方式，操作系统将有不同的目标，因此可能至少以稍微不同的方式实现。&lt;/p&gt;</description>
-        </item>
-        <item>
-        <title>2022书单</title>
-        <link>https://soli.seekincs.com/2022/10/2022%E4%B9%A6%E5%8D%95/</link>
-        <pubDate>Sat, 08 Oct 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/10/2022%E4%B9%A6%E5%8D%95/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/2022/10/2022%E4%B9%A6%E5%8D%95/img.png" alt="Featured image of post 2022书单" /&gt;&lt;h2 id=&#34;文学&#34;&gt;📖文学&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 平凡的世界&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 法治的细节&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 活着&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 三体&lt;img src=&#34;https://geps.dev/progress/23&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;技术&#34;&gt;🧑‍💻技术&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 操作系统导论&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 网络是怎样连接的&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 深入剖析k8s&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 计算机网络第6版&lt;img src=&#34;https://geps.dev/progress/33&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;生活&#34;&gt;生活&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 控糖生活&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 我的人生样样稀松照样赢&lt;/li&gt;
-&lt;/ul&gt;</description>
-        </item>
-        <item>
-        <title>【TODO】golang相关2333</title>
-        <link>https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/</link>
-        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img8.png" alt="Featured image of post 【TODO】golang相关2333" /&gt;&lt;h2 id=&#34;golang概述&#34;&gt;Golang概述&lt;/h2&gt;
-&lt;h2 id=&#34;channel&#34;&gt;Channel&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/channel-overview.png&#34;
-	width=&#34;1500&#34;
-	height=&#34;923&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/channel-overview_hu0eb3b9f1ee24e4d337caae59151f5270_238819_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/channel-overview_hu0eb3b9f1ee24e4d337caae59151f5270_238819_1024x0_resize_box_3.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;162&#34;
-		data-flex-basis=&#34;390px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;gmp调度模型&#34;&gt;GMP调度模型&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/gmp-overview.png&#34;
-	width=&#34;1240&#34;
-	height=&#34;698&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/gmp-overview_hua11c6aaea3a84c49cd2aa3cbacab8952_289581_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/gmp-overview_hua11c6aaea3a84c49cd2aa3cbacab8952_289581_1024x0_resize_box_3.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;177&#34;
-		data-flex-basis=&#34;426px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;mutex&#34;&gt;Mutex&lt;/h2&gt;
-&lt;h2 id=&#34;waitgroup&#34;&gt;WaitGroup&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/waitgroup.png&#34;
-	width=&#34;3033&#34;
-	height=&#34;1572&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/waitgroup_hucb853939e1f51b2eb1dfcfd394cd0e16_275659_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/todogolang%E7%9B%B8%E5%85%B32333/static/waitgroup_hucb853939e1f51b2eb1dfcfd394cd0e16_275659_1024x0_resize_box_3.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;192&#34;
-		data-flex-basis=&#34;463px&#34;
-	
-&gt;&lt;/p&gt;</description>
-        </item>
-        <item>
-        <title>k8s-notes</title>
-        <link>https://soli.seekincs.com/2022/06/k8s-notes/</link>
-        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/06/k8s-notes/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/2022/06/k8s-notes/img.png" alt="Featured image of post k8s-notes" /&gt;&lt;h2 id=&#34;k8s概述&#34;&gt;k8s概述&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;自动化运维管理Docker(容器化)程序。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;核心特性&#34;&gt;核心特性&lt;/h2&gt;
-&lt;h2 id=&#34;pod状态流转&#34;&gt;pod状态流转&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/k8s-notes/pod-status-transfer.png&#34;
-	width=&#34;1808&#34;
-	height=&#34;732&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/06/k8s-notes/pod-status-transfer_hu8b8ca875de7b11f9902f0c65dd172bb1_93987_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/k8s-notes/pod-status-transfer_hu8b8ca875de7b11f9902f0c65dd172bb1_93987_1024x0_resize_box_3.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;246&#34;
-		data-flex-basis=&#34;592px&#34;
-	
-&gt;&lt;/p&gt;</description>
-        </item>
-        <item>
-        <title>kafka简介</title>
-        <link>https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/</link>
-        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/img.png" alt="Featured image of post kafka简介" /&gt;&lt;h2 id=&#34;kafka概述&#34;&gt;Kafka概述&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;体系架构、多副本机制、分区机制。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/kafka-overview.jpg&#34;
-	width=&#34;1500&#34;
-	height=&#34;711&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/kafka-overview_hu1d5a1f7ef32392ffc1bb1be28d3dd3b9_385772_480x0_resize_q75_box.jpg 480w, https://soli.seekincs.com/2022/06/kafka%E7%AE%80%E4%BB%8B/kafka-overview_hu1d5a1f7ef32392ffc1bb1be28d3dd3b9_385772_1024x0_resize_q75_box.jpg 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;210&#34;
-		data-flex-basis=&#34;506px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;kafka的生产者客户端&#34;&gt;Kafka的生产者(客户端)&lt;/h2&gt;
-&lt;h2 id=&#34;kafka的消费者客户端&#34;&gt;Kafka的消费者(客户端)&lt;/h2&gt;
-&lt;h2 id=&#34;kafka的服务端&#34;&gt;Kafka的服务端&lt;/h2&gt;
-&lt;h3 id=&#34;kafka的协调者&#34;&gt;Kafka的协调者&lt;/h3&gt;
-&lt;h2 id=&#34;kafka的存储层&#34;&gt;Kafka的存储层&lt;/h2&gt;
-&lt;h3 id=&#34;kafka日志结构&#34;&gt;Kafka日志结构&lt;/h3&gt;
-&lt;h2 id=&#34;kafka常见问题讨论&#34;&gt;Kafka常见问题讨论&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Kafka是如何保障数据不丢失的？&lt;/li&gt;
-&lt;li&gt;如何解决Kafka数据丢失问题？&lt;/li&gt;
-&lt;li&gt;Kafka可以保障永久不丢失数据吗？&lt;/li&gt;
-&lt;li&gt;如何保障Kafka中的消息是有序的？&lt;/li&gt;
-&lt;li&gt;如何确定Kafka主题的分区数量？&lt;/li&gt;
-&lt;li&gt;如何调整生产环境中Kafka主题的分区数量？&lt;/li&gt;
-&lt;li&gt;如何重平衡Kafka集群？&lt;/li&gt;
-&lt;li&gt;如何查看消费者组是否存在滞后消费？&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;pagecache&#34;&gt;PageCache&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;缓存最近被访问的数据&lt;/li&gt;
-&lt;li&gt;预读功能&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;消息顺序性问题&#34;&gt;消息顺序性问题&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;分区有序而不是主题有序。分区有序是通过offset实现的。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;分区机制&#34;&gt;分区机制&lt;/h2&gt;
-&lt;p&gt;一个主题不可能只对应一个文件(单机I/O会成为性能瓶颈)
-一个主题包含多个分区，每个分区是一个可追加的日志文件。不同分区在不同broker上。&lt;/p&gt;
-&lt;h2 id=&#34;消息中间件选型&#34;&gt;消息中间件选型&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;功能维度(延时队列)&lt;/li&gt;
-&lt;li&gt;性能维度()&lt;/li&gt;
-&lt;li&gt;可靠性和可用性&lt;/li&gt;
-&lt;li&gt;运维管理&lt;/li&gt;
-&lt;li&gt;社区力度和生态发展&lt;/li&gt;
-&lt;/ol&gt;</description>
-        </item>
-        <item>
-        <title>mysql-notes</title>
-        <link>https://soli.seekincs.com/2022/06/mysql-notes/</link>
-        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/06/mysql-notes/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img6.png" alt="Featured image of post mysql-notes" /&gt;&lt;h2 id=&#34;索引&#34;&gt;索引&lt;/h2&gt;
-&lt;h3 id=&#34;索引底层数据结构选型&#34;&gt;索引底层数据结构选型&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;哈希表、二叉查找树、平衡二叉树、B树、B+树、跳表。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;事务&#34;&gt;事务&lt;/h2&gt;
-&lt;h3 id=&#34;并发事务问题&#34;&gt;并发事务问题&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;脏读、不可重复读、幻读。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;日志&#34;&gt;日志&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;redo、undo、bin。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;锁&#34;&gt;锁&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;行锁和表锁。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;乐观锁mvcc&#34;&gt;乐观锁MVCC&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/mysql-notes/mvcc-demo.png&#34;
-	width=&#34;1440&#34;
-	height=&#34;649&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/06/mysql-notes/mvcc-demo_hu8903680d18553c68f658c5ac0bc1328e_326372_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/mysql-notes/mvcc-demo_hu8903680d18553c68f658c5ac0bc1328e_326372_1024x0_resize_box_3.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;221&#34;
-		data-flex-basis=&#34;532px&#34;
-	
-&gt;
-可重复读：事务开始的时候生成一个当前事务全局性的快照&lt;br&gt;
-读提交：每次执行语句的时候都重新生成一次快照&lt;br&gt;
-对于一个快照来说，它能够读到那些版本数据，要遵循以下规则：&lt;br&gt;
-当前事务内的更新，可以读到；&lt;br&gt;
-版本未提交，不能读到&lt;br&gt;
-版本已提交，但是却在快照创建后提交的，不能读到  &lt;br&gt;
-版本已提交，且是在快照创建前提交的，可以读到&lt;/p&gt;</description>
-        </item>
-        <item>
-        <title>mysql慢查询</title>
-        <link>https://soli.seekincs.com/2022/06/mysql%E6%85%A2%E6%9F%A5%E8%AF%A2/</link>
-        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/06/mysql%E6%85%A2%E6%9F%A5%E8%AF%A2/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post mysql慢查询" /&gt;&lt;h2 id=&#34;字段类型与查询类型不一致导致不走索引&#34;&gt;字段类型与查询类型不一致导致不走索引&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;third_id字段类型是varchar，参数传的却是数字，这种情况下不会走索引，导致慢查&lt;br/&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;SQL示例
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;meta&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;audit_pass&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;state&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;third_id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;</description>
-        </item>
-        <item>
-        <title>redis-notes</title>
-        <link>https://soli.seekincs.com/2022/06/redis-notes/</link>
-        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/06/redis-notes/</guid>
-        <description>&lt;img src="https://soli.seekincs.com/2022/06/redis-notes/img.png" alt="Featured image of post redis-notes" /&gt;&lt;h2 id=&#34;redis概述&#34;&gt;Redis概述&lt;/h2&gt;
-&lt;h2 id=&#34;核心数据结构&#34;&gt;核心数据结构&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/redis-notes/redis-data-structure-overview.png&#34;
-	width=&#34;1648&#34;
-	height=&#34;376&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/06/redis-notes/redis-data-structure-overview_hub2a6c8a9305badb65c15c58ab4b5e27d_80745_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/redis-notes/redis-data-structure-overview_hub2a6c8a9305badb65c15c58ab4b5e27d_80745_1024x0_resize_box_3.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;438&#34;
-		data-flex-basis=&#34;1051px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;持久化&#34;&gt;持久化&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;RDB+AOF混用&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;io多路复用&#34;&gt;I/O多路复用&lt;/h2&gt;
-&lt;h2 id=&#34;redis常见问题讨论&#34;&gt;Redis常见问题讨论&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;击穿问题：底层数据库有数据而缓存内没有数据&lt;/li&gt;
-&lt;li&gt;穿透问题：底层数据库没有数据且缓存内也没有数据。解决方法：布隆过滤器&lt;/li&gt;
-&lt;li&gt;雪崩问题：缓存击穿的&amp;quot;大面积&amp;quot;版&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/redis-notes/bloom-filter.png&#34;
-	width=&#34;815&#34;
-	height=&#34;728&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/06/redis-notes/bloom-filter_hucde5a3dd1599056439a13f9692d0cc4f_103516_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/redis-notes/bloom-filter_hucde5a3dd1599056439a13f9692d0cc4f_103516_1024x0_resize_box_3.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;缓存穿透解决办法&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;111&#34;
-		data-flex-basis=&#34;268px&#34;
-	
-&gt;&lt;/p&gt;</description>
-        </item>
-        <item>
-        <title>spark原理浅析</title>
-        <link>https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/</link>
-        <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/</guid>
-        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post spark原理浅析" /&gt;&lt;h2 id=&#34;spark概述&#34;&gt;Spark概述&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;一个高效通用的内存型分布式计算框架。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Spark特点：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;速度快&lt;/li&gt;
-&lt;li&gt;易用使用&lt;/li&gt;
-&lt;li&gt;通用性&lt;/li&gt;
-&lt;li&gt;运行模式多样&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;spark作业基本运行原理&#34;&gt;Spark作业基本运行原理&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-job-overview.png&#34;
-	width=&#34;1500&#34;
-	height=&#34;1165&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-job-overview_hu78bea729486ce89e2fe0a398a1ecaf9b_600608_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-job-overview_hu78bea729486ce89e2fe0a398a1ecaf9b_600608_1024x0_resize_box_3.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;128&#34;
-		data-flex-basis=&#34;309px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;运行流程&#34;&gt;运行流程&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-run-process.png&#34;
-	width=&#34;866&#34;
-	height=&#34;625&#34;
-	srcset=&#34;https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-run-process_huc9f081e82636bb0a42975df969154a76_141101_480x0_resize_box_3.png 480w, https://soli.seekincs.com/2022/06/spark%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/spark-run-process_huc9f081e82636bb0a42975df969154a76_141101_1024x0_resize_box_3.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;138&#34;
-		data-flex-basis=&#34;332px&#34;
-	
-&gt;&lt;/p&gt;</description>
+        <guid>https://soli.seekincs.com/2022/02/%E4%B8%93%E9%A2%983%E9%99%90%E6%B5%81/</guid>
+        <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img7.png" alt="Featured image of post 专题3：限流" /&gt;</description>
         </item>
         <item>
         <title>Archives</title>
@@ -977,7 +1691,7 @@ emqx默认是不设置权限，需要修改acl.conf启用鉴权。
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://soli.seekincs.com/about/</guid>
-        <description>&lt;p&gt;？&lt;/p&gt;
+        <description>&lt;p&gt;a gopher&lt;/p&gt;
 </description>
         </item>
         <item>
