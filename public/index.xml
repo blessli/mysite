@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>soli&#39;s blog</title>
+        <title>soli</title>
         <link>https://soli.seekincs.com/</link>
-        <description>Recent content on soli&#39;s blog</description>
+        <description>Recent content on soli</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Sat, 11 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/index.xml" rel="self" type="application/rss+xml" /><item>
