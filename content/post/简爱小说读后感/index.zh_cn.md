@@ -1,7 +1,7 @@
 +++
 author = "soli"
 keywords = ["读后感"]
-title = "《简爱》读后感"
+title = "《简爱》小说读后感"
 date = "2024-01-27"
 description = "离开桑菲尔德庄园"
 categories = ["小说"]

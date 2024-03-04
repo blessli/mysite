@@ -15,7 +15,9 @@
         <description>&lt;img src="https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png" alt="Featured image of post gorpc设计与实现" /&gt;&lt;p&gt;&lt;a name=&#34;vAlT3&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&#34;背景&#34;&gt;背景&lt;/h1&gt;
 &lt;p&gt;&lt;a name=&#34;MQrO1&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;_缩短从需求到上线的距离_&#34;&gt;&lt;em&gt;&lt;strong&gt;缩短从需求到上线的距离&lt;/strong&gt;&lt;/em&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;缩短从需求到上线的距离&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;服务端资源成本&lt;/li&gt;
 &lt;li&gt;工程效率

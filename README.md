@@ -17,4 +17,4 @@
 2. [进度条支持](https://geps.dev/progress/33)
 3. [emoji](https://gist.github.com/rxaviers/7360908)
 
-test
+[oss上传](https://oss.console.aliyun.com/bucket/oss-cn-shenzhen/someblogs/object/upload?path=thumb%2F)

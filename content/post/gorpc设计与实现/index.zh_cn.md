@@ -12,7 +12,7 @@ image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"
 <a name="vAlT3"></a>
 # 背景
 <a name="MQrO1"></a>
-### _**缩短从需求到上线的距离**_
+> 缩短从需求到上线的距离
 
 1. 服务端资源成本
 2. 工程效率

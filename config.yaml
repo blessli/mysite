@@ -58,7 +58,7 @@ params:
 
     footer:
         since: 2022
-        customText: 你很棒,明天请继续
+        customText: 慢慢来,欣赏啊
 
     dateFormat:
         published: 2006年01月02日
