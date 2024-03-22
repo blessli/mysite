@@ -11,7 +11,7 @@ tags = [
 "mqtt"
 ]
 series = ["Themes Guide"]
-image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"
+image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/mqtt_cover.webp"
 +++
 <!--more-->
 ## MQTT是什么
