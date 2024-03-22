@@ -3,7 +3,7 @@ author = "soli"
 keywords = ["MQTT消息服务器在稻壳服务落地"]
 title = "MQTT消息服务器在稻壳服务落地"
 date = "2022-10-28"
-description = "MQTT消息服务器在稻壳服务落地"
+description = ""
 categories = [
 "mqtt"
 ]
@@ -63,7 +63,8 @@ QoS 2：消息只送达一次 (Exactly once delivery)
 ![](https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/QQ%E6%88%AA%E5%9B%BE/WechatIMG208.jpg)
 #### 核心代码  
 订阅端断线自动重连，并自动订阅成功的关键代码
-```golang
+
+{{< highlight go "linenos=table" >}}
 func NewMqtt() {
     serverURL, err := url.Parse("tcp://xxx.xxx.xxx.xxx:1883")
     if err != nil {
@@ -131,7 +132,8 @@ func NewMqtt() {
 
     fmt.Println("shutdown complete")
 }
-```
+{{< / highlight >}}
+
 #### 问题
 • Broker暴露在公网，如何做好访问控制？  
 • 发布/订阅模式下，如何保证消息下发成功率？  

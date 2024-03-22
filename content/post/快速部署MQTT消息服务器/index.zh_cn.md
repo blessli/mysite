@@ -4,10 +4,10 @@ title = "如何快速部署开源服务器"
 date = "2022-10-30"
 description = "快速部署MQTT消息服务器"
 categories = [
-"中间件"
+"mqtt"
 ]
 tags = [
-"实战"
+"mqtt"
 ]
 series = ["Themes Guide"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"

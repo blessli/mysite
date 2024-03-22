@@ -144,17 +144,3 @@ use mysql;
 update user set host='%' where user ='root';
 FLUSH PRIVILEGES;
 ```
-## 测试mermaid
-{{< mermaid >}}
-sequenceDiagram
-    participant Alice
-    participant Bob
-    Alice->>John: Hello John, how are you?
-    loop Healthcheck
-        John->John: Fight against hypochondria
-    end
-    Note right of John: Rational thoughts prevail...
-    John-->Alice: Great!
-    John->Bob: How about you?
-    Bob-->John: Jolly good!
-{{< /mermaid >}}
