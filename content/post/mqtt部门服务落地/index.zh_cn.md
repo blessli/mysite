@@ -1,8 +1,8 @@
 +++
 author = "soli"
-keywords = ["MQTT消息服务器在稻壳服务落地"]
-title = "MQTT消息服务器在稻壳服务落地"
-date = "2022-10-28"
+keywords = ["MQTT消息服务器在部门服务落地"]
+title = "MQTT消息服务器在部门服务落地"
+date = "2024-03-22"
 description = ""
 categories = [
 "mqtt"
@@ -14,7 +14,6 @@ series = ["Themes Guide"]
 image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/img1.png"
 +++
 <!--more-->
-
 ## MQTT是什么
 > MQTT 协议的全称是 Message Queuing Telemetry Transport，翻译为消息队列传输探测。
 
@@ -54,7 +53,7 @@ QoS 1：消息至少送达一次 (At least once delivery)
 QoS 2：消息只送达一次 (Exactly once delivery)  
 避免消息重复或丢失会导致不正确的结果 
 ![](https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/QQ%E6%88%AA%E5%9B%BE/WechatIMG209.jpg) 
-## MQTT在服务端的应用-稻壳PC前端插件构建任务下发为例
+## MQTT在服务端的应用-部门PC前端插件构建任务下发为例
 ### 背景
 前端插件打包需要从git仓库拉取代码，考虑到安全问题，代码构建服务部署在内网金山云主机上。在前端同学提交工单后，运维人员需要手动发起构建任务生成的版本号再配置在对OP后台。  
 为了降低人工运维成本，将原本人工处理升级为自动化PC端插件下发，这个过程中需要解决外网服务如何调用内网服务的问题(注：代码构建服务部署在内网，无法被外网服务寻址到)。
@@ -187,4 +186,4 @@ MQTT消息publish出来没有接受者就会丢失，持久化的能力是指，
 解决方法：Broker重启后，需要确保静态集群保证有全部的两个节点，如果节点缺失，手动执行命令：emqx_ctl cluster join emqx@node2.emqx.io。
 
 ## 总结
-本文主要是介绍MQTT消息服务器在稻壳服务落地的实战过程中遇到的一些问题以及解决方案。MQTT消息服务器目前实现了协议接入、集群部署、接入安全等主要功能，能稳定承载百分级客户端连接。稻壳的很多业务场景都可以接入MQTT消息服务器的发布订阅能力来提效和精准触达用户，能为业务带来一定的价值。
+本文主要是介绍MQTT消息服务器在部门服务落地的实战过程中遇到的一些问题以及解决方案。MQTT消息服务器目前实现了协议接入、集群部署、接入安全等主要功能，能稳定承载百分级客户端连接。部门的很多业务场景都可以接入MQTT消息服务器的发布订阅能力来提效和精准触达用户，能为业务带来一定的价值。

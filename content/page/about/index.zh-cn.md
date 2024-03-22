@@ -7,4 +7,6 @@ menu:
             icon: user
 ---
 
-to win the world
+Q：where are you going？
+
+A：to win the world~

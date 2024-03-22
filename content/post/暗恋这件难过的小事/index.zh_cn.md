@@ -1,7 +1,7 @@
 +++
 author = "soli"
 keywords = ["读后感","暗恋这件难过的小事"]
-title = "暗恋这件难过的小事读后感"
+title = "《暗恋这件难过的小事》小说读后感"
 date = "2024-03-10"
 description = "酸甜的校园故事"
 categories = ["小说"]
