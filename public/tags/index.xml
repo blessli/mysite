@@ -6,7 +6,15 @@
         <description>Recent content in Tags on soli</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 22 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 23 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://soli.seekincs.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>旅游</title>
+        <link>https://soli.seekincs.com/tags/%E6%97%85%E6%B8%B8/</link>
+        <pubDate>Sat, 23 Mar 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://soli.seekincs.com/tags/%E6%97%85%E6%B8%B8/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>mqtt</title>
         <link>https://soli.seekincs.com/tags/mqtt/</link>
         <pubDate>Fri, 22 Mar 2024 00:00:00 +0000</pubDate>
