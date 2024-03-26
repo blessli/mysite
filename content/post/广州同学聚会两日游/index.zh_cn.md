@@ -41,8 +41,8 @@ image = "https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/441711458409_.pic_
 ## 广东早茶-氛围感plus
 小结：
 1. 高质量，正宗
-2. 左顾右盼，氛围到位
-3. 光盘
+2. 环顾四周，氛围浓厚
+3. 光盘，口感nice
 4. 早茶后，cong返深了
 
 ![](https://someblogs.oss-cn-shenzhen.aliyuncs.com/thumb/311711458391_.pic_hd.jpg)
